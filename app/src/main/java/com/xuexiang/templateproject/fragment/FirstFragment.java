@@ -123,13 +123,13 @@ public class FirstFragment extends BaseFragment {
 //                    holder.image(R.id.iv_image, model.getImageUrl());
 
                     //holder.click(R.id.card_view, v -> Utils.goWeb(getContext(), model.getDetailUrl()));
-                    holder.click(R.id.card_view, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
-                            startActivity(intent);
-                        }
-                    });
+//                    holder.click(R.id.card_view, new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
+//                            startActivity(intent);
+//                        }
+//                    });
                 }
             }
         };
