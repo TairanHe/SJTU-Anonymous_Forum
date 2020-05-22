@@ -42,7 +42,7 @@ public class ExchangeInfosWithAli {
             if (retval.equals("")) continue;
             String[] temp = retval.split("\010");
             list.add(new NewInfo("这里以后再说", temp[1])
-                    .setSummary(temp[2]).setPraise(Integer.parseInt(temp[3])).setComment(Integer.parseInt(temp[5])));
+                    .setSummary(temp[2]).setPraise(Integer.parseInt(temp[3])).setComment(Integer.parseInt(temp[5])).setThreadID(temp[0]));
         }
         return list;
     }
