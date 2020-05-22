@@ -15,7 +15,7 @@
  *
  */
 
-package com.xuexiang.templateproject.activity;
+package com.xuexiang.templateproject.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
