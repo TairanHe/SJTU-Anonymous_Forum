@@ -1,0 +1,56 @@
+<resources>
+    <string name="app_name">TemplateAppProject</string>
+    <string name="app_browser_name">通用浏览器</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="menu_news">动态</string>
+    <string name="menu_trending">趋势</string>
+    <string name="menu_profile">我的</string>
+
+    <string name="menu_notifications">通知</string>
+    <string name="menu_issues">问题</string>
+    <string name="menu_starred">收藏</string>
+    <string name="menu_search">搜索</string>
+    <string name="menu_settings">设置</string>
+    <string name="menu_about">关于</string>
+
+    <string name="about_copyright">© %1$s xuexiangjys All rights reserved.</string>
+    <string name="about_item_homepage">访问官网</string>
+    <string name="about_item_author_github">关于作者</string>
+    <string name="about_item_donation_link">捐赠作者</string>
+    <string name="about_item_add_qq_group">QQ交流群</string>
+    <string name="url_project_github">https://github.com/xuexiangjys/TemplateAppProject</string>
+    <string name="url_author_github">https://github.com/xuexiangjys</string>
+    <string name="url_donation_link">https://gitee.com/xuexiangjys/Resource/blob/master/doc/sponsor.md</string>
+    <string name="url_add_qq_group">http://qm.qq.com/cgi-bin/qm/qr?k=tiP-E6rDf0y77PRNfp2lNVcc9RsglPCM</string>
+
+    <string name="lab_yes">是</string>
+    <string name="lab_no">否</string>
+    <string name="lab_open_third_app">是否允许页面打开第三方应用?</string>
+
+    <!-- 隐私政策弹窗   -->
+    <string name="lab_exit_app">退出应用</string>
+    <string name="lab_agree">同意</string>
+    <string name="lab_disagree">不同意</string>
+    <string name="lab_look_again">再次查看</string>
+    <string name="lab_still_disagree">仍不同意</string>
+    <string name="title_reminder">温馨提示</string>
+    <string name="content_think_about_it_again">要不要再想想</string>
+    <string name="content_privacy_explain_again">我们非常重视对你个人信息的保护，承诺严格按照《%s隐私权政策》保护及处理你的信息。如果你不同意该政策，很遗憾我们将无法为你提供服务</string>
+    <string name="lab_privacy_name">《%s隐私权政策》</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_look_through">LookThroughActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+</resources>

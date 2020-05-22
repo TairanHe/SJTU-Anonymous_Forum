@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.xuexiangjys.XPage:xpage-lib:2.2.9@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ddd5ebcdf0efa4c7797aab2ce70f1aa/jetified-xpage-lib-2.2.9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/1ddd5ebcdf0efa4c7797aab2ce70f1aa/jetified-xpage-lib-2.2.9/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XPage/xpage-lib/2.2.9/ae9da09a3b4366df1924d0d2fc13325b89afb657/xpage-lib-2.2.9-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XPage/xpage-lib/2.2.9/8c33adc0300e5879ef4dd047cb891c9155e81377/xpage-lib-2.2.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

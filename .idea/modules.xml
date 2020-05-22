@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AndroidStudioProjects-SJTU-Anonymous_Forum.iml" filepath="$PROJECT_DIR$/AndroidStudioProjects-SJTU-Anonymous_Forum.iml" group="SJTU-Anonymous_Forum" />
+      <module fileurl="file://$PROJECT_DIR$/SJTU-Anonymous_Forum.iml" filepath="$PROJECT_DIR$/SJTU-Anonymous_Forum.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="SJTU-Anonymous_Forum/app" />
+    </modules>
+  </component>
+</project>
