@@ -47,7 +47,7 @@ public class tcp_thread_runnable implements Runnable {
             out.write(text.getBytes());
             // 读取服务端返回的数据，使用 Socket 读取流
             InputStream in = socket.getInputStream();
-            byte[] buf = new byte[1024];
+            byte[] buf = new byte[20480];
             int len = in.read(buf);
             receive_text = new String(buf, 0, len);
             socket.close();
