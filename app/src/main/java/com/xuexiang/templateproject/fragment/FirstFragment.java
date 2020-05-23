@@ -151,7 +151,7 @@ public class FirstFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos());
+                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread());
                 refreshLayout.finishRefresh();
             }, 1000);
         });
@@ -159,10 +159,11 @@ public class FirstFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mFloorsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos());
+                mFloorsAdapter.loadMore(ExchangeInfosWithAli.GetAliThread());
                 refreshLayout.finishLoadMore();
             }, 1000);
         });
+
         refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
 
         //thread.setOnSuperTextViewClickListener(this);
