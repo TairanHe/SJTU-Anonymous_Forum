@@ -38,11 +38,15 @@ public class ExchangeInfosWithAli {
 
     private static List<NewInfo> DecapsulateStringToList(String InputString){
         List<NewInfo> list = new ArrayList<>();
-        for (String retval: InputString.split("\011")){
+        String[] main_split = InputString.split("\012");
+        for (String retval: main_split[0].split("\011")){
             if (retval.equals("")) continue;
             String[] temp = retval.split("\010");
             list.add(new NewInfo("这里以后再说", temp[1])
                     .setSummary(temp[2]).setPraise(Integer.parseInt(temp[3])).setComment(Integer.parseInt(temp[5])).setThreadID(temp[0]));
+        }
+        if (main_split.length > 1){
+            NumOfQuery = 1;
         }
         return list;
     }
@@ -50,7 +54,7 @@ public class ExchangeInfosWithAli {
     private static String RunTCP(String QueryString) {
         tcp_thread_runnable tcp_one = new tcp_thread_runnable();
         tcp_one.set_text(QueryString);
-        tcp_one.set_addr("47.103.6.74", 8000);
+        tcp_one.set_addr("47.103.6.74", 7654);
         Thread tcp_thread = new Thread(tcp_one);
         tcp_thread.start();
         try {
