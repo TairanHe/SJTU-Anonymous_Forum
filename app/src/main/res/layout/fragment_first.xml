@@ -41,12 +41,25 @@
             android:overScrollMode="never"
             tools:listitem="@layout/adapter_thread_floor_view_list_item" />
 
+
         <!--    注意修改包名时，这里也需要修改    -->
         <com.xuexiang.templateproject.widget.MaterialFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/main_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="评论"/>
+    </LinearLayout>
 
 </LinearLayout>
+
+
+
