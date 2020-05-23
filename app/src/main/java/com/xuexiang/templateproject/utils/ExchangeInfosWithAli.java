@@ -17,6 +17,7 @@
 
 package com.xuexiang.templateproject.utils;
 
+import com.xuexiang.templateproject.adapter.entity.FloorInfo;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
 
 import java.util.ArrayList;
@@ -25,18 +26,25 @@ import java.util.List;
 public class ExchangeInfosWithAli {
     public static int NumOfQuery = 0;
     public static List<NewInfo> GetAliRecommandedNewsInfos() {
-        List<NewInfo> list = new ArrayList<>();
-        String QueryString = EncapsulateString(1, NumOfQuery, 0, "发个中文看看");
+        String QueryString = EncapsulateString(1, NumOfQuery, 0, "");
         NumOfQuery += 1;
         String receive_message = RunTCP(QueryString);
-        return DecapsulateStringToList(receive_message);
+        return DecapsulateStringToList_recommmend(receive_message);
     }
+
+    public static List<FloorInfo> GetAliThread() {
+        String QueryString = EncapsulateString(2, 1, 0, "");
+        String receive_message = RunTCP(QueryString);
+        return DecapsulateStringToList_thread(receive_message);
+    }
+
+
 
     private static String EncapsulateString(int OperatingNumber, int Op1, int Op2, String Context) {
         return OperatingNumber + "\010" + Op1 + "\010" + Op2 + "\010" + Context;
     }
 
-    private static List<NewInfo> DecapsulateStringToList(String InputString){
+    private static List<NewInfo> DecapsulateStringToList_recommmend(String InputString){
         List<NewInfo> list = new ArrayList<>();
         String[] main_split = InputString.split("\012");
         for (String retval: main_split[0].split("\011")){
@@ -47,6 +55,16 @@ public class ExchangeInfosWithAli {
         }
         if (main_split.length > 1){
             NumOfQuery = 1;
+        }
+        return list;
+    }
+
+    private static List<FloorInfo> DecapsulateStringToList_thread(String InputString){
+        List<FloorInfo> list = new ArrayList<>();
+        for (String retval: InputString.split("\011")){
+            if (retval.equals("")) continue;
+            String[] temp = retval.split("\010");
+            list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3] ,temp[4] , Integer.parseInt(temp[5])));
         }
         return list;
     }
