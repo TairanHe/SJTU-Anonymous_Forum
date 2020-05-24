@@ -17,8 +17,10 @@
 
 package com.xuexiang.templateproject.activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
@@ -198,9 +200,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
+        Log.d("dyy:", String.valueOf(item.getItemId()));
+        //Log.d("dyy:", String.valueOf(R.id.action_privacy));
         switch (item.getItemId()) {
             case R.id.action_privacy:
-                Utils.showPrivacyDialog(this, null);
+                //Utils.showPrivacyDialog(this, null);
+                Intent intent = new Intent(MainActivity.this, PostThreadActivity.class);
+                startActivity(intent);
                 break;
             default:
                 break;

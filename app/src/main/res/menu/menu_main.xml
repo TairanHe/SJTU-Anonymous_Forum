@@ -20,7 +20,7 @@
 
     <item
         android:id="@+id/action_privacy"
-        android:icon="@drawable/ic_menu_privacy"
+        android:icon="@drawable/ic_menu_post"
         android:orderInCategory="100"
         android:title="隐私政策"
         app:showAsAction="always" />

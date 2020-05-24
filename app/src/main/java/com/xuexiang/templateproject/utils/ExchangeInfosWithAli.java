@@ -17,6 +17,8 @@
 
 package com.xuexiang.templateproject.utils;
 
+import android.util.Log;
+
 import com.xuexiang.templateproject.adapter.entity.FloorInfo;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
 
@@ -25,46 +27,52 @@ import java.util.List;
 
 public class ExchangeInfosWithAli {
     public static int NumOfQuery = 0;
+
     public static List<NewInfo> GetAliRecommandedNewsInfos() {
-        String QueryString = EncapsulateString(1, NumOfQuery, 0, "");
+        String QueryString = EncapsulateString(1, NumOfQuery + "", 0, "get");
         NumOfQuery += 1;
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_recommmend(receive_message);
     }
 
     public static List<FloorInfo> GetAliThread() {
-        String QueryString = EncapsulateString(2, 1, 0, "");
+        String QueryString = EncapsulateString(2, 1 + "", 0, "get");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_thread(receive_message);
     }
 
+    public static void SendMyThread(String title, String content){
+        String QueryString = EncapsulateString(3, title, 0, content);
+        RunTCP(QueryString);
+    }
 
-
-    private static String EncapsulateString(int OperatingNumber, int Op1, int Op2, String Context) {
+    private static String EncapsulateString(int OperatingNumber, String Op1, int Op2, String Context) {
         return OperatingNumber + "\010" + Op1 + "\010" + Op2 + "\010" + Context;
     }
 
-    private static List<NewInfo> DecapsulateStringToList_recommmend(String InputString){
+    private static List<NewInfo> DecapsulateStringToList_recommmend(String InputString) {
         List<NewInfo> list = new ArrayList<>();
         String[] main_split = InputString.split("\012");
-        for (String retval: main_split[0].split("\011")){
+        for (String retval : main_split[0].split("\011")) {
             if (retval.equals("")) continue;
             String[] temp = retval.split("\010");
             list.add(new NewInfo("这里以后再说", temp[1])
                     .setSummary(temp[2]).setPraise(Integer.parseInt(temp[3])).setComment(Integer.parseInt(temp[5])).setThreadID(temp[0]));
         }
-        if (main_split.length > 1){
+        if (main_split.length > 1) {
             NumOfQuery = 1;
         }
         return list;
     }
 
-    private static List<FloorInfo> DecapsulateStringToList_thread(String InputString){
+    private static List<FloorInfo> DecapsulateStringToList_thread(String InputString) {
         List<FloorInfo> list = new ArrayList<>();
-        for (String retval: InputString.split("\011")){
+        for (String retval : InputString.split("\011")) {
+            //Log.d("dyy:", retval.replace("\010", "Z"));
             if (retval.equals("")) continue;
             String[] temp = retval.split("\010");
-            list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3] ,temp[4] , Integer.parseInt(temp[5])));
+            //Log.d("dyy:", temp.length + "");
+            list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4], Integer.parseInt(temp[5])));
         }
         return list;
     }

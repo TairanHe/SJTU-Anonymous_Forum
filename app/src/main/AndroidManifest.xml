@@ -22,6 +22,9 @@
             android:name=".activity.LookThroughActivity"
             android:label="@string/title_activity_look_through"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.PostThreadActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="我要发帖"/>
         <activity
             android:name=".activity.SplashActivity"
             android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
