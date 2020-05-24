@@ -156,6 +156,8 @@ public class NewsFragment extends BaseFragment {
                     holder.click(R.id.card_view, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            LookThroughActivity.threadid = model.getThreadID();
+                            LookThroughActivity.threadtilte = model.getTitle();
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
                         }

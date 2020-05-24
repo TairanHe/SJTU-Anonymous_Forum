@@ -31,7 +31,8 @@ import android.widget.LinearLayout;
 import com.xuexiang.templateproject.R;
 
 public class LookThroughActivity extends AppCompatActivity {
-
+    public static String threadid;
+    public static String threadtilte;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
