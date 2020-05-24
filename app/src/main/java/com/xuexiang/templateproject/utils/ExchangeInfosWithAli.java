@@ -32,6 +32,7 @@ public class ExchangeInfosWithAli {
         String QueryString = EncapsulateString(1, NumOfQuery + "", 0, "get");
         NumOfQuery += 1;
         String receive_message = RunTCP(QueryString);
+        Log.d("dyy:", receive_message);
         return DecapsulateStringToList_recommmend(receive_message);
     }
 
@@ -47,15 +48,18 @@ public class ExchangeInfosWithAli {
     }
 
     private static String EncapsulateString(int OperatingNumber, String Op1, int Op2, String Context) {
-        return OperatingNumber + "\010" + Op1 + "\010" + Op2 + "\010" + Context;
+        return OperatingNumber + "\021" + Op1 + "\021" + Op2 + "\021" + Context;
     }
 
     private static List<NewInfo> DecapsulateStringToList_recommmend(String InputString) {
+        Log.d("dyy:", InputString);
         List<NewInfo> list = new ArrayList<>();
-        String[] main_split = InputString.split("\012");
-        for (String retval : main_split[0].split("\011")) {
+        String[] main_split = InputString.split("\023");
+        Log.d("dyy:", (main_split[0].replace("\021", " Z ")).replace("\022", " Y "));
+        for (String retval : main_split[0].split("\022")) {
             if (retval.equals("")) continue;
-            String[] temp = retval.split("\010");
+            Log.d("dyy:", retval.replace("\021", " Z "));
+            String[] temp = retval.split("\021");
             list.add(new NewInfo("这里以后再说", temp[1])
                     .setSummary(temp[2]).setPraise(Integer.parseInt(temp[3])).setComment(Integer.parseInt(temp[5])).setThreadID(temp[0]));
         }
@@ -68,10 +72,10 @@ public class ExchangeInfosWithAli {
 
     private static List<FloorInfo> DecapsulateStringToList_thread(String InputString) {
         List<FloorInfo> list = new ArrayList<>();
-        for (String retval : InputString.split("\011")) {
-            //Log.d("dyy:", retval.replace("\010", "Z"));
+        for (String retval : InputString.split("\022")) {
+            //Log.d("dyy:", retval.replace("\021", "Z"));
             if (retval.equals("")) continue;
-            String[] temp = retval.split("\010");
+            String[] temp = retval.split("\021");
             //Log.d("dyy:", temp.length + "");
             list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4], Integer.parseInt(temp[5])));
         }
