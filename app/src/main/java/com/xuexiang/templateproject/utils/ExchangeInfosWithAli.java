@@ -61,6 +61,7 @@ public class ExchangeInfosWithAli {
         }
         if (main_split.length > 1) {
             NumOfQuery = 1;
+            XToastUtils.toast("帖子只有这么多了,要不再来一遍?");
         }
         return list;
     }

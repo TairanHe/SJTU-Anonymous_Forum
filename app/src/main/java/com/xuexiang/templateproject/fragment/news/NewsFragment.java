@@ -181,6 +181,7 @@ public class NewsFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
+                ExchangeInfosWithAli.NumOfQuery = 0;
                 mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos());
                 refreshLayout.finishRefresh();
             }, 1000);
