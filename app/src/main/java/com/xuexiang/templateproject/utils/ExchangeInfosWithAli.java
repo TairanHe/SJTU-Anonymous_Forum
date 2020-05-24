@@ -47,6 +47,11 @@ public class ExchangeInfosWithAli {
         RunTCP(QueryString);
     }
 
+    public static void SendMyReply(int threadID, int replytoID, String content){
+        String QueryString = EncapsulateString(4, threadID + "", replytoID , content);
+        RunTCP(QueryString);
+    }
+
     private static String EncapsulateString(int OperatingNumber, String Op1, int Op2, String Context) {
         return OperatingNumber + "\021" + Op1 + "\021" + Op2 + "\021" + Context;
     }
