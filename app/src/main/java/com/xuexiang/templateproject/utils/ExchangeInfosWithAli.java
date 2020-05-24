@@ -35,8 +35,8 @@ public class ExchangeInfosWithAli {
         return DecapsulateStringToList_recommmend(receive_message);
     }
 
-    public static List<FloorInfo> GetAliThread() {
-        String QueryString = EncapsulateString(2, 1 + "", 0, "get");
+    public static List<FloorInfo> GetAliThread(String ThreadID) {
+        String QueryString = EncapsulateString(2, ThreadID, 0, "get");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_thread(receive_message);
     }

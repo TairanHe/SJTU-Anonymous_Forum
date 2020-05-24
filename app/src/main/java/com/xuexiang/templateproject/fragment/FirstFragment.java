@@ -151,7 +151,7 @@ public class FirstFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread());
+                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
                 refreshLayout.finishRefresh();
             }, 1000);
         });
@@ -159,7 +159,7 @@ public class FirstFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mFloorsAdapter.loadMore(ExchangeInfosWithAli.GetAliThread());
+                mFloorsAdapter.loadMore(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
                 refreshLayout.finishLoadMore();
             }, 1000);
         });
