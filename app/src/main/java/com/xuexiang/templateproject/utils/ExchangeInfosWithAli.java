@@ -47,7 +47,7 @@ public class ExchangeInfosWithAli {
         RunTCP(QueryString);
     }
 
-    public static void SendMyReply(int threadID, int replytoID, String content){
+    public static void SendMyReply(String threadID, int replytoID, String content){
         String QueryString = EncapsulateString(4, threadID + "", replytoID , content);
         RunTCP(QueryString);
     }

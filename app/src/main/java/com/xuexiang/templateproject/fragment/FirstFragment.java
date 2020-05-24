@@ -18,7 +18,13 @@
 package com.xuexiang.templateproject.fragment;
 
 import android.content.Intent;
+import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,6 +33,8 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.LookThroughActivity;
@@ -51,8 +59,41 @@ import com.xuexiang.xui.widget.imageview.ImageLoader;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
+//import android.support.design.widget.BottomSheetDialog;
 import butterknife.BindView;
 
+
+
+
+import android.graphics.Color;
+
+
+import android.os.Bundle;
+
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ExpandableListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+//import com.moos.example.adapter.CommentExpandAdapter;
+//import com.moos.example.bean.CommentBean;
+//import com.moos.example.bean.CommentDetailBean;
+//import com.moos.example.bean.ReplyDetailBean;
+//import com.moos.example.view.CommentExpandableListView;
+
+import java.util.List;
 /**
  * 首页动态
  *
@@ -60,13 +101,16 @@ import butterknife.BindView;
  * @since 2019-10-30 00:15
  */
 @Page(anim = CoreAnim.none)
-public class FirstFragment extends BaseFragment {
+public class FirstFragment extends BaseFragment{
+    public static String floorid;
+
     //    @BindView(R.id.thread)
 //    SuperTextView thread;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+
 
     private SimpleDelegateAdapter<FloorInfo> mFloorsAdapter;
 
@@ -88,24 +132,28 @@ public class FirstFragment extends BaseFragment {
         return R.layout.fragment_news;
     }
 
+
+
     /**
      * 初始化控件
      */
     @Override
     protected void initViews() {
+
+
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(getContext());
         recyclerView.setLayoutManager(virtualLayoutManager);
         RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
         recyclerView.setRecycledViewPool(viewPool);
         viewPool.setMaxRecycledViews(0, 10);
-
+        //findViewById(R.layout.reply_item);
 
 
         //帖子的标题
         SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.adapter_title_item) {
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-                holder.text(R.id.tv_title, "这里是帖子的标题");
+                holder.text(R.id.tv_title, LookThroughActivity.threadtilte);
 //                holder.text(R.id.tv_action, "更多");
 //                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
             }
@@ -117,19 +165,24 @@ public class FirstFragment extends BaseFragment {
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, FloorInfo model) {
                 if (model != null) {
                     holder.text(R.id.tv_floor_id, model.getFloorID());
+                    holder.text(R.id.tv_context, model.getContext());
                     holder.text(R.id.tv_praise, model.getPraise() == 0 ? "点赞" : String.valueOf(model.getPraise()));
-//                    holder.text(R.id.tv_comment, model.getComment() == 0 ? "评论" : String.valueOf(model.getComment()));
+                    holder.text(R.id.tv_reply,  "评论");
 //                    holder.text(R.id.tv_read, "阅读量 " + model.getRead());
 //                    holder.image(R.id.iv_image, model.getImageUrl());
 
                     //holder.click(R.id.card_view, v -> Utils.goWeb(getContext(), model.getDetailUrl()));
-//                    holder.click(R.id.card_view, new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View view) {
+                    holder.click(R.id.tv_reply, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
-//                        }
-//                    });
+                            FirstFragment.floorid = model.getFloorID();
+//                            LookThroughActivity.threadtilte = model.getTitle();
+                            //LookThroughActivity.showReplyDialog(3);
+
+                        }
+                    });
                 }
             }
         };
@@ -169,6 +222,14 @@ public class FirstFragment extends BaseFragment {
         //thread.setOnSuperTextViewClickListener(this);
     }
 
+
+
+
+
+
+}
+
+
 //    @SingleClick
 //    public void onClick(SuperTextView view) {
 //        switch(view.getId()) {
@@ -179,4 +240,5 @@ public class FirstFragment extends BaseFragment {
 //                break;
 //        }
 //    }
-}
+
+

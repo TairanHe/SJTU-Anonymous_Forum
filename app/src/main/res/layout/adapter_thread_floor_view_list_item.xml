@@ -137,14 +137,17 @@
                     android:id="@+id/tv_praise"
                     style="@style/TextStyle.Explain"
                     android:layout_marginStart="5dp"
+                    android:layout_width="100dp"
+                    android:gravity="start"
                     tools:text="点赞" />
 
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_comment"
+                    android:id="@+id/iv_reply"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:layout_marginStart="255dp"
+                    android:layout_marginLeft="100dp"
+
                     android:src="@drawable/ic_comment" />
 
 
@@ -153,7 +156,7 @@
                     android:id="@+id/tv_reply"
                     style="@style/TextStyle.Explain"
                     android:layout_marginStart="5dp"
-
+                    android:gravity="start"
                     tools:text="回复" />
 
 

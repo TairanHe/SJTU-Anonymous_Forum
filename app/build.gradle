@@ -122,6 +122,12 @@ dependencies {
 
     //美团多渠道打包
     implementation 'com.meituan.android.walle:library:1.1.6'
+
+    //
+//    implementation 'com.android.support:design:25.1.0'
+//
+//    implementation 'com.google.android.material:material:1.0.0'
+
 }
 //自动添加X-Library依赖
 apply from: 'x-library.gradle'
