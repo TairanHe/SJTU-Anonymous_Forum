@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.alibaba:fastjson:1.2.8@jar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.8/aba3867820f46117ef0dfe760418b1bc0278894f/fastjson-1.2.8.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.8/aba3867820f46117ef0dfe760418b1bc0278894f/fastjson-1.2.8.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.8/766392107051411351d06f0b099bb153a7bf0af6/fastjson-1.2.8-javadoc.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.8/766392107051411351d06f0b099bb153a7bf0af6/fastjson-1.2.8-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.8/7f4134703499eedb0bc2edaccd6ffadf7eaabbc1/fastjson-1.2.8-sources.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.alibaba/fastjson/1.2.8/7f4134703499eedb0bc2edaccd6ffadf7eaabbc1/fastjson-1.2.8-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.xuexiangjys:XUpdate:1.1.4@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0cbf8f7b4e1d0c117fff14dcfc6d9c7f/jetified-XUpdate-1.1.4/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0cbf8f7b4e1d0c117fff14dcfc6d9c7f/jetified-XUpdate-1.1.4/res" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/e599b560c930bc07ca632b93123e2d23/jetified-XUpdate-1.1.4/jars/classes.jar!/" />
+      <root url="file://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/e599b560c930bc07ca632b93123e2d23/jetified-XUpdate-1.1.4/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys/XUpdate/1.1.4/bf6abb437e1d0521a2e6a6a3519f72644df57d23/XUpdate-1.1.4-javadoc.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys/XUpdate/1.1.4/bf6abb437e1d0521a2e6a6a3519f72644df57d23/XUpdate-1.1.4-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys/XUpdate/1.1.4/e788db1db452204abea2f70c7a40703c18545a72/XUpdate-1.1.4-sources.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys/XUpdate/1.1.4/e788db1db452204abea2f70c7a40703c18545a72/XUpdate-1.1.4-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

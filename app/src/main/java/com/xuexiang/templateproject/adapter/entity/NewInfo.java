@@ -94,9 +94,9 @@ public class NewInfo {
         Tag = tag;
         Title = title;
 
-        Praise = (int) (Math.random() * 100 + 5);
-        Comment = (int) (Math.random() * 50 + 5);
-        Read = (int) (Math.random() * 500 + 50);
+        Praise = (int) (Math.random() * 3 + 2);
+        Comment = (int) (Math.random() * 7 + 3);
+        Read = (int) (Math.random() * 8 );
     }
 
 

@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.umeng.umsdk:analytics:8.0.2@jar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.umeng.umsdk/analytics/8.0.2/6d4bb511429d1537213a585dca32fb969ebcc74f/analytics-8.0.2.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.umeng.umsdk/analytics/8.0.2/6d4bb511429d1537213a585dca32fb969ebcc74f/analytics-8.0.2.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.umeng.umsdk/analytics/8.0.2/fc645f2a7496579490fb1a2a75f9ed4810328a1/analytics-8.0.2-javadoc.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.umeng.umsdk/analytics/8.0.2/fc645f2a7496579490fb1a2a75f9ed4810328a1/analytics-8.0.2-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.umeng.umsdk/analytics/8.0.2/fc645f2a7496579490fb1a2a75f9ed4810328a1/analytics-8.0.2-sources.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.umeng.umsdk/analytics/8.0.2/fc645f2a7496579490fb1a2a75f9ed4810328a1/analytics-8.0.2-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

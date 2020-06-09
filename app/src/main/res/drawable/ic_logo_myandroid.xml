@@ -1,0 +1,22 @@
+<!--
+  ~ Copyright (C) 2020 xuexiangjys(xuexiangjys@163.com)
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<vector android:height="23.953217dp" android:viewportHeight="1024"
+    android:viewportWidth="1026" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillAlpha="0" android:fillColor="#2FC2B0" android:pathData="M2.44,0h975.24v975.24H2.44z"/>
+    <path android:fillColor="#2FC2B0" android:pathData="M266.39,774.09c0,20.67 18.73,37.55 41.59,37.55h41.64L349.62,943.25c0,31.21 27.84,56.37 62.42,56.37 34.52,0 62.42,-25.21 62.42,-56.37L474.45,811.69h83.19v131.56c0,31.21 27.89,56.37 62.42,56.37 34.52,0 62.42,-25.21 62.42,-56.37L682.47,811.69h41.59c22.92,0 41.59,-16.92 41.59,-37.55L765.66,398.19L266.39,398.19v375.86zM162.38,398.24c-34.52,0 -62.42,25.21 -62.42,56.37v263.12c0,31.21 27.89,56.37 62.42,56.37 34.52,0 62.42,-25.16 62.42,-56.37L224.79,454.61c0,-31.21 -27.89,-56.37 -62.42,-56.37zM869.67,398.24c-34.52,0 -62.42,25.21 -62.42,56.37v263.12c0,31.21 27.89,56.37 62.42,56.37 34.52,0 62.42,-25.16 62.42,-56.37L932.08,454.61c0,-31.21 -27.89,-56.37 -62.42,-56.37zM662.92,178.76l54.27,-49.05a17.46,17.46 0,0 0,0 -26.48,22.33 22.33,0 0,0 -29.31,0l-61.59,55.39a269.9,269.9 0,0 0,-110.25 -23.45c-39.99,0 -77.39,8.63 -110.89,23.65l-61.78,-55.78a22.33,22.33 0,0 0,-29.35 0,17.46 17.46,0 0,0 0,26.48l54.51,49.25c-61.78,41.15 -102.16,107.28 -102.16,181.88h499.32c0,-74.75 -40.62,-140.92 -102.79,-181.88zM432.81,285.5h-41.59v-37.55h41.59v37.55zM640.83,285.5h-41.59v-37.55h41.59v37.55z"/>
+</vector>

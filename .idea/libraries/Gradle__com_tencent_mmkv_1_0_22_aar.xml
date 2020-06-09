@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.tencent:mmkv:1.0.22@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cf24145c728ccb88c3fa6021e4ad3343/jetified-mmkv-1.0.22/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/cf24145c728ccb88c3fa6021e4ad3343/jetified-mmkv-1.0.22/res" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/cf24145c728ccb88c3fa6021e4ad3343/jetified-mmkv-1.0.22/jars/classes.jar!/" />
+      <root url="file://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/cf24145c728ccb88c3fa6021e4ad3343/jetified-mmkv-1.0.22/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tencent/mmkv/1.0.22/ae98dbf3a83a5ad6bac6f9ff94476cf9c75e41f6/mmkv-1.0.22-javadoc.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.tencent/mmkv/1.0.22/ae98dbf3a83a5ad6bac6f9ff94476cf9c75e41f6/mmkv-1.0.22-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES />
   </library>

@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: uk.co.chrisjenx:calligraphy:2.3.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8cb4f107d6c44c512cded5a5dddf54a8/jetified-calligraphy-2.3.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/8cb4f107d6c44c512cded5a5dddf54a8/jetified-calligraphy-2.3.0/res" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/6b5be06f1ffce3ae495db5f4cf6dbc84/jetified-calligraphy-2.3.0/jars/classes.jar!/" />
+      <root url="file://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/6b5be06f1ffce3ae495db5f4cf6dbc84/jetified-calligraphy-2.3.0/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/uk.co.chrisjenx/calligraphy/2.3.0/775c7415bb896ff97ac6117710335a5d9cd3b5ae/calligraphy-2.3.0-javadoc.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/uk.co.chrisjenx/calligraphy/2.3.0/775c7415bb896ff97ac6117710335a5d9cd3b5ae/calligraphy-2.3.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/uk.co.chrisjenx/calligraphy/2.3.0/e2637b5ce67253023fcba23a3188ec9af473481a/calligraphy-2.3.0-sources.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/uk.co.chrisjenx/calligraphy/2.3.0/e2637b5ce67253023fcba23a3188ec9af473481a/calligraphy-2.3.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

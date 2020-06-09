@@ -1,17 +1,17 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.xuexiangjys.XUtil:xutil-core:1.1.7@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5b7c49341ebbf7dbb655278600c24302/jetified-xutil-core-1.1.7/annotations.zip!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/8c81b0cd0815753dca6ba9f1f16309c0/jetified-xutil-core-1.1.7/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5b7c49341ebbf7dbb655278600c24302/jetified-xutil-core-1.1.7/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/5b7c49341ebbf7dbb655278600c24302/jetified-xutil-core-1.1.7/res" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/8c81b0cd0815753dca6ba9f1f16309c0/jetified-xutil-core-1.1.7/jars/classes.jar!/" />
+      <root url="file://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/8c81b0cd0815753dca6ba9f1f16309c0/jetified-xutil-core-1.1.7/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XUtil/xutil-core/1.1.7/f09667b47f20d655cb7efb77ca9734f80ebd664/xutil-core-1.1.7-javadoc.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XUtil/xutil-core/1.1.7/f09667b47f20d655cb7efb77ca9734f80ebd664/xutil-core-1.1.7-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XUtil/xutil-core/1.1.7/5c806c094c3bd9ec540e795b80b7f8d32533365e/xutil-core-1.1.7-sources.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XUtil/xutil-core/1.1.7/5c806c094c3bd9ec540e795b80b7f8d32533365e/xutil-core-1.1.7-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

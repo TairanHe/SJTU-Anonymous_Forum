@@ -1,13 +1,13 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.xuexiangjys.XPage:xpage-annotation:2.2.9@jar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XPage/xpage-annotation/2.2.9/bc82aa9709d04f2f239cb63439d60ecfe9d2d101/xpage-annotation-2.2.9.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XPage/xpage-annotation/2.2.9/bc82aa9709d04f2f239cb63439d60ecfe9d2d101/xpage-annotation-2.2.9.jar!/" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XPage/xpage-annotation/2.2.9/11ad417ef4b69c180b11b59c5b1c4ecff3116ab0/xpage-annotation-2.2.9-javadoc.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XPage/xpage-annotation/2.2.9/11ad417ef4b69c180b11b59c5b1c4ecff3116ab0/xpage-annotation-2.2.9-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XPage/xpage-annotation/2.2.9/d1cf1b7a7f173c3d9270ac6c21f760ee01bb584e/xpage-annotation-2.2.9-sources.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.XPage/xpage-annotation/2.2.9/d1cf1b7a7f173c3d9270ac6c21f760ee01bb584e/xpage-annotation-2.2.9-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

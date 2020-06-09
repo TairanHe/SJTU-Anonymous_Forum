@@ -132,7 +132,7 @@ public class NewsFragment extends BaseFragment {
         SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.adapter_title_item) {
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-                holder.text(R.id.tv_title, "资讯");
+                holder.text(R.id.tv_title, "帖子广场");
                 holder.text(R.id.tv_action, "更多");
                 holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
             }

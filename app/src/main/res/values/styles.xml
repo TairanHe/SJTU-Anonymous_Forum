@@ -26,8 +26,8 @@
     <!--窗体背景，这个背景能在第一时间显示, 避免启动时白屏，黑屏问题-->
     <style name="AppTheme.Launch.App">
         <!--注意修改图标-->
-        <item name="xui_config_splash_app_logo">@drawable/ic_splash_app_logo_xui</item>
-        <item name="xui_config_splash_company_logo">@drawable/ic_splash_company_logo</item>
+        <item name="xui_config_splash_app_logo">@drawable/ic_splash_app_logo_wukefenggao</item>
+        <item name="xui_config_splash_company_logo">@drawable/ic_splash_company_wukefenggao</item>
     </style>
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

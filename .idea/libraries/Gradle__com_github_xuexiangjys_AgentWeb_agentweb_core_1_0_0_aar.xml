@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.xuexiangjys.AgentWeb:agentweb-core:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27a17afdb5b9554144b4d96a3d905217/jetified-agentweb-core-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/27a17afdb5b9554144b4d96a3d905217/jetified-agentweb-core-1.0.0/res" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/314de480d42f90ba6c2d214d1a8593b4/jetified-agentweb-core-1.0.0/jars/classes.jar!/" />
+      <root url="file://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/314de480d42f90ba6c2d214d1a8593b4/jetified-agentweb-core-1.0.0/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.AgentWeb/agentweb-core/1.0.0/6f996eb215a3207b41353f015fb6e4879450490b/agentweb-core-1.0.0-javadoc.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.AgentWeb/agentweb-core/1.0.0/6f996eb215a3207b41353f015fb6e4879450490b/agentweb-core-1.0.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.AgentWeb/agentweb-core/1.0.0/3751197ad2e9a3d9d228c97c7afb9a6f22fe930b/agentweb-core-1.0.0-sources.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.AgentWeb/agentweb-core/1.0.0/3751197ad2e9a3d9d228c97c7afb9a6f22fe930b/agentweb-core-1.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -16,15 +16,15 @@
     <string name="menu_settings">设置</string>
     <string name="menu_about">关于</string>
 
-    <string name="about_copyright">© %1$s xuexiangjys All rights reserved.</string>
-    <string name="about_item_homepage">访问官网</string>
-    <string name="about_item_author_github">关于作者</string>
-    <string name="about_item_donation_link">捐赠作者</string>
-    <string name="about_item_add_qq_group">QQ交流群</string>
-    <string name="url_project_github">https://github.com/xuexiangjys/TemplateAppProject</string>
-    <string name="url_author_github">https://github.com/xuexiangjys</string>
-    <string name="url_donation_link">https://gitee.com/xuexiangjys/Resource/blob/master/doc/sponsor.md</string>
-    <string name="url_add_qq_group">http://qm.qq.com/cgi-bin/qm/qr?k=tiP-E6rDf0y77PRNfp2lNVcc9RsglPCM</string>
+    <string name="about_copyright">© %1$s Wukefenggao All rights reserved.</string>
+    <string name="about_item_homepage">访问github</string>
+    <string name="about_item_author_github">开发者</string>
+    <string name="about_item_donation_link">使用说明</string>
+    <string name="about_item_add_qq_group">检查更新</string>
+    <string name="url_project_github">https://github.com/TairanHe/SJTU-Anonymous_Forum</string>
+    <string name="url_author_github">https://github.com/TairanHe</string>
+    <string name="url_donation_link">https://github.com/TairanHe/SJTU-Anonymous_Forum/blob/master/README.md</string>
+    <string name="url_add_qq_group">https://github.com/TairanHe/SJTU-Anonymous_Forum/blob/master/README.md</string>
 
     <string name="lab_yes">是</string>
     <string name="lab_no">否</string>

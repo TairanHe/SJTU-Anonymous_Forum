@@ -1,14 +1,14 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.xuexiangjys.AgentWeb:agentweb-download:1.0.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/37fdf167c99a679d90d2fec6f26fd6cf/jetified-agentweb-download-1.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/37fdf167c99a679d90d2fec6f26fd6cf/jetified-agentweb-download-1.0.0/res" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/e602d44149426529abcbedd2c2b2b5f3/jetified-agentweb-download-1.0.0/jars/classes.jar!/" />
+      <root url="file://D:/Download/Android Studio/myGradle/.gradle/caches/transforms-2/files-2.1/e602d44149426529abcbedd2c2b2b5f3/jetified-agentweb-download-1.0.0/res" />
     </CLASSES>
     <JAVADOC>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.AgentWeb/agentweb-download/1.0.0/1555d94b7125852b4a360fc2c1ff763bc8cebaba/agentweb-download-1.0.0-javadoc.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.AgentWeb/agentweb-download/1.0.0/1555d94b7125852b4a360fc2c1ff763bc8cebaba/agentweb-download-1.0.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.AgentWeb/agentweb-download/1.0.0/64f70b3de382acd2806a9645b1ee12e5fd791b25/agentweb-download-1.0.0-sources.jar!/" />
+      <root url="jar://D:/Download/Android Studio/myGradle/.gradle/caches/modules-2/files-2.1/com.github.xuexiangjys.AgentWeb/agentweb-download/1.0.0/64f70b3de382acd2806a9645b1ee12e5fd791b25/agentweb-download-1.0.0-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

@@ -146,8 +146,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         // TODO: 2019-10-09 初始化数据
         ivAvatar.setImageResource(R.drawable.ic_default_head);
-        tvAvatar.setText(R.string.app_name);
-        tvSign.setText("这个家伙很懒，什么也没有留下～～");
+//        tvAvatar.setText(R.string.app_name);
+        tvAvatar.setText("#00000001");
+        tvSign.setText("刚才你问我，我可以回答你无可奉告！");
         navHeader.setOnClickListener(this);
     }
 
