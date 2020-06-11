@@ -16,7 +16,6 @@
  */
 
 package com.xuexiang.templateproject.activity;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -35,7 +34,6 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -50,7 +48,7 @@ import android.widget.LinearLayout;
 
 import com.xuexiang.templateproject.R;
 
-public class LookThroughActivity extends AppCompatActivity implements View.OnClickListener {
+public class LookThroughActivity extends AppCompatActivity implements View.OnClickListener{
     public static String threadid;
     public static String threadtilte;
 
@@ -93,11 +91,11 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.detail_page_do_comment) {
+        if(view.getId() == R.id.detail_page_do_comment){
 
             showCommentDialog();
         }
-        if (view.getId() == R.id.iv_focus_thread) {
+        if(view.getId() == R.id.iv_focus_thread) {
 
             showReplyDialog(2);
         }
@@ -111,9 +109,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
      * by moos on 2018/04/20
      * func:弹出评论框
      */
-    private void showCommentDialog() {
+    private void showCommentDialog(){
         dialog = new BottomSheetDialog(this);
-        View commentView = LayoutInflater.from(this).inflate(R.layout.comment_dialog_layout, null);
+        View commentView = LayoutInflater.from(this).inflate(R.layout.comment_dialog_layout,null);
         final EditText commentText = (EditText) commentView.findViewById(R.id.dialog_comment_et);
         final Button bt_comment = (Button) commentView.findViewById(R.id.dialog_comment_bt);
         dialog.setContentView(commentView);
@@ -122,7 +120,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
          */
         View parent = (View) commentView.getParent();
         BottomSheetBehavior behavior = BottomSheetBehavior.from(parent);
-        commentView.measure(0, 0);
+        commentView.measure(0,0);
         behavior.setPeekHeight(commentView.getMeasuredHeight());
 
         bt_comment.setOnClickListener(new View.OnClickListener() {
@@ -130,17 +128,17 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onClick(View view) {
                 String commentContent = commentText.getText().toString().trim();
-                if (!TextUtils.isEmpty(commentContent)) {
+                if(!TextUtils.isEmpty(commentContent)){
 
                     //commentOnWork(commentContent);
                     dialog.dismiss();
-                    ExchangeInfosWithAli.Alicomment("dyy", LookThroughActivity.threadid, commentContent);
+                    ExchangeInfosWithAli.SendMyReply(LookThroughActivity.threadid, 0 , commentContent );
 //                    CommentDetailBean detailBean = new CommentDetailBean("小明", commentContent,"刚刚");
 //                    adapter.addTheCommentData(detailBean);
-                    Toast.makeText(LookThroughActivity.this, "评论成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LookThroughActivity.this,"评论成功",Toast.LENGTH_SHORT).show();
 
-                } else {
-                    Toast.makeText(LookThroughActivity.this, "评论内容不能为空", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(LookThroughActivity.this,"评论内容不能为空",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -152,9 +150,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (!TextUtils.isEmpty(charSequence) && charSequence.length() > 2) {
+                if(!TextUtils.isEmpty(charSequence) && charSequence.length()>2){
                     bt_comment.setBackgroundColor(Color.parseColor("#FFB568"));
-                } else {
+                }else {
                     bt_comment.setBackgroundColor(Color.parseColor("#D8D8D8"));
                 }
             }
@@ -171,9 +169,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
      * by moos on 2018/04/20
      * func:弹出回复框
      */
-    public void showReplyDialog(final int position) {
+     public void showReplyDialog(final int position){
         dialog = new BottomSheetDialog(this);
-        View commentView = LayoutInflater.from(this).inflate(R.layout.comment_dialog_layout, null);
+        View commentView = LayoutInflater.from(this).inflate(R.layout.comment_dialog_layout,null);
 
         final EditText commentText = (EditText) commentView.findViewById(R.id.dialog_comment_et);
         final Button bt_comment = (Button) commentView.findViewById(R.id.dialog_comment_bt);
@@ -183,12 +181,12 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onClick(View view) {
                 String replyContent = commentText.getText().toString().trim();
-                if (!TextUtils.isEmpty(replyContent)) {
+                if(!TextUtils.isEmpty(replyContent)){
                     dialog.dismiss();
-                    ExchangeInfosWithAli.AliReply("dyy", LookThroughActivity.threadid, replyContent, position);
-                    Toast.makeText(LookThroughActivity.this, "回复成功", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(LookThroughActivity.this, "回复内容不能为空", Toast.LENGTH_SHORT).show();
+                    ExchangeInfosWithAli.SendMyReply(LookThroughActivity.threadid, 0 , replyContent );
+                    Toast.makeText(LookThroughActivity.this,"回复成功",Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(LookThroughActivity.this,"回复内容不能为空",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -200,9 +198,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if (!TextUtils.isEmpty(charSequence) && charSequence.length() > 2) {
+                if(!TextUtils.isEmpty(charSequence) && charSequence.length()>2){
                     bt_comment.setBackgroundColor(Color.parseColor("#FFB568"));
-                } else {
+                }else {
                     bt_comment.setBackgroundColor(Color.parseColor("#D8D8D8"));
                 }
             }
@@ -214,5 +212,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         });
         dialog.show();
     }
+
+
 
 }
