@@ -37,13 +37,13 @@ public class ExchangeInfosWithAli {
     }
 
     public static List<FloorInfo> GetAliThread(String ThreadID) {
-        String QueryString = EncapsulateString(2, ThreadID, "0", "get", "user", "0");
+        String QueryString = EncapsulateString(2, ThreadID, "0", "get", "dyy", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_thread(receive_message);
     }
 
     public static void SendMyThread(String title, String content, int block) {
-        String QueryString = EncapsulateString(3, title, block + "", content, "user", "0");
+        String QueryString = EncapsulateString(3, title, block + "", content, "dyy", "0");
         RunTCP(QueryString);
     }
 
