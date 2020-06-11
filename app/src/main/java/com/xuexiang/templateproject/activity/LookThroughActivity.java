@@ -47,12 +47,16 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.xuexiang.templateproject.R;
+import com.xuexiang.templateproject.utils.XToastUtils;
 
 public class LookThroughActivity extends AppCompatActivity implements View.OnClickListener{
     public static String threadid;
     public static String threadtilte;
 
     private TextView bt_comment;
+    private LinearLayout bt_favor;
+    private LinearLayout bt_praise;
+    private LinearLayout bt_tread;
     private ImageView bt_reply_image;
     private TextView bt_reply_text;
     private BottomSheetDialog dialog;
@@ -82,6 +86,15 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
     private void initView() {
         bt_comment = (TextView) findViewById(R.id.detail_page_do_comment);
         bt_comment.setOnClickListener(this);
+
+        bt_favor = (LinearLayout) findViewById(R.id.ll_favor_thread);
+        bt_favor.setOnClickListener(this);
+
+        bt_praise = (LinearLayout) findViewById(R.id.ll_praise_thread);
+        bt_praise.setOnClickListener(this);
+
+        bt_tread = (LinearLayout) findViewById(R.id.ll_tread_thread);
+        bt_tread.setOnClickListener(this);
 //        bt_reply_image = (ImageView) findViewById(R.id.iv_focus_thread);
 //        bt_reply_image.setOnClickListener(this);
 //        bt_reply_text = (TextView) findViewById(R.id.tv_reply);
@@ -95,10 +108,22 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
             showCommentDialog();
         }
-        if(view.getId() == R.id.iv_focus_thread) {
-
-            showReplyDialog(2);
+        if(view.getId() == R.id.ll_favor_thread) {
+            XToastUtils.toast("点击收藏！");
+            // TODO: 2020/6/11
+            //  FavorAliThread(UserID, LookThroughActivity.threadid)
         }
+        if(view.getId() == R.id.ll_praise_thread) {
+            XToastUtils.toast("点赞帖子！");
+            // TODO: 2020/6/11
+            //  PraiseAliThread(UserID, LookThroughActivity.threadid)
+        }
+        if(view.getId() == R.id.ll_tread_thread) {
+            XToastUtils.toast("点踩帖子！");
+            // TODO: 2020/6/11
+            //  TreadAliThread(UserID, LookThroughActivity.threadid)
+        }
+
 //        if(view.getId() == R.id.iv_reply || view.getId() == R.id.tv_reply) {
 //
 //            showReplyDialog(2);

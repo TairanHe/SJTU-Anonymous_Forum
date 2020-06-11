@@ -32,7 +32,6 @@
         app:layout_constraintBottom_toTopOf="@+id/reply_bar"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
-
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
@@ -59,42 +58,87 @@
             android:text="说点什么吧..."
             android:background="@drawable/comment_bt_selector"
             android:layout_marginLeft="12dp"
-            android:layout_marginRight="22dp"
+            android:layout_marginRight="15dp"
             android:layout_marginBottom="2dp"
             android:gravity="center_vertical"
             android:paddingLeft="18dp"/>
-        <ImageView
-            android:id="@+id/iv_focus_thread"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginBottom="9dp"
-            android:src="@drawable/icon_collect"/>
-        <TextView
-            android:id="@+id/tv_focus_thread"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#9A9A9A"
-            android:textSize="14sp"
-            android:layout_marginLeft="10dp"
 
-            android:text="32"/>
+        <LinearLayout
+            android:id="@+id/ll_favor_thread"
+            android:layout_width="25dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="15dp">
+            <ImageView
+                android:gravity="center_vertical"
+                android:id="@+id/iv_favor_thread"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="9dp"
+                android:src="@drawable/icon_collect_3" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_favor_thread"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="-25dp"
+                android:text="32"
+                android:textColor="#9A9A9A"
+                android:textSize="10sp" />
+        </LinearLayout>
 
-        <ImageView
-            android:id="@+id/iv_praise_thread"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginBottom="9dp"
-            android:src="@drawable/icon_work_like"
-            android:layout_marginLeft="20dp" />
-        <TextView
-            android:id="@+id/tv_praise_thread"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#9A9A9A"
-            android:textSize="14sp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="14dp"
-            android:text="66"/>
+        <LinearLayout
+            android:id="@+id/ll_praise_thread"
+            android:layout_width="25dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="15dp">
+            <ImageView
+                android:gravity="center_vertical"
+                android:id="@+id/iv_praise_thread"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="-3dp"
+                android:src="@drawable/ic_praise_black"
+                android:layout_marginLeft="0dp" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_praise_thread"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:textColor="#9A9A9A"
+                android:textSize="10sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="-25dp"
+                android:text="66"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tread_thread"
+            android:layout_width="25dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="15dp">
+            <ImageView
+                android:gravity="center_vertical"
+                android:id="@+id/iv_tread_thread"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="-1dp"
+                android:src="@drawable/ic_tread_black"
+                android:layout_marginLeft="0dp" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_tread_hread"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:textColor="#9A9A9A"
+                android:textSize="10sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="-25dp"
+                android:text="66"/>
+        </LinearLayout>
+
+
+
 
     </LinearLayout>
     <!--第三部分，评论区和输入区-->
