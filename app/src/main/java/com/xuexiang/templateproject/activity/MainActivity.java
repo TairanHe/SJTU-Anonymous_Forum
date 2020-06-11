@@ -39,6 +39,7 @@ import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.fragment.FavorFragment;
+import com.xuexiang.templateproject.fragment.NoteFragment;
 import com.xuexiang.templateproject.fragment.news.NewsFragment;
 import com.xuexiang.templateproject.fragment.AboutFragment;
 import com.xuexiang.templateproject.fragment.SettingsFragment;
@@ -173,6 +174,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         break;
                     case R.id.nav_starred:
                         openNewPage(FavorFragment.class);
+                        break;
+                    case R.id.nav_notifications:
+                        openNewPage(NoteFragment.class);
                         break;
                     default:
                         XToastUtils.toast("点击了:" + menuItem.getTitle());
