@@ -24,9 +24,9 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.xuexiang.templateproject.fragment.FirstFragment"
+        android:name="com.xuexiang.templateproject.fragment.FloorFragment"
         android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
+        tools:layout="@layout/fragment_floor">
 
         <action
             android:id="@+id/action_FirstFragment_to_SecondFragment"

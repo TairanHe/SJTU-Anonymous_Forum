@@ -16,7 +16,6 @@
  */
 
 package com.xuexiang.templateproject.activity;
-
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -170,7 +169,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
      * by moos on 2018/04/20
      * func:弹出回复框
      */
-    public void showReplyDialog(final int position){
+     public void showReplyDialog(final int position){
         dialog = new BottomSheetDialog(this);
         View commentView = LayoutInflater.from(this).inflate(R.layout.comment_dialog_layout,null);
 
@@ -213,5 +212,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         });
         dialog.show();
     }
+
+
 
 }
