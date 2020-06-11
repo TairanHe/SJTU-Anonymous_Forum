@@ -132,13 +132,47 @@ public class FloorFragment extends BaseFragment{
                         public void onClick(View view) {
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
-                            XToastUtils.toast("点击楼层！");
+                            XToastUtils.toast("回复楼层！");
                             FloorFragment.floorid = model.getFloorID();
 //                            LookThroughActivity.threadtilte = model.getTitle();
 //                            getContext().showReplyDialog(3);
                             LookThroughActivity htr = (LookThroughActivity) getActivity();
                             htr.showReplyDialog(Integer.parseInt(FloorFragment.floorid));
-
+                        }
+                    });
+                    holder.click(R.id.iv_reply, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+//                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
+//                            startActivity(intent);
+                            XToastUtils.toast("回复楼层！");
+                            FloorFragment.floorid = model.getFloorID();
+//                            LookThroughActivity.threadtilte = model.getTitle();
+//                            getContext().showReplyDialog(3);
+                            LookThroughActivity htr = (LookThroughActivity) getActivity();
+                            htr.showReplyDialog(Integer.parseInt(FloorFragment.floorid));
+                        }
+                    });
+                    holder.click(R.id.tv_praise, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+//                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
+//                            startActivity(intent);
+                            XToastUtils.toast("点赞楼层！");
+                            FloorFragment.floorid = model.getFloorID();
+//                            LookThroughActivity.threadtilte = model.getTitle();
+//                            getContext().showReplyDialog(3);
+                        }
+                    });
+                    holder.click(R.id.iv_praise, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+//                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
+//                            startActivity(intent);
+                            XToastUtils.toast("点赞楼层！");
+                            FloorFragment.floorid = model.getFloorID();
+//                            LookThroughActivity.threadtilte = model.getTitle();
+//                            getContext().showReplyDialog(3);
                         }
                     });
                 }
