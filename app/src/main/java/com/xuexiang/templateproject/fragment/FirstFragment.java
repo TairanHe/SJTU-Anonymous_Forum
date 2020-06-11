@@ -15,6 +15,7 @@
  *
  */
 
+
 package com.xuexiang.templateproject.fragment;
 
 import android.content.Intent;
@@ -178,9 +179,8 @@ public class FirstFragment extends BaseFragment{
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
                             FirstFragment.floorid = model.getFloorID();
-//                            LookThroughActivity.threadtilte = model.getTitle();
-                            //LookThroughActivity.showReplyDialog(3);
 
+//                            LookThroughActivity.threadtilte = model.getTitle();
                         }
                     });
                 }
@@ -206,18 +206,21 @@ public class FirstFragment extends BaseFragment{
             refreshLayout.getLayout().postDelayed(() -> {
                 mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
                 refreshLayout.finishRefresh();
-            }, 1000);
+            }, 100);
         });
         //上拉加载
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
+
             refreshLayout.getLayout().postDelayed(() -> {
-                mFloorsAdapter.loadMore(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
+//                mFloorsAdapter.loadMore(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
+//                refreshLayout.finishLoadMore();
+                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
                 refreshLayout.finishLoadMore();
-            }, 1000);
+            }, 100);
         });
 
-        refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
+        refreshLayout.autoRefresh();//第一次进触发自动刷新，演示效果
 
         //thread.setOnSuperTextViewClickListener(this);
     }

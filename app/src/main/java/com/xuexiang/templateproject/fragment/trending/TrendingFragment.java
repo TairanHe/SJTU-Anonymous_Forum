@@ -184,7 +184,7 @@ public class TrendingFragment extends BaseFragment {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 ExchangeInfosWithAli.NumOfQuery = 0;
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos());
+                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
                 refreshLayout.finishRefresh();
             }, 1000);
         });
@@ -192,7 +192,7 @@ public class TrendingFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos());
+                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
                 refreshLayout.finishLoadMore();
             }, 1000);
         });

@@ -18,6 +18,7 @@
 package com.xuexiang.templateproject.fragment.news;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -68,6 +69,8 @@ public class NewsFragment extends BaseFragment {
     SmartRefreshLayout refreshLayout;
 
     private SimpleDelegateAdapter<NewInfo> mNewsAdapter;
+
+    private int block = 0;
 
     /**
      * @return 返回为 null意为不需要导航栏
@@ -123,7 +126,12 @@ public class NewsFragment extends BaseFragment {
                     holder.text(R.id.tv_title, item.getTitle().toString().substring(0, 1));
                     holder.text(R.id.tv_sub_title, item.getTitle());
 
-                    holder.click(R.id.ll_container, v -> XToastUtils.toast("点击了：" + item.getTitle()));
+                    holder.click(R.id.ll_container, v -> {
+                        block = ExchangeInfosWithAli.get_block_id(item.getTitle().toString());
+//                        Log.d("dyy", block+"");
+                        XToastUtils.toast("切换到板块：" + item.getTitle());
+                        refreshLayout.autoRefresh();
+                    });
                 }
             }
         };
@@ -184,17 +192,17 @@ public class NewsFragment extends BaseFragment {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 ExchangeInfosWithAli.NumOfQuery = 0;
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos());
+                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(block));
                 refreshLayout.finishRefresh();
-            }, 1000);
+            }, 500);
         });
         //上拉加载
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos());
+                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(block));
                 refreshLayout.finishLoadMore();
-            }, 1000);
+            }, 500);
         });
         refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
 
