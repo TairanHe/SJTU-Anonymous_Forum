@@ -132,7 +132,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
                     //commentOnWork(commentContent);
                     dialog.dismiss();
-                    ExchangeInfosWithAli.SendMyReply(LookThroughActivity.threadid, 0 , commentContent );
+                    ExchangeInfosWithAli.Alicomment("dyy", LookThroughActivity.threadid, commentContent );
 //                    CommentDetailBean detailBean = new CommentDetailBean("小明", commentContent,"刚刚");
 //                    adapter.addTheCommentData(detailBean);
                     Toast.makeText(LookThroughActivity.this,"评论成功",Toast.LENGTH_SHORT).show();
@@ -183,7 +183,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 String replyContent = commentText.getText().toString().trim();
                 if(!TextUtils.isEmpty(replyContent)){
                     dialog.dismiss();
-                    ExchangeInfosWithAli.SendMyReply(LookThroughActivity.threadid, 0 , replyContent );
+                    ExchangeInfosWithAli.AliReply("dyy", LookThroughActivity.threadid, replyContent , position);
                     Toast.makeText(LookThroughActivity.this,"回复成功",Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(LookThroughActivity.this,"回复内容不能为空",Toast.LENGTH_SHORT).show();
