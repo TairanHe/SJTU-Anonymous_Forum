@@ -20,6 +20,8 @@ package com.xuexiang.templateproject.fragment.profile;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.fragment.AboutFragment;
+import com.xuexiang.templateproject.fragment.FavorFragment;
+import com.xuexiang.templateproject.fragment.FloorFragment;
 import com.xuexiang.templateproject.fragment.SettingsFragment;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
@@ -42,6 +44,10 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
     SuperTextView menuSettings;
     @BindView(R.id.menu_about)
     SuperTextView menuAbout;
+//    @BindView(R.id.menu_note)
+//    SuperTextView menuNote;
+    @BindView(R.id.menu_favorite)
+    SuperTextView menuFavor;
 
     /**
      * @return 返回为 null意为不需要导航栏
@@ -71,15 +77,22 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
 
     @Override
     protected void initListeners() {
+//        menuNote.setOnSuperTextViewClickListener(this);
+        menuFavor.setOnSuperTextViewClickListener(this);
         menuSettings.setOnSuperTextViewClickListener(this);
         menuAbout.setOnSuperTextViewClickListener(this);
-
     }
 
     @SingleClick
     @Override
     public void onClick(SuperTextView view) {
         switch(view.getId()) {
+//            case R.id.menu_note:
+//                openNewPage(FloorFragment.class);
+//                break;
+            case R.id.menu_favorite:
+                openNewPage(FavorFragment.class);
+                break;
             case R.id.menu_settings:
                 openNewPage(SettingsFragment.class);
                 break;
