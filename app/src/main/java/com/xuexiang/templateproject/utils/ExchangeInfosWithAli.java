@@ -28,42 +28,47 @@ import java.util.List;
 public class ExchangeInfosWithAli {
     public static int NumOfQuery = 0;
 
-    public static List<NewInfo> GetAliRecommandedNewsInfos() {
-        String QueryString = EncapsulateString(1, NumOfQuery + "", 0, "get");
+    public static List<NewInfo> GetAliRecommandedNewsInfos(int block) {
+        String QueryString = EncapsulateString(1, NumOfQuery + "", block + "", "get again", "0", "0");
         NumOfQuery += 1;
         String receive_message = RunTCP(QueryString);
-        Log.d("dyy:", receive_message);
+        //Log.d("dyy:", receive_message);
         return DecapsulateStringToList_recommmend(receive_message);
     }
 
     public static List<FloorInfo> GetAliThread(String ThreadID) {
-        String QueryString = EncapsulateString(2, ThreadID, 0, "get");
+        String QueryString = EncapsulateString(2, ThreadID, "0", "get", "user", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_thread(receive_message);
     }
 
-    public static void SendMyThread(String title, String content){
-        String QueryString = EncapsulateString(3, title, 0, content);
+    public static void SendMyThread(String title, String content, int block) {
+        String QueryString = EncapsulateString(3, title, block + "", content, "user", "0");
         RunTCP(QueryString);
     }
 
-    public static void SendMyReply(String threadID, int replytoID, String content){
-        String QueryString = EncapsulateString(4, threadID + "", replytoID , content);
+    public static void Alicomment(String UserID, String threadID, String content) {
+        String QueryString = EncapsulateString(4, threadID, UserID, content, "0", "0");
         RunTCP(QueryString);
     }
 
-    private static String EncapsulateString(int OperatingNumber, String Op1, int Op2, String Context) {
-        return OperatingNumber + "\021" + Op1 + "\021" + Op2 + "\021" + Context;
+    public static void AliReply(String UserID, String threadID, String content, int ReplytoFloorID) {
+        String QueryString = EncapsulateString(4, threadID, UserID, content, ReplytoFloorID + "", "0");
+        RunTCP(QueryString);
+    }
+
+    private static String EncapsulateString(int OperatingNumber, String Op1, String Op2, String Op3, String Op4 ,String Op5) {
+        return OperatingNumber + "\021" + Op1 + "\021" + Op2 + "\021" + Op3 + "\021" + Op4 + "\021" + Op5 + "\021";
     }
 
     private static List<NewInfo> DecapsulateStringToList_recommmend(String InputString) {
-        Log.d("dyy:", InputString);
+        //Log.d("dyy:", InputString);
         List<NewInfo> list = new ArrayList<>();
         String[] main_split = InputString.split("\023");
-        Log.d("dyy:", (main_split[0].replace("\021", " Z ")).replace("\022", " Y "));
+        //Log.d("dyy:", (main_split[0].replace("\021", " Z ")).replace("\022", " Y "));
         for (String retval : main_split[0].split("\022")) {
             if (retval.equals("")) continue;
-            Log.d("dyy:", retval.replace("\021", " Z "));
+            //Log.d("dyy:", retval.replace("\021", " Z "));
             String[] temp = retval.split("\021");
             list.add(new NewInfo("这里以后再说", temp[1])
                     .setSummary(temp[2]).setPraise(Integer.parseInt(temp[3])).setComment(Integer.parseInt(temp[5])).setThreadID(temp[0]));
@@ -99,5 +104,28 @@ public class ExchangeInfosWithAli {
             e.printStackTrace();
         }
         return tcp_one.get_receive_text();
+    }
+
+    public static int get_block_id(String name) {
+        switch (name) {
+            case "校园":
+                return 0;
+            case "体育":
+                return 1;
+            case "音乐":
+                return 2;
+            case "科学":
+                return 3;
+            case "数码":
+                return 4;
+            case "娱乐":
+                return 5;
+            case "情感":
+                return 6;
+            case "社会":
+                return 7;
+            default:
+                return 0;
+        }
     }
 }
