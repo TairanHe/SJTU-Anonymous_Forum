@@ -52,9 +52,9 @@ public class NoteFragment extends BaseFragment {
 
     private SimpleDelegateAdapter<NewInfo> mNewsAdapter;
 
-    /**
-     * @return 返回为 null意为不需要导航栏
-     */
+//    /**
+//     * @return 返回为 null意为不需要导航栏
+//     */
 //    @Override
 //    protected TitleBar initTitle() {
 //        return null;
@@ -122,18 +122,19 @@ public class NoteFragment extends BaseFragment {
         };
 
         //资讯
-        mNewsAdapter = new SimpleDelegateAdapter<NewInfo>(R.layout.adapter_favor_card_view_list_item, new LinearLayoutHelper()) {
+        mNewsAdapter = new SimpleDelegateAdapter<NewInfo>(R.layout.adapter_note_card_view_list_item, new LinearLayoutHelper()) {
             @Override
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, NewInfo model) {
                 if (model != null) {
-                    holder.text(R.id.tv_note_id, model.getThreadID());
-                    holder.text(R.id.tv_note_context, model.getTag());
-//                    holder.text(R.id.tv_title, model.getTitle());
-//                    holder.text(R.id.tv_summary, model.getSummary());
-//                    holder.text(R.id.tv_delete, "取消收藏");
+                    holder.text(R.id.tv_thread_id, model.getThreadID());
+//                    holder.text(R.id.tv_tag, model.getTag());
+                    holder.text(R.id.tv_tag, "已读"); // 这里设置已读未读
+                    holder.text(R.id.tv_title, model.getTitle());
+                    holder.text(R.id.tv_note, "这里是消息类型，比如您的回复被点赞了10次");
+//                    holder.text(R.id.tv_praise, model.getPraise() == 0 ? "点赞" : String.valueOf(model.getPraise()));
 //                    holder.text(R.id.tv_comment, model.getComment() == 0 ? "评论" : String.valueOf(model.getComment()));
 //                    holder.text(R.id.tv_read, "阅读量 " + model.getRead());
-//                    holder.image(R.id.iv_image, model.getImageUrl());
+                    holder.image(R.id.iv_image, model.getImageUrl());
 
                     //holder.click(R.id.card_view, v -> Utils.goWeb(getContext(), model.getDetailUrl()));
                     holder.click(R.id.card_view, new View.OnClickListener() {
@@ -183,4 +184,15 @@ public class NoteFragment extends BaseFragment {
 
         //thread.setOnSuperTextViewClickListener(this);
     }
+
+//    @SingleClick
+//    public void onClick(SuperTextView view) {
+//        switch(view.getId()) {
+//            case R.id.thread:
+//                openNewPage(ThreadFragment.class);
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 }
