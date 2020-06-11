@@ -41,8 +41,8 @@ import butterknife.BindView;
  * @author xuexiang
  * @since 2019-10-30 00:15
  */
-@Page(anim = CoreAnim.none, name = "我的收藏")
-public class FavorFragment extends BaseFragment {
+@Page(anim = CoreAnim.none, name = "消息通知")
+public class NoteFragment extends BaseFragment {
     //    @BindView(R.id.thread)
 //    SuperTextView thread;
     @BindView(R.id.recyclerView)
@@ -67,7 +67,7 @@ public class FavorFragment extends BaseFragment {
      */
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_favor;
+        return R.layout.fragment_note;
     }
 
     /**
@@ -115,7 +115,7 @@ public class FavorFragment extends BaseFragment {
         SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.adapter_title_item) {
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-                holder.text(R.id.tv_title, "收藏的贴");
+                holder.text(R.id.tv_title, "消息列表");
                 holder.text(R.id.tv_action, "更多");
                 holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
             }
@@ -126,14 +126,14 @@ public class FavorFragment extends BaseFragment {
             @Override
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, NewInfo model) {
                 if (model != null) {
-                    holder.text(R.id.tv_thread_id, model.getThreadID());
-                    holder.text(R.id.tv_tag, model.getTag());
-                    holder.text(R.id.tv_title, model.getTitle());
-                    holder.text(R.id.tv_summary, model.getSummary());
-                    holder.text(R.id.tv_delete, "取消收藏");
-                    //holder.text(R.id.tv_comment, model.getComment() == 0 ? "评论" : String.valueOf(model.getComment()));
-                    //holder.text(R.id.tv_read, "阅读量 " + model.getRead());
-                    holder.image(R.id.iv_image, model.getImageUrl());
+                    holder.text(R.id.tv_note_id, model.getThreadID());
+                    holder.text(R.id.tv_note_context, model.getTag());
+//                    holder.text(R.id.tv_title, model.getTitle());
+//                    holder.text(R.id.tv_summary, model.getSummary());
+//                    holder.text(R.id.tv_delete, "取消收藏");
+//                    holder.text(R.id.tv_comment, model.getComment() == 0 ? "评论" : String.valueOf(model.getComment()));
+//                    holder.text(R.id.tv_read, "阅读量 " + model.getRead());
+//                    holder.image(R.id.iv_image, model.getImageUrl());
 
                     //holder.click(R.id.card_view, v -> Utils.goWeb(getContext(), model.getDetailUrl()));
                     holder.click(R.id.card_view, new View.OnClickListener() {
@@ -143,16 +143,6 @@ public class FavorFragment extends BaseFragment {
                             LookThroughActivity.threadtilte = model.getTitle();
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
-                        }
-                    });
-                    holder.click(R.id.ll_delete, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-//                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
-//                            startActivity(intent);
-                            //XToastUtils.toast("点击删除！");
-                            Utils.showDeleteFavorDialog(getActivity(), null);
-
                         }
                     });
                 }

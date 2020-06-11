@@ -47,6 +47,7 @@
                 </com.xuexiang.xui.widget.textview.supertextview.SuperTextView>
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                    android:id="@+id/menu_search"
                     style="@style/InfoItem.Account"
                     app:sLeftTextString="账号" />
 
@@ -63,10 +64,11 @@
 
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                    android:id="@+id/menu_my_threads"
                     style="@style/InfoItem.Account"
                     android:layout_marginTop="20dp"
                     app:sDividerLineType="none"
-                    app:sLeftTextString="意见反馈" />
+                    app:sLeftTextString="我的帖子" />
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
                     android:id="@+id/menu_settings"
