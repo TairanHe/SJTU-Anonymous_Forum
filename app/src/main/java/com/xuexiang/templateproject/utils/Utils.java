@@ -53,6 +53,37 @@ public final class Utils {
     private Utils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
+    /**
+     * 显示删除的提示
+     *
+     * @param context
+     * @param submitListener 同意的监听
+     * @return
+     */
+    public static Dialog showDeleteDialog(Context context, MaterialDialog.SingleButtonCallback submitListener) {
+        MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
+                .positiveText("不删除").onPositive((dialog1, which) -> {
+                    if (submitListener != null) {
+                        submitListener.onClick(dialog1, which);
+                    } else {
+                        dialog1.dismiss();
+                    }
+                })
+                .negativeText("删除").onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                    }
+                }).build();
+//        dialog.setContent(getPrivacyContent(context));
+        dialog.setContent("是否确认删除此收藏？\n一旦删除，不可恢复！\n");
+        //开始响应点击事件
+        dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
+        dialog.show();
+        return dialog;
+    }
+
+
 
     /**
      * 这里填写你的应用隐私政策网页地址
