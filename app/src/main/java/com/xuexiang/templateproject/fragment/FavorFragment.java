@@ -152,7 +152,7 @@ public class FavorFragment extends BaseFragment {
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
                             //XToastUtils.toast("点击删除！");
-                            Utils.showDeleteFavorDialog(getActivity(), null);
+                            Utils.showDeleteFavorDialog(getActivity(), null, FavorFragment.this);
 
                         }
                     });

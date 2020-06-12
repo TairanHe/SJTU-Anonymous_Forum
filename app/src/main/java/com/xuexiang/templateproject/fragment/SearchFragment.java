@@ -41,8 +41,8 @@ import butterknife.BindView;
  * @author xuexiang
  * @since 2019-10-30 00:15
  */
-@Page(anim = CoreAnim.none, name = "我的帖子")
-public class MyThreadsFragment extends BaseFragment {
+@Page(anim = CoreAnim.none, name = "搜索结果")
+public class SearchFragment extends BaseFragment {
     //    @BindView(R.id.thread)
 //    SuperTextView thread;
     @BindView(R.id.recyclerView)
@@ -53,21 +53,13 @@ public class MyThreadsFragment extends BaseFragment {
     private SimpleDelegateAdapter<NewInfo> mNewsAdapter;
 
     /**
-     * @return 返回为 null意为不需要导航栏
-     */
-//    @Override
-//    protected TitleBar initTitle() {
-//        return null;
-//    }
-
-    /**
      * 布局的资源id
      *
      * @return
      */
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_my_threads;
+        return R.layout.fragment_search;
     }
 
     /**
@@ -115,14 +107,14 @@ public class MyThreadsFragment extends BaseFragment {
         SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.adapter_title_item) {
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-                holder.text(R.id.tv_title, "我的帖子");
+                holder.text(R.id.tv_title, "搜索列表");
                 holder.text(R.id.tv_action, "更多");
                 holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
             }
         };
 
         //资讯
-        mNewsAdapter = new SimpleDelegateAdapter<NewInfo>(R.layout.adapter_mythreads_card_view_list_item, new LinearLayoutHelper()) {
+        mNewsAdapter = new SimpleDelegateAdapter<NewInfo>(R.layout.adapter_news_card_view_list_item, new LinearLayoutHelper()) {
             @Override
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, NewInfo model) {
                 if (model != null) {
@@ -133,7 +125,6 @@ public class MyThreadsFragment extends BaseFragment {
                     holder.text(R.id.tv_praise, model.getPraise() == 0 ? "点赞" : String.valueOf(model.getPraise()));
                     holder.text(R.id.tv_comment, model.getComment() == 0 ? "评论" : String.valueOf(model.getComment()));
                     holder.text(R.id.tv_read, "阅读量 " + model.getRead());
-                    holder.text(R.id.tv_delete, "删除");
 //                    holder.image(R.id.iv_image, model.getImageUrl());
 
                     //holder.click(R.id.card_view, v -> Utils.goWeb(getContext(), model.getDetailUrl()));
@@ -146,17 +137,6 @@ public class MyThreadsFragment extends BaseFragment {
                             startActivity(intent);
                         }
                     });
-                    holder.click(R.id.mt_delete, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-//                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
-//                            startActivity(intent);
-                            //XToastUtils.toast("点击删除！");
-                            Utils.showDeleteMyThreadDialog(getActivity(), null, MyThreadsFragment.this);
-
-                        }
-                    });
-
                 }
             }
         };
@@ -195,4 +175,15 @@ public class MyThreadsFragment extends BaseFragment {
 
         //thread.setOnSuperTextViewClickListener(this);
     }
+
+//    @SingleClick
+//    public void onClick(SuperTextView view) {
+//        switch(view.getId()) {
+//            case R.id.thread:
+//                openNewPage(ThreadFragment.class);
+//                break;
+//            default:
+//                break;
+//        }
+//    }
 }
