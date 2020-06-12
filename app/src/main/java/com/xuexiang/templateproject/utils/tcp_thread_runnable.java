@@ -17,6 +17,8 @@
 
 package com.xuexiang.templateproject.utils;
 
+import android.util.Log;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -42,16 +44,22 @@ public class tcp_thread_runnable implements Runnable {
     @Override
     public void run() {
         try {
-            Socket socket = new Socket(ip_addr, port);
-            OutputStream out = socket.getOutputStream();
-            out.write(text.getBytes());
-            // 读取服务端返回的数据，使用 Socket 读取流
-            InputStream in = socket.getInputStream();
+            int len = -1;
             byte[] buf = new byte[20480];
-            int len = in.read(buf);
+            int exp = 1;
+            while (len < 0) {
+                if (exp > 1) Thread.sleep(25 * exp);
+                Socket socket = new Socket(ip_addr, port);
+                OutputStream out = socket.getOutputStream();
+                out.write(text.getBytes());
+                // 读取服务端返回的数据，使用 Socket 读取流
+                InputStream in = socket.getInputStream();
+                len = in.read(buf);
+                socket.close();
+                exp *= 2;
+            }
             receive_text = new String(buf, 0, len);
-            socket.close();
-        }catch (IOException e){
+        }catch (IOException | InterruptedException e){
             e.printStackTrace();;
         }
     }
