@@ -29,6 +29,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -38,7 +39,12 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 import com.xuexiang.templateproject.R;
+import com.xuexiang.templateproject.activity.PostThreadActivity;
+import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.core.webview.AgentWebActivity;
+import com.xuexiang.templateproject.fragment.FavorFragment;
+import com.xuexiang.templateproject.fragment.MyThreadsFragment;
+import com.xuexiang.templateproject.fragment.SearchFragment;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.widget.dialog.DialogLoader;
 import com.xuexiang.xui.widget.dialog.materialdialog.DialogAction;
@@ -65,7 +71,7 @@ public final class Utils {
      * @param submitListener 同意的监听
      * @return
      */
-    public static Dialog showDeleteFavorDialog(Context context, MaterialDialog.SingleButtonCallback submitListener) {
+    public static Dialog showDeleteFavorDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, BaseFragment baseFragment) {
         MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
                 .positiveText("不删除").onPositive((dialog1, which) -> {
                     if (submitListener != null) {
@@ -78,6 +84,8 @@ public final class Utils {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         dialog.dismiss();
+                        // 这里是取消收藏的函数接口
+                        baseFragment.openNewPage(FavorFragment.class);
                     }
                 }).build();
 //        dialog.setContent(getPrivacyContent(context));
@@ -89,7 +97,7 @@ public final class Utils {
     }
 
 
-    public static Dialog showDeleteMyThreadDialog(Context context, MaterialDialog.SingleButtonCallback submitListener) {
+    public static Dialog showDeleteMyThreadDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, BaseFragment baseFragment) {
         MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
                 .positiveText("不删除").onPositive((dialog1, which) -> {
                     if (submitListener != null) {
@@ -102,6 +110,8 @@ public final class Utils {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         dialog.dismiss();
+                        //这里是删除自己帖子的函数接口
+                        baseFragment.openNewPage(MyThreadsFragment.class);
                     }
                 }).build();
 //        dialog.setContent(getPrivacyContent(context));
@@ -127,6 +137,7 @@ public final class Utils {
                         String search_context = dialog1.getInputEditText().getText().toString();
                         Toast.makeText(context, search_context, Toast.LENGTH_SHORT).show();
                         dialog1.dismiss();
+
                     }
                 })
                 .negativeText("取消").onNegative(new MaterialDialog.SingleButtonCallback() {
@@ -140,6 +151,7 @@ public final class Utils {
         dialog.show();
         return dialog;
     }
+
     /**
      * 这里填写你的应用隐私政策网页地址
      */

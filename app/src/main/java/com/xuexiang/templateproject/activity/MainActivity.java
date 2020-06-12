@@ -17,6 +17,7 @@
 
 package com.xuexiang.templateproject.activity;
 
+
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -40,6 +41,7 @@ import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.fragment.FavorFragment;
 import com.xuexiang.templateproject.fragment.NoteFragment;
+import com.xuexiang.templateproject.fragment.SearchFragment;
 import com.xuexiang.templateproject.fragment.news.NewsFragment;
 import com.xuexiang.templateproject.fragment.AboutFragment;
 import com.xuexiang.templateproject.fragment.SettingsFragment;
@@ -56,7 +58,6 @@ import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.common.ClickUtils;
 import com.xuexiang.xutil.common.CollectionUtils;
 import com.xuexiang.xutil.display.Colors;
-
 import butterknife.BindView;
 
 /**
@@ -85,6 +86,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     DrawerLayout drawerLayout;
 
     private String[] mTitles;
+    int choice = 1;
 
     @Override
     protected int getLayoutId() {
@@ -165,6 +167,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 drawerLayout.closeDrawers();
                 return handleNavigationItemSelected(menuItem);
             } else {
+                int index = CollectionUtils.arrayIndexOf(mTitles, menuItem.getTitle());
+                Log.d("MainActivity", "index " + index);
                 switch (menuItem.getItemId()) {
                     case R.id.nav_settings:
                         openNewPage(SettingsFragment.class);
@@ -180,7 +184,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         break;
                     case R.id.nav_search:
                         Utils.showSearchDialog(this, null);
-                        break;
                     default:
                         XToastUtils.toast("点击了:" + menuItem.getTitle());
                         break;
@@ -270,6 +273,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int index = CollectionUtils.arrayIndexOf(mTitles, menuItem.getTitle());
+        Log.d("MainActivity", "index " + index);
             if (index != -1) {
             toolbar.setTitle(menuItem.getTitle());
             viewPager.setCurrentItem(index, false);
@@ -312,6 +316,5 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onExit() {
         XUtil.get().exitApp();
     }
-
 
 }
