@@ -54,13 +54,11 @@ public class FloorInfo {
 
 
 
-
-
     public FloorInfo() {
 
     }
 
-    public FloorInfo(String floorID, String speakername, String replytoname, String replytofloor,  String context, int praise) {
+    public FloorInfo(String floorID, String speakername, String replytoname, String replytofloor, String context, int praise) {
         FloorID = floorID;
         Speakername = speakername;
         Replytoname = replytoname;
@@ -69,10 +67,6 @@ public class FloorInfo {
         Praise = praise;
 
     }
-
-
-
-
 
 
     public String getFloorID() {
@@ -85,8 +79,6 @@ public class FloorInfo {
     }
 
 
-
-
     public String getSpeakername() {
         return Speakername;
     }
@@ -95,9 +87,6 @@ public class FloorInfo {
         Speakername = speakername;
         return this;
     }
-
-
-
 
 
     public String getReplytoname() {
@@ -128,9 +117,6 @@ public class FloorInfo {
     }
 
 
-
-
-
     public int getPraise() {
         return Praise;
     }
@@ -141,14 +127,11 @@ public class FloorInfo {
     }
 
 
-
-
-
     @Override
     public String toString() {
         return "NewInfo{" +
                 "FloorID='" + FloorID + '\'' +
-                ", Speakername='" +Speakername + '\'' +
+                ", Speakername='" + Speakername + '\'' +
                 ", Replytoname='" + Replytoname + '\'' +
                 ", Replytofloor='" + Replytofloor + '\'' +
                 ", Context='" + Context + '\'' +

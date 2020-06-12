@@ -1,6 +1,7 @@
 package com.xuexiang.templateproject.fragment;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -177,7 +178,7 @@ public class FavorFragment extends BaseFragment {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 ExchangeInfosWithAli.NumOfQuery = 0;
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
+                mNewsAdapter.refresh(ExchangeInfosWithAli.GetFavourThread());
                 refreshLayout.finishRefresh();
             }, 1000);
         });
@@ -185,7 +186,7 @@ public class FavorFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
+                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetFavourThread());
                 refreshLayout.finishLoadMore();
             }, 1000);
         });

@@ -26,17 +26,25 @@ package com.xuexiang.templateproject.adapter.entity;
 public class NewInfo {
 
     /**
-     * 用户名
+     * 帖子标签
      */
     private String ThreadID;
+
+    /**
+     * 所属板块
+     */
+    private String Block;
+
     /**
      * 标签
      */
     private String Tag;
+
     /**
      * 标题
      */
     private String Title;
+
     /**
      * 摘要
      */
@@ -46,38 +54,74 @@ public class NewInfo {
      * 图片
      */
     private String ImageUrl;
+
     /**
      * 点赞数
      */
     private int Praise;
+
+    /**
+     * 点踩数
+     */
+    private int Dislike;
+
     /**
      * 评论数
      */
     private int Comment;
+
     /**
      * 阅读量
      */
     private int Read;
+
     /**
      * 新闻的详情地址
      */
     private String DetailUrl;
 
+    /**
+     * 发布时间
+     */
+    private String PostTime;
+
+    /**
+     * 最后更新时间
+     */
+    private String LastUpdateTime;
+
+    /**
+     * 是否收藏
+     */
+    private int WhetherFavour;
+
+    /**
+     * 是否点赞(或点踩)
+     */
+    private int WhetherLike;
+
+    /**
+     * 是否被删了
+     */
+    private int WhetherVisiable;
 
     public NewInfo() {
 
     }
 
-    public NewInfo(String threadID, String tag, String title, String summary, String imageUrl, int praise, int comment, int read, String detailUrl) {
+    public NewInfo(String threadID, String tag, String title, String summary, String block, int praise, int dislike, int comment, int read,
+                   int whetherlike, String lastupdatetime) {
         ThreadID = threadID;
         Tag = tag;
         Title = title;
         Summary = summary;
-        ImageUrl = imageUrl;
+        Block = block;
         Praise = praise;
+        Dislike = dislike;
         Comment = comment;
         Read = read;
-        DetailUrl = detailUrl;
+        WhetherLike = whetherlike;
+        LastUpdateTime = lastupdatetime;
     }
 
 
@@ -96,9 +140,8 @@ public class NewInfo {
 
         Praise = (int) (Math.random() * 3 + 2);
         Comment = (int) (Math.random() * 7 + 3);
-        Read = (int) (Math.random() * 8 );
+        Read = (int) (Math.random() * 8);
     }
-
 
 
     public String getThreadID() {
@@ -107,6 +150,15 @@ public class NewInfo {
 
     public NewInfo setThreadID(String threadID) {
         ThreadID = threadID;
+        return this;
+    }
+
+    public String getBlock() {
+        return Block;
+    }
+
+    public NewInfo setBlock(String block) {
+        Block = block;
         return this;
     }
 
@@ -155,6 +207,15 @@ public class NewInfo {
         return this;
     }
 
+    public int getDislike() {
+        return Dislike;
+    }
+
+    public NewInfo setDislike(int dislike) {
+        Dislike = dislike;
+        return this;
+    }
+
     public int getComment() {
         return Comment;
     }
@@ -179,6 +240,52 @@ public class NewInfo {
 
     public NewInfo setDetailUrl(String detailUrl) {
         DetailUrl = detailUrl;
+        return this;
+    }
+
+    public int getWhetherFavour(){
+        return WhetherFavour;
+    }
+
+    public NewInfo setWhetherFavour(int whetherfavour){
+        WhetherFavour = whetherfavour;
+        return this;
+    }
+
+    public int getWhetherLike(){
+        return WhetherLike;
+    }
+
+    public NewInfo setWhetherLike(int whetherlike){
+        WhetherLike = whetherlike;
+        return this;
+    }
+
+    public int getWhetherVisiable(){
+        return WhetherVisiable;
+    }
+
+    public NewInfo setWhetherVisiable(int whethervisiable){
+        WhetherVisiable = whethervisiable;
+        return this;
+    }
+
+    public String getPostTime(){
+        return PostTime;
+    }
+
+    public NewInfo setPostTime(String posttime){
+        PostTime = posttime;
+        return this;
+    }
+
+
+    public String getLastUpdateTime(){
+        return LastUpdateTime;
+    }
+
+    public NewInfo setLastUpdateTime(String lastUpdateTime){
+        LastUpdateTime = lastUpdateTime;
         return this;
     }
 
