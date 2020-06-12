@@ -178,6 +178,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     case R.id.nav_notifications:
                         openNewPage(NoteFragment.class);
                         break;
+                    case R.id.nav_search:
+                        Utils.showSearchDialog(this, null);
+                        break;
                     default:
                         XToastUtils.toast("点击了:" + menuItem.getTitle());
                         break;
@@ -267,7 +270,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int index = CollectionUtils.arrayIndexOf(mTitles, menuItem.getTitle());
-        if (index != -1) {
+            if (index != -1) {
             toolbar.setTitle(menuItem.getTitle());
             viewPager.setCurrentItem(index, false);
 

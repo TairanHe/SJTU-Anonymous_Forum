@@ -17,6 +17,8 @@
 
 package com.xuexiang.templateproject.utils;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,6 +30,9 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -107,6 +112,34 @@ public final class Utils {
         return dialog;
     }
 
+    public static Dialog showSearchDialog(Context context, MaterialDialog.SingleButtonCallback submitListener) {
+        MaterialDialog dialog = new MaterialDialog.Builder(context).title("搜索内容")
+                .input("请输入关键词", "", new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+
+                    }
+                }).autoDismiss(false).cancelable(false)
+                .positiveText("搜索").onPositive((dialog1, which) -> {
+                    if (submitListener != null) {
+                        submitListener.onClick(dialog1, which);
+                    } else {
+                        String search_context = dialog1.getInputEditText().getText().toString();
+                        Toast.makeText(context, search_context, Toast.LENGTH_SHORT).show();
+                        dialog1.dismiss();
+                    }
+                })
+                .negativeText("取消").onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                    }
+                }).build();
+        //开始响应点击事件
+        dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
+        dialog.show();
+        return dialog;
+    }
     /**
      * 这里填写你的应用隐私政策网页地址
      */
@@ -120,6 +153,7 @@ public final class Utils {
      * @return
      */
     public static Dialog showPrivacyDialog(Context context, MaterialDialog.SingleButtonCallback submitListener) {
+        final EditText et = new EditText(context);
         MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
                 .positiveText(R.string.lab_agree).onPositive((dialog1, which) -> {
                     if (submitListener != null) {
