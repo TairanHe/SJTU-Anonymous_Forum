@@ -48,7 +48,7 @@ public class tcp_thread_runnable implements Runnable {
             byte[] buf = new byte[20480];
             int exp = 1;
             while (len < 0) {
-                if (exp > 1) Thread.sleep(25 * exp);
+                if (exp > 1) Thread.sleep(100 * exp);
                 Socket socket = new Socket(ip_addr, port);
                 OutputStream out = socket.getOutputStream();
                 out.write(text.getBytes());
@@ -57,6 +57,7 @@ public class tcp_thread_runnable implements Runnable {
                 len = in.read(buf);
                 socket.close();
                 exp *= 2;
+                Log.d("dyy", exp + "");
             }
             receive_text = new String(buf, 0, len);
         }catch (IOException | InterruptedException e){
