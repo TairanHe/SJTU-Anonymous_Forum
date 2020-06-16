@@ -92,43 +92,43 @@ public class ExchangeInfosWithAli {
     }
 
     public static void PraiseFloor(String ThreadID, int floor) {
-        String QueryString = EncapsulateString("8", ThreadID, "dyy", "0", floor + "", "0");
-        RunTCP(QueryString);
-    }
-
-    public static void CancelPraiseFloor(String ThreadID, int floor) {
         String QueryString = EncapsulateString("8", ThreadID, "dyy", "1", floor + "", "0");
         RunTCP(QueryString);
     }
 
-    public static void PraiseThread(String ThreadID) {
-        String QueryString = EncapsulateString("8", ThreadID, "dyy", "0", "1", "0");
+    public static void CancelPraiseFloor(String ThreadID, int floor) {
+        String QueryString = EncapsulateString("8", ThreadID, "dyy", "2", floor + "", "0");
         RunTCP(QueryString);
     }
 
-    public static void CancelPraiseThread(String ThreadID) {
+    public static void PraiseThread(String ThreadID) {
         String QueryString = EncapsulateString("8", ThreadID, "dyy", "1", "1", "0");
         RunTCP(QueryString);
     }
 
-    public static void DislikeThread(String ThreadID) {
-        String QueryString = EncapsulateString("9", ThreadID, "dyy", "0", "1", "0");
+    public static void CancelPraiseThread(String ThreadID) {
+        String QueryString = EncapsulateString("8", ThreadID, "dyy", "2", "1", "0");
         RunTCP(QueryString);
     }
 
-    public static void CancelDislikeThread(String ThreadID) {
+    public static void DislikeThread(String ThreadID) {
         String QueryString = EncapsulateString("9", ThreadID, "dyy", "1", "1", "0");
         RunTCP(QueryString);
     }
 
+    public static void CancelDislikeThread(String ThreadID) {
+        String QueryString = EncapsulateString("9", ThreadID, "dyy", "2", "1", "0");
+        RunTCP(QueryString);
+    }
+
     public static List<MessageInfo> GetMessageList(){
-        String QueryString = EncapsulateString("a", "dyy", "0", "0", "0", "0");
+        String QueryString = EncapsulateString("a", "dyy", "0", "1", "0", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringtoList_Message(receive_message);
     }
 
     public static List<NewInfo> query(String queryString){
-        String QueryString = EncapsulateString("b", queryString, "dyy", "0", "0", "0");
+        String QueryString = EncapsulateString("b", queryString, "dyy", "2", "0", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_Basic(receive_message);
     }
