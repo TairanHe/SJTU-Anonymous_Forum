@@ -135,7 +135,7 @@ public class TrendingFragment extends BaseFragment {
                 WebView webView = holder.findViewById(R.id.gaugeChart);
                 webView.getSettings().setAllowFileAccess(true);
                 webView.getSettings().setJavaScriptEnabled(true);
-                webView.loadUrl("file:///android_asset/Echarts_gauge.html");
+                //webView.loadUrl("file:///android_asset/Echarts_gauge.html");
             }
         };
         //资讯的标题

@@ -34,6 +34,8 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.umeng.commonsdk.debug.E;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -54,9 +56,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
     public static String threadtilte;
 
     private TextView bt_comment;
-    private LinearLayout bt_favor;
-    private LinearLayout bt_praise;
-    private LinearLayout bt_tread;
+    private ImageView bt_favor;
+    private ImageView bt_praise;
+    private ImageView bt_tread;
     private ImageView bt_reply_image;
     private TextView bt_reply_text;
     private BottomSheetDialog dialog;
@@ -87,14 +89,21 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         bt_comment = (TextView) findViewById(R.id.detail_page_do_comment);
         bt_comment.setOnClickListener(this);
 
-        bt_favor = (LinearLayout) findViewById(R.id.ll_favor_thread);
+        bt_favor = (ImageView) findViewById(R.id.iv_favor_thread);
         bt_favor.setOnClickListener(this);
 
-        bt_praise = (LinearLayout) findViewById(R.id.ll_praise_thread);
+        bt_praise = (ImageView) findViewById(R.id.iv_praise_thread);
         bt_praise.setOnClickListener(this);
 
-        bt_tread = (LinearLayout) findViewById(R.id.ll_tread_thread);
+        bt_tread = (ImageView) findViewById(R.id.iv_tread_thread);
         bt_tread.setOnClickListener(this);
+
+        if (ExchangeInfosWithAli.WhetherFavour == 1)
+        {
+            XToastUtils.toast("此贴已收藏！");
+            bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
+        }
+
 //        bt_reply_image = (ImageView) findViewById(R.id.iv_focus_thread);
 //        bt_reply_image.setOnClickListener(this);
 //        bt_reply_text = (TextView) findViewById(R.id.tv_reply);
@@ -108,17 +117,33 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
             showCommentDialog();
         }
-        if(view.getId() == R.id.ll_favor_thread) {
-            XToastUtils.toast("点击收藏！");
+        if(view.getId() == R.id.iv_favor_thread) {
+            if (ExchangeInfosWithAli.WhetherFavour == 0)
+            {
+                XToastUtils.toast("点击收藏！");
+                bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
+                ExchangeInfosWithAli.FavourThread(LookThroughActivity.threadid);
+                ExchangeInfosWithAli.WhetherFavour = 1;
+            }
+            else
+            {
+                XToastUtils.toast("取消收藏！");
+                bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.icon_collect_3));
+                ExchangeInfosWithAli.CancelFavourThread(LookThroughActivity.threadid);
+                ExchangeInfosWithAli.WhetherFavour = 0;
+            }
+
+
+
             // TODO: 2020/6/11
             //  FavorAliThread(UserID, LookThroughActivity.threadid)
         }
-        if(view.getId() == R.id.ll_praise_thread) {
+        if(view.getId() == R.id.iv_praise_thread) {
             XToastUtils.toast("点赞帖子！");
             // TODO: 2020/6/11
             //  PraiseAliThread(UserID, LookThroughActivity.threadid)
         }
-        if(view.getId() == R.id.ll_tread_thread) {
+        if(view.getId() == R.id.iv_tread_thread) {
             XToastUtils.toast("点踩帖子！");
             // TODO: 2020/6/11
             //  TreadAliThread(UserID, LookThroughActivity.threadid)
