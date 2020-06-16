@@ -63,14 +63,15 @@ public class FloorInfo {
 
     }
 
-    public FloorInfo(String floorID, String speakername, String replytoname, String replytofloor, String context, int praise) {
+    public FloorInfo(String floorID, String speakername, String replytoname, String replytofloor,
+                     String context, int praise, int whetherpraise) {
         FloorID = floorID;
         Speakername = speakername;
         Replytoname = replytoname;
         Replytofloor = replytofloor;
         Context = context;
         Praise = praise;
-
+        WhetherPraise = whetherpraise;
     }
 
 
