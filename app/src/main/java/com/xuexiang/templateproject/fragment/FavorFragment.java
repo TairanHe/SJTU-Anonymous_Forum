@@ -142,6 +142,7 @@ public class FavorFragment extends BaseFragment {
                         public void onClick(View view) {
                             LookThroughActivity.threadid = model.getThreadID();
                             LookThroughActivity.threadtilte = model.getTitle();
+                            Log.d("LookThroughActivity.帖子", LookThroughActivity.threadid);
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
                         }
@@ -149,10 +150,12 @@ public class FavorFragment extends BaseFragment {
                     holder.click(R.id.ll_delete, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            LookThroughActivity.threadid = model.getThreadID();
+                            Log.d("LookThroughActivity.收藏", LookThroughActivity.threadid);
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
                             //XToastUtils.toast("点击删除！");
-                            Utils.showDeleteFavorDialog(getActivity(), null, FavorFragment.this);
+                            Utils.showDeleteFavorDialog(getActivity(), null, FavorFragment.this, LookThroughActivity.threadid);
 
                         }
                     });
@@ -177,18 +180,18 @@ public class FavorFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                ExchangeInfosWithAli.NumOfQuery = 0;
+                //ExchangeInfosWithAli.NumOfQuery = 0;
                 mNewsAdapter.refresh(ExchangeInfosWithAli.GetFavourThread());
                 refreshLayout.finishRefresh();
-            }, 1000);
+            }, 500);
         });
         //上拉加载
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 mNewsAdapter.loadMore(ExchangeInfosWithAli.GetFavourThread());
-                refreshLayout.finishLoadMore();
-            }, 1000);
+                refreshLayout.finishRefresh();
+            }, 500);
         });
         refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
 
