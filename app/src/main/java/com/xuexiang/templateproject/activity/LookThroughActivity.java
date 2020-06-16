@@ -59,8 +59,10 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
     private ImageView bt_favor;
     private ImageView bt_praise;
     private ImageView bt_tread;
-    private ImageView bt_reply_image;
-    private TextView bt_reply_text;
+
+    private TextView praise_num;
+    private TextView tread_num;
+    private TextView favor_num;
     private BottomSheetDialog dialog;
 
     @Override
@@ -98,10 +100,24 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         bt_tread = (ImageView) findViewById(R.id.iv_tread_thread);
         bt_tread.setOnClickListener(this);
 
+        favor_num = (TextView) findViewById(R.id.tv_favor_thread);
+        praise_num = (TextView) findViewById(R.id.tv_praise_thread);
+        tread_num = (TextView) findViewById(R.id.tv_tread_thread);
         if (ExchangeInfosWithAli.WhetherFavour == 1)
         {
             XToastUtils.toast("此贴已收藏！");
             bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
+        }
+
+        if (ExchangeInfosWithAli.WhetherPraise == 1)
+        {
+            XToastUtils.toast("此贴已点赞！");
+            bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_already));
+        }
+        else if (ExchangeInfosWithAli.WhetherPraise == -1)
+        {
+            XToastUtils.toast("此贴已点踩！");
+            bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_already));
         }
 
 //        bt_reply_image = (ImageView) findViewById(R.id.iv_focus_thread);
@@ -124,6 +140,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
                 ExchangeInfosWithAli.FavourThread(LookThroughActivity.threadid);
                 ExchangeInfosWithAli.WhetherFavour = 1;
+                favor_num.setText(String.valueOf(Integer.parseInt(favor_num.getText().toString())+1));
             }
             else
             {
@@ -131,22 +148,54 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.icon_collect_3));
                 ExchangeInfosWithAli.CancelFavourThread(LookThroughActivity.threadid);
                 ExchangeInfosWithAli.WhetherFavour = 0;
+                favor_num.setText(String.valueOf(Integer.parseInt(favor_num.getText().toString())-1));
             }
 
-
-
-            // TODO: 2020/6/11
-            //  FavorAliThread(UserID, LookThroughActivity.threadid)
         }
+
         if(view.getId() == R.id.iv_praise_thread) {
-            XToastUtils.toast("点赞帖子！");
-            // TODO: 2020/6/11
-            //  PraiseAliThread(UserID, LookThroughActivity.threadid)
+            if (ExchangeInfosWithAli.WhetherPraise == 0)
+            {
+                XToastUtils.toast("点赞帖子！");
+                bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_already));
+                ExchangeInfosWithAli.WhetherPraise = 1;
+                ExchangeInfosWithAli.PraiseThread(LookThroughActivity.threadid);
+                praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())+1));
+            }
+            else if (ExchangeInfosWithAli.WhetherPraise == 1)
+            {
+                XToastUtils.toast("取消点赞帖子！");
+                bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_black));
+                ExchangeInfosWithAli.WhetherPraise = 0;
+                ExchangeInfosWithAli.CancelPraiseThread(LookThroughActivity.threadid);
+                praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())-1));
+            }
+            else if (ExchangeInfosWithAli.WhetherPraise == -1)
+            {
+                XToastUtils.toast("不能同时点赞点踩哦！");
+            }
         }
         if(view.getId() == R.id.iv_tread_thread) {
-            XToastUtils.toast("点踩帖子！");
-            // TODO: 2020/6/11
-            //  TreadAliThread(UserID, LookThroughActivity.threadid)
+            if (ExchangeInfosWithAli.WhetherPraise == 0)
+            {
+                XToastUtils.toast("点踩帖子！");
+                bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_already));
+                ExchangeInfosWithAli.WhetherPraise = -1;
+                ExchangeInfosWithAli.DislikeThread(LookThroughActivity.threadid);
+                tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())+1));
+            }
+            else if (ExchangeInfosWithAli.WhetherPraise == -1)
+            {
+                XToastUtils.toast("取消点踩帖子！");
+                bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_black));
+                ExchangeInfosWithAli.WhetherPraise = 0;
+                ExchangeInfosWithAli.CancelDislikeThread(LookThroughActivity.threadid);
+                tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())-1));
+            }
+            else if (ExchangeInfosWithAli.WhetherPraise == 1)
+            {
+                XToastUtils.toast("不能同时点赞点踩哦！");
+            }
         }
 
 //        if(view.getId() == R.id.iv_reply || view.getId() == R.id.tv_reply) {

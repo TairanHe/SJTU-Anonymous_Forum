@@ -127,7 +127,7 @@
                 android:layout_marginLeft="0dp" />
             <TextView
                 android:gravity="center"
-                android:id="@+id/tv_tread_hread"
+                android:id="@+id/tv_tread_thread"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
                 android:textColor="#9A9A9A"
