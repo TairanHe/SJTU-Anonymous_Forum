@@ -138,6 +138,11 @@ public class ExchangeInfosWithAli {
         RunTCP(QueryString);
     }
 
+    public static List<NewInfo> hottest_thread(){
+        String QueryString = EncapsulateString("d", "dyy", "0", "0", "0", "0");
+        String receive_message = RunTCP(QueryString);
+        return DecapsulateStringToList_Basic(receive_message);
+    }
 
     private static String EncapsulateString(String OperatingNumber, String Op1, String Op2, String Op3, String Op4, String Op5) {
         return OperatingNumber + "\021" + Op1 + "\021" + Op2 + "\021" + Op3 + "\021" + Op4 + "\021" + Op5 + "\021";
