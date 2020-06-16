@@ -33,11 +33,11 @@ import static com.xuexiang.xutil.resource.ResUtils.getResources;
 
 public class ExchangeInfosWithAli {
     public static int NumOfQuery = 0;
-
+    public static int WhetherFavour = 0;
     public static List<NewInfo> GetAliRecommandedNewsInfos(int block) {
-        String QueryString = EncapsulateString("1", NumOfQuery + "", block + "", "get again", "0", "0");
+        String QueryString = EncapsulateString("1", NumOfQuery + "", block + "", "dyy", "0", "0");
         String receive_message = RunTCP(QueryString);
-        return DecapsulateStringToList_Recommmand(receive_message, block);
+        return DecapsulateStringToList_Recommmand(receive_message);
     }
 
     public static List<FloorInfo> GetAliThread(String ThreadID) {
@@ -85,7 +85,7 @@ public class ExchangeInfosWithAli {
     public static List<NewInfo> GetMyThread() {
         String QueryString = EncapsulateString("7", "dyy", "0", "0", "0", "0");
         String receive_message = RunTCP(QueryString);
-        return DecapsulateStringToList_Mine(receive_message);
+        return DecapsulateStringToList_Basic(receive_message);
     }
 
     public static void PraiseFloor(String ThreadID, int floor) {
@@ -125,9 +125,9 @@ public class ExchangeInfosWithAli {
     }
 
     public static List<NewInfo> query(String queryString){
-        String QueryString = EncapsulateString("b", queryString, "0", "0", "0", "0");
+        String QueryString = EncapsulateString("b", queryString, "dyy", "0", "0", "0");
         String receive_message = RunTCP(QueryString);
-        return DecapsulateStringToList_Recommmand(receive_message, 0);
+        return DecapsulateStringToList_Basic(receive_message);
     }
 
     public static void deletethread(String ThreadID){
@@ -140,7 +140,7 @@ public class ExchangeInfosWithAli {
         return OperatingNumber + "\021" + Op1 + "\021" + Op2 + "\021" + Op3 + "\021" + Op4 + "\021" + Op5 + "\021";
     }
 
-    private static List<NewInfo> DecapsulateStringToList_Recommmand(String InputString, int block) {
+    private static List<NewInfo> DecapsulateStringToList_Recommmand(String InputString) {
         ShowLog(InputString);
         List<NewInfo> list = new ArrayList<>();
         String[] main_split = InputString.split("\023");
@@ -152,19 +152,19 @@ public class ExchangeInfosWithAli {
         for (String retval : main_split[0].split("\022")) {
             String[] temp = retval.split("\021");
             if (temp.length < 5) continue;
-            list.add(new NewInfo(temp[0], temp[1], temp[2], get_block_name(block),
-                    Integer.parseInt(temp[3]), Integer.parseInt(temp[4]), Integer.parseInt(temp[5]),
-                    Integer.parseInt(temp[6]), Integer.parseInt(temp[7]), temp[8]));
+            list.add(new NewInfo(temp[0], temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
+                    Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6]),
+                    Integer.parseInt(temp[7]), Integer.parseInt(temp[8]), temp[9]));
         }
         return list;
     }
 
-    private static List<NewInfo> DecapsulateStringToList_Mine(String InputString) {
+    private static List<NewInfo> DecapsulateStringToList_Basic(String InputString) {
         ShowLog(InputString);
         List<NewInfo> list = new ArrayList<>();
         String[] main_split = InputString.split("\023");
         if (main_split.length < 1) {
-            XToastUtils.toast("好像您还没有发过帖,要不赶紧水一贴?");
+            XToastUtils.toast("空空如也~");
             return null;
         }
         for (String retval : main_split[0].split("\022")) {
@@ -190,7 +190,9 @@ public class ExchangeInfosWithAli {
             if (temp.length < 10) continue;
             list.add(new NewInfo(temp[0], temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
                     Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6]),
-                    Integer.parseInt(temp[7]), Integer.parseInt(temp[8]), temp[9]));
+                    Integer.parseInt(temp[7]), Integer.parseInt(temp[8]), temp[9])
+                    .setTag(Integer.parseInt(temp[10])+""));
+
         }
         return list;
     }
@@ -202,10 +204,15 @@ public class ExchangeInfosWithAli {
             return null;
         }
         List<FloorInfo> list = new ArrayList<>();
+        int i = 0;
         for (String retval : InputString.split("\022")) {
             String[] temp = retval.split("\021");
             if (temp.length < 6) continue;
             list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4], Integer.parseInt(temp[5])));
+            if (i == 0){
+                WhetherFavour = Integer.parseInt(temp[6]);
+            }
+            i += 1;
         }
         return list;
     }

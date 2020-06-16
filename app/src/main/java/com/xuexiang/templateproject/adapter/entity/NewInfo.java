@@ -24,7 +24,6 @@ package com.xuexiang.templateproject.adapter.entity;
  * @since 2019/4/7 下午12:07
  */
 public class NewInfo {
-
     /**
      * 帖子ID
      */
