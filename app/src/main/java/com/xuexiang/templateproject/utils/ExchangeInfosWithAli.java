@@ -17,10 +17,13 @@
 
 package com.xuexiang.templateproject.utils;
 
+import android.app.DownloadManager;
 import android.util.Log;
 
+import com.bumptech.glide.load.model.stream.QMediaStoreUriLoader;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.adapter.entity.FloorInfo;
+import com.xuexiang.templateproject.adapter.entity.MessageInfo;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
 
 import java.util.ArrayList;
@@ -34,8 +37,7 @@ public class ExchangeInfosWithAli {
     public static List<NewInfo> GetAliRecommandedNewsInfos(int block) {
         String QueryString = EncapsulateString("1", NumOfQuery + "", block + "", "get again", "0", "0");
         String receive_message = RunTCP(QueryString);
-        //Log.d("dyy:", receive_message);
-        return DecapsulateStringToList_Recommmand(receive_message);
+        return DecapsulateStringToList_Recommmand(receive_message, block);
     }
 
     public static List<FloorInfo> GetAliThread(String ThreadID) {
@@ -43,7 +45,6 @@ public class ExchangeInfosWithAli {
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_thread(receive_message);
     }
-
 
     public static void SendMyThread(String title, String content, int block) {
         String QueryString = EncapsulateString("3", title, block + "", content, "dyy", "0");
@@ -70,6 +71,11 @@ public class ExchangeInfosWithAli {
         RunTCP(QueryString);
     }
 
+    public static void CancelFavourThread(String ThreadID) {
+        String QueryString = EncapsulateString("5", ThreadID, "dyy", "2", "0", "0");
+        RunTCP(QueryString);
+    }
+
     public static List<NewInfo> GetFavourThread() {
         String QueryString = EncapsulateString("6", "dyy", "0", "0", "0", "0");
         String receive_message = RunTCP(QueryString);
@@ -87,13 +93,45 @@ public class ExchangeInfosWithAli {
         RunTCP(QueryString);
     }
 
+    public static void CancelPraiseFloor(String ThreadID, int floor) {
+        String QueryString = EncapsulateString("8", ThreadID, "dyy", "1", floor + "", "0");
+        RunTCP(QueryString);
+    }
+
     public static void PraiseThread(String ThreadID) {
         String QueryString = EncapsulateString("8", ThreadID, "dyy", "0", "1", "0");
         RunTCP(QueryString);
     }
 
-    public static void DislikeThread(String ThreadID) {
+    public static void CancelPraiseThread(String ThreadID) {
         String QueryString = EncapsulateString("8", ThreadID, "dyy", "1", "1", "0");
+        RunTCP(QueryString);
+    }
+
+    public static void DislikeThread(String ThreadID) {
+        String QueryString = EncapsulateString("9", ThreadID, "dyy", "0", "1", "0");
+        RunTCP(QueryString);
+    }
+
+    public static void CancelDislikeThread(String ThreadID) {
+        String QueryString = EncapsulateString("9", ThreadID, "dyy", "1", "1", "0");
+        RunTCP(QueryString);
+    }
+
+    public static List<MessageInfo> GetMessageList(){
+        String QueryString = EncapsulateString("a", "dyy", "0", "0", "0", "0");
+        String receive_message = RunTCP(QueryString);
+        return DecapsulateStringtoList_Message(receive_message);
+    }
+
+    public static List<NewInfo> query(String queryString){
+        String QueryString = EncapsulateString("b", queryString, "0", "0", "0", "0");
+        String receive_message = RunTCP(QueryString);
+        return DecapsulateStringToList_Recommmand(receive_message, 0);
+    }
+
+    public static void deletethread(String ThreadID){
+        String QueryString = EncapsulateString("c", ThreadID, "0", "0", "0", "0");
         RunTCP(QueryString);
     }
 
@@ -102,7 +140,7 @@ public class ExchangeInfosWithAli {
         return OperatingNumber + "\021" + Op1 + "\021" + Op2 + "\021" + Op3 + "\021" + Op4 + "\021" + Op5 + "\021";
     }
 
-    private static List<NewInfo> DecapsulateStringToList_Recommmand(String InputString) {
+    private static List<NewInfo> DecapsulateStringToList_Recommmand(String InputString, int block) {
         ShowLog(InputString);
         List<NewInfo> list = new ArrayList<>();
         String[] main_split = InputString.split("\023");
@@ -114,8 +152,9 @@ public class ExchangeInfosWithAli {
         for (String retval : main_split[0].split("\022")) {
             String[] temp = retval.split("\021");
             if (temp.length < 5) continue;
-            list.add(new NewInfo("这里以后再说", temp[1])
-                    .setSummary(temp[2]).setPraise(Integer.parseInt(temp[3])).setComment(Integer.parseInt(temp[5])).setThreadID(temp[0]));
+            list.add(new NewInfo(temp[0], temp[1], temp[2], get_block_name(block),
+                    Integer.parseInt(temp[3]), Integer.parseInt(temp[4]), Integer.parseInt(temp[5]),
+                    Integer.parseInt(temp[6]), Integer.parseInt(temp[7]), temp[8]));
         }
         return list;
     }
@@ -130,8 +169,8 @@ public class ExchangeInfosWithAli {
         }
         for (String retval : main_split[0].split("\022")) {
             String[] temp = retval.split("\021");
-            if (temp.length < 9) continue;
-            list.add(new NewInfo(temp[0], "TAG", temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
+            if (temp.length < 10) continue;
+            list.add(new NewInfo(temp[0], temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
                     Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6]),
                     Integer.parseInt(temp[7]), Integer.parseInt(temp[8]), temp[9]));
         }
@@ -148,22 +187,40 @@ public class ExchangeInfosWithAli {
         }
         for (String retval : main_split[0].split("\022")) {
             String[] temp = retval.split("\021");
-            if (temp.length < 5) continue;
-            list.add(new NewInfo(temp[0], "TAG", temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
+            if (temp.length < 10) continue;
+            list.add(new NewInfo(temp[0], temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
                     Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6]),
                     Integer.parseInt(temp[7]), Integer.parseInt(temp[8]), temp[9]));
         }
-        Log.d("dyy", InputString);
         return list;
     }
 
     private static List<FloorInfo> DecapsulateStringToList_thread(String InputString) {
         ShowLog(InputString);
+        if (InputString.length() < 1){
+            XToastUtils.toast("似乎出了一点问题...");
+            return null;
+        }
         List<FloorInfo> list = new ArrayList<>();
         for (String retval : InputString.split("\022")) {
             String[] temp = retval.split("\021");
-            if (temp.length < 5) continue;
+            if (temp.length < 6) continue;
             list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4], Integer.parseInt(temp[5])));
+        }
+        return list;
+    }
+
+    private static List<MessageInfo> DecapsulateStringtoList_Message(String InputString){
+        ShowLog(InputString);
+        if (InputString.length() < 1){
+            XToastUtils.toast("好像您还没有收到信息");
+            return null;
+        }
+        List<MessageInfo> list = new ArrayList<>();
+        for (String retval : InputString.split("\022")) {
+            String[] temp = retval.split("\021");
+            if (temp.length < 4) continue;
+            list.add(new MessageInfo(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3])));
         }
         return list;
     }
@@ -228,9 +285,9 @@ public class ExchangeInfosWithAli {
         }
     }
 
-    private static void ShowLog(String inputstring){
+    private static void ShowLog(String inputstring) {
         Log.d("dyy", "  \n" + inputstring.replace("\n", "*换行*")
-                        .replace("\021", " \\021 ").replace("\022"," \\022\n")
-                        .replace("\023", "\n\\023!!!"));
+                .replace("\021", " \\021 ").replace("\022", " \\022\n")
+                .replace("\023", "\n\\023!!!"));
     }
 }

@@ -56,8 +56,12 @@ public class tcp_thread_runnable implements Runnable {
                 InputStream in = socket.getInputStream();
                 len = in.read(buf);
                 socket.close();
-                exp *= 2;
                 Log.d("dyy", exp + "");
+                exp *= 2;
+                if (exp == 16){
+                    receive_text = "";
+                    return;
+                }
             }
             receive_text = new String(buf, 0, len);
         }catch (IOException | InterruptedException e){

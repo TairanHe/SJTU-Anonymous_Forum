@@ -47,11 +47,16 @@ public class FloorInfo {
      * 楼层内容
      */
     private String Context;
+
     /**
      * 点赞数
      */
     private int Praise;
 
+    /**
+     * 是否被点赞过
+     */
+    private int WhetherPraise;
 
 
     public FloorInfo() {
@@ -123,6 +128,16 @@ public class FloorInfo {
 
     public FloorInfo setPraise(int praise) {
         Praise = praise;
+        return this;
+    }
+
+
+    public int getWhetherPraise() {
+        return WhetherPraise;
+    }
+
+    public FloorInfo setWhetherPraise(int whetherpraise) {
+        WhetherPraise = whetherpraise;
         return this;
     }
 

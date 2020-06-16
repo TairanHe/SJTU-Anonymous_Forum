@@ -26,7 +26,7 @@ package com.xuexiang.templateproject.adapter.entity;
 public class NewInfo {
 
     /**
-     * 帖子标签
+     * 帖子ID
      */
     private String ThreadID;
 
@@ -103,16 +103,15 @@ public class NewInfo {
     /**
      * 是否被删了
      */
-    private int WhetherVisiable;
+    private int WhetherVisible;
 
     public NewInfo() {
 
     }
 
-    public NewInfo(String threadID, String tag, String title, String summary, String block, int praise, int dislike, int comment, int read,
+    public NewInfo(String threadID, String title, String summary, String block, int praise, int dislike, int comment, int read,
                    int whetherlike, String lastupdatetime) {
         ThreadID = threadID;
-        Tag = tag;
         Title = title;
         Summary = summary;
         Block = block;
@@ -252,8 +251,13 @@ public class NewInfo {
         return this;
     }
 
+
     public int getWhetherLike(){
         return WhetherLike;
+    }
+
+    public int getWhetherDisLike(){
+        return -WhetherLike;
     }
 
     public NewInfo setWhetherLike(int whetherlike){
@@ -261,12 +265,18 @@ public class NewInfo {
         return this;
     }
 
-    public int getWhetherVisiable(){
-        return WhetherVisiable;
+
+    public NewInfo setWhetherDisLike(int whetherdislike){
+        WhetherLike = -whetherdislike;
+        return this;
     }
 
-    public NewInfo setWhetherVisiable(int whethervisiable){
-        WhetherVisiable = whethervisiable;
+    public int getWhetherVisible(){
+        return WhetherVisible;
+    }
+
+    public NewInfo setWhetherVisible(int whethervisible){
+        WhetherVisible = whethervisible;
         return this;
     }
 
