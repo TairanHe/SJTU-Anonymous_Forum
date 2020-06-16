@@ -209,6 +209,7 @@ public class ExchangeInfosWithAli {
             String[] temp = retval.split("\021");
             if (temp.length < 6) continue;
             list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4], Integer.parseInt(temp[5])));
+            WhetherFavour = 0;
             if (i == 0){
                 WhetherFavour = Integer.parseInt(temp[6]);
             }
