@@ -3,8 +3,8 @@ package com.xuexiang.templateproject.adapter.entity;
 public class MessageInfo {
     private String ThreadID;
     private String Title;
-    private int Type;
-    private int Judge;
+    private int Type;   //0为有人回复,非0为由多少人点赞
+    private int Judge;  //1为已读
     private int JudgeExtend;
 
     public MessageInfo(String threadid, String title, int type, int judge){
