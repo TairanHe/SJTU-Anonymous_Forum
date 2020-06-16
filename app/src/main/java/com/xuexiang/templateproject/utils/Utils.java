@@ -52,6 +52,8 @@ import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xutil.XUtil;
 
 import static com.xuexiang.templateproject.core.webview.AgentWebFragment.KEY_URL;
+import static com.xuexiang.templateproject.utils.ExchangeInfosWithAli.CancelFavourThread;
+import static com.xuexiang.templateproject.utils.ExchangeInfosWithAli.deletethread;
 
 /**
  * 工具类
@@ -71,7 +73,7 @@ public final class Utils {
      * @param submitListener 同意的监听
      * @return
      */
-    public static Dialog showDeleteFavorDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, BaseFragment baseFragment) {
+    public static Dialog showDeleteFavorDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, BaseFragment baseFragment, String thread_id) {
         MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
                 .positiveText("不删除").onPositive((dialog1, which) -> {
                     if (submitListener != null) {
@@ -83,9 +85,12 @@ public final class Utils {
                 .negativeText("删除").onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        CancelFavourThread(thread_id);
+                        Log.d("LookThroughActivity.U", thread_id);
                         dialog.dismiss();
                         // 这里是取消收藏的函数接口
                         baseFragment.openNewPage(FavorFragment.class);
+                        baseFragment.getActivity().onBackPressed();
                     }
                 }).build();
 //        dialog.setContent(getPrivacyContent(context));
@@ -97,7 +102,7 @@ public final class Utils {
     }
 
 
-    public static Dialog showDeleteMyThreadDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, BaseFragment baseFragment) {
+    public static Dialog showDeleteMyThreadDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, BaseFragment baseFragment, String thread_id) {
         MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
                 .positiveText("不删除").onPositive((dialog1, which) -> {
                     if (submitListener != null) {
@@ -109,9 +114,11 @@ public final class Utils {
                 .negativeText("删除").onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        deletethread(thread_id);
                         dialog.dismiss();
                         //这里是删除自己帖子的函数接口
                         baseFragment.openNewPage(MyThreadsFragment.class);
+                        baseFragment.getActivity().onBackPressed();
                     }
                 }).build();
 //        dialog.setContent(getPrivacyContent(context));

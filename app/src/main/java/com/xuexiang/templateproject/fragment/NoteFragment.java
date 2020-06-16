@@ -16,6 +16,7 @@ import com.xuexiang.templateproject.activity.LookThroughActivity;
 import com.xuexiang.templateproject.activity.SplashActivity;
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
+import com.xuexiang.templateproject.adapter.entity.MessageInfo;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.utils.DemoDataProvider;
@@ -50,7 +51,7 @@ public class NoteFragment extends BaseFragment {
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
 
-    private SimpleDelegateAdapter<NewInfo> mNewsAdapter;
+    private SimpleDelegateAdapter<MessageInfo> mNewsAdapter;
 
 //    /**
 //     * @return 返回为 null意为不需要导航栏
@@ -122,9 +123,9 @@ public class NoteFragment extends BaseFragment {
         };
 
         //资讯
-        mNewsAdapter = new SimpleDelegateAdapter<NewInfo>(R.layout.adapter_note_card_view_list_item, new LinearLayoutHelper()) {
+        mNewsAdapter = new SimpleDelegateAdapter<MessageInfo>(R.layout.adapter_note_card_view_list_item, new LinearLayoutHelper()) {
             @Override
-            protected void bindData(@NonNull RecyclerViewHolder holder, int position, NewInfo model) {
+            protected void bindData(@NonNull RecyclerViewHolder holder, int position, MessageInfo model) {
                 if (model != null) {
                     holder.text(R.id.tv_thread_id, model.getThreadID());
 //                    holder.text(R.id.tv_tag, model.getTag());
@@ -167,18 +168,18 @@ public class NoteFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                ExchangeInfosWithAli.NumOfQuery = 0;
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
+                //ExchangeInfosWithAli.NumOfQuery = 0;
+                mNewsAdapter.refresh(ExchangeInfosWithAli.GetMessageList());
                 refreshLayout.finishRefresh();
-            }, 1000);
+            }, 500);
         });
         //上拉加载
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
-                refreshLayout.finishLoadMore();
-            }, 1000);
+                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetMessageList());
+                refreshLayout.finishRefresh();
+            }, 500);
         });
         refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
 

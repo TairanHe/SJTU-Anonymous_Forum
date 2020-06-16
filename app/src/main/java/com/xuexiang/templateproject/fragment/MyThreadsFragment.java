@@ -149,10 +149,11 @@ public class MyThreadsFragment extends BaseFragment {
                     holder.click(R.id.mt_delete, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            LookThroughActivity.threadid = model.getThreadID();
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
                             //XToastUtils.toast("点击删除！");
-                            Utils.showDeleteMyThreadDialog(getActivity(), null, MyThreadsFragment.this);
+                            Utils.showDeleteMyThreadDialog(getActivity(), null, MyThreadsFragment.this, LookThroughActivity.threadid);
 
                         }
                     });
@@ -178,18 +179,18 @@ public class MyThreadsFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                ExchangeInfosWithAli.NumOfQuery = 0;
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
+                //ExchangeInfosWithAli.NumOfQuery = 0;
+                mNewsAdapter.refresh(ExchangeInfosWithAli.GetMyThread());
                 refreshLayout.finishRefresh();
-            }, 1000);
+            }, 500);
         });
         //上拉加载
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
-                refreshLayout.finishLoadMore();
-            }, 1000);
+                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetMyThread());
+                refreshLayout.finishRefresh();
+            }, 500);
         });
         refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
 
