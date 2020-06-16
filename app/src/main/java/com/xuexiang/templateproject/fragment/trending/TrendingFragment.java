@@ -19,6 +19,7 @@ package com.xuexiang.templateproject.fragment.trending;
 
 import android.content.Intent;
 import android.view.View;
+import android.webkit.WebView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -127,12 +128,21 @@ public class TrendingFragment extends BaseFragment {
 //                }
 //            }
 //        };
-
+        //仪表盘图
+        SingleDelegateAdapter pictureAdapter = new SingleDelegateAdapter(R.layout.include_echarts_image) {
+            @Override
+            public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
+                WebView webView = holder.findViewById(R.id.gaugeChart);
+                webView.getSettings().setAllowFileAccess(true);
+                webView.getSettings().setJavaScriptEnabled(true);
+                webView.loadUrl("file:///android_asset/Echarts_gauge.html");
+            }
+        };
         //资讯的标题
         SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.adapter_title_item) {
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-                holder.text(R.id.tv_title, "关注的贴");
+                holder.text(R.id.tv_title, "十大热帖");
                 holder.text(R.id.tv_action, "更多");
                 holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
             }
@@ -169,6 +179,7 @@ public class TrendingFragment extends BaseFragment {
         DelegateAdapter delegateAdapter = new DelegateAdapter(virtualLayoutManager);
         //delegateAdapter.addAdapter(bannerAdapter);
         //delegateAdapter.addAdapter(commonAdapter);
+        delegateAdapter.addAdapter(pictureAdapter);
         delegateAdapter.addAdapter(titleAdapter);
         delegateAdapter.addAdapter(mNewsAdapter);
 
