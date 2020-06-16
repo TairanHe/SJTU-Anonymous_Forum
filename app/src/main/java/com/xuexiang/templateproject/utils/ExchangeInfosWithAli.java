@@ -34,6 +34,7 @@ import static com.xuexiang.xutil.resource.ResUtils.getResources;
 public class ExchangeInfosWithAli {
     public static int NumOfQuery = 0;
     public static int WhetherFavour = 0;
+    public static int WhetherPraise = 0;
     public static List<NewInfo> GetAliRecommandedNewsInfos(int block) {
         String QueryString = EncapsulateString("1", NumOfQuery + "", block + "", "dyy", "0", "0");
         String receive_message = RunTCP(QueryString);
@@ -43,6 +44,8 @@ public class ExchangeInfosWithAli {
     public static List<FloorInfo> GetAliThread(String ThreadID) {
         String QueryString = EncapsulateString("2", ThreadID, "dyy", "0", "0", "0");
         String receive_message = RunTCP(QueryString);
+        WhetherFavour = 0;
+        WhetherPraise = 0;
         return DecapsulateStringToList_thread(receive_message);
     }
 
@@ -208,10 +211,11 @@ public class ExchangeInfosWithAli {
         for (String retval : InputString.split("\022")) {
             String[] temp = retval.split("\021");
             if (temp.length < 6) continue;
-            list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4], Integer.parseInt(temp[5])));
-            WhetherFavour = 0;
+            list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4],
+                    Integer.parseInt(temp[5]), Integer.parseInt(temp[6])));
             if (i == 0){
-                WhetherFavour = Integer.parseInt(temp[6]);
+                WhetherPraise = Integer.parseInt(temp[6]);
+                WhetherFavour = Integer.parseInt(temp[7]);
             }
             i += 1;
         }
