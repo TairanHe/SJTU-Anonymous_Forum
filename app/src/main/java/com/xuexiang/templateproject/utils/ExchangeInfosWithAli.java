@@ -131,7 +131,7 @@ public class ExchangeInfosWithAli {
     }
 
     public static void deletethread(String ThreadID){
-        String QueryString = EncapsulateString("c", ThreadID, "0", "0", "0", "0");
+        String QueryString = EncapsulateString("c", ThreadID, "dyy", "0", "0", "0");
         RunTCP(QueryString);
     }
 
