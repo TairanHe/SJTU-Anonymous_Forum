@@ -127,7 +127,14 @@ public class NoteFragment extends BaseFragment {
             @Override
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, MessageInfo model) {
                 if (model != null) {
-                    holder.text(R.id.tv_thread_id, model.getThreadID());
+                    Integer strlen = model.getThreadID().length();
+                    Integer zerolen = 6 - strlen;
+                    String jingThreadID = " #";
+                    for (int i = 0; i < zerolen; i++) {
+                        jingThreadID = jingThreadID + "0";
+                    }
+                    jingThreadID = jingThreadID + model.getThreadID();
+                    holder.text(R.id.tv_thread_id, jingThreadID);
 //                    holder.text(R.id.tv_tag, model.getTag());
                     holder.text(R.id.tv_tag, model.getJudge() == 0 ? "未读" : "已读"); // 这里设置已读未读
                     holder.text(R.id.tv_title, model.getTitle());
