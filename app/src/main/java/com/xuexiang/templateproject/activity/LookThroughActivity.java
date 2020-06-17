@@ -53,7 +53,9 @@ import com.xuexiang.templateproject.utils.XToastUtils;
 
 public class LookThroughActivity extends AppCompatActivity implements View.OnClickListener{
     public static String threadid;
-    public static String threadtilte;
+    public static String threadtitle;
+    public static String threadsummary;
+    public static String threadposttime;
 
     private TextView bt_comment;
     private ImageView bt_favor;

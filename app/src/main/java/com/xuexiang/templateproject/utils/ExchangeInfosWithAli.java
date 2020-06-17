@@ -58,12 +58,12 @@ public class ExchangeInfosWithAli {
     }
 
     public static void Alicomment(String UserID, String threadID, String content) {
-        String QueryString = EncapsulateString("4", threadID, UserID, content, "0", "0");
+        String QueryString = EncapsulateString("4", threadID, UserName, content, "0", "0");
         RunTCP(QueryString);
     }
 
     public static void AliReply(String UserID, String threadID, String content, int ReplytoFloorID) {
-        String QueryString = EncapsulateString("4", threadID, UserID, content, ReplytoFloorID + "", "0");
+        String QueryString = EncapsulateString("4", threadID, UserName , content, ReplytoFloorID + "", "0");
         RunTCP(QueryString);
     }
 
@@ -234,12 +234,14 @@ public class ExchangeInfosWithAli {
         for (String retval : InputString.split("\022")) {
             String[] temp = retval.split("\021");
             if (temp.length < 6) continue;
-            list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4],
-                    Integer.parseInt(temp[5]), Integer.parseInt(temp[6])));
             if (i == 0){
                 WhetherPraise = Integer.parseInt(temp[6]);
                 WhetherFavour = Integer.parseInt(temp[7]);
+                i += 1;
+                continue;
             }
+            list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4],
+                    Integer.parseInt(temp[5]), Integer.parseInt(temp[6])));
             i += 1;
         }
         return list;
@@ -247,7 +249,7 @@ public class ExchangeInfosWithAli {
 
     private static List<MessageInfo> DecapsulateStringtoList_Message(String InputString){
         ShowLog(InputString);
-        if (InputString.length() < 1){
+        if (InputString.length() <= 1){
             XToastUtils.toast("好像您还没有收到信息");
             return null;
         }

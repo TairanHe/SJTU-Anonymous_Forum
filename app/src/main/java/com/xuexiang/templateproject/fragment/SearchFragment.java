@@ -134,7 +134,9 @@ public class SearchFragment extends BaseFragment {
                         @Override
                         public void onClick(View view) {
                             LookThroughActivity.threadid = model.getThreadID();
-                            LookThroughActivity.threadtilte = model.getTitle();
+                            LookThroughActivity.threadtitle = model.getTitle();
+                            LookThroughActivity.threadsummary = model.getSummary();
+                            LookThroughActivity.threadposttime = model.getLastUpdateTime();
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
                         }
@@ -170,7 +172,7 @@ public class SearchFragment extends BaseFragment {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 Log.d("dyy",SearchActivity.queryString);
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.query(SearchActivity.queryString));
+                mNewsAdapter.refresh(ExchangeInfosWithAli.query(SearchActivity.queryString));
                 refreshLayout.finishLoadMore();
             }, 1000);
         });

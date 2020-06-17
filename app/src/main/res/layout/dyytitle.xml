@@ -1,0 +1,151 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="6dp"
+        app:cardBackgroundColor="@color/xui_config_color_white"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="true"
+        app:contentPaddingBottom="10dp"
+        app:contentPaddingLeft="6dp"
+        app:contentPaddingRight="6dp"
+        app:contentPaddingTop="5dp">
+
+        <LinearLayout
+            android:id="@+id/thread"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!--                <com.xuexiang.xui.widget.imageview.RadiusImageView-->
+                    <!--                    android:id="@+id/iv_avatar"-->
+                    <!--                    android:layout_width="24dp"-->
+                    <!--                    android:layout_height="24dp"-->
+                    <!--                    android:src="@mipmap/ic_launcher"-->
+                    <!--                    app:riv_is_circle="true" />-->
+
+                    <TextView
+                        android:id="@+id/tv_dyytitle"
+                        style="@style/TextStyle.Title"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:textColor="@color/xui_config_color_pure_black"
+                        tools:text="标题" />
+                </LinearLayout>
+
+                <!--            <TextView-->
+                <!--                android:id="@+id/tv_tag"-->
+                <!--                style="@style/TextStyle.Explain"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:layout_gravity="end|center_vertical"-->
+                <!--                tools:text="Java" />-->
+
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_context"
+                        style="@style/TextStyle.Content"
+                        android:ellipsize="end"
+                        android:gravity="start|center_vertical"
+                        android:layout_marginStart="8dp"
+                        android:maxLines="100"
+                        android:singleLine="false"
+                        android:textColor="@color/xui_config_color_pure_black"
+                        tools:text="这里是又多又密的内容啊" />
+
+
+
+                </LinearLayout>
+
+                <!--            <com.xuexiang.xui.widget.imageview.RadiusImageView-->
+                <!--                android:id="@+id/iv_image"-->
+                <!--                android:layout_width="80dp"-->
+                <!--                android:layout_height="80dp"-->
+                <!--                android:layout_marginStart="8dp"-->
+                <!--                android:scaleType="centerCrop"-->
+                <!--                android:src="@drawable/xui_ic_default_img"-->
+                <!--                app:riv_border_width="0dp"-->
+                <!--                app:riv_corner_radius="5dp" />-->
+
+            </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        style="@style/TextStyle.Explain"
+                        android:layout_marginStart="8dp"
+                        android:layout_width="190dp"
+                        android:gravity="start"
+                        tools:text="Alice" />
+
+
+
+
+                    <!--                注意，这个reply不用于显示有多少回复，而是一个用于用户回复的"按钮"-->
+                    <TextView
+                        android:id="@+id/tv_time"
+                        style="@style/TextStyle.Explain"
+                        android:layout_marginEnd="0dp"
+                        android:gravity="start"
+                        tools:text="1926-08-17 19:26:08" />
+
+
+                </LinearLayout>
+
+                <!--            <TextView-->
+                <!--                android:id="@+id/tv_read"-->
+                <!--                style="@style/TextStyle.Explain"-->
+                <!--                android:layout_gravity="center_vertical|end"-->
+                <!--                tools:text="阅读量 123" />-->
+
+            </FrameLayout>
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</FrameLayout>

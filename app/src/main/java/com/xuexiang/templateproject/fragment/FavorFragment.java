@@ -141,7 +141,9 @@ public class FavorFragment extends BaseFragment {
                         @Override
                         public void onClick(View view) {
                             LookThroughActivity.threadid = model.getThreadID();
-                            LookThroughActivity.threadtilte = model.getTitle();
+                            LookThroughActivity.threadtitle = model.getTitle();
+                            LookThroughActivity.threadsummary = model.getSummary();
+                            LookThroughActivity.threadposttime = model.getLastUpdateTime();
                             Log.d("LookThroughActivity.帖子", LookThroughActivity.threadid);
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
@@ -181,7 +183,6 @@ public class FavorFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                //ExchangeInfosWithAli.NumOfQuery = 0;
                 mNewsAdapter.refresh(ExchangeInfosWithAli.GetFavourThread());
                 refreshLayout.finishRefresh();
             }, 500);

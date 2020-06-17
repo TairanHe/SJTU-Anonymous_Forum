@@ -142,7 +142,7 @@ public class NoteFragment extends BaseFragment {
                         @Override
                         public void onClick(View view) {
                             LookThroughActivity.threadid = model.getThreadID();
-                            LookThroughActivity.threadtilte = model.getTitle();
+                            LookThroughActivity.threadtitle = model.getTitle();
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
                         }
@@ -177,7 +177,7 @@ public class NoteFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetMessageList());
+                mNewsAdapter.refresh(ExchangeInfosWithAli.GetMessageList());
                 refreshLayout.finishRefresh();
             }, 500);
         });

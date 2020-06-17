@@ -58,7 +58,7 @@ public class tcp_thread_runnable implements Runnable {
                 socket.close();
                 Log.d("dyy", "runTCP" + exp + "");
                 exp *= 2;
-                if (exp == 16){
+                if (exp == 2){
                     receive_text = "";
                     return;
                 }

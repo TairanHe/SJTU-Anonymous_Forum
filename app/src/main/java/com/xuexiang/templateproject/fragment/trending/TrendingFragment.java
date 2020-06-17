@@ -167,7 +167,9 @@ public class TrendingFragment extends BaseFragment {
                         @Override
                         public void onClick(View view) {
                             LookThroughActivity.threadid = model.getThreadID();
-                            LookThroughActivity.threadtilte = model.getTitle();
+                            LookThroughActivity.threadtitle = model.getTitle();
+                            LookThroughActivity.threadsummary = model.getSummary();
+                            LookThroughActivity.threadposttime = model.getLastUpdateTime();
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
                         }
@@ -194,7 +196,6 @@ public class TrendingFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                ExchangeInfosWithAli.NumOfQuery = 0;
                 mNewsAdapter.refresh(ExchangeInfosWithAli.hottest_thread());
                 refreshLayout.finishRefresh();
             }, 500);
@@ -203,7 +204,7 @@ public class TrendingFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.hottest_thread());
+                mNewsAdapter.refresh(ExchangeInfosWithAli.hottest_thread());
                 refreshLayout.finishRefresh();
             }, 500);
         });
