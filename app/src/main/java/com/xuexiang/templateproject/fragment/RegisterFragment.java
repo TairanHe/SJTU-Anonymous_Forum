@@ -164,8 +164,8 @@ public class RegisterFragment extends BaseFragment {
             popToBack();
             ActivityUtils.startActivity(LoginActivity.class);
         }
-        else {
-            XToastUtils.info("注册失败");
+        else if (result == 1) {
+            XToastUtils.info("用户名已被注册");
         }
     }
 
