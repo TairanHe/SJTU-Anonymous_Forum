@@ -103,22 +103,22 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         favor_num = (TextView) findViewById(R.id.tv_favor_thread);
         praise_num = (TextView) findViewById(R.id.tv_praise_thread);
         tread_num = (TextView) findViewById(R.id.tv_tread_thread);
-        if (ExchangeInfosWithAli.WhetherFavour == 1)
-        {
-            XToastUtils.toast("此贴已收藏！");
-            bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
-        }
-
-        if (ExchangeInfosWithAli.WhetherPraise == 1)
-        {
-            XToastUtils.toast("此贴已点赞！");
-            bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_already));
-        }
-        else if (ExchangeInfosWithAli.WhetherPraise == -1)
-        {
-            XToastUtils.toast("此贴已点踩！");
-            bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_already));
-        }
+//        if (ExchangeInfosWithAli.WhetherFavour == 1)
+//        {
+//            XToastUtils.toast("此贴已收藏！");
+//            bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
+//        }
+//
+//        if (ExchangeInfosWithAli.WhetherPraise == 1)
+//        {
+//            XToastUtils.toast("此贴已点赞！");
+//            bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_already));
+//        }
+//        else if (ExchangeInfosWithAli.WhetherPraise == -1)
+//        {
+//            XToastUtils.toast("此贴已点踩！");
+//            bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_already));
+//        }
 
 //        bt_reply_image = (ImageView) findViewById(R.id.iv_focus_thread);
 //        bt_reply_image.setOnClickListener(this);
