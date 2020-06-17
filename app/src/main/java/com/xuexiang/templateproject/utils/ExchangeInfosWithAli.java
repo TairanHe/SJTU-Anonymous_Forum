@@ -38,6 +38,7 @@ public class ExchangeInfosWithAli {
     public static int WhetherFavour = 0;
     public static int WhetherPraise = 0;
     public static String UserName = "dyy";
+
     public static List<NewInfo> GetAliRecommandedNewsInfos(int block) {
         String QueryString = EncapsulateString("1", NumOfQuery + "", block + "", UserName, "0", "0");
         String receive_message = RunTCP(QueryString);
@@ -54,16 +55,19 @@ public class ExchangeInfosWithAli {
 
     public static void SendMyThread(String title, String content, int block) {
         String QueryString = EncapsulateString("3", title, block + "", content, UserName, "0");
+        QueryString = QueryString.replace(";", ",");
         RunTCP(QueryString);
     }
 
     public static void Alicomment(String UserID, String threadID, String content) {
         String QueryString = EncapsulateString("4", threadID, UserName, content, "0", "0");
+        QueryString = protectString(QueryString);
         RunTCP(QueryString);
     }
 
     public static void AliReply(String UserID, String threadID, String content, int ReplytoFloorID) {
-        String QueryString = EncapsulateString("4", threadID, UserName , content, ReplytoFloorID + "", "0");
+        String QueryString = EncapsulateString("4", threadID, UserName, content, ReplytoFloorID + "", "0");
+        QueryString = protectString(QueryString);
         RunTCP(QueryString);
     }
 
@@ -124,47 +128,52 @@ public class ExchangeInfosWithAli {
         RunTCP(QueryString);
     }
 
-    public static List<MessageInfo> GetMessageList(){
+    public static List<MessageInfo> GetMessageList() {
         String QueryString = EncapsulateString("a", UserName, "0", "1", "0", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringtoList_Message(receive_message);
     }
 
-    public static List<NewInfo> query(String queryString){
+    public static List<NewInfo> query(String queryString) {
         String QueryString = EncapsulateString("b", queryString, UserName, "2", "0", "0");
+        QueryString = protectString(QueryString);
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_Basic(receive_message);
     }
 
-    public static void deletethread(String ThreadID){
+    public static void deletethread(String ThreadID) {
         String QueryString = EncapsulateString("c", ThreadID, UserName, "0", "0", "0");
         RunTCP(QueryString);
     }
 
-    public static List<NewInfo> hottest_thread(){
+    public static List<NewInfo> hottest_thread() {
         String QueryString = EncapsulateString("d", UserName, "0", "0", "0", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_Basic(receive_message);
     }
 
-    public static int Register(String Username, String Userpw){
+    public static int Register(String Username, String Userpw) {
+        Username = protectString(Username);
+        Userpw = protectString(Userpw);
         String QueryString = EncapsulateString("e", Username, Userpw, "0", "0", "0");
         String receive_message = RunTCP(QueryString);
-        if (receive_message.equals("")){
+        if (receive_message.equals("")) {
             XToastUtils.toast("网络连接不稳定,请再试一次");
             return -1;
         }
         return Integer.parseInt(receive_message);
     }
 
-    public static int Login(String Username, String Userpw){
+    public static int Login(String Username, String Userpw) {
+        Username = protectString(Username);
+        Userpw = protectString(Userpw);
         String QueryString = EncapsulateString("f", Username, Userpw, "0", "0", "0");
         String receive_message = RunTCP(QueryString);
-        if (receive_message.equals("")){
+        if (receive_message.equals("")) {
             XToastUtils.toast("网络连接不稳定,无法安全登录");
             return -1;
         }
-        if(receive_message.equals("0")){
+        if (receive_message.equals("0")) {
             UserName = Username;
         }
         return Integer.parseInt(receive_message);
@@ -225,7 +234,7 @@ public class ExchangeInfosWithAli {
             list.add(new NewInfo(temp[0], temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
                     Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6]),
                     Integer.parseInt(temp[7]), Integer.parseInt(temp[8]), temp[9])
-                    .setTag(Integer.parseInt(temp[10])+""));
+                    .setTag(Integer.parseInt(temp[10]) + ""));
 
         }
         return list;
@@ -233,7 +242,7 @@ public class ExchangeInfosWithAli {
 
     private static List<FloorInfo> DecapsulateStringToList_thread(String InputString) {
         ShowLog(InputString);
-        if (InputString.length() < 1){
+        if (InputString.length() < 1) {
             XToastUtils.toast("似乎出了一点问题...");
             return null;
         }
@@ -242,7 +251,7 @@ public class ExchangeInfosWithAli {
         for (String retval : InputString.split("\022")) {
             String[] temp = retval.split("\021");
             if (temp.length < 6) continue;
-            if (i == 0){
+            if (i == 0) {
                 WhetherPraise = Integer.parseInt(temp[6]);
                 WhetherFavour = Integer.parseInt(temp[7]);
                 i += 1;
@@ -255,9 +264,9 @@ public class ExchangeInfosWithAli {
         return list;
     }
 
-    private static List<MessageInfo> DecapsulateStringtoList_Message(String InputString){
+    private static List<MessageInfo> DecapsulateStringtoList_Message(String InputString) {
         ShowLog(InputString);
-        if (InputString.length() <= 1){
+        if (InputString.length() <= 1) {
             XToastUtils.toast("好像您还没有收到信息");
             return null;
         }
@@ -334,5 +343,17 @@ public class ExchangeInfosWithAli {
         Log.d("dyy", "  \n" + inputstring.replace("\n", "*换行*")
                 .replace("\021", " \\021 ").replace("\022", " \\022\n")
                 .replace("\023", "\n\\023!!!"));
+    }
+
+    private static String protectString(String str) {
+        str = str.replaceAll(";", ",");
+        str = str.replaceAll("&", "&amp;");
+        str = str.replaceAll("<", "&lt;");
+        str = str.replaceAll(">", "&gt;");
+        str = str.replaceAll("'", "");
+        str = str.replaceAll("--", "");
+        str = str.replaceAll("/", "");
+        str = str.replaceAll("%", "");
+        return str;
     }
 }
