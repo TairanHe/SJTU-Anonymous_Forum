@@ -257,7 +257,7 @@ public class ExchangeInfosWithAli {
         for (String retval : InputString.split("\022")) {
             String[] temp = retval.split("\021");
             if (temp.length < 4) continue;
-            list.add(new MessageInfo(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3])));
+            list.add(new MessageInfo(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3]), temp[4]));
         }
         return list;
     }

@@ -6,15 +6,17 @@ public class MessageInfo {
     private int Type;   //0为有人回复,非0为由多少人点赞
     private int Judge;  //1为已读
     private int JudgeExtend;
+    private String PostTime;
 
-    public MessageInfo(String threadid, String title, int type, int judge){
+    public MessageInfo(String threadid, String title, int type, int judge, String posttime) {
         ThreadID = threadid;
         Title = title;
         Type = type;
         Judge = judge;
+        PostTime = posttime;
     }
 
-    public MessageInfo(String threadid, String title, int type, int judge, int judgeextend){
+    public MessageInfo(String threadid, String title, int type, int judge, int judgeextend) {
         ThreadID = threadid;
         Title = title;
         Type = type;
@@ -41,5 +43,9 @@ public class MessageInfo {
 
     public int getJudgeExtend() {
         return JudgeExtend;
+    }
+
+    public String getPostTime() {
+        return PostTime;
     }
 }

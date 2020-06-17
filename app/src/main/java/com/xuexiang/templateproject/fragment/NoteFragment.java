@@ -144,6 +144,7 @@ public class NoteFragment extends BaseFragment {
                         public void onClick(View view) {
                             LookThroughActivity.threadid = model.getThreadID();
                             LookThroughActivity.threadtitle = model.getTitle();
+                            LookThroughActivity.threadposttime = model.getPostTime();
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
                         }
