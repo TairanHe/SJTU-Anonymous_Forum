@@ -256,7 +256,7 @@ public class FloorFragment extends BaseFragment{
                 refreshLayout.finishRefresh();
                 LookThroughActivity htr = (LookThroughActivity) getActivity();
                 htr.checkthreebuttons();
-            }, 1000);
+            }, 400);
         });
         //上拉加载
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
@@ -266,7 +266,7 @@ public class FloorFragment extends BaseFragment{
                 refreshLayout.finishLoadMore();
                 LookThroughActivity htr = (LookThroughActivity) getActivity();
                 htr.checkthreebuttons();
-            }, 1000);
+            }, 400);
         });
 
         refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
