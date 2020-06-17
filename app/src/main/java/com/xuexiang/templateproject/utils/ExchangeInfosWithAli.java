@@ -156,7 +156,7 @@ public class ExchangeInfosWithAli {
     public static int Login(String Username, String Userpw){
         String QueryString = EncapsulateString("f", Username, Userpw, "0", "0", "0");
         String receive_message = RunTCP(QueryString);
-        if(receive_message == "0"){
+        if(receive_message.equals("0")){
             UserName = Username;
         }
         return Integer.parseInt(receive_message);

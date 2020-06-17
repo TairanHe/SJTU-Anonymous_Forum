@@ -147,8 +147,8 @@ public final class Utils {
                         String search_context = dialog1.getInputEditText().getText().toString();
                         dialog1.dismiss();
                         Intent intent = new Intent(context, SearchActivity.class);
+                        intent.putExtra("query_string", search_context);
                         startActivity(intent);
-
                     }
                 })
                 .negativeText("取消").onNegative(new MaterialDialog.SingleButtonCallback() {
