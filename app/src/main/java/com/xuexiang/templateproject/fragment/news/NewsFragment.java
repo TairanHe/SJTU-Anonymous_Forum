@@ -153,7 +153,14 @@ public class NewsFragment extends BaseFragment {
             @Override
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, NewInfo model) {
                 if (model != null) {
-                    holder.text(R.id.tv_thread_id, model.getThreadID());
+                    Integer strlen = model.getThreadID().length();
+                    Integer zerolen = 6 - strlen;
+                    String jingThreadID = " #";
+                    for (int i = 0; i < zerolen; i++) {
+                        jingThreadID = jingThreadID + "0";
+                    }
+                    jingThreadID = jingThreadID + model.getThreadID();
+                    holder.text(R.id.tv_thread_id, jingThreadID);
                     holder.text(R.id.tv_tag, model.getTag());
                     holder.text(R.id.tv_title, model.getTitle());
                     holder.text(R.id.tv_summary, model.getSummary());
