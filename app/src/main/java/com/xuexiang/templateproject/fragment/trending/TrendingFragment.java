@@ -205,7 +205,7 @@ public class TrendingFragment extends BaseFragment {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 mNewsAdapter.refresh(ExchangeInfosWithAli.hottest_thread());
-                refreshLayout.finishRefresh();
+                refreshLayout.finishLoadMore();
             }, 500);
         });
         refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
