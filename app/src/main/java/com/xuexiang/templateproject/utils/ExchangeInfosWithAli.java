@@ -286,7 +286,7 @@ public class ExchangeInfosWithAli {
 
     public static int get_block_id(String name) {
         switch (name) {
-            case "校园":
+            case "默认":
                 return 0;
             case "体育":
                 return 1;
@@ -310,7 +310,7 @@ public class ExchangeInfosWithAli {
     public static String get_block_name(int id) {
         switch (id) {
             case 0:
-                return "校园";
+                return "默认";
             case 1:
                 return "体育";
             case 2:
@@ -326,7 +326,7 @@ public class ExchangeInfosWithAli {
             case 7:
                 return "社会";
             default:
-                return "校园";
+                return "默认";
         }
     }
 
