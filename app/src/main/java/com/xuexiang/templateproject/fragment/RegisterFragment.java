@@ -119,6 +119,7 @@ public class RegisterFragment extends BaseFragment {
                     {
                         if(etVerifyCode.getEditValue().equals(etVerifyCode2.getEditValue())){
                             Log.d("RegisterFragment.java", user_name.getEditValue() + etVerifyCode.getEditValue() + etVerifyCode2.getEditValue());
+                            XToastUtils.info("注册成功！");
                             ActivityUtils.startActivity(LoginActivity.class);
                             /*getActivity().finish();*/
                         }
