@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.xuexiang.templateproject.R;
+import com.xuexiang.templateproject.activity.LoginActivity;
 import com.xuexiang.templateproject.activity.MainActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.utils.PrivacyUtils;
@@ -52,7 +53,7 @@ import butterknife.OnClick;
 public class RegisterFragment extends BaseFragment {
 
     @BindView(R.id.et_phone_number1)
-    MaterialEditText etPhoneNumber;
+    MaterialEditText user_name;
     @BindView(R.id.et_verify_code1)
     MaterialEditText etVerifyCode;
     @BindView(R.id.et_verify_code2)
@@ -112,12 +113,25 @@ public class RegisterFragment extends BaseFragment {
             case R.id.btn_register2:
                 // 写个注册的接口
                 // 判断用户名有没有用过
-                if(etVerifyCode.getEditValue().equals(etVerifyCode2.getEditValue())){
-                    Log.d("RegisterFragment.java", etPhoneNumber.getEditValue() + etVerifyCode.getEditValue() + etVerifyCode2.getEditValue());
-                    getActivity().finish();
+                if(user_name.validate())
+                {
+                    if(etVerifyCode.validate())
+                    {
+                        if(etVerifyCode.getEditValue().equals(etVerifyCode2.getEditValue())){
+                            Log.d("RegisterFragment.java", user_name.getEditValue() + etVerifyCode.getEditValue() + etVerifyCode2.getEditValue());
+                            ActivityUtils.startActivity(LoginActivity.class);
+                            /*getActivity().finish();*/
+                        }
+                        else{
+                            XToastUtils.info("密码与验证密码不一致！");
+                        }
+                    }
+                    else {
+                        XToastUtils.info("密码不能为空");
+                    }
                 }
-                else{
-                    XToastUtils.info("密码与验证密码不一致！");
+                else {
+                    XToastUtils.info("用户名不能为空");
                 }
                 break;
             case R.id.tv_user_protocol1:
@@ -140,14 +154,8 @@ public class RegisterFragment extends BaseFragment {
         mCountDownHelper.start();
     }
 
-    /**
-     * 根据验证码登录
-     *
-     * @param phoneNumber 手机号
-     * @param verifyCode  验证码
-     */
-    private void loginByVerifyCode(String phoneNumber, String verifyCode) {
-        // TODO: 2019-11-18 这里只是界面演示而已
+    private void Register_verify(String user_name, String password) {
+        //向后端传递
         String token = RandomUtils.getRandomNumbersAndLetters(16);
         if (TokenUtils.handleLoginSuccess(token)) {
             popToBack();
