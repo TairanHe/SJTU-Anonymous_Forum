@@ -26,7 +26,7 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_gravity="center_horizontal"
-        app:srcCompat="@mipmap/about_logo" />
+        app:srcCompat="@mipmap/about_logo_glasses" />
 
 
     <TextView
@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:hint="@string/tip_please_input_phone_number"
+                app:met_maxCharacters="20"
                 app:met_clearButton="true"
                 app:met_errorMessage="@string/tip_phone_number_error"
                 app:met_floatingLabel="normal"
@@ -89,6 +90,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
+                android:inputType="textPassword"
+                app:met_maxCharacters="20"
                 android:hint="请输入密码"
                 app:met_clearButton="false"
                 app:met_errorMessage="请确保密码正确"
