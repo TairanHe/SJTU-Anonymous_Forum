@@ -135,7 +135,7 @@ public class TrendingFragment extends BaseFragment {
                 WebView webView = holder.findViewById(R.id.gaugeChart);
                 webView.getSettings().setAllowFileAccess(true);
                 webView.getSettings().setJavaScriptEnabled(true);
-                //webView.loadUrl("file:///android_asset/Echarts_gauge.html");
+                webView.loadUrl("file:///android_asset/Echarts_gauge.html");
             }
         };
         //资讯的标题
@@ -195,17 +195,17 @@ public class TrendingFragment extends BaseFragment {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 ExchangeInfosWithAli.NumOfQuery = 0;
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
+                mNewsAdapter.refresh(ExchangeInfosWithAli.hottest_thread());
                 refreshLayout.finishRefresh();
-            }, 1000);
+            }, 500);
         });
         //上拉加载
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
-                refreshLayout.finishLoadMore();
-            }, 1000);
+                mNewsAdapter.loadMore(ExchangeInfosWithAli.hottest_thread());
+                refreshLayout.finishRefresh();
+            }, 500);
         });
         refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
 

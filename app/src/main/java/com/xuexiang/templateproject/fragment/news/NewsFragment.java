@@ -157,12 +157,15 @@ public class NewsFragment extends BaseFragment {
                     holder.text(R.id.tv_tag, model.getTag());
                     holder.text(R.id.tv_title, model.getTitle());
                     holder.text(R.id.tv_summary, model.getSummary());
-                    holder.text(R.id.tv_praise, model.getPraise() == 0 ? "点赞" : String.valueOf(model.getPraise()));
-                    holder.text(R.id.tv_comment, model.getComment() == 0 ? "评论" : String.valueOf(model.getComment()));
+//                    holder.text(R.id.tv_praise, model.getPraise() == 0 ? "点赞" : String.valueOf(model.getPraise()));
+//                    holder.text(R.id.tv_comment, model.getComment() == 0 ? "评论" : String.valueOf(model.getComment()));
+                    holder.text(R.id.tv_praise,   String.valueOf(model.getPraise()));
+                    holder.text(R.id.tv_comment,  String.valueOf(model.getComment()));
                     holder.text(R.id.tv_read, "阅读量 " + model.getRead());
 //                    holder.image(R.id.iv_image, model.getImageUrl());
 
                     //holder.click(R.id.card_view, v -> Utils.goWeb(getContext(), model.getDetailUrl()));
+
                     holder.click(R.id.card_view, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

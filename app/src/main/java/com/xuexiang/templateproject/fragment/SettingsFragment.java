@@ -17,12 +17,16 @@
 
 package com.xuexiang.templateproject.fragment;
 
+import android.content.Intent;
+
 import com.xuexiang.templateproject.R;
+import com.xuexiang.templateproject.activity.LoginActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
+import com.xuexiang.xutil.XUtil;
 
 import butterknife.BindView;
 
@@ -72,8 +76,12 @@ public class SettingsFragment extends BaseFragment implements SuperTextView.OnSu
                 XToastUtils.toast(superTextView.getLeftString());
                 break;
             case R.id.menu_change_account:
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                startActivity(intent);
+                getActivity().finish();
             case R.id.menu_logout:
                 XToastUtils.toast(superTextView.getCenterString());
+                XUtil.get().exitApp();
                 break;
             default:
                 break;

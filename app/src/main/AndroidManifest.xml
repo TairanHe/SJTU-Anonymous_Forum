@@ -22,7 +22,16 @@
             android:name=".activity.LookThroughActivity"
             android:label="看帖"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.PostThreadActivity"
+        <activity
+            android:name=".activity.LoginActivity"
+            android:label="登录"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:label="注册"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
+            android:name=".activity.PostThreadActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:label="我要发帖"/>
         <activity

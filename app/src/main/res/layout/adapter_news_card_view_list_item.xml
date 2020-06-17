@@ -136,7 +136,7 @@
                     android:id="@+id/tv_praise"
                     style="@style/TextStyle.Explain"
                     android:layout_marginStart="5dp"
-                    tools:text="点赞" />
+                    tools:text="" />
 
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -150,7 +150,7 @@
                     android:id="@+id/tv_comment"
                     style="@style/TextStyle.Explain"
                     android:layout_marginStart="5dp"
-                    tools:text="评论" />
+                    tools:text="" />
 
 
             </LinearLayout>

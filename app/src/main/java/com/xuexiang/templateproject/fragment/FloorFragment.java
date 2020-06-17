@@ -125,7 +125,7 @@ public class FloorFragment extends BaseFragment{
                         htr.checkFavourButton();
                     }
                     holder.text(R.id.tv_context, model.getContext());
-                    holder.text(R.id.tv_praise, model.getPraise() == 0 ? "点赞" : String.valueOf(model.getPraise()));
+                    holder.text(R.id.tv_praise,  "点赞 " + String.valueOf(model.getPraise()));
                     holder.text(R.id.tv_reply,  "评论");
 //                    holder.text(R.id.tv_read, "阅读量 " + model.getRead());
 //                    holder.image(R.id.iv_image, model.getImageUrl());

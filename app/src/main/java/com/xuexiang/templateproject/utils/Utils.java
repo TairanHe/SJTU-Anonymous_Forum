@@ -45,6 +45,7 @@ import com.xuexiang.templateproject.core.webview.AgentWebActivity;
 import com.xuexiang.templateproject.fragment.FavorFragment;
 import com.xuexiang.templateproject.fragment.MyThreadsFragment;
 import com.xuexiang.templateproject.fragment.SearchFragment;
+import com.xuexiang.xui.XUI;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.widget.dialog.DialogLoader;
 import com.xuexiang.xui.widget.dialog.materialdialog.DialogAction;
@@ -278,5 +279,12 @@ public final class Utils {
         return darkness >= 0.382;
     }
 
+    public static void initTheme(Activity activity) {
+        if (SettingSPUtils.getInstance().isUseCustomTheme()) {
+            activity.setTheme(R.style.CustomAppTheme);
+        } else {
+            XUI.initTheme(activity);
+        }
+    }
 
 }
