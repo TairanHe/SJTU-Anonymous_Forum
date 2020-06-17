@@ -112,9 +112,9 @@ public class FloorFragment extends BaseFragment{
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
                 holder.text(R.id.tv_dyytitle, LookThroughActivity.threadtitle);
                 holder.text(R.id.tv_context, LookThroughActivity.threadsummary);
-                holder.text(R.id.tv_name, "Alice");
                 holder.text(R.id.tv_time, LookThroughActivity.threadposttime);
-
+                LookThroughActivity htr = (LookThroughActivity) getActivity();
+                htr.checkthreebuttons();
 //                holder.text(R.id.tv_action, "更多");
 //                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
             }
@@ -139,10 +139,6 @@ public class FloorFragment extends BaseFragment{
                     int resID = getResources().getIdentifier("xiaoren_"+model.getSpeakername(), "drawable", "com.xuexiang.templateproject");
                     Drawable touxiang = getResources().getDrawable(resID);
                     holder.image(R.id.iv_touxiang, touxiang);
-                    if (model.getFloorID().equals("1")){
-                        LookThroughActivity htr = (LookThroughActivity) getActivity();
-                        htr.checkthreebuttons();
-                    }
 
                     holder.text(R.id.tv_context, model.getContext());
                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
