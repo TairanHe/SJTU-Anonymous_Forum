@@ -201,7 +201,7 @@ public class FloorFragment extends BaseFragment{
                                 model.setWhetherPraise(0);
                                 ExchangeInfosWithAli.CancelPraiseFloor(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
                                 holder.image(R.id.iv_praise, R.drawable.ic_praise);
-                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()-1) + "）");
+                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
                             }
                         }
                     });
