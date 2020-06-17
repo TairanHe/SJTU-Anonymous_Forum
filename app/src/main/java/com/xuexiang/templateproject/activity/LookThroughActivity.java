@@ -124,7 +124,29 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 //        bt_reply_image.setOnClickListener(this);
 //        bt_reply_text = (TextView) findViewById(R.id.tv_reply);
 //        bt_reply_text.setOnClickListener(this);
+    }
 
+    public void checkthreebuttons(){
+        if (ExchangeInfosWithAli.WhetherFavour == 1)
+        {
+            //XToastUtils.toast("此贴已收藏！");
+            bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
+        }else{
+            bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.icon_collect_3));
+        }
+
+        if (ExchangeInfosWithAli.WhetherPraise == 1)
+        {
+            //XToastUtils.toast("此贴已点赞！");
+            bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_already));
+        }
+        else if (ExchangeInfosWithAli.WhetherPraise == -1)
+        {
+            //XToastUtils.toast("此贴已点踩！");
+            bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_already));
+        }else{
+            bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_black));
+        }
     }
 
     @Override
