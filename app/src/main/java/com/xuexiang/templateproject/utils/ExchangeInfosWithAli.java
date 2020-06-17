@@ -29,12 +29,14 @@ import com.xuexiang.templateproject.adapter.entity.NewInfo;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import static com.xuexiang.xutil.resource.ResUtils.getResources;
 
 public class ExchangeInfosWithAli {
     public static int NumOfQuery = 0;
     public static int WhetherFavour = 0;
     public static int WhetherPraise = 0;
+    public static String UserName = "dyy";
     public static List<NewInfo> GetAliRecommandedNewsInfos(int block) {
         String QueryString = EncapsulateString("1", NumOfQuery + "", block + "", "dyy", "0", "0");
         String receive_message = RunTCP(QueryString);
@@ -142,6 +144,21 @@ public class ExchangeInfosWithAli {
         String QueryString = EncapsulateString("d", "dyy", "0", "0", "0", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_Basic(receive_message);
+    }
+
+    public static int Register(String Username, String Userpw){
+        String QueryString = EncapsulateString("e", Username, Userpw, "0", "0", "0");
+        String receive_message = RunTCP(QueryString);
+        return Integer.parseInt(receive_message);
+    }
+
+    public static int Login(String Username, String Userpw){
+        String QueryString = EncapsulateString("f", Username, Userpw, "0", "0", "0");
+        String receive_message = RunTCP(QueryString);
+        if(receive_message == "0"){
+            UserName = Username;
+        }
+        return Integer.parseInt(receive_message);
     }
 
     private static String EncapsulateString(String OperatingNumber, String Op1, String Op2, String Op3, String Op4, String Op5) {

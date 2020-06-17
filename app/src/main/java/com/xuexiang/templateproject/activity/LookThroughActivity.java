@@ -98,17 +98,26 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         bt_tread = (ImageView) findViewById(R.id.iv_tread_thread);
         bt_tread.setOnClickListener(this);
 
-        if (ExchangeInfosWithAli.WhetherFavour == 1)
-        {
-            XToastUtils.toast("此贴已收藏！");
-            bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
-        }
+//        if (ExchangeInfosWithAli.WhetherFavour == 1)
+//        {
+//            XToastUtils.toast("此贴已收藏！");
+//            bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
+//        }
 
 //        bt_reply_image = (ImageView) findViewById(R.id.iv_focus_thread);
 //        bt_reply_image.setOnClickListener(this);
 //        bt_reply_text = (TextView) findViewById(R.id.tv_reply);
 //        bt_reply_text.setOnClickListener(this);
 
+    }
+
+    public void checkFavourButton(){
+        if (ExchangeInfosWithAli.WhetherFavour == 1){
+            XToastUtils.toast("这是你收藏过的帖子!");
+            bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
+        }else{
+            ExchangeInfosWithAli.CancelFavourThread(LookThroughActivity.threadid);
+        }
     }
 
     @Override

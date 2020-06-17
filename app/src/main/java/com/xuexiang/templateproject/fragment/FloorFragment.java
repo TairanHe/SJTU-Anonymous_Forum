@@ -120,6 +120,10 @@ public class FloorFragment extends BaseFragment{
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, FloorInfo model) {
                 if (model != null) {
                     holder.text(R.id.tv_floor_id, model.getFloorID());
+                    if (model.getFloorID().equals("1")){
+                        LookThroughActivity htr = (LookThroughActivity) getActivity();
+                        htr.checkFavourButton();
+                    }
                     holder.text(R.id.tv_context, model.getContext());
                     holder.text(R.id.tv_praise, model.getPraise() == 0 ? "点赞" : String.valueOf(model.getPraise()));
                     holder.text(R.id.tv_reply,  "评论");
