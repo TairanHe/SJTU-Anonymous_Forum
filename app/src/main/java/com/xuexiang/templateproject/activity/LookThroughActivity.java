@@ -172,15 +172,14 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
                 ExchangeInfosWithAli.FavourThread(LookThroughActivity.threadid);
                 ExchangeInfosWithAli.WhetherFavour = 1;
-                favor_num.setText(String.valueOf(Integer.parseInt(favor_num.getText().toString())+1));
             }
             else
             {
+
                 XToastUtils.toast("取消收藏！");
                 bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.icon_collect_3));
                 ExchangeInfosWithAli.CancelFavourThread(LookThroughActivity.threadid);
                 ExchangeInfosWithAli.WhetherFavour = 0;
-                favor_num.setText(String.valueOf(Integer.parseInt(favor_num.getText().toString())-1));
             }
 
         }
