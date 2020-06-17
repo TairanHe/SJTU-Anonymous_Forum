@@ -154,9 +154,10 @@ public class FavorFragment extends BaseFragment {
                             Log.d("LookThroughActivity.收藏", LookThroughActivity.threadid);
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
-                            //XToastUtils.toast("点击删除！");
-                            Utils.showDeleteFavorDialog(getActivity(), null, FavorFragment.this, LookThroughActivity.threadid);
+                            XToastUtils.toast("点击删除！");
 
+                            Utils.showDeleteFavorDialog(getActivity(), null, FavorFragment.this, LookThroughActivity.threadid);
+                            refreshLayout.autoRefresh();
                         }
                     });
                 }
@@ -189,8 +190,8 @@ public class FavorFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetFavourThread());
-                refreshLayout.finishRefresh();
+                mNewsAdapter.refresh(ExchangeInfosWithAli.GetFavourThread());
+                refreshLayout.finishLoadMore();
             }, 500);
         });
         refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果

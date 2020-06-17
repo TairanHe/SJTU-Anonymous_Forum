@@ -122,7 +122,7 @@ public class FloorFragment extends BaseFragment{
                     holder.text(R.id.tv_floor_id, model.getFloorID());
                     if (model.getFloorID().equals("1")){
                         LookThroughActivity htr = (LookThroughActivity) getActivity();
-                        htr.checkFavourButton();
+                        htr.checkthreebuttons();
                     }
                     holder.text(R.id.tv_context, model.getContext());
                     holder.text(R.id.tv_praise,  "点赞 " + String.valueOf(model.getPraise()));
