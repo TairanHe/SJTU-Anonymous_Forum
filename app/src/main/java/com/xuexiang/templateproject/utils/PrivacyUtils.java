@@ -113,13 +113,13 @@ public final class PrivacyUtils {
     private static SpannableStringBuilder getPrivacyContent(Context context) {
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder()
                 .append("    欢迎来到").append(ResUtils.getString(R.string.app_name)).append("!\n")
-                .append("    我们深知个人信息对你的重要性，也感谢你对我们的信任。\n")
-                .append("    为了更好地保护你的权益，同时遵守相关监管的要求，我们将通过");
-        stringBuilder.append(getPrivacyLink(context, PRIVACY_URL))
+                .append("    我可以回答一句无可奉告，但是你们又不高兴，我怎么办？\n")
+                .append("    为了更好地保护你的权益，同时遵守相关监管的要求，我们会用西方那套理论");
+        stringBuilder/*.append(getPrivacyLink(context, PRIVACY_URL))*/
                 .append("向你说明我们会如何收集、存储、保护、使用及对外提供你的信息，并说明你享有的权利。\n")
-                .append("    更多详情，敬请查阅")
-                .append(getPrivacyLink(context, PRIVACY_URL))
-                .append("全文。");
+                .append("    你问我支持不支持、我当然是支持的")
+                /*.append(getPrivacyLink(context, PRIVACY_URL))*/
+                .append("");
         return stringBuilder;
     }
 

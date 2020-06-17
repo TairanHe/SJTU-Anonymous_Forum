@@ -127,7 +127,7 @@ public class FloorFragment extends BaseFragment{
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, FloorInfo model) {
                 if (model != null) {
                     holder.text(R.id.tv_floor_id, "#" + model.getFloorID() + "楼");
-                    if (model.getReplytoname().equals("NULL") || Integer.parseInt(model.getReplytoname()) < 2)
+                    if (model.getReplytoname().equals("NULL") || Integer.parseInt(model.getReplytofloor()) < 1)
                     {
                         holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername()));
                     }
@@ -201,7 +201,7 @@ public class FloorFragment extends BaseFragment{
                                 model.setWhetherPraise(0);
                                 ExchangeInfosWithAli.CancelPraiseFloor(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
                                 holder.image(R.id.iv_praise, R.drawable.ic_praise);
-                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()-1) + "）");
+                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
                             }
                         }
                     });

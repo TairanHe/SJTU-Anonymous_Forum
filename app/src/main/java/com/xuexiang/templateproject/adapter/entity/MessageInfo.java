@@ -3,17 +3,19 @@ package com.xuexiang.templateproject.adapter.entity;
 public class MessageInfo {
     private String ThreadID;
     private String Title;
+    private String Summary;
     private int Type;   //0为有人回复,非0为由多少人点赞
     private int Judge;  //1为已读
     private int JudgeExtend;
     private String PostTime;
 
-    public MessageInfo(String threadid, String title, int type, int judge, String posttime) {
+    public MessageInfo(String threadid, String title, int type, int judge, String posttime, String summary) {
         ThreadID = threadid;
         Title = title;
         Type = type;
         Judge = judge;
         PostTime = posttime;
+        Summary = summary;
     }
 
     public MessageInfo(String threadid, String title, int type, int judge, int judgeextend) {
@@ -47,5 +49,9 @@ public class MessageInfo {
 
     public String getPostTime() {
         return PostTime;
+    }
+
+    public String getSummary(){
+        return Summary;
     }
 }

@@ -59,25 +59,25 @@ public class PostThreadActivity extends AppCompatActivity{
                 switch (i) {
                     case R.id.section1:
                         if (btn1.isChecked()){
-                            sectionID = 1;
+                            sectionID = 7;
                             RG2.clearCheck();
                         }
                         break;
                     case R.id.section2:
                         if (btn2.isChecked()){
-                            sectionID = 2;
+                            sectionID = 0;
                             RG2.clearCheck();
                         }
                         break;
                     case R.id.section3:
                         if (btn3.isChecked()){
-                            sectionID = 3;
+                            sectionID = 1;
                             RG2.clearCheck();
                         }
                         break;
                     case R.id.section4:
                         if (btn4.isChecked()){
-                            sectionID = 4;
+                            sectionID = 2;
                             RG2.clearCheck();
                         }
                         break;
@@ -93,25 +93,25 @@ public class PostThreadActivity extends AppCompatActivity{
                 switch (i) {
                     case R.id.section5:
                         if (btn5.isChecked()){
-                            sectionID = 5;
+                            sectionID = 3;
                             RG1.clearCheck();
                         }
                         break;
                     case R.id.section6:
                         if (btn6.isChecked()){
-                            sectionID = 6;
+                            sectionID = 4;
                             RG1.clearCheck();
                         }
                         break;
                     case R.id.section7:
                         if (btn7.isChecked()){
-                            sectionID = 7;
+                            sectionID = 5;
                             RG1.clearCheck();
                         }
                         break;
                     case R.id.section8:
                         if (btn8.isChecked()){
-                            sectionID = 8;
+                            sectionID = 6;
                             RG1.clearCheck();
                         }
                 }
@@ -130,7 +130,7 @@ public class PostThreadActivity extends AppCompatActivity{
                             Toast.makeText(PostThreadActivity.this, "输入不能为空", Toast.LENGTH_LONG).show();
                         }
                         else {
-                            ExchangeInfosWithAli.SendMyThread(thread_Title, thread_Content, sectionID - 1);
+                            ExchangeInfosWithAli.SendMyThread(thread_Title, thread_Content, sectionID);
         //                            后端函数 这里thread_Title是帖子标题，thread_Content是帖子内容，在最外面int型的sectionID是帖子所属的板块，只有这三个参数传递给后端
 //                                    另外，帖子标题和帖子内容不能为空的逻辑已经判断过了，不必再判断。
                             finish();
