@@ -51,30 +51,30 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-<!--                <com.xuexiang.xui.widget.imageview.RadiusImageView-->
-<!--                    android:id="@+id/iv_avatar"-->
-<!--                    android:layout_width="24dp"-->
-<!--                    android:layout_height="24dp"-->
-<!--                    android:src="@mipmap/ic_launcher"-->
-<!--                    app:riv_is_circle="true" />-->
+                <com.xuexiang.xui.widget.imageview.RadiusImageView
+                    android:id="@+id/iv_touxiang"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@mipmap/ic_launcher"
+                    app:riv_is_circle="true" />
 
                 <TextView
-                    android:id="@+id/tv_floor_id"
+                    android:id="@+id/tv_speaker"
                     style="@style/TextStyle.Explain"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginStart="4dp"
                     android:textColor="@color/xui_config_color_light_blue_gray"
-                    tools:text="#1楼" />
+                    tools:text="#何泰然" />
             </LinearLayout>
 
-<!--            <TextView-->
-<!--                android:id="@+id/tv_tag"-->
-<!--                style="@style/TextStyle.Explain"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="end|center_vertical"-->
-<!--                tools:text="Java" />-->
+            <TextView
+                android:id="@+id/tv_floor_id"
+                style="@style/TextStyle.Explain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end|center_vertical"
+                tools:text="#多少楼" />
 
         </FrameLayout>
 
@@ -146,8 +146,7 @@
                     android:id="@+id/iv_reply"
                     android:layout_width="16dp"
                     android:layout_height="16dp"
-                    android:layout_marginLeft="100dp"
-
+                    android:layout_marginStart="130dp"
                     android:src="@drawable/ic_comment" />
 
 

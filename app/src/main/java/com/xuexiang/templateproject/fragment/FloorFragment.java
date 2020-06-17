@@ -17,6 +17,7 @@
 
 package com.xuexiang.templateproject.fragment;
 
+import android.graphics.drawable.Drawable;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -33,6 +34,7 @@ import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.entity.FloorInfo;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
+import com.xuexiang.templateproject.utils.AnonymousName;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
@@ -119,13 +121,27 @@ public class FloorFragment extends BaseFragment{
             @Override
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, FloorInfo model) {
                 if (model != null) {
-                    holder.text(R.id.tv_floor_id, model.getFloorID());
+                    holder.text(R.id.tv_floor_id, "#" + model.getFloorID() + "楼");
+                    if (model.getReplytoname().equals("NULL"))
+                    {
+
+                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername()));
+                    }
+                    else
+                    {
+                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername())+" 回复 " + AnonymousName.getname(model.getReplytoname()));
+                    }
+
+                    int resID = getResources().getIdentifier("xiaoren_"+model.getSpeakername(), "drawable", "com.xuexiang.templateproject");
+                    Drawable touxiang = getResources().getDrawable(resID);
+                    holder.image(R.id.iv_touxiang, touxiang);
                     if (model.getFloorID().equals("1")){
                         LookThroughActivity htr = (LookThroughActivity) getActivity();
                         htr.checkthreebuttons();
                     }
+
                     holder.text(R.id.tv_context, model.getContext());
-                    holder.text(R.id.tv_praise,  "点赞 " + String.valueOf(model.getPraise()));
+                    holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
                     holder.text(R.id.tv_reply,  "评论");
 //                    holder.text(R.id.tv_read, "阅读量 " + model.getRead());
 //                    holder.image(R.id.iv_image, model.getImageUrl());
