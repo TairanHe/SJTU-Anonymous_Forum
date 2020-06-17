@@ -84,13 +84,13 @@ public class LoginFragment extends BaseFragment {
 //        mCountDownHelper = new CountDownButtonHelper(btnGetVerifyCode, 60);
 
         //隐私政策弹窗
-        SettingSPUtils spUtils = SettingSPUtils.getInstance();
+/*        SettingSPUtils spUtils = SettingSPUtils.getInstance();
         if (!spUtils.isAgreePrivacy()) {
             PrivacyUtils.showPrivacyDialog(getContext(), (dialog, which) -> {
                 dialog.dismiss();
                 spUtils.setIsAgreePrivacy(true);
             });
-        }
+        }*/
     }
 
     @SingleClick
