@@ -114,9 +114,9 @@ public class RegisterFragment extends BaseFragment {
             case R.id.btn_register2:
                 // 写个注册的接口
                 // 判断用户名有没有用过
-                if(user_name.validate())
+                if(!"".equals(user_name.getEditValue()))
                 {
-                    if(etVerifyCode.validate())
+                    if(!"".equals(etVerifyCode.getEditValue()))
                     {
                         if(etVerifyCode.getEditValue().equals(etVerifyCode2.getEditValue())){
                             Log.d("RegisterFragment.java", user_name.getEditValue() + etVerifyCode.getEditValue() + etVerifyCode2.getEditValue());
