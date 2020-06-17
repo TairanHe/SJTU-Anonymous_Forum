@@ -130,7 +130,7 @@ public class PostThreadActivity extends AppCompatActivity{
                             Toast.makeText(PostThreadActivity.this, "输入不能为空", Toast.LENGTH_LONG).show();
                         }
                         else {
-                            ExchangeInfosWithAli.SendMyThread(thread_Title, thread_Content, sectionID - 1);
+                            ExchangeInfosWithAli.SendMyThread(thread_Title, thread_Content, sectionID);
         //                            后端函数 这里thread_Title是帖子标题，thread_Content是帖子内容，在最外面int型的sectionID是帖子所属的板块，只有这三个参数传递给后端
 //                                    另外，帖子标题和帖子内容不能为空的逻辑已经判断过了，不必再判断。
                             finish();
