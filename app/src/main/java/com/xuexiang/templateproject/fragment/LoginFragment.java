@@ -103,12 +103,8 @@ public class LoginFragment extends BaseFragment {
 //                }
 //                break;
             case R.id.btn_login:
-                if (etPhoneNumber.validate()) {
-                    if (etVerifyCode.validate()) {
-                        loginByVerifyCode(etPhoneNumber.getEditValue(), etVerifyCode.getEditValue());
-                        Log.d("LoginFragment.java", etPhoneNumber.getEditValue() + "   " + etVerifyCode.getEditValue());
-                    }
-                }
+                    loginByVerifyCode(etPhoneNumber.getEditValue(), etVerifyCode.getEditValue());
+                    Log.d("LoginFragment.java", etPhoneNumber.getEditValue() + "   " + etVerifyCode.getEditValue());
                 break;
             case R.id.btn_register:
                 XToastUtils.info("注册");
@@ -135,33 +131,47 @@ public class LoginFragment extends BaseFragment {
     /**
      * 获取验证码
      */
+
+/*
     private void getVerifyCode(String phoneNumber) {
         // TODO: 2019-11-18 这里只是界面演示而已
         XToastUtils.warning("只是演示，验证码请随便输");
         mCountDownHelper.start();
     }
-
+*/
 
     private void loginByVerifyCode(String user_name, String verifyCode) {
-        int result = ExchangeInfosWithAli.Login(user_name,verifyCode);
-        String s = String.valueOf(result);
-        Log.d("Login",s);
-        switch (result){
-            case 0:
-                XToastUtils.info("登录成功");
-                popToBack();
-                ActivityUtils.startActivity(MainActivity.class);
-                break;
-            case 1:
-                XToastUtils.info("用户不存在");
-                break;
-            case 2:
-                Log.d("Login","密码错误");
-                XToastUtils.info("密码错误");
-                break;
-            default:
-                break;
+        if(!"".equals(user_name)){
+            Log.d("Login","用户名不为空");
+            if(!"".equals(verifyCode)){
+                int result = ExchangeInfosWithAli.Login(user_name,verifyCode);
+                String s = String.valueOf(result);
+                Log.d("Login",s);
+                switch (result){
+                    case 0:
+                        XToastUtils.info("登录成功");
+                        popToBack();
+                        ActivityUtils.startActivity(MainActivity.class);
+                        break;
+                    case 1:
+                        XToastUtils.info("用户不存在");
+                        break;
+                    case 2:
+                        Log.d("Login","密码错误");
+                        XToastUtils.info("密码错误");
+                        break;
+                    default:
+                        break;
+                }
+            }
+            else {
+                XToastUtils.info("密码不能为空");
+            }
         }
+        else {
+            XToastUtils.info("用户名不能为空");
+        }
+
     }
 
 
