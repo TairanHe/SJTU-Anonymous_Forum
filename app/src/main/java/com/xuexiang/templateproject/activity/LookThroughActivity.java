@@ -56,6 +56,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
     public static String threadtitle;
     public static String threadsummary;
     public static String threadposttime;
+    public static int favournum;
+    public static int praisenum;
+    public static int dislikenum;
 
     private TextView bt_comment;
     private ImageView bt_favor;
@@ -105,6 +108,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         favor_num = (TextView) findViewById(R.id.tv_favor_thread);
         praise_num = (TextView) findViewById(R.id.tv_praise_thread);
         tread_num = (TextView) findViewById(R.id.tv_tread_thread);
+        favor_num.setText("");
+        praise_num.setText(praisenum + "");
+        tread_num.setText(dislikenum + "");
 //        if (ExchangeInfosWithAli.WhetherFavour == 1)
 //        {
 //            XToastUtils.toast("此贴已收藏！");
@@ -129,6 +135,8 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void checkthreebuttons(){
+        Log.d("dyy", ExchangeInfosWithAli.WhetherFavour+ "");
+        Log.d("dyy", ExchangeInfosWithAli.WhetherPraise+ "");
         if (ExchangeInfosWithAli.WhetherFavour == 1)
         {
             //XToastUtils.toast("此贴已收藏！");
