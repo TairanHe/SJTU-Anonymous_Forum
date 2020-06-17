@@ -21,10 +21,12 @@ import android.view.KeyEvent;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.utils.MMKVUtils;
+import com.xuexiang.templateproject.utils.SettingSPUtils;
 import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.xui.utils.KeyboardUtils;
 import com.xuexiang.xui.widget.activity.BaseSplashActivity;
 import com.xuexiang.xutil.app.ActivityUtils;
+import com.xuexiang.templateproject.utils.TokenUtils;
 
 import me.jessyan.autosize.internal.CancelAdapt;
 
@@ -36,6 +38,11 @@ import me.jessyan.autosize.internal.CancelAdapt;
  */
 public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
 
+    public final static String KEY_IS_DISPLAY = "key_is_display";
+    public final static String KEY_ENABLE_ALPHA_ANIM = "key_enable_alpha_anim";
+
+    private boolean isDisplay = false;
+
     @Override
     protected long getSplashDurationMillis() {
         return 500;
@@ -46,8 +53,16 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
      */
     @Override
     protected void onCreateActivity() {
-        initSplashView(R.drawable.xui_config_bg_splash);
+        isDisplay = getIntent().getBooleanExtra(KEY_IS_DISPLAY, isDisplay);
+        boolean enableAlphaAnim = getIntent().getBooleanExtra(KEY_ENABLE_ALPHA_ANIM, false);
+        SettingSPUtils spUtil = SettingSPUtils.getInstance();
+        if (enableAlphaAnim) {
+            initSplashView(R.drawable.bg_splash);
+        } else {
+            initSplashView(R.drawable.xui_config_bg_splash);
+        }
         startSplash(false);
+
     }
 
 
@@ -58,16 +73,24 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
     protected void onSplashFinished() {
         boolean isAgree = MMKVUtils.getBoolean("key_agree_privacy", false);
         if (isAgree) {
-            ActivityUtils.startActivity(MainActivity.class);
+            ActivityUtils.startActivity(LoginActivity.class);
             finish();
         } else {
             Utils.showPrivacyDialog(this, (dialog, which) -> {
                 dialog.dismiss();
                 MMKVUtils.put("key_agree_privacy", true);
-                ActivityUtils.startActivity(MainActivity.class);
+                ActivityUtils.startActivity(LoginActivity.class);
                 finish();
             });
         }
+//        if (!isDisplay) {
+//            if (TokenUtils.hasToken()) {
+//                ActivityUtils.startActivity(MainActivity.class);
+//            } else {
+//                ActivityUtils.startActivity(LoginActivity.class);
+//            }
+//        }
+//        finish();
     }
 
     /**
@@ -77,4 +100,5 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return KeyboardUtils.onDisableBackKeyDown(keyCode) && super.onKeyDown(keyCode, event);
     }
+
 }

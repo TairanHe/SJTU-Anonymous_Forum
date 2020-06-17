@@ -20,13 +20,16 @@ package com.xuexiang.templateproject.core;
 import android.content.Context;
 import android.os.Bundle;
 
+//import com.jpeng.jptabbar.anno.NorIcons;
+//import com.jpeng.jptabbar.anno.SeleIcons;
+//import com.jpeng.jptabbar.anno.Titles;
+//import com.mikepenz.iconics.context.IconicsContextWrapper;
 import com.xuexiang.xpage.base.XPageActivity;
 import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.core.CoreSwitchBean;
-import com.xuexiang.xrouter.facade.service.SerializationService;
-import com.xuexiang.xrouter.launcher.XRouter;
-import com.xuexiang.xui.XUI;
 import com.xuexiang.xui.widget.slideback.SlideBack;
+import com.xuexiang.templateproject.R;
+import com.xuexiang.templateproject.utils.Utils;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -40,6 +43,20 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
  */
 public class BaseActivity extends XPageActivity {
 
+//    //==============需要注意的是，由于JPTabBar反射获取注解的是context，也就是容器Activity，因此需要将注解写在容器Activity内======================//
+//    @Titles
+//    public static final int[] mTitles = {R.string.tab1, R.string.tab2, R.string.tab3, R.string.tab4};
+//    @SeleIcons
+//    public static final int[] mSelectIcons = {R.drawable.nav_01_pre, R.drawable.nav_02_pre, R.drawable.nav_04_pre, R.drawable.nav_05_pre};
+//    @NorIcons
+//    public static final int[] mNormalIcons = {R.drawable.nav_01_nor, R.drawable.nav_02_nor, R.drawable.nav_04_nor, R.drawable.nav_05_nor};
+
+    //============================================================================================================================================================//
+    /**
+     * 是否支持侧滑返回
+     */
+    public static final String KEY_SUPPORT_SLIDE_BACK = "key_support_slide_back";
+
     Unbinder mUnbinder;
 
     @Override
@@ -48,14 +65,10 @@ public class BaseActivity extends XPageActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
-    /**
-     * 是否支持侧滑返回
-     */
-    public static final String KEY_SUPPORT_SLIDE_BACK = "key_support_slide_back";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-//        XUI.initTheme(this);
+        initAppTheme();
+        initStatusBarStyle();
         super.onCreate(savedInstanceState);
         mUnbinder = ButterKnife.bind(this);
 
@@ -69,12 +82,27 @@ public class BaseActivity extends XPageActivity {
     }
 
     /**
+     * 初始化应用的主题
+     */
+    protected void initAppTheme() {
+        Utils.initTheme(this);
+    }
+
+    /**
+     * 初始化状态栏的样式
+     */
+    protected void initStatusBarStyle() {
+
+    }
+
+    /**
      * @return 是否支持侧滑返回
      */
     protected boolean isSupportSlideBack() {
         CoreSwitchBean page = getIntent().getParcelableExtra(CoreSwitchBean.KEY_SWITCH_BEAN);
         return page == null || page.getBundle() == null || page.getBundle().getBoolean(KEY_SUPPORT_SLIDE_BACK, true);
     }
+
 
     /**
      * 打开fragment
@@ -100,6 +128,7 @@ public class BaseActivity extends XPageActivity {
         return (T) openPage(page);
     }
 
+
     /**
      * 切换fragment
      *
@@ -107,22 +136,15 @@ public class BaseActivity extends XPageActivity {
      * @return 打开的fragment对象
      */
     public <T extends XPageFragment> T switchPage(Class<T> clazz) {
-        return openPage(clazz, false);
-    }
-
-    /**
-     * 序列化对象
-     *
-     * @param object
-     * @return
-     */
-    public String serializeObject(Object object) {
-        return XRouter.getInstance().navigation(SerializationService.class).object2Json(object);
+        return changePage(clazz);
     }
 
     @Override
     protected void onRelease() {
         mUnbinder.unbind();
+        if (isSupportSlideBack()) {
+            SlideBack.unregister(this);
+        }
         super.onRelease();
     }
 
