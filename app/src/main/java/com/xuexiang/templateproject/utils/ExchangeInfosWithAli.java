@@ -151,7 +151,7 @@ public class ExchangeInfosWithAli {
         String QueryString = EncapsulateString("e", Username, Userpw, "0", "0", "0");
         String receive_message = RunTCP(QueryString);
         if (receive_message.equals("")){
-            XToastUtils.toast("网络连接不稳定,无法安全登录");
+            XToastUtils.toast("网络连接不稳定,请再试一次");
             return -1;
         }
         return Integer.parseInt(receive_message);
