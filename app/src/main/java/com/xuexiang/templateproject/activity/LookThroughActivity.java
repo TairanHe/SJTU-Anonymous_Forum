@@ -135,8 +135,8 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
     }
 
     public void checkthreebuttons(){
-        Log.d("dyy", ExchangeInfosWithAli.WhetherFavour+ "");
-        Log.d("dyy", ExchangeInfosWithAli.WhetherPraise+ "");
+        Log.d("dyy", ExchangeInfosWithAli.WhetherFavour+ "-Favour");
+        Log.d("dyy", ExchangeInfosWithAli.WhetherPraise+ "-Praise");
         if (ExchangeInfosWithAli.WhetherFavour == 1)
         {
             //XToastUtils.toast("此贴已收藏！");
