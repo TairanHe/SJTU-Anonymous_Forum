@@ -150,12 +150,20 @@ public class ExchangeInfosWithAli {
     public static int Register(String Username, String Userpw){
         String QueryString = EncapsulateString("e", Username, Userpw, "0", "0", "0");
         String receive_message = RunTCP(QueryString);
+        if (receive_message.equals("")){
+            XToastUtils.toast("网络连接不稳定,无法安全登录");
+            return -1;
+        }
         return Integer.parseInt(receive_message);
     }
 
     public static int Login(String Username, String Userpw){
         String QueryString = EncapsulateString("f", Username, Userpw, "0", "0", "0");
         String receive_message = RunTCP(QueryString);
+        if (receive_message.equals("")){
+            XToastUtils.toast("网络连接不稳定,无法安全登录");
+            return -1;
+        }
         if(receive_message.equals("0")){
             UserName = Username;
         }
