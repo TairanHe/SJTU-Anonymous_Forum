@@ -40,6 +40,7 @@ import androidx.annotation.NonNull;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.PostThreadActivity;
+import com.xuexiang.templateproject.activity.SearchActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.core.webview.AgentWebActivity;
 import com.xuexiang.templateproject.fragment.FavorFragment;
@@ -55,6 +56,7 @@ import com.xuexiang.xutil.XUtil;
 import static com.xuexiang.templateproject.core.webview.AgentWebFragment.KEY_URL;
 import static com.xuexiang.templateproject.utils.ExchangeInfosWithAli.CancelFavourThread;
 import static com.xuexiang.templateproject.utils.ExchangeInfosWithAli.deletethread;
+import static com.xuexiang.xutil.app.ActivityUtils.startActivity;
 
 /**
  * 工具类
@@ -143,9 +145,11 @@ public final class Utils {
                         submitListener.onClick(dialog1, which);
                     } else {
                         String search_context = dialog1.getInputEditText().getText().toString();
-                        Toast.makeText(context, search_context, Toast.LENGTH_SHORT).show();
                         dialog1.dismiss();
-
+                        Intent intent = new Intent(context, SearchActivity.class);
+                        intent.putExtra("query_string", search_context);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+                        startActivity(intent);
                     }
                 })
                 .negativeText("取消").onNegative(new MaterialDialog.SingleButtonCallback() {

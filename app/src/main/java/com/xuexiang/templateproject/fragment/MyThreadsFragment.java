@@ -141,7 +141,9 @@ public class MyThreadsFragment extends BaseFragment {
                         @Override
                         public void onClick(View view) {
                             LookThroughActivity.threadid = model.getThreadID();
-                            LookThroughActivity.threadtilte = model.getTitle();
+                            LookThroughActivity.threadtitle = model.getTitle();
+                            LookThroughActivity.threadsummary = model.getSummary();
+                            LookThroughActivity.threadposttime = model.getLastUpdateTime();
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
                         }
@@ -188,7 +190,7 @@ public class MyThreadsFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetMyThread());
+                mNewsAdapter.refresh(ExchangeInfosWithAli.GetMyThread());
                 refreshLayout.finishRefresh();
             }, 500);
         });

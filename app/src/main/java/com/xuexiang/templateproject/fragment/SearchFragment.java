@@ -1,6 +1,7 @@
 package com.xuexiang.templateproject.fragment;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -13,6 +14,7 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.LookThroughActivity;
+import com.xuexiang.templateproject.activity.SearchActivity;
 import com.xuexiang.templateproject.activity.SplashActivity;
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
@@ -132,7 +134,9 @@ public class SearchFragment extends BaseFragment {
                         @Override
                         public void onClick(View view) {
                             LookThroughActivity.threadid = model.getThreadID();
-                            LookThroughActivity.threadtilte = model.getTitle();
+                            LookThroughActivity.threadtitle = model.getTitle();
+                            LookThroughActivity.threadsummary = model.getSummary();
+                            LookThroughActivity.threadposttime = model.getLastUpdateTime();
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
                         }
@@ -158,8 +162,8 @@ public class SearchFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                ExchangeInfosWithAli.NumOfQuery = 0;
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
+                Log.d("dyy",SearchActivity.queryString);
+                mNewsAdapter.refresh(ExchangeInfosWithAli.query(SearchActivity.queryString));
                 refreshLayout.finishRefresh();
             }, 1000);
         });
@@ -167,7 +171,8 @@ public class SearchFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(0));
+                Log.d("dyy",SearchActivity.queryString);
+                mNewsAdapter.refresh(ExchangeInfosWithAli.query(SearchActivity.queryString));
                 refreshLayout.finishLoadMore();
             }, 1000);
         });

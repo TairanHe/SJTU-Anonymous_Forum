@@ -48,20 +48,20 @@ public class tcp_thread_runnable implements Runnable {
             byte[] buf = new byte[20480];
             int exp = 1;
             while (len < 0) {
-                if (exp > 1) Thread.sleep(100 * exp);
+                if (exp == 2){
+                    receive_text = "";
+                    return;
+                }
                 Socket socket = new Socket(ip_addr, port);
                 OutputStream out = socket.getOutputStream();
                 out.write(text.getBytes());
                 // 读取服务端返回的数据，使用 Socket 读取流
+                Thread.sleep(200 * exp);
                 InputStream in = socket.getInputStream();
                 len = in.read(buf);
                 socket.close();
-                Log.d("dyy", exp + "");
+                Log.d("dyy", "runTCP" + exp + "");
                 exp *= 2;
-                if (exp == 16){
-                    receive_text = "";
-                    return;
-                }
             }
             receive_text = new String(buf, 0, len);
         }catch (IOException | InterruptedException e){

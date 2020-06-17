@@ -18,6 +18,7 @@
 package com.xuexiang.templateproject.utils;
 
 import android.app.DownloadManager;
+import android.text.LoginFilter;
 import android.util.Log;
 
 import com.bumptech.glide.load.model.stream.QMediaStoreUriLoader;
@@ -38,13 +39,13 @@ public class ExchangeInfosWithAli {
     public static int WhetherPraise = 0;
     public static String UserName = "dyy";
     public static List<NewInfo> GetAliRecommandedNewsInfos(int block) {
-        String QueryString = EncapsulateString("1", NumOfQuery + "", block + "", "dyy", "0", "0");
+        String QueryString = EncapsulateString("1", NumOfQuery + "", block + "", UserName, "0", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_Recommmand(receive_message);
     }
 
     public static List<FloorInfo> GetAliThread(String ThreadID) {
-        String QueryString = EncapsulateString("2", ThreadID, "dyy", "0", "0", "0");
+        String QueryString = EncapsulateString("2", ThreadID, UserName, "0", "0", "0");
         String receive_message = RunTCP(QueryString);
         WhetherFavour = 0;
         WhetherPraise = 0;
@@ -52,96 +53,96 @@ public class ExchangeInfosWithAli {
     }
 
     public static void SendMyThread(String title, String content, int block) {
-        String QueryString = EncapsulateString("3", title, block + "", content, "dyy", "0");
+        String QueryString = EncapsulateString("3", title, block + "", content, UserName, "0");
         RunTCP(QueryString);
     }
 
     public static void Alicomment(String UserID, String threadID, String content) {
-        String QueryString = EncapsulateString("4", threadID, UserID, content, "0", "0");
+        String QueryString = EncapsulateString("4", threadID, UserName, content, "0", "0");
         RunTCP(QueryString);
     }
 
     public static void AliReply(String UserID, String threadID, String content, int ReplytoFloorID) {
-        String QueryString = EncapsulateString("4", threadID, UserID, content, ReplytoFloorID + "", "0");
+        String QueryString = EncapsulateString("4", threadID, UserName , content, ReplytoFloorID + "", "0");
         RunTCP(QueryString);
     }
 
     public static void FavourThread(String ThreadID) {
-        String QueryString = EncapsulateString("5", ThreadID, "dyy", "1", "0", "0");
+        String QueryString = EncapsulateString("5", ThreadID, UserName, "1", "0", "0");
         RunTCP(QueryString);
     }
 
     public static void DisFavourThread(String ThreadID) {
-        String QueryString = EncapsulateString("5", ThreadID, "dyy", "2", "0", "0");
+        String QueryString = EncapsulateString("5", ThreadID, UserName, "2", "0", "0");
         RunTCP(QueryString);
     }
 
     public static void CancelFavourThread(String ThreadID) {
-        String QueryString = EncapsulateString("5", ThreadID, "dyy", "2", "0", "0");
+        String QueryString = EncapsulateString("5", ThreadID, UserName, "2", "0", "0");
         RunTCP(QueryString);
     }
 
     public static List<NewInfo> GetFavourThread() {
-        String QueryString = EncapsulateString("6", "dyy", "0", "0", "0", "0");
+        String QueryString = EncapsulateString("6", UserName, "0", "0", "0", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_Favour(receive_message);
     }
 
     public static List<NewInfo> GetMyThread() {
-        String QueryString = EncapsulateString("7", "dyy", "0", "0", "0", "0");
+        String QueryString = EncapsulateString("7", UserName, "0", "0", "0", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_Basic(receive_message);
     }
 
     public static void PraiseFloor(String ThreadID, int floor) {
-        String QueryString = EncapsulateString("8", ThreadID, "dyy", "1", floor + "", "0");
+        String QueryString = EncapsulateString("8", ThreadID, UserName, "1", floor + "", "0");
         RunTCP(QueryString);
     }
 
     public static void CancelPraiseFloor(String ThreadID, int floor) {
-        String QueryString = EncapsulateString("8", ThreadID, "dyy", "2", floor + "", "0");
+        String QueryString = EncapsulateString("8", ThreadID, UserName, "2", floor + "", "0");
         RunTCP(QueryString);
     }
 
     public static void PraiseThread(String ThreadID) {
-        String QueryString = EncapsulateString("8", ThreadID, "dyy", "1", "1", "0");
+        String QueryString = EncapsulateString("8", ThreadID, UserName, "1", "1", "0");
         RunTCP(QueryString);
     }
 
     public static void CancelPraiseThread(String ThreadID) {
-        String QueryString = EncapsulateString("8", ThreadID, "dyy", "2", "1", "0");
+        String QueryString = EncapsulateString("8", ThreadID, UserName, "2", "1", "0");
         RunTCP(QueryString);
     }
 
     public static void DislikeThread(String ThreadID) {
-        String QueryString = EncapsulateString("9", ThreadID, "dyy", "1", "1", "0");
+        String QueryString = EncapsulateString("9", ThreadID, UserName, "1", "1", "0");
         RunTCP(QueryString);
     }
 
     public static void CancelDislikeThread(String ThreadID) {
-        String QueryString = EncapsulateString("9", ThreadID, "dyy", "2", "1", "0");
+        String QueryString = EncapsulateString("9", ThreadID, UserName, "2", "1", "0");
         RunTCP(QueryString);
     }
 
     public static List<MessageInfo> GetMessageList(){
-        String QueryString = EncapsulateString("a", "dyy", "0", "1", "0", "0");
+        String QueryString = EncapsulateString("a", UserName, "0", "1", "0", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringtoList_Message(receive_message);
     }
 
     public static List<NewInfo> query(String queryString){
-        String QueryString = EncapsulateString("b", queryString, "dyy", "2", "0", "0");
+        String QueryString = EncapsulateString("b", queryString, UserName, "2", "0", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_Basic(receive_message);
     }
 
     public static void deletethread(String ThreadID){
-        String QueryString = EncapsulateString("c", ThreadID, "dyy", "0", "0", "0");
+        String QueryString = EncapsulateString("c", ThreadID, UserName, "0", "0", "0");
         RunTCP(QueryString);
     }
 
     public static List<NewInfo> hottest_thread(){
-        String QueryString = EncapsulateString("d", "dyy", "0", "0", "0", "0");
+        String QueryString = EncapsulateString("d", UserName, "0", "0", "0", "0");
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_Basic(receive_message);
     }
@@ -149,13 +150,21 @@ public class ExchangeInfosWithAli {
     public static int Register(String Username, String Userpw){
         String QueryString = EncapsulateString("e", Username, Userpw, "0", "0", "0");
         String receive_message = RunTCP(QueryString);
+        if (receive_message.equals("")){
+            XToastUtils.toast("网络连接不稳定,无法安全登录");
+            return -1;
+        }
         return Integer.parseInt(receive_message);
     }
 
     public static int Login(String Username, String Userpw){
         String QueryString = EncapsulateString("f", Username, Userpw, "0", "0", "0");
         String receive_message = RunTCP(QueryString);
-        if(receive_message == "0"){
+        if (receive_message.equals("")){
+            XToastUtils.toast("网络连接不稳定,无法安全登录");
+            return -1;
+        }
+        if(receive_message.equals("0")){
             UserName = Username;
         }
         return Integer.parseInt(receive_message);
@@ -233,12 +242,14 @@ public class ExchangeInfosWithAli {
         for (String retval : InputString.split("\022")) {
             String[] temp = retval.split("\021");
             if (temp.length < 6) continue;
-            list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4],
-                    Integer.parseInt(temp[5]), Integer.parseInt(temp[6])));
             if (i == 0){
                 WhetherPraise = Integer.parseInt(temp[6]);
                 WhetherFavour = Integer.parseInt(temp[7]);
+                i += 1;
+                continue;
             }
+            list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4],
+                    Integer.parseInt(temp[5]), Integer.parseInt(temp[6])));
             i += 1;
         }
         return list;
@@ -246,7 +257,7 @@ public class ExchangeInfosWithAli {
 
     private static List<MessageInfo> DecapsulateStringtoList_Message(String InputString){
         ShowLog(InputString);
-        if (InputString.length() < 1){
+        if (InputString.length() <= 1){
             XToastUtils.toast("好像您还没有收到信息");
             return null;
         }
@@ -254,7 +265,7 @@ public class ExchangeInfosWithAli {
         for (String retval : InputString.split("\022")) {
             String[] temp = retval.split("\021");
             if (temp.length < 4) continue;
-            list.add(new MessageInfo(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3])));
+            list.add(new MessageInfo(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3]), temp[4]));
         }
         return list;
     }

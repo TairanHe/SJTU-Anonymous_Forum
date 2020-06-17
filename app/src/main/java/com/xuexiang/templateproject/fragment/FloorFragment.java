@@ -107,10 +107,14 @@ public class FloorFragment extends BaseFragment{
 
 
         //帖子的标题
-        SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.adapter_title_item) {
+        SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.dyytitle) {
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-                holder.text(R.id.tv_title, LookThroughActivity.threadtilte);
+                holder.text(R.id.tv_dyytitle, LookThroughActivity.threadtitle);
+                holder.text(R.id.tv_context, LookThroughActivity.threadsummary);
+                holder.text(R.id.tv_name, "Alice");
+                holder.text(R.id.tv_time, LookThroughActivity.threadposttime);
+
 //                holder.text(R.id.tv_action, "更多");
 //                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
             }

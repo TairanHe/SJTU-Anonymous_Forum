@@ -171,7 +171,10 @@ public class NewsFragment extends BaseFragment {
                         public void onClick(View view) {
                             XToastUtils.toast("点击帖子！");
                             LookThroughActivity.threadid = model.getThreadID();
-                            LookThroughActivity.threadtilte = model.getTitle();
+                            LookThroughActivity.threadtitle = model.getTitle();
+                            LookThroughActivity.threadsummary = model.getSummary();
+                            LookThroughActivity.threadposttime = model.getLastUpdateTime();
+                            Log.d("dyy", "asd" + model.getPostTime());
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
                         }
