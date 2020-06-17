@@ -129,9 +129,10 @@ public class NoteFragment extends BaseFragment {
                 if (model != null) {
                     holder.text(R.id.tv_thread_id, model.getThreadID());
 //                    holder.text(R.id.tv_tag, model.getTag());
-                    holder.text(R.id.tv_tag, "已读"); // 这里设置已读未读
+                    holder.text(R.id.tv_tag, model.getJudge() == 0 ? "未读" : "已读"); // 这里设置已读未读
                     holder.text(R.id.tv_title, model.getTitle());
-                    holder.text(R.id.tv_note, "这里是消息类型，比如您的回复被点赞了10次");
+                    int type = model.getType();
+                    holder.text(R.id.tv_note, model.getType() == 0 ? "您的帖子被人回复了！" : "您的帖子被" + type + "人点赞了！");
 //                    holder.text(R.id.tv_praise, model.getPraise() == 0 ? "点赞" : String.valueOf(model.getPraise()));
 //                    holder.text(R.id.tv_comment, model.getComment() == 0 ? "评论" : String.valueOf(model.getComment()));
 //                    holder.text(R.id.tv_read, "阅读量 " + model.getRead());
