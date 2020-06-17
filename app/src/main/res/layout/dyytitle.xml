@@ -52,6 +52,8 @@
                         android:layout_gravity="end|center_vertical"
                         android:layout_marginStart="8dp"
                         android:textColor="@color/xui_config_color_pure_black"
+                        android:singleLine="false"
+                        android:gravity="left"
                         tools:text="标题" />
                 </LinearLayout>
 
