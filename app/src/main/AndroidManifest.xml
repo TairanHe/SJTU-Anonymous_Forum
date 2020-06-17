@@ -21,9 +21,7 @@
         <activity
             android:name=".activity.SearchActivity"
             android:label="搜索"
-            android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".activity.LookThroughActivity"
             android:label="看帖"
