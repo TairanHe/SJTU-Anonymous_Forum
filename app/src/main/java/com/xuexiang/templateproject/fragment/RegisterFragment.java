@@ -30,6 +30,7 @@ import com.xuexiang.templateproject.utils.RandomUtils;
 import com.xuexiang.templateproject.utils.SettingSPUtils;
 import com.xuexiang.templateproject.utils.TokenUtils;
 import com.xuexiang.templateproject.utils.XToastUtils;
+import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
@@ -119,9 +120,7 @@ public class RegisterFragment extends BaseFragment {
                     {
                         if(etVerifyCode.getEditValue().equals(etVerifyCode2.getEditValue())){
                             Log.d("RegisterFragment.java", user_name.getEditValue() + etVerifyCode.getEditValue() + etVerifyCode2.getEditValue());
-                            XToastUtils.info("注册成功！");
-                            ActivityUtils.startActivity(LoginActivity.class);
-                            /*getActivity().finish();*/
+                            Register_verify(user_name.getEditValue(),etVerifyCode.getEditValue());
                         }
                         else{
                             XToastUtils.info("密码与验证密码不一致！");
@@ -157,10 +156,16 @@ public class RegisterFragment extends BaseFragment {
 
     private void Register_verify(String user_name, String password) {
         //向后端传递
-        String token = RandomUtils.getRandomNumbersAndLetters(16);
-        if (TokenUtils.handleLoginSuccess(token)) {
+        int result = ExchangeInfosWithAli.Register(user_name,password);
+        String s = String.valueOf(result);
+        Log.d("MAS",s);
+        if (result == 0) {
+            XToastUtils.info("注册成功！");
             popToBack();
-            ActivityUtils.startActivity(MainActivity.class);
+            ActivityUtils.startActivity(LoginActivity.class);
+        }
+        else {
+            XToastUtils.info("注册失败");
         }
     }
 

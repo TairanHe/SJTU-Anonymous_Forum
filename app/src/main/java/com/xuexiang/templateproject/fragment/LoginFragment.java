@@ -41,6 +41,7 @@ import com.xuexiang.templateproject.utils.TokenUtils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xutil.app.ActivityUtils;
 import com.xuexiang.templateproject.utils.RandomUtils;
+import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -102,7 +103,6 @@ public class LoginFragment extends BaseFragment {
 //                }
 //                break;
             case R.id.btn_login:
-                // 这里写上判断
                 if (etPhoneNumber.validate()) {
                     if (etVerifyCode.validate()) {
                         loginByVerifyCode(etPhoneNumber.getEditValue(), etVerifyCode.getEditValue());
@@ -141,18 +141,26 @@ public class LoginFragment extends BaseFragment {
         mCountDownHelper.start();
     }
 
-    /**
-     * 根据验证码登录
-     *
-     * @param phoneNumber 手机号
-     * @param verifyCode  验证码
-     */
-    private void loginByVerifyCode(String phoneNumber, String verifyCode) {
-        // TODO: 2019-11-18 这里只是界面演示而已
-        String token = RandomUtils.getRandomNumbersAndLetters(16);
-        if (TokenUtils.handleLoginSuccess(token)) {
-            popToBack();
-            ActivityUtils.startActivity(MainActivity.class);
+
+    private void loginByVerifyCode(String user_name, String verifyCode) {
+        int result = ExchangeInfosWithAli.Login(user_name,verifyCode);
+        String s = String.valueOf(result);
+        Log.d("Login",s);
+        switch (result){
+            case 0:
+                XToastUtils.info("登录成功");
+                popToBack();
+                ActivityUtils.startActivity(MainActivity.class);
+                break;
+            case 1:
+                XToastUtils.info("用户不存在");
+                break;
+            case 2:
+                Log.d("Login","密码错误");
+                XToastUtils.info("密码错误");
+                break;
+            default:
+                break;
         }
     }
 
