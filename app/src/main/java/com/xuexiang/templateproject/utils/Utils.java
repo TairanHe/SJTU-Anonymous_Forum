@@ -148,6 +148,7 @@ public final class Utils {
                         dialog1.dismiss();
                         Intent intent = new Intent(context, SearchActivity.class);
                         intent.putExtra("query_string", search_context);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
                         startActivity(intent);
                     }
                 })
