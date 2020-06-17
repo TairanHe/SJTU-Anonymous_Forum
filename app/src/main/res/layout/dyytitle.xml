@@ -64,13 +64,64 @@
                 <!--                tools:text="Java" />-->
 
             </FrameLayout>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <com.xuexiang.xui.widget.imageview.RadiusImageView
+                        android:id="@+id/iv_touxiang"
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@mipmap/ic_launcher"
+                        app:riv_is_circle="true" />
+
+                    <TextView
+                        android:id="@+id/tv_speaker"
+                        style="@style/TextStyle.Explain"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/xui_config_color_light_blue_gray"
+                        tools:text="#何泰然" />
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        style="@style/TextStyle.Explain"
+                        android:layout_gravity="end|center_vertical"
+                        android:layout_marginLeft="130dp"
+                        android:gravity="start"
+                        tools:text="1926-08-17 19:26:08" />
+                </LinearLayout>
+
+                <!--            <com.xuexiang.xui.widget.imageview.RadiusImageView-->
+                <!--                android:id="@+id/iv_image"-->
+                <!--                android:layout_width="80dp"-->
+                <!--                android:layout_height="80dp"-->
+                <!--                android:layout_marginStart="8dp"-->
+                <!--                android:scaleType="centerCrop"-->
+                <!--                android:src="@drawable/xui_ic_default_img"-->
+                <!--                app:riv_border_width="0dp"-->
+                <!--                app:riv_corner_radius="5dp" />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -109,34 +160,29 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:orientation="horizontal">-->
 
 
-                    <TextView
-                        android:id="@+id/tv_name"
-                        style="@style/TextStyle.Explain"
-                        android:layout_marginStart="8dp"
-                        android:layout_width="190dp"
-                        android:gravity="start"
-                        tools:text="Alice" />
+<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:id="@+id/tv_name"&ndash;&gt;-->
+<!--&lt;!&ndash;                        style="@style/TextStyle.Explain"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_marginStart="8dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:layout_width="190dp"&ndash;&gt;-->
+<!--&lt;!&ndash;                        android:gravity="start"&ndash;&gt;-->
+<!--&lt;!&ndash;                        tools:text="Adam" />&ndash;&gt;-->
 
 
 
 
-                    <!--                注意，这个reply不用于显示有多少回复，而是一个用于用户回复的"按钮"-->
-                    <TextView
-                        android:id="@+id/tv_time"
-                        style="@style/TextStyle.Explain"
-                        android:layout_marginEnd="0dp"
-                        android:gravity="start"
-                        tools:text="1926-08-17 19:26:08" />
+<!--                    &lt;!&ndash;                注意，这个reply不用于显示有多少回复，而是一个用于用户回复的"按钮"&ndash;&gt;-->
 
 
-                </LinearLayout>
+
+<!--                </LinearLayout>-->
 
                 <!--            <TextView-->
                 <!--                android:id="@+id/tv_read"-->

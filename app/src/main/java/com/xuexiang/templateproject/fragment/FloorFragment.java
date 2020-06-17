@@ -113,8 +113,11 @@ public class FloorFragment extends BaseFragment{
                 holder.text(R.id.tv_dyytitle, LookThroughActivity.threadtitle);
                 holder.text(R.id.tv_context, LookThroughActivity.threadsummary);
                 holder.text(R.id.tv_time, LookThroughActivity.threadposttime);
+                holder.text(R.id.tv_speaker, "Adam");
+                holder.image(R.id.iv_touxiang, R.drawable.xiaoren_1);
                 LookThroughActivity htr = (LookThroughActivity) getActivity();
                 htr.checkthreebuttons();
+
 //                holder.text(R.id.tv_action, "更多");
 //                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
             }
@@ -126,14 +129,14 @@ public class FloorFragment extends BaseFragment{
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, FloorInfo model) {
                 if (model != null) {
                     holder.text(R.id.tv_floor_id, "#" + model.getFloorID() + "楼");
-                    if (model.getReplytoname().equals("NULL"))
+                    if (model.getReplytoname().equals("NULL") || Integer.parseInt(model.getReplytoname()) < 2)
                     {
-
                         holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername()));
                     }
                     else
                     {
                         holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername())+" 回复 " + AnonymousName.getname(model.getReplytoname()));
+
                     }
 
                     int resID = getResources().getIdentifier("xiaoren_"+model.getSpeakername(), "drawable", "com.xuexiang.templateproject");
@@ -143,6 +146,11 @@ public class FloorFragment extends BaseFragment{
                     holder.text(R.id.tv_context, model.getContext());
                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
                     holder.text(R.id.tv_reply,  "评论");
+                    if(model.getWhetherPraise() == 1)
+                    {
+                        holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
+                    }
+
 //                    holder.text(R.id.tv_read, "阅读量 " + model.getRead());
 //                    holder.image(R.id.iv_image, model.getImageUrl());
 
@@ -178,10 +186,25 @@ public class FloorFragment extends BaseFragment{
                         public void onClick(View view) {
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
-                            XToastUtils.toast("点赞楼层！");
-                            FloorFragment.floorid = model.getFloorID();
-//                            LookThroughActivity.threadtilte = model.getTitle();
-//                            getContext().showReplyDialog(3);
+
+                            if (model.getWhetherPraise() == 0)
+                            {
+                                XToastUtils.toast("点赞楼层！");
+                                FloorFragment.floorid = model.getFloorID();
+                                ExchangeInfosWithAli.PraiseFloor(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
+                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()+1) + "）");
+                            }
+                            else if (model.getWhetherPraise() == 1)
+                            {
+                                XToastUtils.toast("取消点赞楼层！");
+                                FloorFragment.floorid = model.getFloorID();
+                                ExchangeInfosWithAli.CancelPraiseFloor(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                holder.image(R.id.iv_praise, R.drawable.ic_praise);
+                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()-1) + "）");
+                            }
+
+
                         }
                     });
                     holder.click(R.id.iv_praise, new View.OnClickListener() {
@@ -191,6 +214,9 @@ public class FloorFragment extends BaseFragment{
 //                            startActivity(intent);
                             XToastUtils.toast("点赞楼层！");
                             FloorFragment.floorid = model.getFloorID();
+                            ExchangeInfosWithAli.PraiseFloor(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                            holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
+                            holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()+1) + "）");
 //                            LookThroughActivity.threadtilte = model.getTitle();
 //                            getContext().showReplyDialog(3);
                         }
