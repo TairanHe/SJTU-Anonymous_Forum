@@ -151,6 +151,8 @@ public class FavorFragment extends BaseFragment {
                             LookThroughActivity.threadtitle = model.getTitle();
                             LookThroughActivity.threadsummary = model.getSummary();
                             LookThroughActivity.threadposttime = model.getLastUpdateTime();
+                            LookThroughActivity.praisenum = model.getPraise();
+                            LookThroughActivity.dislikenum = model.getDislike();
                             Log.d("LookThroughActivity.帖子", LookThroughActivity.threadid);
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);

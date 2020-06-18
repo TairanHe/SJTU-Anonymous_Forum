@@ -144,6 +144,8 @@ public class SearchFragment extends BaseFragment {
                             LookThroughActivity.threadtitle = model.getTitle();
                             LookThroughActivity.threadsummary = model.getSummary();
                             LookThroughActivity.threadposttime = model.getLastUpdateTime();
+                            LookThroughActivity.praisenum = model.getPraise();
+                            LookThroughActivity.dislikenum = model.getDislike();
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
                         }
