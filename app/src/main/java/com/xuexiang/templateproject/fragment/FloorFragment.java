@@ -42,6 +42,8 @@ import com.xuexiang.xui.adapter.recyclerview.RecyclerViewHolder;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 
 //import android.support.design.widget.BottomSheetDialog;
+import org.json.JSONException;
+
 import butterknife.BindView;
 
 
@@ -252,7 +254,12 @@ public class FloorFragment extends BaseFragment{
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
+//                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
+                try {
+                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread_json(LookThroughActivity.threadid));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 refreshLayout.finishRefresh();
                 LookThroughActivity htr = (LookThroughActivity) getActivity();
                 htr.checkthreebuttons();
@@ -262,7 +269,12 @@ public class FloorFragment extends BaseFragment{
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
+//                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
+                try {
+                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread_json(LookThroughActivity.threadid));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 refreshLayout.finishLoadMore();
                 LookThroughActivity htr = (LookThroughActivity) getActivity();
                 htr.checkthreebuttons();

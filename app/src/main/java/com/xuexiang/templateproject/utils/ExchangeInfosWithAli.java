@@ -27,6 +27,10 @@ import com.xuexiang.templateproject.adapter.entity.FloorInfo;
 import com.xuexiang.templateproject.adapter.entity.MessageInfo;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,13 +48,25 @@ public class ExchangeInfosWithAli {
         String receive_message = RunTCP(QueryString);
         return DecapsulateStringToList_Recommmand(receive_message);
     }
+    public static List<NewInfo> GetAliRecommandedNewsInfos_json(int block) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("1", NumOfQuery + "", block + "", UserName, "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        return DecapsulateJsonToList_Recommmand(receive_message);
+    }
 
     public static List<FloorInfo> GetAliThread(String ThreadID) {
         String QueryString = EncapsulateString("2", ThreadID, UserName, "0", "0", "0");
         String receive_message = RunTCP(QueryString);
         WhetherFavour = 0;
         WhetherPraise = 0;
-        return DecapsulateStringToList_thread(receive_message);
+        return DecapsulateStringToList_floor(receive_message);
+    }
+    public static List<FloorInfo> GetAliThread_json(String ThreadID) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("2", ThreadID, UserName, "0", "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        WhetherFavour = 0;
+        WhetherPraise = 0;
+        return DecapsulateJsonToList_floor(receive_message);
     }
 
     public static void SendMyThread(String title, String content, int block) {
@@ -179,8 +195,36 @@ public class ExchangeInfosWithAli {
         return Integer.parseInt(receive_message);
     }
 
+    public static int Login_json(String Username, String Userpw) throws JSONException, InterruptedException {
+        Username = protectString(Username);
+        Userpw = protectString(Userpw);
+        JSONObject QueryJson = EncapsulateString_json("f", Username, Userpw, "0", "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        String login_flag = receive_message.getString("login_flag");
+        Log.d("Login_flag是：", login_flag);
+        if (login_flag.equals("")) {
+            XToastUtils.toast("网络连接不稳定,无法安全登录");
+            return -1;
+        }
+        if (login_flag.equals("0")) {
+            UserName = Username;
+        }
+        return Integer.parseInt(login_flag);
+    }
+
     private static String EncapsulateString(String OperatingNumber, String Op1, String Op2, String Op3, String Op4, String Op5) {
         return OperatingNumber + "\021" + Op1 + "\021" + Op2 + "\021" + Op3 + "\021" + Op4 + "\021" + Op5 + "\021";
+    }
+
+    private static JSONObject EncapsulateString_json(String op_code, String pa_1, String pa_2, String pa_3, String pa_4, String pa_5) throws JSONException {
+        JSONObject js = new JSONObject();
+        js.put("op_code", op_code);
+        js.put("pa_1", pa_1);
+        js.put("pa_2", pa_2);
+        js.put("pa_3", pa_3);
+        js.put("pa_4", pa_4);
+        js.put("pa_5", pa_5);
+        return js;
     }
 
     private static List<NewInfo> DecapsulateStringToList_Recommmand(String InputString) {
@@ -198,6 +242,28 @@ public class ExchangeInfosWithAli {
             list.add(new NewInfo(temp[0], temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
                     Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6]),
                     Integer.parseInt(temp[7]), Integer.parseInt(temp[8]), temp[9]));
+        }
+        return list;
+    }
+
+    private static List<NewInfo> DecapsulateJsonToList_Recommmand(JSONObject InputJson) throws JSONException {
+
+        List<NewInfo> list = new ArrayList<>();
+        JSONArray thread_list= InputJson.getJSONArray("thread_list");
+        NumOfQuery += 1;
+        for (int i = 0; i < thread_list.length(); i++) {
+            JSONObject thread = thread_list.getJSONObject(i);
+            Log.d("Thread:", thread.toString());
+            list.add(new NewInfo(thread.getString("ThreadID"),
+                    thread.getString("Title"),
+                    thread.getString("Summary"),
+                    get_block_name(Integer.parseInt(thread.getString("Block"))),
+                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Dislike")),
+                    Integer.parseInt(thread.getString("Comment")),
+                    Integer.parseInt(thread.getString("Read")),
+                    Integer.parseInt(thread.getString("WhetherLike")),
+                    thread.getString("LastUpdateTime")));
         }
         return list;
     }
@@ -240,7 +306,7 @@ public class ExchangeInfosWithAli {
         return list;
     }
 
-    private static List<FloorInfo> DecapsulateStringToList_thread(String InputString) {
+    private static List<FloorInfo> DecapsulateStringToList_floor(String InputString) {
         ShowLog(InputString);
         if (InputString.length() < 1) {
             XToastUtils.toast("似乎出了一点问题...");
@@ -264,6 +330,24 @@ public class ExchangeInfosWithAli {
         return list;
     }
 
+    private static List<FloorInfo> DecapsulateJsonToList_floor(JSONObject InputJson) throws JSONException {
+        List<FloorInfo> list = new ArrayList<>();
+        JSONArray floor_list= InputJson.getJSONArray("floor_list");
+        for (int i = 0; i < floor_list.length(); i++) {
+            JSONObject floor = floor_list.getJSONObject(i);
+            Log.d("Floor:", floor.toString());
+            list.add(new FloorInfo(floor.getString("FloorID"),
+                    floor.getString("Speakername"),
+                    floor.getString("Replytoname"),
+                    floor.getString("Replytofloor"),
+                    floor.getString("Context"),
+                    Integer.parseInt(floor.getString("Praise")),
+                    Integer.parseInt(floor.getString("WhetherPraise"))));
+        }
+        return list;
+
+    }
+
     private static List<MessageInfo> DecapsulateStringtoList_Message(String InputString) {
         ShowLog(InputString);
         if (InputString.length() <= 1) {
@@ -282,7 +366,21 @@ public class ExchangeInfosWithAli {
     private static String RunTCP(String QueryString) {
         tcp_thread_runnable tcp_one = new tcp_thread_runnable();
         tcp_one.set_text(QueryString);
-        tcp_one.set_addr("47.103.6.74", 7654);
+        tcp_one.set_addr("172.81.215.104", 8080);
+        Thread tcp_thread = new Thread(tcp_one);
+        tcp_thread.start();
+        try {
+            tcp_thread.join();  //阻塞主进程,确保网络请求完成了再进行下一步
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return tcp_one.get_receive_text();
+    }
+
+    private static JSONObject RunTCP_json(JSONObject QueryJson) {
+        tcp_thread_runnable_json tcp_one = new tcp_thread_runnable_json();
+        tcp_one.set_text(QueryJson);
+        tcp_one.set_addr("172.81.215.104", 8080);
         Thread tcp_thread = new Thread(tcp_one);
         tcp_thread.start();
         try {
@@ -295,7 +393,7 @@ public class ExchangeInfosWithAli {
 
     public static int get_block_id(String name) {
         switch (name) {
-            case "默认":
+            case "主干道":
                 return -1;
             case "体育":
                 return 0;
@@ -319,7 +417,7 @@ public class ExchangeInfosWithAli {
     public static String get_block_name(int id) {
         switch (id) {
             case -1:
-                return "默认";
+                return "主干道";
             case 0:
                 return "体育";
             case 1:
@@ -335,7 +433,7 @@ public class ExchangeInfosWithAli {
             case 6:
                 return "社会";
             default:
-                return "默认";
+                return "主干道";
         }
     }
 

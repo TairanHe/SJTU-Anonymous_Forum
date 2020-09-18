@@ -42,6 +42,9 @@ import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xutil.app.ActivityUtils;
 import com.xuexiang.templateproject.utils.RandomUtils;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
+
+import org.json.JSONException;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -95,7 +98,7 @@ public class LoginFragment extends BaseFragment {
 
     @SingleClick
     @OnClick({R.id.btn_login, R.id.btn_register, R.id.tv_other_login, R.id.tv_forget_password, R.id.tv_user_protocol, R.id.tv_privacy_protocol})
-    public void onViewClicked(View view) {
+    public void onViewClicked(View view){
         switch (view.getId()) {
 //            case R.id.btn_get_verify_code:
 //                if (etPhoneNumber.validate()) {
@@ -140,13 +143,17 @@ public class LoginFragment extends BaseFragment {
     }
 */
 
-    private void loginByVerifyCode(String user_name, String verifyCode) {
+    private void loginByVerifyCode(String user_name, String verifyCode){
         if(!"".equals(user_name)){
             Log.d("Login","用户名不为空");
             if(!"".equals(verifyCode)){
-                int result = ExchangeInfosWithAli.Login(user_name,verifyCode);
-                String s = String.valueOf(result);
-                Log.d("Login",s);
+//                int result = ExchangeInfosWithAli.Login(user_name,verifyCode);
+                int result = 0;
+                try {
+                    result = ExchangeInfosWithAli.Login_json(user_name,verifyCode);
+                } catch (JSONException | InterruptedException e) {
+                    e.printStackTrace();
+                }
                 switch (result){
                     case 0:
                         XToastUtils.info("登录成功");
@@ -160,6 +167,8 @@ public class LoginFragment extends BaseFragment {
                         Log.d("Login","密码错误");
                         XToastUtils.info("密码错误");
                         break;
+                    case 3:
+                        XToastUtils.info("Json 传回来3啦！");
                     default:
                         break;
                 }

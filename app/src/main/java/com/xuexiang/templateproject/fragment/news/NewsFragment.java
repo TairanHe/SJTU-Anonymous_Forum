@@ -51,6 +51,8 @@ import com.xuexiang.xui.widget.imageview.ImageLoader;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
+import org.json.JSONException;
+
 import java.util.List;
 
 import butterknife.BindView;
@@ -209,7 +211,12 @@ public class NewsFragment extends BaseFragment {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 ExchangeInfosWithAli.NumOfQuery = 0;
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(block));
+//                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(block));
+                try {
+                    mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos_json(block));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 refreshLayout.finishRefresh();
             }, 500);
         });
@@ -217,7 +224,12 @@ public class NewsFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(block));
+//                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(block));
+                try {
+                    mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos_json(block));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 refreshLayout.finishLoadMore();
             }, 500);
         });
