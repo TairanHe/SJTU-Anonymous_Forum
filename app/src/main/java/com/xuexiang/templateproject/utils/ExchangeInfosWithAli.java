@@ -41,7 +41,8 @@ import java.util.UUID;
 import static com.xuexiang.xutil.resource.ResUtils.getResources;
 
 public class ExchangeInfosWithAli {
-    public static int NumOfQuery = 0;
+    public static String LastSeenThreadID = "NULL";
+    public static String LastSeenFloorID = "NULL";
     public static int WhetherFavour = 0;
     public static int WhetherPraise = 0;
     public static String UserName = "无可奉告";
@@ -53,13 +54,13 @@ public class ExchangeInfosWithAli {
     }
 
     public static List<NewInfo> GetAliRecommandedNewsInfos_json(int block) throws JSONException {
-        JSONObject QueryJson = EncapsulateString_json("1", NumOfQuery + "", block + "", UserName, "0", "0");
+        JSONObject QueryJson = EncapsulateString_json("1", LastSeenThreadID + "", block + "", UserName, "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsonToList_Recommmand(receive_message);
     }
 
     public static List<FloorInfo> GetAliFloor_json(String ThreadID) throws JSONException {
-        JSONObject QueryJson = EncapsulateString_json("2", ThreadID, "0", "0", "0", "0");
+        JSONObject QueryJson = EncapsulateString_json("2", ThreadID, LastSeenFloorID, "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         WhetherFavour = 0;
         WhetherPraise = 0;
@@ -223,10 +224,9 @@ public class ExchangeInfosWithAli {
 
 
     private static List<NewInfo> DecapsulateJsonToList_Recommmand(JSONObject InputJson) throws JSONException {
-
+        LastSeenThreadID = InputJson.getString("LastSeenThreadID");
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
-        NumOfQuery += 1;
         for (int i = 0; i < thread_list.length(); i++) {
             JSONObject thread = thread_list.getJSONObject(i);
             Log.d("Thread:", thread.toString());
@@ -317,6 +317,9 @@ public class ExchangeInfosWithAli {
     private static List<FloorInfo> DecapsulateJsonToList_floor(JSONObject InputJson) throws JSONException {
         List<FloorInfo> list = new ArrayList<>();
         JSONArray floor_list= InputJson.getJSONArray("floor_list");
+        WhetherPraise = Integer.parseInt(InputJson.getString("WhetherPraise"));
+        WhetherFavour = Integer.parseInt(InputJson.getString("WhetherFavour"));
+        LastSeenFloorID = InputJson.getString("LastSeenFloorID");
         for (int i = 0; i < floor_list.length(); i++) {
             JSONObject floor = floor_list.getJSONObject(i);
             Log.d("Floor:", floor.toString());

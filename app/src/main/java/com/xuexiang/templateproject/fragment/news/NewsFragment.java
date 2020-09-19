@@ -131,6 +131,8 @@ public class NewsFragment extends BaseFragment {
                     holder.text(R.id.tv_sub_title, item.getTitle());
 
                     holder.click(R.id.ll_container, v -> {
+//                        点击板块，重设LastSeenThreadID
+                        ExchangeInfosWithAli.LastSeenThreadID = "NULL";
                         block = ExchangeInfosWithAli.get_block_id(item.getTitle().toString());
 //                        Log.d("dyy", block+"");
                         XToastUtils.toast("切换到板块：" + item.getTitle());
@@ -210,7 +212,7 @@ public class NewsFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                ExchangeInfosWithAli.NumOfQuery = 0;
+                ExchangeInfosWithAli.LastSeenThreadID = "NULL";
 //                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(block));
                 try {
                     mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos_json(block));
