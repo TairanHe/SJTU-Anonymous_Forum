@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
+import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xui.widget.button.ButtonView;
 import com.xuexiang.xui.widget.edittext.ClearEditText;
 import com.xuexiang.xui.widget.edittext.MultiLineEditText;
@@ -129,7 +130,8 @@ public class PostThreadActivity extends AppCompatActivity{
                         String thread_Title = clearEditText.getText().toString();
                         String thread_Content = multiLineEditText.getContentText().toString();
                         if(thread_Title.isEmpty() || thread_Content.isEmpty()){
-                            Toast.makeText(PostThreadActivity.this, "输入不能为空", Toast.LENGTH_LONG).show();
+                            XToastUtils.toast("输入不能为空");
+//                            Toast.makeText(PostThreadActivity.this, "输入不能为空", Toast.LENGTH_LONG).show();
                         }
                         else {
 //                            ExchangeInfosWithAli.SendMyThread(thread_Title, thread_Content, sectionID);

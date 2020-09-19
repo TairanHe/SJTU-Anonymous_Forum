@@ -295,10 +295,12 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                     }
 //                    CommentDetailBean detailBean = new CommentDetailBean("小明", commentContent,"刚刚");
 //                    adapter.addTheCommentData(detailBean);
-                    Toast.makeText(LookThroughActivity.this,"评论成功",Toast.LENGTH_SHORT).show();
+                    XToastUtils.toast("评论成功");
+//                    Toast.makeText(LookThroughActivity.this,"评论成功",Toast.LENGTH_SHORT).show();
 
                 }else {
-                    Toast.makeText(LookThroughActivity.this,"评论内容不能为空",Toast.LENGTH_SHORT).show();
+                    XToastUtils.toast("评论内容不能为空");
+//                    Toast.makeText(LookThroughActivity.this,"评论内容不能为空",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -348,9 +350,11 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Toast.makeText(LookThroughActivity.this,"回复成功",Toast.LENGTH_SHORT).show();
+                    XToastUtils.toast("回复成功");
+//                    Toast.makeText(LookThroughActivity.this,"回复成功",Toast.LENGTH_SHORT).show();
                 }else {
-                    Toast.makeText(LookThroughActivity.this,"回复内容不能为空",Toast.LENGTH_SHORT).show();
+                    XToastUtils.toast("回复内容不能为空");
+//                    Toast.makeText(LookThroughActivity.this,"回复内容不能为空",Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -44,7 +44,7 @@ public class ExchangeInfosWithAli {
     public static int NumOfQuery = 0;
     public static int WhetherFavour = 0;
     public static int WhetherPraise = 0;
-    public static String UserName = "dyy";
+    public static String UserName = "无可奉告";
 
     public static int Request_verifycode(String emailaddress) throws JSONException {
         JSONObject QueryJson = EncapsulateString_json("0", emailaddress,  "0", "0", "0", "0");

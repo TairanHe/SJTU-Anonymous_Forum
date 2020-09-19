@@ -103,11 +103,11 @@
                 android:layout_marginEnd="0dp"
                 android:inputType="textPassword"
                 app:met_maxCharacters="20"
-                android:hint="请输入密码"
+                android:hint="请输入验证码"
                 app:met_clearButton="false"
-                app:met_errorMessage="请确保密码正确"
+                app:met_errorMessage="请确保验证码正确"
                 app:met_floatingLabel="normal"
-                app:met_floatingLabelText="密码"
+                app:met_floatingLabelText="验证码"
                 app:met_regexp="@string/regex_verify_code" />
 
             <!--            <com.xuexiang.xui.widget.button.roundbutton.RoundButton-->
