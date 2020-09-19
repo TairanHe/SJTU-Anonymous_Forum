@@ -34,6 +34,8 @@ import com.xuexiang.xui.widget.imageview.ImageLoader;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
+import org.json.JSONException;
+
 import butterknife.BindView;
 
 /**
@@ -179,7 +181,11 @@ public class NoteFragment extends BaseFragment {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 //ExchangeInfosWithAli.NumOfQuery = 0;
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetMessageList());
+                try {
+                    mNewsAdapter.refresh(ExchangeInfosWithAli.GetMessageList_json());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 refreshLayout.finishRefresh();
             }, 500);
         });
@@ -187,7 +193,11 @@ public class NoteFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetMessageList());
+                try {
+                    mNewsAdapter.refresh(ExchangeInfosWithAli.GetMessageList_json());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 refreshLayout.finishRefresh();
             }, 500);
         });

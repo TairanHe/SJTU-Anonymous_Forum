@@ -51,6 +51,8 @@ import com.xuexiang.xui.widget.imageview.ImageLoader;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
+import org.json.JSONException;
+
 import butterknife.BindView;
 
 /**
@@ -129,15 +131,15 @@ public class TrendingFragment extends BaseFragment {
 //            }
 //        };
         //仪表盘图
-        SingleDelegateAdapter pictureAdapter = new SingleDelegateAdapter(R.layout.include_echarts_image) {
-            @Override
-            public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-                WebView webView = holder.findViewById(R.id.gaugeChart);
-                webView.getSettings().setAllowFileAccess(true);
-                webView.getSettings().setJavaScriptEnabled(true);
-                webView.loadUrl("file:///android_asset/Echarts_gauge.html");
-            }
-        };
+//        SingleDelegateAdapter pictureAdapter = new SingleDelegateAdapter(R.layout.include_echarts_image) {
+//            @Override
+//            public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
+//                WebView webView = holder.findViewById(R.id.gaugeChart);
+//                webView.getSettings().setAllowFileAccess(true);
+//                webView.getSettings().setJavaScriptEnabled(true);
+//                webView.loadUrl("file:///android_asset/Echarts_gauge.html");
+//            }
+//        };
         //资讯的标题
         SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.adapter_title_item) {
             @Override
@@ -190,7 +192,7 @@ public class TrendingFragment extends BaseFragment {
         DelegateAdapter delegateAdapter = new DelegateAdapter(virtualLayoutManager);
         //delegateAdapter.addAdapter(bannerAdapter);
         //delegateAdapter.addAdapter(commonAdapter);
-        delegateAdapter.addAdapter(pictureAdapter);
+//        delegateAdapter.addAdapter(pictureAdapter);
         delegateAdapter.addAdapter(titleAdapter);
         delegateAdapter.addAdapter(mNewsAdapter);
 
@@ -205,7 +207,11 @@ public class TrendingFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.refresh(ExchangeInfosWithAli.hottest_thread());
+                try {
+                    mNewsAdapter.refresh(ExchangeInfosWithAli.HottestThread_json());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 refreshLayout.finishRefresh();
             }, 500);
         });
@@ -213,7 +219,11 @@ public class TrendingFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.refresh(ExchangeInfosWithAli.hottest_thread());
+                try {
+                    mNewsAdapter.refresh(ExchangeInfosWithAli.HottestThread_json());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 refreshLayout.finishLoadMore();
             }, 500);
         });

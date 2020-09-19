@@ -51,6 +51,8 @@ import android.widget.LinearLayout;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.utils.XToastUtils;
 
+import org.json.JSONException;
+
 public class LookThroughActivity extends AppCompatActivity implements View.OnClickListener{
     public static String threadid;
     public static String threadtitle;
@@ -170,7 +172,11 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             {
                 XToastUtils.toast("点击收藏！");
                 bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
-                ExchangeInfosWithAli.FavourThread(LookThroughActivity.threadid);
+                try {
+                    ExchangeInfosWithAli.FavourThread_json(LookThroughActivity.threadid);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 ExchangeInfosWithAli.WhetherFavour = 1;
             }
             else
@@ -178,7 +184,11 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
                 XToastUtils.toast("取消收藏！");
                 bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.icon_collect_3));
-                ExchangeInfosWithAli.CancelFavourThread(LookThroughActivity.threadid);
+                try {
+                    ExchangeInfosWithAli.CancelFavourThread_json(LookThroughActivity.threadid);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 ExchangeInfosWithAli.WhetherFavour = 0;
             }
 
@@ -190,7 +200,11 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 XToastUtils.toast("点赞帖子！");
                 bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_already));
                 ExchangeInfosWithAli.WhetherPraise = 1;
-                ExchangeInfosWithAli.PraiseThread(LookThroughActivity.threadid);
+                try {
+                    ExchangeInfosWithAli.PraiseThread_json(LookThroughActivity.threadid);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())+1));
             }
             else if (ExchangeInfosWithAli.WhetherPraise == 1)
@@ -198,7 +212,11 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 XToastUtils.toast("取消点赞帖子！");
                 bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_black));
                 ExchangeInfosWithAli.WhetherPraise = 0;
-                ExchangeInfosWithAli.CancelPraiseThread(LookThroughActivity.threadid);
+                try {
+                    ExchangeInfosWithAli.CancelPraiseThread_json(LookThroughActivity.threadid);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())-1));
             }
             else if (ExchangeInfosWithAli.WhetherPraise == -1)
@@ -212,7 +230,11 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 XToastUtils.toast("点踩帖子！");
                 bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_already));
                 ExchangeInfosWithAli.WhetherPraise = -1;
-                ExchangeInfosWithAli.DislikeThread(LookThroughActivity.threadid);
+                try {
+                    ExchangeInfosWithAli.DislikeThread_json(LookThroughActivity.threadid);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())+1));
             }
             else if (ExchangeInfosWithAli.WhetherPraise == -1)
@@ -220,7 +242,11 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 XToastUtils.toast("取消点踩帖子！");
                 bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_black));
                 ExchangeInfosWithAli.WhetherPraise = 0;
-                ExchangeInfosWithAli.CancelDislikeThread(LookThroughActivity.threadid);
+                try {
+                    ExchangeInfosWithAli.CancelDislikeThread_json(LookThroughActivity.threadid);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())-1));
             }
             else if (ExchangeInfosWithAli.WhetherPraise == 1)
@@ -262,7 +288,11 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
                     //commentOnWork(commentContent);
                     dialog.dismiss();
-                    ExchangeInfosWithAli.Alicomment("dyy", LookThroughActivity.threadid, commentContent );
+                    try {
+                        ExchangeInfosWithAli.AlicommentThread_json(LookThroughActivity.threadid, commentContent);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 //                    CommentDetailBean detailBean = new CommentDetailBean("小明", commentContent,"刚刚");
 //                    adapter.addTheCommentData(detailBean);
                     Toast.makeText(LookThroughActivity.this,"评论成功",Toast.LENGTH_SHORT).show();
@@ -313,7 +343,11 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 String replyContent = commentText.getText().toString().trim();
                 if(!TextUtils.isEmpty(replyContent)){
                     dialog.dismiss();
-                    ExchangeInfosWithAli.AliReply("dyy", LookThroughActivity.threadid, replyContent , position);
+                    try {
+                        ExchangeInfosWithAli.AliReplyFloor_json(LookThroughActivity.threadid, replyContent , position);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     Toast.makeText(LookThroughActivity.this,"回复成功",Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(LookThroughActivity.this,"回复内容不能为空",Toast.LENGTH_SHORT).show();

@@ -34,6 +34,8 @@ import com.xuexiang.xui.widget.imageview.ImageLoader;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
+import org.json.JSONException;
+
 import butterknife.BindView;
 
 /**
@@ -135,7 +137,7 @@ public class FavorFragment extends BaseFragment {
                     }
                     jingThreadID = jingThreadID + model.getThreadID();
                     holder.text(R.id.tv_thread_id, jingThreadID);
-                    holder.text(R.id.tv_tag, model.getTag());
+//                    holder.text(R.id.tv_tag, model.getTag());
                     holder.text(R.id.tv_title, model.getTitle());
                     holder.text(R.id.tv_summary, model.getSummary());
                     holder.text(R.id.tv_delete, "取消收藏");
@@ -192,7 +194,11 @@ public class FavorFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetFavourThread());
+                try {
+                    mNewsAdapter.refresh(ExchangeInfosWithAli.GetFavourThread_json());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 refreshLayout.finishRefresh();
             }, 500);
         });
@@ -200,7 +206,11 @@ public class FavorFragment extends BaseFragment {
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                mNewsAdapter.refresh(ExchangeInfosWithAli.GetFavourThread());
+                try {
+                    mNewsAdapter.refresh(ExchangeInfosWithAli.GetFavourThread_json());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 refreshLayout.finishLoadMore();
             }, 500);
         });

@@ -40,44 +40,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="80dp"
-
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:orientation="vertical">
 
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:layout_marginBottom="10dp"
+                android:layout_gravity="center_vertical"
                 android:tint="?attr/colorAccent"
                 app:srcCompat="@drawable/ic_phone" />
 
             <com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
                 android:id="@+id/et_phone_number"
-                android:layout_width="250dp"
-                android:layout_height="40dp"
-                android:layout_gravity="bottom"
+                android:layout_marginEnd="80dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
                 android:hint="@string/tip_please_input_phone_number"
+                app:met_maxCharacters="20"
                 app:met_clearButton="true"
                 app:met_errorMessage="@string/tip_phone_number_error"
                 app:met_floatingLabel="normal"
                 app:met_floatingLabelText="@string/title_phone_number"
-                app:met_maxCharacters="50"
                 app:met_regexp="@string/regex_phone_number" />
             <com.xuexiang.xui.widget.textview.supertextview.SuperButton
                 android:id="@+id/btn_register"
                 style="@style/SuperButton.Primary.Login"
-                android:layout_width="75dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="290dp"
-                android:layout_marginTop="25dp"
-                android:text="获取验证码" />
+                android:layout_marginStart="240dp"
+                android:layout_marginEnd="0dp"
+                android:layout_marginTop="0dp"
+                android:layout_width="match_parent"
+                android:text="发送验证码" />
 
         </FrameLayout>
 
@@ -86,7 +85,7 @@
             android:id="@+id/fl_verify_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="8dp">
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -98,34 +97,35 @@
 
             <com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText
                 android:id="@+id/et_verify_code"
-                android:layout_width="250dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="36dp"
+                android:layout_marginEnd="0dp"
                 android:inputType="textPassword"
                 app:met_maxCharacters="20"
-                android:hint="请输入验证码"
+                android:hint="请输入密码"
                 app:met_clearButton="false"
                 app:met_errorMessage="请确保密码正确"
                 app:met_floatingLabel="normal"
-                app:met_floatingLabelText="验证码"
+                app:met_floatingLabelText="密码"
                 app:met_regexp="@string/regex_verify_code" />
 
-<!--            <com.xuexiang.xui.widget.button.roundbutton.RoundButton-->
-<!--                android:id="@+id/btn_get_verify_code"-->
-<!--                style="@style/RoundButton"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="end"-->
-<!--                android:paddingStart="10dp"-->
-<!--                android:paddingTop="3dp"-->
-<!--                android:paddingEnd="10dp"-->
-<!--                android:paddingBottom="3dp"-->
-<!--                android:text="@string/action_get_verify_code"-->
-<!--                android:textColor="@color/selector_round_button_main_theme_color"-->
-<!--                android:textSize="13sp"-->
-<!--                app:rb_borderColor="@color/selector_round_button_main_theme_color"-->
-<!--                app:rb_borderWidth="1.5dp"-->
-<!--                app:rb_radius="15dp" />-->
+            <!--            <com.xuexiang.xui.widget.button.roundbutton.RoundButton-->
+            <!--                android:id="@+id/btn_get_verify_code"-->
+            <!--                style="@style/RoundButton"-->
+            <!--                android:layout_width="wrap_content"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                android:layout_gravity="end"-->
+            <!--                android:paddingStart="10dp"-->
+            <!--                android:paddingTop="3dp"-->
+            <!--                android:paddingEnd="10dp"-->
+            <!--                android:paddingBottom="3dp"-->
+            <!--                android:text="@string/action_get_verify_code"-->
+            <!--                android:textColor="@color/selector_round_button_main_theme_color"-->
+            <!--                android:textSize="13sp"-->
+            <!--                app:rb_borderColor="@color/selector_round_button_main_theme_color"-->
+            <!--                app:rb_borderWidth="1.5dp"-->
+            <!--                app:rb_radius="15dp" />-->
 
         </FrameLayout>
 
@@ -162,7 +162,7 @@
     <com.xuexiang.xui.widget.textview.supertextview.SuperButton
         android:id="@+id/btn_login"
         style="@style/SuperButton.Primary.Login"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="16dp"
         android:text="登录" />
 
 

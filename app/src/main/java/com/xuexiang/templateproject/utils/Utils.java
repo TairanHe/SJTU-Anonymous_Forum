@@ -53,9 +53,10 @@ import com.xuexiang.xui.widget.dialog.materialdialog.DialogAction;
 import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xutil.XUtil;
 
+import org.json.JSONException;
+
 import static com.xuexiang.templateproject.core.webview.AgentWebFragment.KEY_URL;
-import static com.xuexiang.templateproject.utils.ExchangeInfosWithAli.CancelFavourThread;
-import static com.xuexiang.templateproject.utils.ExchangeInfosWithAli.deletethread;
+import static com.xuexiang.templateproject.utils.ExchangeInfosWithAli.CancelFavourThread_json;
 import static com.xuexiang.xutil.app.ActivityUtils.startActivity;
 
 /**
@@ -88,7 +89,11 @@ public final class Utils {
                 .negativeText("删除").onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        CancelFavourThread(thread_id);
+                        try {
+                            CancelFavourThread_json(thread_id);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         Log.d("LookThroughActivity.U", thread_id);
                         dialog.dismiss();
                         // 这里是取消收藏的函数接口
@@ -117,7 +122,11 @@ public final class Utils {
                 .negativeText("删除").onNegative(new MaterialDialog.SingleButtonCallback() {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        deletethread(thread_id);
+                        try {
+                            ExchangeInfosWithAli.DeleteThread_json(thread_id);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         dialog.dismiss();
                         //这里是删除自己帖子的函数接口
                         baseFragment.openNewPage(MyThreadsFragment.class);

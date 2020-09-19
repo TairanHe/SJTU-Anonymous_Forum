@@ -22,6 +22,7 @@ import android.content.Intent;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.LoginActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.templateproject.utils.MMKVUtils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
@@ -81,6 +82,7 @@ public class SettingsFragment extends BaseFragment implements SuperTextView.OnSu
                 getActivity().finish();
             case R.id.menu_logout:
                 XToastUtils.toast(superTextView.getCenterString());
+                MMKVUtils.put("Token", "NULL");
                 XUtil.get().exitApp();
                 break;
             default:

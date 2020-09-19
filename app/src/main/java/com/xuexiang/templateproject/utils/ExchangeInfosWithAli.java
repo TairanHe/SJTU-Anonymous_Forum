@@ -23,6 +23,7 @@ import android.text.LoginFilter;
 import android.util.Log;
 
 import com.bumptech.glide.load.model.stream.QMediaStoreUriLoader;
+import com.google.gson.JsonParser;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.adapter.entity.FloorInfo;
 import com.xuexiang.templateproject.adapter.entity.MessageInfo;
@@ -51,166 +52,138 @@ public class ExchangeInfosWithAli {
         return receive_message.getInt("VarifiedEmailAddress");
     }
 
-    public static List<NewInfo> GetAliRecommandedNewsInfos(int block) {
-        String QueryString = EncapsulateString("1", NumOfQuery + "", block + "", UserName, "0", "0");
-        String receive_message = RunTCP(QueryString);
-        return DecapsulateStringToList_Recommmand(receive_message);
-    }
     public static List<NewInfo> GetAliRecommandedNewsInfos_json(int block) throws JSONException {
         JSONObject QueryJson = EncapsulateString_json("1", NumOfQuery + "", block + "", UserName, "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsonToList_Recommmand(receive_message);
     }
 
-    public static List<FloorInfo> GetAliThread(String ThreadID) {
-        String QueryString = EncapsulateString("2", ThreadID, UserName, "0", "0", "0");
-        String receive_message = RunTCP(QueryString);
-        WhetherFavour = 0;
-        WhetherPraise = 0;
-        return DecapsulateStringToList_floor(receive_message);
-    }
-    public static List<FloorInfo> GetAliThread_json(String ThreadID) throws JSONException {
-        JSONObject QueryJson = EncapsulateString_json("2", ThreadID, UserName, "0", "0", "0");
+    public static List<FloorInfo> GetAliFloor_json(String ThreadID) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("2", ThreadID, "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         WhetherFavour = 0;
         WhetherPraise = 0;
         return DecapsulateJsonToList_floor(receive_message);
     }
 
-    public static void SendMyThread(String title, String content, int block) {
-        String QueryString = EncapsulateString("3", title, block + "", content, UserName, "0");
-        QueryString = QueryString.replace(";", ",");
-        RunTCP(QueryString);
-    }
     public static void SendMyThread_json(String title, String content, int block) throws JSONException {
-        JSONObject QueryJson = EncapsulateString_json("3", title, block + "", content, UserName, "0");
+        JSONObject QueryJson = EncapsulateString_json("3", title, block + "", content, "0", "0");
         RunTCP_json(QueryJson);
     }
-    public static void Alicomment(String UserID, String threadID, String content) {
-        String QueryString = EncapsulateString("4", threadID, UserName, content, "0", "0");
-        QueryString = protectString(QueryString);
-        RunTCP(QueryString);
+
+    public static void AlicommentThread_json(String threadID, String content) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("4", threadID, "0", content, "0", "0");
+        RunTCP_json(QueryJson);
     }
 
 
-    public static void AliReply(String UserID, String threadID, String content, int ReplytoFloorID) {
-        String QueryString = EncapsulateString("4", threadID, UserName, content, ReplytoFloorID + "", "0");
-        QueryString = protectString(QueryString);
-        RunTCP(QueryString);
+
+    public static void AliReplyFloor_json( String threadID, String content, int ReplytoFloorID) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("4_2", threadID, "0", content, ReplytoFloorID + "", "0");
+        RunTCP_json(QueryJson);
     }
 
-    public static void FavourThread(String ThreadID) {
-        String QueryString = EncapsulateString("5", ThreadID, UserName, "1", "0", "0");
-        RunTCP(QueryString);
+
+
+    public static void FavourThread_json(String ThreadID) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("5", ThreadID, "0", "1", "0", "0");
+        RunTCP_json(QueryJson);
     }
 
-    public static void DisFavourThread(String ThreadID) {
-        String QueryString = EncapsulateString("5", ThreadID, UserName, "2", "0", "0");
-        RunTCP(QueryString);
+
+
+
+    public static void CancelFavourThread_json(String ThreadID) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("5_2", ThreadID, "0","2", "0", "0");
+        RunTCP_json(QueryJson);
     }
 
-    public static void CancelFavourThread(String ThreadID) {
-        String QueryString = EncapsulateString("5", ThreadID, UserName, "2", "0", "0");
-        RunTCP(QueryString);
+
+
+    public static List<NewInfo> GetFavourThread_json() throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("6", "0", "0", "0", "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        return DecapsulateJsonToList_Favour(receive_message);
     }
 
-    public static List<NewInfo> GetFavourThread() {
-        String QueryString = EncapsulateString("6", UserName, "0", "0", "0", "0");
-        String receive_message = RunTCP(QueryString);
-        return DecapsulateStringToList_Favour(receive_message);
+
+
+
+    public static List<NewInfo> GetMyThread_json() throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("7", "0", "0", "0", "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        return DecapsulateJsonToList_Basic(receive_message);
     }
 
-    public static List<NewInfo> GetMyThread() {
-        String QueryString = EncapsulateString("7", UserName, "0", "0", "0", "0");
-        String receive_message = RunTCP(QueryString);
-        return DecapsulateStringToList_Basic(receive_message);
+
+    public static void PraiseFloor_json(String ThreadID, int floor) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("8", ThreadID, "0", "0", floor + "", "0");
+        RunTCP_json(QueryJson);
     }
 
-    public static void PraiseFloor(String ThreadID, int floor) {
-        String QueryString = EncapsulateString("8", ThreadID, UserName, "1", floor + "", "0");
-        RunTCP(QueryString);
+
+
+    public static void CancelPraiseFloor_json(String ThreadID, int floor) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("8_2", ThreadID, "0", "0", floor + "", "0");
+        RunTCP_json(QueryJson);
     }
 
-    public static void CancelPraiseFloor(String ThreadID, int floor) {
-        String QueryString = EncapsulateString("8", ThreadID, UserName, "2", floor + "", "0");
-        RunTCP(QueryString);
+
+    public static void PraiseThread_json(String ThreadID) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("8_3", ThreadID, "0", "0", "0", "0");
+        RunTCP_json(QueryJson);
     }
 
-    public static void PraiseThread(String ThreadID) {
-        String QueryString = EncapsulateString("8", ThreadID, UserName, "1", "1", "0");
-        RunTCP(QueryString);
+
+    public static void CancelPraiseThread_json(String ThreadID) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("8_4", ThreadID, "0", "0", "0", "0");
+        RunTCP_json(QueryJson);
     }
 
-    public static void CancelPraiseThread(String ThreadID) {
-        String QueryString = EncapsulateString("8", ThreadID, UserName, "2", "1", "0");
-        RunTCP(QueryString);
+
+    public static void DislikeThread_json(String ThreadID) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("9", ThreadID, "0", "0", "0", "0");
+        RunTCP_json(QueryJson);
     }
 
-    public static void DislikeThread(String ThreadID) {
-        String QueryString = EncapsulateString("9", ThreadID, UserName, "1", "1", "0");
-        RunTCP(QueryString);
+
+
+    public static void CancelDislikeThread_json(String ThreadID) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("9_2", ThreadID, "0", "2", "1", "0");
+        RunTCP_json(QueryJson);
     }
 
-    public static void CancelDislikeThread(String ThreadID) {
-        String QueryString = EncapsulateString("9", ThreadID, UserName, "2", "1", "0");
-        RunTCP(QueryString);
+
+
+    public static List<MessageInfo> GetMessageList_json() throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("a", "0", "0", "0", "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        return DecapsulateJsontoList_Message(receive_message);
     }
 
-    public static List<MessageInfo> GetMessageList() {
-        String QueryString = EncapsulateString("a", UserName, "0", "1", "0", "0");
-        String receive_message = RunTCP(QueryString);
-        return DecapsulateStringtoList_Message(receive_message);
+
+    public static List<NewInfo> Query_json(String queryString) throws JSONException {
+        JSONObject QueryJson= EncapsulateString_json("b", queryString, "0", "2", "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        return DecapsulateJsonToList_Basic(receive_message);
     }
 
-    public static List<NewInfo> query(String queryString) {
-        String QueryString = EncapsulateString("b", queryString, UserName, "2", "0", "0");
-        QueryString = protectString(QueryString);
-        String receive_message = RunTCP(QueryString);
-        return DecapsulateStringToList_Basic(receive_message);
+
+    public static void DeleteThread_json(String ThreadID) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("c", ThreadID, "0", "0", "0", "0");
+        RunTCP_json(QueryJson);
     }
 
-    public static void deletethread(String ThreadID) {
-        String QueryString = EncapsulateString("c", ThreadID, UserName, "0", "0", "0");
-        RunTCP(QueryString);
+
+    public static List<NewInfo> HottestThread_json() throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("d", "0", "0", "0", "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        return DecapsulateJsonToList_Basic(receive_message);
     }
 
-    public static List<NewInfo> hottest_thread() {
-        String QueryString = EncapsulateString("d", UserName, "0", "0", "0", "0");
-        String receive_message = RunTCP(QueryString);
-        return DecapsulateStringToList_Basic(receive_message);
-    }
-
-    public static int Register(String Username, String Userpw) {
-        Username = protectString(Username);
-        Userpw = protectString(Userpw);
-        String QueryString = EncapsulateString("e", Username, Userpw, "0", "0", "0");
-        String receive_message = RunTCP(QueryString);
-        if (receive_message.equals("")) {
-            XToastUtils.toast("网络连接不稳定,请再试一次");
-            return -1;
-        }
-        return Integer.parseInt(receive_message);
-    }
-
-    public static int Login(String Username, String Userpw) {
-        Username = protectString(Username);
-        Userpw = protectString(Userpw);
-        String QueryString = EncapsulateString("f", Username, Userpw, "", "0", "0");
-        String receive_message = RunTCP(QueryString);
-        if (receive_message.equals("")) {
-            XToastUtils.toast("网络连接不稳定,无法安全登录");
-            return -1;
-        }
-        if (receive_message.equals("0")) {
-            UserName = Username;
-        }
-        return Integer.parseInt(receive_message);
-    }
 
     public static int Login_json(String Username, String Userpw) throws JSONException, InterruptedException {
         String deviceID = UUID.randomUUID().toString();
-        Username = protectString(Username);
-        Userpw = protectString(Userpw);
         JSONObject QueryJson = EncapsulateString_json("f", Username, Userpw, deviceID, "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         String login_flag = receive_message.getString("login_flag");
@@ -228,16 +201,13 @@ public class ExchangeInfosWithAli {
         return Integer.parseInt(login_flag);
     }
 
-    public static int VerifyToken_json(String Token) throws JSONException, InterruptedException {
-        JSONObject QueryJson = EncapsulateString_json("-1", Token, "", "", "0", "0");
+    public static int VerifyToken_json() throws JSONException, InterruptedException {
+        JSONObject QueryJson = EncapsulateString_json("-1", "0", "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         String login_flag = receive_message.getString("login_flag");
         return Integer.parseInt(login_flag);
     }
 
-    private static String EncapsulateString(String OperatingNumber, String Op1, String Op2, String Op3, String Op4, String Op5) {
-        return OperatingNumber + "\021" + Op1 + "\021" + Op2 + "\021" + Op3 + "\021" + Op4 + "\021" + Op5 + "\021";
-    }
 
     private static JSONObject EncapsulateString_json(String op_code, String pa_1, String pa_2, String pa_3, String pa_4, String pa_5) throws JSONException {
         JSONObject js = new JSONObject();
@@ -247,27 +217,10 @@ public class ExchangeInfosWithAli {
         js.put("pa_3", pa_3);
         js.put("pa_4", pa_4);
         js.put("pa_5", pa_5);
+        js.put("Token", MMKVUtils.getString("Token", "NULL"));
         return js;
     }
 
-    private static List<NewInfo> DecapsulateStringToList_Recommmand(String InputString) {
-        ShowLog(InputString);
-        List<NewInfo> list = new ArrayList<>();
-        String[] main_split = InputString.split("\023");
-        if (main_split.length < 1) {
-            XToastUtils.toast("帖子只有这么多了,呜呜呜");
-            return null;
-        }
-        NumOfQuery += 1;
-        for (String retval : main_split[0].split("\022")) {
-            String[] temp = retval.split("\021");
-            if (temp.length < 5) continue;
-            list.add(new NewInfo(temp[0], temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
-                    Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6]),
-                    Integer.parseInt(temp[7]), Integer.parseInt(temp[8]), temp[9]));
-        }
-        return list;
-    }
 
     private static List<NewInfo> DecapsulateJsonToList_Recommmand(JSONObject InputJson) throws JSONException {
 
@@ -291,20 +244,27 @@ public class ExchangeInfosWithAli {
         return list;
     }
 
-    private static List<NewInfo> DecapsulateStringToList_Basic(String InputString) {
-        ShowLog(InputString);
+
+    private static List<NewInfo> DecapsulateJsonToList_Basic(JSONObject InputJson) throws JSONException {
         List<NewInfo> list = new ArrayList<>();
-        String[] main_split = InputString.split("\023");
-        if (main_split.length < 1) {
-            XToastUtils.toast("空空如也~");
+        JSONArray thread_list= InputJson.getJSONArray("thread_list");
+        if (thread_list.length() < 1) {
+            XToastUtils.toast("空空如也");
             return null;
         }
-        for (String retval : main_split[0].split("\022")) {
-            String[] temp = retval.split("\021");
-            if (temp.length < 10) continue;
-            list.add(new NewInfo(temp[0], temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
-                    Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6]),
-                    Integer.parseInt(temp[7]), Integer.parseInt(temp[8]), temp[9]));
+        for (int i = 0; i < thread_list.length(); i++) {
+            JSONObject thread = thread_list.getJSONObject(i);
+            Log.d("Thread:", thread.toString());
+            list.add(new NewInfo(thread.getString("ThreadID"),
+                    thread.getString("Title"),
+                    thread.getString("Summary"),
+                    get_block_name(Integer.parseInt(thread.getString("Block"))),
+                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Dislike")),
+                    Integer.parseInt(thread.getString("Comment")),
+                    Integer.parseInt(thread.getString("Read")),
+                    Integer.parseInt(thread.getString("WhetherLike")),
+                    thread.getString("LastUpdateTime")));
         }
         return list;
     }
@@ -329,29 +289,30 @@ public class ExchangeInfosWithAli {
         return list;
     }
 
-    private static List<FloorInfo> DecapsulateStringToList_floor(String InputString) {
-        ShowLog(InputString);
-        if (InputString.length() < 1) {
-            XToastUtils.toast("似乎出了一点问题...");
+    private static List<NewInfo> DecapsulateJsonToList_Favour(JSONObject InputJson) throws JSONException {
+        List<NewInfo> list = new ArrayList<>();
+        JSONArray thread_list= InputJson.getJSONArray("thread_list");
+        if (thread_list.length() < 1) {
+            XToastUtils.toast("您好像还没有收藏过帖子~");
             return null;
         }
-        List<FloorInfo> list = new ArrayList<>();
-        int i = 0;
-        for (String retval : InputString.split("\022")) {
-            String[] temp = retval.split("\021");
-            if (temp.length < 6) continue;
-            if (i == 0) {
-                WhetherPraise = Integer.parseInt(temp[6]);
-                WhetherFavour = Integer.parseInt(temp[7]);
-                i += 1;
-                continue;
-            }
-            list.add(new FloorInfo(temp[0], temp[1], temp[2], temp[3], temp[4],
-                    Integer.parseInt(temp[5]), Integer.parseInt(temp[6])));
-            i += 1;
+        for (int i = 0; i < thread_list.length(); i++) {
+            JSONObject thread = thread_list.getJSONObject(i);
+            Log.d("Thread:", thread.toString());
+            list.add(new NewInfo(thread.getString("ThreadID"),
+                    thread.getString("Title"),
+                    thread.getString("Summary"),
+                    get_block_name(Integer.parseInt(thread.getString("Block"))),
+                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Dislike")),
+                    Integer.parseInt(thread.getString("Comment")),
+                    Integer.parseInt(thread.getString("Read")),
+                    Integer.parseInt(thread.getString("WhetherLike")),
+                    thread.getString("LastUpdateTime")));
         }
         return list;
     }
+
 
     private static List<FloorInfo> DecapsulateJsonToList_floor(JSONObject InputJson) throws JSONException {
         List<FloorInfo> list = new ArrayList<>();
@@ -371,34 +332,34 @@ public class ExchangeInfosWithAli {
 
     }
 
-    private static List<MessageInfo> DecapsulateStringtoList_Message(String InputString) {
-        ShowLog(InputString);
-        if (InputString.length() <= 1) {
+
+    private static List<MessageInfo> DecapsulateJsontoList_Message(JSONObject InputJson) throws JSONException {
+        List<MessageInfo> list = new ArrayList<>();
+        Log.d("Message:", InputJson.toString());
+        JSONArray message_list= InputJson.getJSONArray("message_list");
+        if (message_list.length() < 1) {
             XToastUtils.toast("好像您还没有收到信息");
             return null;
         }
-        List<MessageInfo> list = new ArrayList<>();
-        for (String retval : InputString.split("\022")) {
-            String[] temp = retval.split("\021");
-            if (temp.length < 4) continue;
-            list.add(new MessageInfo(temp[0], temp[1], Integer.parseInt(temp[2]), Integer.parseInt(temp[3]), temp[4], temp[5]));
+        for (int i = 0; i < message_list.length(); i++) {
+            JSONObject message = message_list.getJSONObject(i);
+            Log.d("Message:", message.toString());
+            list.add(new MessageInfo(message.getString("ThreadID"),
+                    message.getString("Title"),
+                    Integer.parseInt(message.getString("Type")),
+                    Integer.parseInt(message.getString("Judge")),
+                    message.getString("PostTime"),
+                    message.getString("Summary")));
         }
         return list;
+//        ThreadID = threadid;
+//        Title = title;
+//        Type = type;
+//        Judge = judge;
+//        PostTime = posttime;
+//        Summary = summary;
     }
 
-    private static String RunTCP(String QueryString) {
-        tcp_thread_runnable tcp_one = new tcp_thread_runnable();
-        tcp_one.set_text(QueryString);
-        tcp_one.set_addr("172.81.215.104", 8080);
-        Thread tcp_thread = new Thread(tcp_one);
-        tcp_thread.start();
-        try {
-            tcp_thread.join();  //阻塞主进程,确保网络请求完成了再进行下一步
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return tcp_one.get_receive_text();
-    }
 
     private static JSONObject RunTCP_json(JSONObject QueryJson) {
         tcp_thread_runnable_json tcp_one = new tcp_thread_runnable_json();
@@ -466,15 +427,15 @@ public class ExchangeInfosWithAli {
                 .replace("\023", "\n\\023!!!"));
     }
 
-    private static String protectString(String str) {
-        str = str.replaceAll(";", ",");
-        str = str.replaceAll("&", "&amp;");
-        str = str.replaceAll("<", "&lt;");
-        str = str.replaceAll(">", "&gt;");
-        str = str.replaceAll("'", "");
-        str = str.replaceAll("--", "");
-        str = str.replaceAll("/", "");
-        str = str.replaceAll("%", "");
-        return str;
-    }
+//    private static String protectString(String str) {
+//        str = str.replaceAll(";", ",");
+//        str = str.replaceAll("&", "&amp;");
+//        str = str.replaceAll("<", "&lt;");
+//        str = str.replaceAll(">", "&gt;");
+//        str = str.replaceAll("'", "");
+//        str = str.replaceAll("--", "");
+//        str = str.replaceAll("/", "");
+//        str = str.replaceAll("%", "");
+//        return str;
+//    }
 }

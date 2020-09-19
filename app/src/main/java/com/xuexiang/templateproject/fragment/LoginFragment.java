@@ -24,7 +24,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.xuexiang.templateproject.activity.LoginActivity;
-import com.xuexiang.templateproject.activity.RegisterActivity;
+//import com.xuexiang.templateproject.activity.RegisterActivity;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;

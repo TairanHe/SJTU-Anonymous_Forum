@@ -192,7 +192,11 @@ public class FloorFragment extends BaseFragment{
                                 XToastUtils.toast("点赞楼层！");
                                 FloorFragment.floorid = model.getFloorID();
                                 model.setWhetherPraise(1);
-                                ExchangeInfosWithAli.PraiseFloor(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                try {
+                                    ExchangeInfosWithAli.PraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                                 holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
                                 holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()+1) + "）");
                             }
@@ -201,7 +205,11 @@ public class FloorFragment extends BaseFragment{
                                 XToastUtils.toast("取消点赞楼层！");
                                 FloorFragment.floorid = model.getFloorID();
                                 model.setWhetherPraise(0);
-                                ExchangeInfosWithAli.CancelPraiseFloor(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                try {
+                                    ExchangeInfosWithAli.CancelPraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                                 holder.image(R.id.iv_praise, R.drawable.ic_praise);
                                 holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
                             }
@@ -218,7 +226,11 @@ public class FloorFragment extends BaseFragment{
                                 XToastUtils.toast("点赞楼层！");
                                 FloorFragment.floorid = model.getFloorID();
                                 model.setWhetherPraise(1);
-                                ExchangeInfosWithAli.PraiseFloor(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                try {
+                                    ExchangeInfosWithAli.PraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                                 holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
                                 holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()+1) + "）");
                             }
@@ -227,7 +239,11 @@ public class FloorFragment extends BaseFragment{
                                 XToastUtils.toast("取消点赞楼层！");
                                 FloorFragment.floorid = model.getFloorID();
                                 model.setWhetherPraise(0);
-                                ExchangeInfosWithAli.CancelPraiseFloor(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                try {
+                                    ExchangeInfosWithAli.CancelPraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
                                 holder.image(R.id.iv_praise, R.drawable.ic_praise);
                                 holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()-1) + "）");
                             }
@@ -256,7 +272,7 @@ public class FloorFragment extends BaseFragment{
             refreshLayout.getLayout().postDelayed(() -> {
 //                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
                 try {
-                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread_json(LookThroughActivity.threadid));
+                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -271,7 +287,7 @@ public class FloorFragment extends BaseFragment{
             refreshLayout.getLayout().postDelayed(() -> {
 //                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
                 try {
-                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread_json(LookThroughActivity.threadid));
+                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
