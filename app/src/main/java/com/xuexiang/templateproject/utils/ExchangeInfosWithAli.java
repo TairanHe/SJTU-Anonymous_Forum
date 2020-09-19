@@ -18,6 +18,7 @@
 package com.xuexiang.templateproject.utils;
 
 import android.app.DownloadManager;
+import android.provider.Settings;
 import android.text.LoginFilter;
 import android.util.Log;
 
@@ -33,6 +34,7 @@ import org.json.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 import static com.xuexiang.xutil.resource.ResUtils.getResources;
@@ -42,6 +44,12 @@ public class ExchangeInfosWithAli {
     public static int WhetherFavour = 0;
     public static int WhetherPraise = 0;
     public static String UserName = "dyy";
+
+    public static int Request_verifycode(String emailaddress) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("0", emailaddress,  "0", "0", "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        return receive_message.getInt("VarifiedEmailAddress");
+    }
 
     public static List<NewInfo> GetAliRecommandedNewsInfos(int block) {
         String QueryString = EncapsulateString("1", NumOfQuery + "", block + "", UserName, "0", "0");
@@ -74,12 +82,16 @@ public class ExchangeInfosWithAli {
         QueryString = QueryString.replace(";", ",");
         RunTCP(QueryString);
     }
-
+    public static void SendMyThread_json(String title, String content, int block) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("3", title, block + "", content, UserName, "0");
+        RunTCP_json(QueryJson);
+    }
     public static void Alicomment(String UserID, String threadID, String content) {
         String QueryString = EncapsulateString("4", threadID, UserName, content, "0", "0");
         QueryString = protectString(QueryString);
         RunTCP(QueryString);
     }
+
 
     public static void AliReply(String UserID, String threadID, String content, int ReplytoFloorID) {
         String QueryString = EncapsulateString("4", threadID, UserName, content, ReplytoFloorID + "", "0");
@@ -183,7 +195,7 @@ public class ExchangeInfosWithAli {
     public static int Login(String Username, String Userpw) {
         Username = protectString(Username);
         Userpw = protectString(Userpw);
-        String QueryString = EncapsulateString("f", Username, Userpw, "0", "0", "0");
+        String QueryString = EncapsulateString("f", Username, Userpw, "", "0", "0");
         String receive_message = RunTCP(QueryString);
         if (receive_message.equals("")) {
             XToastUtils.toast("网络连接不稳定,无法安全登录");
@@ -196,11 +208,15 @@ public class ExchangeInfosWithAli {
     }
 
     public static int Login_json(String Username, String Userpw) throws JSONException, InterruptedException {
+        String deviceID = UUID.randomUUID().toString();
         Username = protectString(Username);
         Userpw = protectString(Userpw);
-        JSONObject QueryJson = EncapsulateString_json("f", Username, Userpw, "0", "0", "0");
+        JSONObject QueryJson = EncapsulateString_json("f", Username, Userpw, deviceID, "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         String login_flag = receive_message.getString("login_flag");
+        String Token = receive_message.getString("Token");
+        Log.d("Token!!!!!", Token);
+        MMKVUtils.put("Token", Token);
         Log.d("Login_flag是：", login_flag);
         if (login_flag.equals("")) {
             XToastUtils.toast("网络连接不稳定,无法安全登录");
@@ -209,6 +225,13 @@ public class ExchangeInfosWithAli {
         if (login_flag.equals("0")) {
             UserName = Username;
         }
+        return Integer.parseInt(login_flag);
+    }
+
+    public static int VerifyToken_json(String Token) throws JSONException, InterruptedException {
+        JSONObject QueryJson = EncapsulateString_json("-1", Token, "", "", "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        String login_flag = receive_message.getString("login_flag");
         return Integer.parseInt(login_flag);
     }
 

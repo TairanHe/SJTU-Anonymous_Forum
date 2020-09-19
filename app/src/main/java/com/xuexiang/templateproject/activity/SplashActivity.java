@@ -20,13 +20,17 @@ package com.xuexiang.templateproject.activity;
 import android.view.KeyEvent;
 
 import com.xuexiang.templateproject.R;
+import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.xuexiang.templateproject.utils.MMKVUtils;
 import com.xuexiang.templateproject.utils.SettingSPUtils;
 import com.xuexiang.templateproject.utils.Utils;
+import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xui.utils.KeyboardUtils;
 import com.xuexiang.xui.widget.activity.BaseSplashActivity;
 import com.xuexiang.xutil.app.ActivityUtils;
 import com.xuexiang.templateproject.utils.TokenUtils;
+
+import org.json.JSONException;
 
 import me.jessyan.autosize.internal.CancelAdapt;
 
@@ -73,8 +77,19 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
     protected void onSplashFinished() {
         boolean isAgree = MMKVUtils.getBoolean("key_agree_privacy", false);
         if (isAgree) {
-            ActivityUtils.startActivity(LoginActivity.class);
-            finish();
+            String Token = MMKVUtils.getString("Token", "NULL");
+            try {
+                if (ExchangeInfosWithAli.VerifyToken_json(Token) == 0){
+                    ActivityUtils.startActivity(MainActivity.class);
+                    finish();
+                } else {
+                    ActivityUtils.startActivity(LoginActivity.class);
+                    finish();
+                }
+
+            } catch (JSONException | InterruptedException e) {
+                e.printStackTrace();
+            }
         } else {
             Utils.showPrivacyDialog(this, (dialog, which) -> {
                 dialog.dismiss();

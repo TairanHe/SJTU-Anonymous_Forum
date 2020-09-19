@@ -19,6 +19,7 @@ package com.xuexiang.templateproject.fragment;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 
@@ -97,8 +98,8 @@ public class LoginFragment extends BaseFragment {
     }
 
     @SingleClick
-    @OnClick({R.id.btn_login, R.id.btn_register, R.id.tv_other_login, R.id.tv_forget_password, R.id.tv_user_protocol, R.id.tv_privacy_protocol})
-    public void onViewClicked(View view){
+    @OnClick({R.id.btn_login, R.id.btn_register, R.id.tv_user_protocol, R.id.tv_privacy_protocol})
+    public void onViewClicked(View view) {
         switch (view.getId()) {
 //            case R.id.btn_get_verify_code:
 //                if (etPhoneNumber.validate()) {
@@ -110,16 +111,19 @@ public class LoginFragment extends BaseFragment {
                     Log.d("LoginFragment.java", etPhoneNumber.getEditValue() + "   " + etVerifyCode.getEditValue());
                 break;
             case R.id.btn_register:
-                XToastUtils.info("注册");
-                Intent intent = new Intent(getActivity(), RegisterActivity.class);
-                startActivity(intent);
+                XToastUtils.info("发送验证码");
+                try {
+                    int VarifiedEmailAddress = ExchangeInfosWithAli.Request_verifycode(etPhoneNumber.getEditValue());
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 break;
-            case R.id.tv_other_login:
-                XToastUtils.info("修改密码");
-                break;
-            case R.id.tv_forget_password:
-                XToastUtils.info("忘记密码");
-                break;
+//            case R.id.tv_other_login:
+//                XToastUtils.info("修改密码");
+//                break;
+//            case R.id.tv_forget_password:
+//                XToastUtils.info("忘记密码");
+//                break;
             case R.id.tv_user_protocol:
                 XToastUtils.info("用户协议");
                 break;
@@ -145,7 +149,7 @@ public class LoginFragment extends BaseFragment {
 
     private void loginByVerifyCode(String user_name, String verifyCode){
         if(!"".equals(user_name)){
-            Log.d("Login","用户名不为空");
+            Log.d("Login","邮箱号不为空");
             if(!"".equals(verifyCode)){
 //                int result = ExchangeInfosWithAli.Login(user_name,verifyCode);
                 int result = 0;
@@ -155,17 +159,18 @@ public class LoginFragment extends BaseFragment {
                     e.printStackTrace();
                 }
                 switch (result){
+                    case -1:
+                        XToastUtils.info("请先申请验证码");
+                        break;
                     case 0:
                         XToastUtils.info("登录成功");
-                        popToBack();
                         ActivityUtils.startActivity(MainActivity.class);
                         break;
                     case 1:
-                        XToastUtils.info("用户不存在");
+                        XToastUtils.info("验证码过期啦，请重新请求验证码");
                         break;
                     case 2:
-                        Log.d("Login","密码错误");
-                        XToastUtils.info("密码错误");
+                        XToastUtils.info("验证码错误，请重新请求验证码");
                         break;
                     case 3:
                         XToastUtils.info("Json 传回来3啦！");
@@ -178,7 +183,7 @@ public class LoginFragment extends BaseFragment {
             }
         }
         else {
-            XToastUtils.info("用户名不能为空");
+            XToastUtils.info("邮箱号不能为空");
         }
 
     }

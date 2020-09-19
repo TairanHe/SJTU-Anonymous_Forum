@@ -131,7 +131,7 @@ public class RegisterFragment extends BaseFragment {
                     }
                 }
                 else {
-                    XToastUtils.info("用户名不能为空");
+                    XToastUtils.info("邮箱号不能为空");
                 }
                 break;
             case R.id.tv_user_protocol1:
