@@ -228,7 +228,7 @@ public class NewsFragment extends BaseFragment {
             refreshLayout.getLayout().postDelayed(() -> {
 //                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(block));
                 try {
-                    mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos_json(block));
+                    mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos_json(block));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

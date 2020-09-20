@@ -287,7 +287,7 @@ public class FloorFragment extends BaseFragment{
             refreshLayout.getLayout().postDelayed(() -> {
 //                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
                 try {
-                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid));
+                    mFloorsAdapter.loadMore(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
