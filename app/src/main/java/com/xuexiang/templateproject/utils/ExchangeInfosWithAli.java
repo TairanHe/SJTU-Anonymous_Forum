@@ -381,21 +381,23 @@ public class ExchangeInfosWithAli {
     public static int get_block_id(String name) {
         switch (name) {
             case "主干道":
-                return -1;
-            case "体育":
                 return 0;
-            case "音乐":
+            case "体育":
                 return 1;
-            case "科学":
+            case "音乐":
                 return 2;
-            case "数码":
+            case "科学":
                 return 3;
-            case "娱乐":
+            case "数码":
                 return 4;
-            case "情感":
+            case "娱乐":
                 return 5;
-            case "社会":
+            case "情感":
                 return 6;
+            case "社会":
+                return 7;
+            case "其他":
+                return 8;
             default:
                 return -1;
         }
@@ -403,22 +405,24 @@ public class ExchangeInfosWithAli {
 
     public static String get_block_name(int id) {
         switch (id) {
-            case -1:
-                return "主干道";
             case 0:
-                return "体育";
+                return "主干道";
             case 1:
-                return "音乐";
+                return "体育";
             case 2:
-                return "科学";
+                return "音乐";
             case 3:
-                return "数码";
+                return "科学";
             case 4:
-                return "娱乐";
+                return "数码";
             case 5:
-                return "情感";
+                return "娱乐";
             case 6:
+                return "情感";
+            case 7:
                 return "社会";
+            case 8:
+                return "其他";
             default:
                 return "主干道";
         }

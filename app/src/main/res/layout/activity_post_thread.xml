@@ -76,7 +76,7 @@
                         android:layout_weight="1"
                         android:checked="true"
                         android:button="@null"
-                        android:text="默认"
+                        android:text="体育"
                         android:textColor="@color/xui_btn_blue_select_color"
                         android:layout_marginHorizontal="10dp"
                         android:background="@drawable/radio_button_solid"/>
@@ -88,7 +88,7 @@
                         android:layout_marginTop="5sp"
                         android:layout_weight="1"
                         android:button="@null"
-                        android:text="体育"
+                        android:text="音乐"
                         android:textColor="@color/xui_btn_blue_select_color"
                         android:layout_marginHorizontal="10dp"
                         android:background="@drawable/radio_button_solid"/>
@@ -100,7 +100,7 @@
                         android:layout_marginTop="5sp"
                         android:layout_weight="1"
                         android:button="@null"
-                        android:text="音乐"
+                        android:text="科学"
                         android:textColor="@color/xui_btn_blue_select_color"
                         android:layout_marginHorizontal="10dp"
                         android:background="@drawable/radio_button_solid"/>
@@ -112,7 +112,7 @@
                         android:layout_marginTop="5sp"
                         android:layout_weight="1"
                         android:button="@null"
-                        android:text="科学"
+                        android:text="数码"
                         android:textColor="@color/xui_btn_blue_select_color"
                         android:layout_marginHorizontal="10dp"
                         android:background="@drawable/radio_button_solid"/>
@@ -131,7 +131,7 @@
                         android:layout_marginTop="5sp"
                         android:layout_weight="1"
                         android:button="@null"
-                        android:text="数码"
+                        android:text="娱乐"
                         android:textColor="@color/xui_btn_blue_select_color"
                         android:layout_marginHorizontal="10dp"
                         android:background="@drawable/radio_button_solid"/>
@@ -143,7 +143,7 @@
                         android:layout_marginTop="5sp"
                         android:layout_weight="1"
                         android:button="@null"
-                        android:text="娱乐"
+                        android:text="情感"
                         android:textColor="@color/xui_btn_blue_select_color"
                         android:layout_marginHorizontal="10dp"
                         android:background="@drawable/radio_button_solid"/>
@@ -155,7 +155,7 @@
                         android:layout_marginTop="5sp"
                         android:layout_weight="1"
                         android:button="@null"
-                        android:text="情感"
+                        android:text="社会"
                         android:textColor="@color/xui_btn_blue_select_color"
                         android:layout_marginHorizontal="10dp"
                         android:background="@drawable/radio_button_solid"/>
@@ -167,7 +167,7 @@
                         android:layout_marginTop="5sp"
                         android:layout_weight="1"
                         android:button="@null"
-                        android:text="社会"
+                        android:text="其他"
                         android:textColor="@color/xui_btn_blue_select_color"
                         android:layout_marginHorizontal="10dp"
                         android:background="@drawable/radio_button_solid"/>
