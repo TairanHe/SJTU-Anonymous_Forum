@@ -54,7 +54,7 @@ public class ExchangeInfosWithAli {
     }
 
     public static List<NewInfo> GetAliRecommandedNewsInfos_json(int block) throws JSONException {
-        JSONObject QueryJson = EncapsulateString_json("1", LastSeenThreadID + "", block + "", UserName, "0", "0");
+        JSONObject QueryJson = EncapsulateString_json("1", LastSeenThreadID + "", block + "", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsonToList_Recommmand(receive_message);
     }
