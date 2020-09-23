@@ -71,8 +71,6 @@
             <TextView
                 android:id="@+id/tv_tag"
                 style="@style/TextStyle.Explain"
-                android:layout_width="1dp"
-                android:layout_height="wrap_content"
                 android:layout_gravity="end|center_vertical"
                 tools:text="Java" />
 
