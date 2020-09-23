@@ -129,7 +129,6 @@ public class NewsFragment extends BaseFragment {
                     ImageLoader.get().loadImage(imageView, item.getIcon());
                     holder.text(R.id.tv_title, item.getTitle().toString().substring(0, 1));
                     holder.text(R.id.tv_sub_title, item.getTitle());
-
                     holder.click(R.id.ll_container, v -> {
 //                        点击板块，重设LastSeenThreadID
                         ExchangeInfosWithAli.LastSeenThreadID = "NULL";

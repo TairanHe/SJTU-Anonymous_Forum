@@ -141,6 +141,7 @@ public class FavorFragment extends BaseFragment {
                     holder.text(R.id.tv_title, model.getTitle());
                     holder.text(R.id.tv_summary, model.getSummary());
                     holder.text(R.id.tv_delete, "取消收藏");
+                    holder.text(R.id.tv_tag, model.getWhetherReadUpdate() == 0 ? "有新的更新～" : ""); // 这里设置已读未读
                     //holder.text(R.id.tv_comment, model.getComment() == 0 ? "评论" : String.valueOf(model.getComment()));
                     //holder.text(R.id.tv_read, "阅读量 " + model.getRead());
 //                    holder.image(R.id.iv_image, model.getImageUrl());

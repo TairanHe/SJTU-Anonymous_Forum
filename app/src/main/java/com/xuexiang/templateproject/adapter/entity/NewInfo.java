@@ -103,6 +103,10 @@ public class NewInfo {
      * 是否被删了
      */
     private int WhetherVisible;
+    /**
+     * 是否阅读了最新的更新 0是未读，1是已读
+     */
+    private int WhetherReadUpdate;
 
     public NewInfo() {
 
@@ -296,6 +300,15 @@ public class NewInfo {
     public NewInfo setLastUpdateTime(String lastUpdateTime){
         LastUpdateTime = lastUpdateTime;
         return this;
+    }
+
+    public NewInfo setWhetherReadUpdate(int whetherReadUpdate){
+        WhetherReadUpdate = whetherReadUpdate;
+        return this;
+    }
+
+    public int getWhetherReadUpdate(){
+        return WhetherReadUpdate;
     }
 
     @Override
