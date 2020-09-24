@@ -114,6 +114,10 @@ public class LoginFragment extends BaseFragment {
                 XToastUtils.info("发送验证码");
                 try {
                     int VarifiedEmailAddress = ExchangeInfosWithAli.Request_verifycode(etPhoneNumber.getEditValue());
+                    if (VarifiedEmailAddress == 0){
+                        XToastUtils.toast("请输入交大邮箱哟～");
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -173,7 +177,7 @@ public class LoginFragment extends BaseFragment {
                         XToastUtils.info("验证码错误，请重新请求验证码");
                         break;
                     case 3:
-                        XToastUtils.info("Json 传回来3啦！");
+                        XToastUtils.info("json传回来3");
                     default:
                         break;
                 }
