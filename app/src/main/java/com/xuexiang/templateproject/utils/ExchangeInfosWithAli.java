@@ -43,6 +43,11 @@ import static com.xuexiang.xutil.resource.ResUtils.getResources;
 public class ExchangeInfosWithAli {
     public static String LastSeenThreadID = "NULL";
     public static String LastSeenFloorID = "NULL";
+    public static String LastSeenFavorThreadID = "NULL";
+    public static String LastSeenMessageThreadID = "NULL";
+    public static String LastSeenMyThreadID = "NULL";
+    public static String LastSeenQueryThreadID = "NULL";
+    public static String LastSeenHotThreadID = "NULL";
     public static int WhetherFavour = 0;
     public static int WhetherPraise = 0;
     public static String UserName = "无可奉告";
@@ -102,7 +107,7 @@ public class ExchangeInfosWithAli {
 
 
     public static List<NewInfo> GetFavourThread_json() throws JSONException {
-        JSONObject QueryJson = EncapsulateString_json("6", "0", "0", "0", "0", "0");
+        JSONObject QueryJson = EncapsulateString_json("6", LastSeenFavorThreadID, "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsonToList_Favour(receive_message);
     }
@@ -111,9 +116,9 @@ public class ExchangeInfosWithAli {
 
 
     public static List<NewInfo> GetMyThread_json() throws JSONException {
-        JSONObject QueryJson = EncapsulateString_json("7", "0", "0", "0", "0", "0");
+        JSONObject QueryJson = EncapsulateString_json("7", LastSeenMyThreadID, "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
-        return DecapsulateJsonToList_Basic(receive_message);
+        return DecapsulateJsonToList_My(receive_message);
     }
 
 
@@ -157,16 +162,16 @@ public class ExchangeInfosWithAli {
 
 
     public static List<MessageInfo> GetMessageList_json() throws JSONException {
-        JSONObject QueryJson = EncapsulateString_json("a", "0", "0", "0", "0", "0");
+        JSONObject QueryJson = EncapsulateString_json("a", LastSeenMessageThreadID, "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsontoList_Message(receive_message);
     }
 
 
     public static List<NewInfo> Query_json(String queryString) throws JSONException {
-        JSONObject QueryJson= EncapsulateString_json("b", queryString, "0", "2", "0", "0");
+        JSONObject QueryJson= EncapsulateString_json("b", queryString, LastSeenQueryThreadID, "2", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
-        return DecapsulateJsonToList_Basic(receive_message);
+        return DecapsulateJsonToList_Query(receive_message);
     }
 
 
@@ -177,9 +182,9 @@ public class ExchangeInfosWithAli {
 
 
     public static List<NewInfo> HottestThread_json() throws JSONException {
-        JSONObject QueryJson = EncapsulateString_json("d", "0", "0", "0", "0", "0");
+        JSONObject QueryJson = EncapsulateString_json("d", LastSeenHotThreadID, "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
-        return DecapsulateJsonToList_Basic(receive_message);
+        return DecapsulateJsonToList_Hot(receive_message);
     }
 
 
@@ -269,6 +274,81 @@ public class ExchangeInfosWithAli {
         return list;
     }
 
+    private static List<NewInfo> DecapsulateJsonToList_Hot(JSONObject InputJson) throws JSONException {
+        LastSeenHotThreadID = InputJson.getString("LastSeenHotThreadID");
+        List<NewInfo> list = new ArrayList<>();
+        JSONArray thread_list= InputJson.getJSONArray("thread_list");
+        if (thread_list.length() < 1) {
+            XToastUtils.toast("空空如也");
+            return null;
+        }
+        for (int i = 0; i < thread_list.length(); i++) {
+            JSONObject thread = thread_list.getJSONObject(i);
+            Log.d("Thread:", thread.toString());
+            list.add(new NewInfo(thread.getString("ThreadID"),
+                    thread.getString("Title"),
+                    thread.getString("Summary"),
+                    get_block_name(Integer.parseInt(thread.getString("Block"))),
+                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Dislike")),
+                    Integer.parseInt(thread.getString("Comment")),
+                    Integer.parseInt(thread.getString("Read")),
+                    Integer.parseInt(thread.getString("WhetherLike")),
+                    thread.getString("LastUpdateTime")));
+        }
+        return list;
+    }
+
+    private static List<NewInfo> DecapsulateJsonToList_My(JSONObject InputJson) throws JSONException {
+        LastSeenMyThreadID = InputJson.getString("LastSeenMyThreadID");
+        List<NewInfo> list = new ArrayList<>();
+        JSONArray thread_list= InputJson.getJSONArray("thread_list");
+        if (thread_list.length() < 1) {
+            XToastUtils.toast("空空如也");
+            return null;
+        }
+        for (int i = 0; i < thread_list.length(); i++) {
+            JSONObject thread = thread_list.getJSONObject(i);
+            Log.d("Thread:", thread.toString());
+            list.add(new NewInfo(thread.getString("ThreadID"),
+                    thread.getString("Title"),
+                    thread.getString("Summary"),
+                    get_block_name(Integer.parseInt(thread.getString("Block"))),
+                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Dislike")),
+                    Integer.parseInt(thread.getString("Comment")),
+                    Integer.parseInt(thread.getString("Read")),
+                    Integer.parseInt(thread.getString("WhetherLike")),
+                    thread.getString("LastUpdateTime")));
+        }
+        return list;
+    }
+
+    private static List<NewInfo> DecapsulateJsonToList_Query(JSONObject InputJson) throws JSONException {
+        LastSeenQueryThreadID = InputJson.getString("LastSeenQueryThreadID");
+        List<NewInfo> list = new ArrayList<>();
+        JSONArray thread_list= InputJson.getJSONArray("thread_list");
+        if (thread_list.length() < 1) {
+            XToastUtils.toast("空空如也");
+            return null;
+        }
+        for (int i = 0; i < thread_list.length(); i++) {
+            JSONObject thread = thread_list.getJSONObject(i);
+            Log.d("Thread:", thread.toString());
+            list.add(new NewInfo(thread.getString("ThreadID"),
+                    thread.getString("Title"),
+                    thread.getString("Summary"),
+                    get_block_name(Integer.parseInt(thread.getString("Block"))),
+                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Dislike")),
+                    Integer.parseInt(thread.getString("Comment")),
+                    Integer.parseInt(thread.getString("Read")),
+                    Integer.parseInt(thread.getString("WhetherLike")),
+                    thread.getString("LastUpdateTime")));
+        }
+        return list;
+    }
+
     private static List<NewInfo> DecapsulateStringToList_Favour(String InputString) {
         ShowLog(InputString);
         List<NewInfo> list = new ArrayList<>();
@@ -290,6 +370,7 @@ public class ExchangeInfosWithAli {
     }
 
     private static List<NewInfo> DecapsulateJsonToList_Favour(JSONObject InputJson) throws JSONException {
+        LastSeenFavorThreadID = InputJson.getString("LastSeenFavorThreadID");
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
@@ -337,6 +418,7 @@ public class ExchangeInfosWithAli {
 
 
     private static List<MessageInfo> DecapsulateJsontoList_Message(JSONObject InputJson) throws JSONException {
+        LastSeenMessageThreadID = InputJson.getString("LastSeenMessageThreadID");
         List<MessageInfo> list = new ArrayList<>();
         Log.d("Message:", InputJson.toString());
         JSONArray message_list= InputJson.getJSONArray("message_list");

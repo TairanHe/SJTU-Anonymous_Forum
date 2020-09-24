@@ -175,6 +175,7 @@ public class SearchFragment extends BaseFragment {
             refreshLayout.getLayout().postDelayed(() -> {
                 Log.d("dyy",SearchActivity.queryString);
                 try {
+                    ExchangeInfosWithAli.LastSeenQueryThreadID = "NULL";
                     mNewsAdapter.refresh(ExchangeInfosWithAli.Query_json(SearchActivity.queryString));
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -188,7 +189,7 @@ public class SearchFragment extends BaseFragment {
             refreshLayout.getLayout().postDelayed(() -> {
                 Log.d("dyy",SearchActivity.queryString);
                 try {
-                    mNewsAdapter.refresh(ExchangeInfosWithAli.Query_json(SearchActivity.queryString));
+                    mNewsAdapter.loadMore(ExchangeInfosWithAli.Query_json(SearchActivity.queryString));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

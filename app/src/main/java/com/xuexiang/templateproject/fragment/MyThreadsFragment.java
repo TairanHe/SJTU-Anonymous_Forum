@@ -194,6 +194,7 @@ public class MyThreadsFragment extends BaseFragment {
             refreshLayout.getLayout().postDelayed(() -> {
                 //ExchangeInfosWithAli.NumOfQuery = 0;
                 try {
+                    ExchangeInfosWithAli.LastSeenMyThreadID = "NULL";
                     mNewsAdapter.refresh(ExchangeInfosWithAli.GetMyThread_json());
                 } catch (JSONException e) {
                     e.printStackTrace();

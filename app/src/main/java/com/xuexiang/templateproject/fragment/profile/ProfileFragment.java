@@ -25,6 +25,7 @@ import com.xuexiang.templateproject.fragment.FloorFragment;
 import com.xuexiang.templateproject.fragment.MyThreadsFragment;
 import com.xuexiang.templateproject.fragment.NoteFragment;
 import com.xuexiang.templateproject.fragment.SettingsFragment;
+import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
@@ -95,9 +96,11 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
     public void onClick(SuperTextView view) {
         switch(view.getId()) {
             case R.id.menu_note:
+                ExchangeInfosWithAli.LastSeenMessageThreadID = "NULL";
                 openNewPage(NoteFragment.class);
                 break;
             case R.id.menu_favorite:
+                ExchangeInfosWithAli.LastSeenFavorThreadID = "NULL";
                 openNewPage(FavorFragment.class);
                 break;
             case R.id.menu_settings:
@@ -107,6 +110,7 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
                 openNewPage(AboutFragment.class);
                 break;
             case R.id.menu_my_threads:
+                ExchangeInfosWithAli.LastSeenMyThreadID = "NULL";
                 openNewPage(MyThreadsFragment.class);
                 break;
             default:

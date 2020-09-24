@@ -182,6 +182,7 @@ public class NoteFragment extends BaseFragment {
             refreshLayout.getLayout().postDelayed(() -> {
                 //ExchangeInfosWithAli.NumOfQuery = 0;
                 try {
+                    ExchangeInfosWithAli.LastSeenMessageThreadID = "NULL";
                     mNewsAdapter.refresh(ExchangeInfosWithAli.GetMessageList_json());
                 } catch (JSONException e) {
                     e.printStackTrace();

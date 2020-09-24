@@ -185,6 +185,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         openNewPage(NoteFragment.class);
                         break;
                     case R.id.nav_search:
+                        ExchangeInfosWithAli.LastSeenQueryThreadID = "NULL";
                         Utils.showSearchDialog(this, null);
                     default:
                         XToastUtils.toast("点击了:" + menuItem.getTitle());
@@ -209,6 +210,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         int index = CollectionUtils.arrayIndexOf(mTitles, menuItem.getTitle());
         if (index != -1) {
             toolbar.setTitle(menuItem.getTitle());
+            XToastUtils.toast(index);
+            Log.d("INDEX!!!!!!!!!",Integer.toString(index));
             viewPager.setCurrentItem(index, false);
             return true;
         }
