@@ -75,7 +75,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        进入新帖子，重设LastSeenFloorID
-        ExchangeInfosWithAli.LastSeenThreadID = "NULL";
+        ExchangeInfosWithAli.LastSeenFloorID = "NULL";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_look_through);
 
