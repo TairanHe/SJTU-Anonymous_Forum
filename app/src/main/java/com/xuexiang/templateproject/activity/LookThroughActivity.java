@@ -315,7 +315,8 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(!TextUtils.isEmpty(charSequence) && charSequence.length()>2){
+//                if(!TextUtils.isEmpty(charSequence) && charSequence.length()>2)
+                if(!TextUtils.isEmpty(charSequence)){
                     bt_comment.setBackgroundColor(Color.parseColor("#FFB568"));
                 }else {
                     bt_comment.setBackgroundColor(Color.parseColor("#D8D8D8"));
@@ -369,7 +370,8 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                if(!TextUtils.isEmpty(charSequence) && charSequence.length()>2){
+//                if(!TextUtils.isEmpty(charSequence) && charSequence.length()>0)
+                if(!TextUtils.isEmpty(charSequence)){
                     bt_comment.setBackgroundColor(Color.parseColor("#FFB568"));
                 }else {
                     bt_comment.setBackgroundColor(Color.parseColor("#D8D8D8"));
