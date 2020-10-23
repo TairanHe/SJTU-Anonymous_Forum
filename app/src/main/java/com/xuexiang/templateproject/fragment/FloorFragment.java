@@ -198,7 +198,8 @@ public class FloorFragment extends BaseFragment{
                                     e.printStackTrace();
                                 }
                                 holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
-                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()+1) + "）");
+                                model.setPraise(model.getPraise()+1);
+                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
                             }
                             else if (model.getWhetherPraise() == 1)
                             {
@@ -211,6 +212,7 @@ public class FloorFragment extends BaseFragment{
                                     e.printStackTrace();
                                 }
                                 holder.image(R.id.iv_praise, R.drawable.ic_praise);
+                                model.setPraise(model.getPraise()-1);
                                 holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
                             }
                         }
@@ -232,7 +234,8 @@ public class FloorFragment extends BaseFragment{
                                     e.printStackTrace();
                                 }
                                 holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
-                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()+1) + "）");
+                                model.setPraise(model.getPraise()+1);
+                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
                             }
                             else if (model.getWhetherPraise() == 1)
                             {
@@ -245,7 +248,8 @@ public class FloorFragment extends BaseFragment{
                                     e.printStackTrace();
                                 }
                                 holder.image(R.id.iv_praise, R.drawable.ic_praise);
-                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()-1) + "）");
+                                model.setPraise(model.getPraise()-1);
+                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
                             }
                         }
                     });
