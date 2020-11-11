@@ -78,7 +78,7 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
         boolean isAgree = MMKVUtils.getBoolean("key_agree_privacy", false);
         if (isAgree) {
             try {
-                if (ExchangeInfosWithAli.VerifyToken_json() == 0){
+                if (ExchangeInfosWithAli.VerifyToken_json() == 1){
                     ActivityUtils.startActivity(MainActivity.class);
                     finish();
                 } else {
