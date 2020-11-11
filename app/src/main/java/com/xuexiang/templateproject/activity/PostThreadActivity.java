@@ -136,7 +136,7 @@ public class PostThreadActivity extends AppCompatActivity{
                         else {
 //                            ExchangeInfosWithAli.SendMyThread(thread_Title, thread_Content, sectionID);
                             try {
-                                ExchangeInfosWithAli.SendMyThread_json(thread_Title, thread_Content, sectionID);
+                                ExchangeInfosWithAli.SendMyThread_json(thread_Title, thread_Content, sectionID, "abc");
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

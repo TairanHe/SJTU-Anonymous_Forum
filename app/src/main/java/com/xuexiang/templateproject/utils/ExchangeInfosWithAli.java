@@ -72,8 +72,8 @@ public class ExchangeInfosWithAli {
         return DecapsulateJsonToList_floor(receive_message);
     }
 
-    public static void SendMyThread_json(String title, String content, int block) throws JSONException {
-        JSONObject QueryJson = EncapsulateString_json("3", title, block + "", content, "0", "0");
+    public static void SendMyThread_json(String title, String content, int block, String anonymous_type) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("3", title, block + "", content, anonymous_type, "0");
         RunTCP_json(QueryJson);
     }
 
