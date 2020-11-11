@@ -81,8 +81,13 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
                 if (ExchangeInfosWithAli.VerifyToken_json() == 1){
                     ActivityUtils.startActivity(MainActivity.class);
                     finish();
-                } else {
+                } else if (ExchangeInfosWithAli.VerifyToken_json() == 0){
                     ActivityUtils.startActivity(LoginActivity.class);
+                    finish();
+                }
+                else {
+                    XToastUtils.toast("您的账号已被封禁");
+//                    android.os.Process.killProcess(android.os.Process.myPid());
                     finish();
                 }
 
