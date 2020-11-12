@@ -139,7 +139,7 @@ public class FloorFragment extends BaseFragment{
 
                     }
 
-                    int resID = getResources().getIdentifier("xiaoren_"+model.getSpeakername(), "drawable", "com.xuexiang.templateproject");
+                    int resID = getResources().getIdentifier("xiaoren_"+ model.getSpeakername(), "drawable", "com.xuexiang.templateproject");
                     Drawable touxiang = getResources().getDrawable(resID);
                     holder.image(R.id.iv_touxiang, touxiang);
 
