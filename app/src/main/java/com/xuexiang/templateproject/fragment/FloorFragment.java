@@ -115,8 +115,8 @@ public class FloorFragment extends BaseFragment{
                 holder.text(R.id.tv_dyytitle, LookThroughActivity.threadtitle);
                 holder.text(R.id.tv_context, LookThroughActivity.threadsummary);
                 holder.text(R.id.tv_time, LookThroughActivity.threadposttime);
-                holder.text(R.id.tv_speaker, AnonymousName.getname("1", "abc"));
-                holder.image(R.id.iv_touxiang, R.drawable.xiaoren_1);
+                holder.text(R.id.tv_speaker, AnonymousName.getname("0", "abc"));
+                holder.image(R.id.iv_touxiang, R.drawable.xiaoren_0);
 
 //                holder.text(R.id.tv_action, "更多");
 //                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
