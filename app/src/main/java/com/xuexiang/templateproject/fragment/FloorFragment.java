@@ -115,7 +115,7 @@ public class FloorFragment extends BaseFragment{
                 holder.text(R.id.tv_dyytitle, LookThroughActivity.threadtitle);
                 holder.text(R.id.tv_context, LookThroughActivity.threadsummary);
                 holder.text(R.id.tv_time, LookThroughActivity.threadposttime);
-                holder.text(R.id.tv_speaker, AnonymousName.getname("1", "us_president"));
+                holder.text(R.id.tv_speaker, AnonymousName.getname("1", "abc"));
                 holder.image(R.id.iv_touxiang, R.drawable.xiaoren_1);
 
 //                holder.text(R.id.tv_action, "更多");
@@ -131,11 +131,11 @@ public class FloorFragment extends BaseFragment{
                     holder.text(R.id.tv_floor_id, "#" + model.getFloorID() + "楼");
                     if (model.getReplytoname().equals("NULL") || Integer.parseInt(model.getReplytofloor()) < 1)
                     {
-                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername(), "us_president"));
+                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername(), "abc"));
                     }
                     else
                     {
-                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername(),"us_president")+" 回复 " + AnonymousName.getname(model.getReplytoname(), "us_president"));
+                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername(),"abc")+" 回复 " + AnonymousName.getname(model.getReplytoname(), "abc"));
 
                     }
 
