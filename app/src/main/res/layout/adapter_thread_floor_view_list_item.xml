@@ -58,23 +58,39 @@
                     android:src="@mipmap/ic_launcher"
                     app:riv_is_circle="true" />
 
-                <TextView
-                    android:id="@+id/tv_speaker"
-                    style="@style/TextStyle.Explain"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="end|center_vertical"
-                    android:layout_marginStart="4dp"
-                    android:textColor="@color/xui_config_color_light_blue_gray"
-                    tools:text="#何泰然" />
-            </LinearLayout>
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/tv_speaker"
+                        style="@style/TextStyle.Explain"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="left|top"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/xui_config_color_light_blue_gray"
+                        tools:text="#何泰然" />
+
+                    <TextView
+                        android:id="@+id/tv_time"
+                        style="@style/TextStyle.Explain"
+                        android:layout_gravity="bottom"
+                        android:layout_marginStart="4dp"
+                        android:gravity="start"
+                        android:textSize="8dp"
+                        tools:text="1926-08-17 19:26:08" />
+
+                </LinearLayout>
+            </LinearLayout>
             <TextView
                 android:id="@+id/tv_floor_id"
                 style="@style/TextStyle.Explain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end|center_vertical"
+                android:layout_gravity="end|top"
                 tools:text="#多少楼" />
+
 
         </FrameLayout>
 

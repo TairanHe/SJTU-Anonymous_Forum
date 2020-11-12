@@ -57,6 +57,10 @@ public class FloorInfo {
      * 是否被点赞过
      */
     private int WhetherPraise;
+    /**
+     * 回复时间
+     */
+    private String RTime;
 
 
     public FloorInfo() {
@@ -72,6 +76,18 @@ public class FloorInfo {
         Context = context;
         Praise = praise;
         WhetherPraise = whetherpraise;
+    }
+
+    public FloorInfo(String floorID, String speakername, String replytoname, String replytofloor,
+                     String context, int praise, int whetherpraise, String rtime) {
+        FloorID = floorID;
+        Speakername = speakername;
+        Replytoname = replytoname;
+        Replytofloor = replytofloor;
+        Context = context;
+        Praise = praise;
+        WhetherPraise = whetherpraise;
+        RTime = rtime;
     }
 
 
@@ -142,6 +158,16 @@ public class FloorInfo {
         return this;
     }
 
+    public String getRTime() {
+        return RTime;
+    }
+
+    public FloorInfo setRTime(String rtime) {
+        RTime = rtime;
+        return this;
+    }
+
+
 
     @Override
     public String toString() {
@@ -151,7 +177,8 @@ public class FloorInfo {
                 ", Replytoname='" + Replytoname + '\'' +
                 ", Replytofloor='" + Replytofloor + '\'' +
                 ", Context='" + Context + '\'' +
-                ", Praise=" + Praise +
+                ", Praise='" + Praise + '\'' +
+                ", RTime=" + RTime +
                 '}';
     }
 }

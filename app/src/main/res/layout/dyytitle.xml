@@ -17,8 +17,8 @@
         app:cardElevation="4dp"
         app:cardPreventCornerOverlap="true"
         app:contentPaddingBottom="10dp"
-        app:contentPaddingLeft="6dp"
-        app:contentPaddingRight="6dp"
+        app:contentPaddingLeft="16dp"
+        app:contentPaddingRight="16dp"
         app:contentPaddingTop="5dp">
 
         <LinearLayout
@@ -50,20 +50,20 @@
                         style="@style/TextStyle.Title"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end|center_vertical"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="0dp"
                         android:textColor="@color/xui_config_color_pure_black"
                         android:singleLine="false"
                         android:gravity="left"
                         tools:text="标题" />
                 </LinearLayout>
 
-                <!--            <TextView-->
-                <!--                android:id="@+id/tv_tag"-->
-                <!--                style="@style/TextStyle.Explain"-->
-                <!--                android:layout_width="wrap_content"-->
-                <!--                android:layout_height="wrap_content"-->
-                <!--                android:layout_gravity="end|center_vertical"-->
-                <!--                tools:text="Java" />-->
+<!--                            <TextView-->
+<!--                                android:id="@+id/tv_tag"-->
+<!--                                style="@style/TextStyle.Explain"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_gravity="end|center_vertical"-->
+<!--                                tools:text="Java" />-->
 
             </FrameLayout>
             <LinearLayout
@@ -82,27 +82,33 @@
 
                     <com.xuexiang.xui.widget.imageview.RadiusImageView
                         android:id="@+id/iv_touxiang"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:src="@mipmap/ic_launcher"
                         app:riv_is_circle="true" />
 
-                    <TextView
-                        android:id="@+id/tv_speaker"
-                        style="@style/TextStyle.Explain"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_marginStart="4dp"
-                        android:textColor="@color/xui_config_color_light_blue_gray"
-                        tools:text="#何泰然" />
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_speaker"
+                            style="@style/TextStyle.Explain"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:layout_marginStart="4dp"
+                            android:textColor="@color/xui_config_color_light_blue_gray"
+                            tools:text="#何泰然" />
 
-                    <TextView
-                        android:id="@+id/tv_time"
-                        style="@style/TextStyle.Explain"
-                        android:layout_gravity="end|center_vertical"
-                        android:layout_marginLeft="130dp"
-                        android:gravity="start"
-                        tools:text="1926-08-17 19:26:08" />
+                        <TextView
+                            android:id="@+id/tv_time"
+                            style="@style/TextStyle.Explain"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="4dp"
+                            android:gravity="start"
+                            android:textSize="8dp"
+                            tools:text="1926-08-17 19:26:08" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <!--            <com.xuexiang.xui.widget.imageview.RadiusImageView-->
@@ -136,7 +142,6 @@
                         style="@style/TextStyle.Content"
                         android:ellipsize="end"
                         android:gravity="start|center_vertical"
-                        android:layout_marginStart="8dp"
                         android:maxLines="100"
                         android:singleLine="false"
                         android:textColor="@color/xui_config_color_pure_black"
@@ -162,29 +167,45 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp">
 
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:orientation="horizontal">-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_praise"
+                        android:layout_width="11dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_praise" />
+
+                    <TextView
+                        android:id="@+id/tv_praise"
+                        style="@style/TextStyle.Explain"
+                        android:layout_marginStart="5dp"
+                        android:layout_width="100dp"
+                        android:gravity="start"
+                        tools:text="点赞" />
 
 
-<!--&lt;!&ndash;                    <TextView&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:id="@+id/tv_name"&ndash;&gt;-->
-<!--&lt;!&ndash;                        style="@style/TextStyle.Explain"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_marginStart="8dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:layout_width="190dp"&ndash;&gt;-->
-<!--&lt;!&ndash;                        android:gravity="start"&ndash;&gt;-->
-<!--&lt;!&ndash;                        tools:text="Adam" />&ndash;&gt;-->
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_reply"
+                        android:layout_width="16dp"
+                        android:layout_height="16dp"
+                        android:layout_marginStart="130dp"
+                        android:src="@drawable/ic_comment" />
 
 
+                    <!--                注意，这个reply不用于显示有多少回复，而是一个用于用户回复的"按钮"-->
+                    <TextView
+                        android:id="@+id/tv_reply"
+                        style="@style/TextStyle.Explain"
+                        android:layout_marginStart="5dp"
+                        android:gravity="start"
+                        tools:text="回复" />
 
 
-<!--                    &lt;!&ndash;                注意，这个reply不用于显示有多少回复，而是一个用于用户回复的"按钮"&ndash;&gt;-->
-
-
-
-<!--                </LinearLayout>-->
+                </LinearLayout>
 
                 <!--            <TextView-->
                 <!--                android:id="@+id/tv_read"-->

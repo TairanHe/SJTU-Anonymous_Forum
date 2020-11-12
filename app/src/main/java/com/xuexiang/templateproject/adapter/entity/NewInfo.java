@@ -126,6 +126,21 @@ public class NewInfo {
         LastUpdateTime = lastupdatetime;
     }
 
+    public NewInfo(String threadID, String title, String summary, String block, int praise, int dislike, int comment, int read,
+                   int whetherlike, String lastupdatetime, String postTime) {
+        ThreadID = threadID;
+        Title = title;
+        Summary = summary;
+        Block = block;
+        Praise = praise;
+        Dislike = dislike;
+        Comment = comment;
+        Read = read;
+        WhetherLike = whetherlike;
+        LastUpdateTime = lastupdatetime;
+        PostTime = postTime;
+    }
+
 
     public NewInfo(String tag, String title, String summary, String imageUrl, String detailUrl) {
         Tag = tag;

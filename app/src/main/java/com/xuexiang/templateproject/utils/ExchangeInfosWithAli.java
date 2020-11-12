@@ -244,7 +244,8 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
-                    thread.getString("LastUpdateTime")));
+                    thread.getString("LastUpdateTime"),
+                    thread.getString("PostTime")));
         }
         return list;
     }
@@ -269,7 +270,8 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
-                    thread.getString("LastUpdateTime")));
+                    thread.getString("LastUpdateTime"),
+                    thread.getString("PostTime")));
         }
         return list;
     }
@@ -294,7 +296,8 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
-                    thread.getString("LastUpdateTime")));
+                    thread.getString("LastUpdateTime"),
+                    thread.getString("PostTime")));
         }
         return list;
     }
@@ -319,7 +322,8 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
-                    thread.getString("LastUpdateTime")));
+                    thread.getString("LastUpdateTime"),
+                    thread.getString("PostTime")));
         }
         return list;
     }
@@ -344,30 +348,31 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
-                    thread.getString("LastUpdateTime")));
+                    thread.getString("LastUpdateTime"),
+                    thread.getString("PostTime")));
         }
         return list;
     }
 
-    private static List<NewInfo> DecapsulateStringToList_Favour(String InputString) {
-        ShowLog(InputString);
-        List<NewInfo> list = new ArrayList<>();
-        String[] main_split = InputString.split("\023");
-        if (main_split.length < 1) {
-            XToastUtils.toast("您好像还没有收藏过帖子~");
-            return null;
-        }
-        for (String retval : main_split[0].split("\022")) {
-            String[] temp = retval.split("\021");
-            if (temp.length < 10) continue;
-            list.add(new NewInfo(temp[0], temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
-                    Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6]),
-                    Integer.parseInt(temp[7]), Integer.parseInt(temp[8]), temp[9])
-                    .setTag(Integer.parseInt(temp[10]) + ""));
-
-        }
-        return list;
-    }
+//    private static List<NewInfo> DecapsulateStringToList_Favour(String InputString) {
+//        ShowLog(InputString);
+//        List<NewInfo> list = new ArrayList<>();
+//        String[] main_split = InputString.split("\023");
+//        if (main_split.length < 1) {
+//            XToastUtils.toast("您好像还没有收藏过帖子~");
+//            return null;
+//        }
+//        for (String retval : main_split[0].split("\022")) {
+//            String[] temp = retval.split("\021");
+//            if (temp.length < 10) continue;
+//            list.add(new NewInfo(temp[0], temp[2], temp[3], get_block_name(Integer.parseInt(temp[1])),
+//                    Integer.parseInt(temp[4]), Integer.parseInt(temp[5]), Integer.parseInt(temp[6]),
+//                    Integer.parseInt(temp[7]), Integer.parseInt(temp[8]), temp[9])
+//                    .setTag(Integer.parseInt(temp[10]) + ""));
+//
+//        }
+//        return list;
+//    }
 
     private static List<NewInfo> DecapsulateJsonToList_Favour(JSONObject InputJson) throws JSONException {
         LastSeenFavorThreadID = InputJson.getString("LastSeenFavorThreadID");
@@ -389,7 +394,8 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
-                    thread.getString("LastUpdateTime")).setWhetherReadUpdate(Integer.parseInt(thread.getString("WhetherReadUpdate"))));
+                    thread.getString("LastUpdateTime"),
+                    thread.getString("PostTime")).setWhetherReadUpdate(Integer.parseInt(thread.getString("WhetherReadUpdate"))));
         }
         return list;
     }
@@ -410,7 +416,8 @@ public class ExchangeInfosWithAli {
                     floor.getString("Replytofloor"),
                     floor.getString("Context"),
                     Integer.parseInt(floor.getString("Praise")),
-                    Integer.parseInt(floor.getString("WhetherPraise"))));
+                    Integer.parseInt(floor.getString("WhetherPraise")),
+                    floor.getString("RTime")));
         }
         return list;
 

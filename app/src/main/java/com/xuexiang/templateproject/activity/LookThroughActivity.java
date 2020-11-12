@@ -61,6 +61,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
     public static int favournum;
     public static int praisenum;
     public static int dislikenum;
+    public static String lastupdatetime;
 
     private TextView bt_comment;
     private ImageView bt_favor;

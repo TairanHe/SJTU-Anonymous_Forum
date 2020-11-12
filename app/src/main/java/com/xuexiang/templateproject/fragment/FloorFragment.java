@@ -17,6 +17,7 @@
 
 package com.xuexiang.templateproject.fragment;
 
+import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
@@ -35,6 +36,12 @@ import com.xuexiang.templateproject.adapter.entity.FloorInfo;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.xuexiang.templateproject.utils.AnonymousName;
+import com.xuexiang.templateproject.utils.DateHelper;
+
+import java.text.ParseException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
@@ -108,15 +115,25 @@ public class FloorFragment extends BaseFragment{
         //findViewById(R.layout.reply_item);
 
 
+
+
         //帖子的标题
         SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.dyytitle) {
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
                 holder.text(R.id.tv_dyytitle, LookThroughActivity.threadtitle);
                 holder.text(R.id.tv_context, LookThroughActivity.threadsummary);
-                holder.text(R.id.tv_time, LookThroughActivity.threadposttime);
+
+                try {
+                    holder.text(R.id.tv_time, DateHelper.getPastTimebyString(LookThroughActivity.threadposttime));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 holder.text(R.id.tv_speaker, AnonymousName.getname("0", "abc"));
                 holder.image(R.id.iv_touxiang, R.drawable.xiaoren_0);
+                holder.text(R.id.tv_praise,  "点赞（" + LookThroughActivity.praisenum + "）");
+                holder.text(R.id.tv_reply,  "评论");
+
 
 //                holder.text(R.id.tv_action, "更多");
 //                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
@@ -129,6 +146,11 @@ public class FloorFragment extends BaseFragment{
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, FloorInfo model) {
                 if (model != null) {
                     holder.text(R.id.tv_floor_id, "#" + model.getFloorID() + "楼");
+                    try {
+                        holder.text(R.id.tv_time,  DateHelper.getPastTimebyString(model.getRTime()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     if (model.getReplytoname().equals("NULL") || Integer.parseInt(model.getReplytofloor()) < 1)
                     {
                         holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername(), "abc"));

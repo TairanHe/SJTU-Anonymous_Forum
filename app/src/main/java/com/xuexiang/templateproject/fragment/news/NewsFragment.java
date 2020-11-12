@@ -183,7 +183,7 @@ public class NewsFragment extends BaseFragment {
                             LookThroughActivity.threadid = model.getThreadID();
                             LookThroughActivity.threadtitle = model.getTitle();
                             LookThroughActivity.threadsummary = model.getSummary();
-                            LookThroughActivity.threadposttime = model.getLastUpdateTime();
+                            LookThroughActivity.threadposttime = model.getPostTime();
                             LookThroughActivity.praisenum = model.getPraise();
                             LookThroughActivity.dislikenum = model.getDislike();
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
