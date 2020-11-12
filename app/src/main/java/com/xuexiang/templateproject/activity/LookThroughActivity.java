@@ -269,7 +269,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
      * by moos on 2018/04/20
      * func:弹出评论框
      */
-    private void showCommentDialog(){
+    public void showCommentDialog(){
         dialog = new BottomSheetDialog(this);
         View commentView = LayoutInflater.from(this).inflate(R.layout.comment_dialog_layout,null);
         final EditText commentText = (EditText) commentView.findViewById(R.id.dialog_comment_et);

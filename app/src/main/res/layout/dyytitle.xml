@@ -162,58 +162,7 @@
                 <!--                app:riv_corner_radius="5dp" />-->
 
             </LinearLayout>
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_praise"
-                        android:layout_width="11dp"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ic_praise" />
-
-                    <TextView
-                        android:id="@+id/tv_praise"
-                        style="@style/TextStyle.Explain"
-                        android:layout_marginStart="5dp"
-                        android:layout_width="100dp"
-                        android:gravity="start"
-                        tools:text="点赞" />
-
-
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/iv_reply"
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
-                        android:layout_marginStart="130dp"
-                        android:src="@drawable/ic_comment" />
-
-
-                    <!--                注意，这个reply不用于显示有多少回复，而是一个用于用户回复的"按钮"-->
-                    <TextView
-                        android:id="@+id/tv_reply"
-                        style="@style/TextStyle.Explain"
-                        android:layout_marginStart="5dp"
-                        android:gravity="start"
-                        tools:text="回复" />
-
-
-                </LinearLayout>
-
-                <!--            <TextView-->
-                <!--                android:id="@+id/tv_read"-->
-                <!--                style="@style/TextStyle.Explain"-->
-                <!--                android:layout_gravity="center_vertical|end"-->
-                <!--                tools:text="阅读量 123" />-->
-
-            </FrameLayout>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>

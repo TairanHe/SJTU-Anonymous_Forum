@@ -30,10 +30,10 @@
             android:name=".activity.LoginActivity"
             android:label="登录"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".activity.RegisterActivity"
-            android:label="注册"
-            android:theme="@style/AppTheme.NoActionBar" />
+<!--        <activity-->
+<!--            android:name=".activity.RegisterActivity"-->
+<!--            android:label="注册"-->
+<!--            android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
             android:name=".activity.PostThreadActivity"
             android:label="我要发帖"

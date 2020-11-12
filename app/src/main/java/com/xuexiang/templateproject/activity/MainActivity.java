@@ -222,7 +222,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         Log.d("dyy:", String.valueOf(item.getItemId()));
         //Log.d("dyy:", String.valueOf(R.id.action_privacy));
         switch (item.getItemId()) {
-            case R.id.action_privacy:
+            case R.id.action_post:
                 //Utils.showPrivacyDialog(this, null);
                 Intent intent = new Intent(MainActivity.this, PostThreadActivity.class);
                 startActivity(intent);

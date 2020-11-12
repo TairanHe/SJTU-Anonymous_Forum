@@ -131,12 +131,6 @@ public class FloorFragment extends BaseFragment{
                 }
                 holder.text(R.id.tv_speaker, AnonymousName.getname("0", "abc"));
                 holder.image(R.id.iv_touxiang, R.drawable.xiaoren_0);
-                holder.text(R.id.tv_praise,  "点赞（" + LookThroughActivity.praisenum + "）");
-                holder.text(R.id.tv_reply,  "评论");
-
-
-//                holder.text(R.id.tv_action, "更多");
-//                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
             }
         };
 
