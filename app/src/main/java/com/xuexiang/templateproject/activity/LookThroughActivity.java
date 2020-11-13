@@ -53,6 +53,9 @@ import com.xuexiang.templateproject.utils.XToastUtils;
 
 import org.json.JSONException;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class LookThroughActivity extends AppCompatActivity implements View.OnClickListener{
     public static String threadid;
     public static String threadtitle;
@@ -288,8 +291,23 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onClick(View view) {
                 String commentContent = commentText.getText().toString().trim();
-                if(!TextUtils.isEmpty(commentContent)){
-
+                Matcher comment_matcher = Pattern.compile("\r\n|\r|\n").matcher(commentContent);
+                int comment_lines = 1;
+                while (comment_matcher.find())
+                {
+                    comment_lines ++;
+                }
+                if(TextUtils.isEmpty(commentContent)){
+                    XToastUtils.toast("评论内容不能为空");
+                    Toast.makeText(LookThroughActivity.this,"评论内容不能为空",Toast.LENGTH_SHORT).show();
+                }
+                else if (comment_lines > 20){
+                    XToastUtils.toast("评论内容不能提行超过20次哦～");
+                }
+                else if (commentContent.length() > 817){
+                    XToastUtils.toast("评论内容太长啦～不能长于817个字符哟");
+                }
+                else {
                     //commentOnWork(commentContent);
                     dialog.dismiss();
                     try {
@@ -301,10 +319,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 //                    adapter.addTheCommentData(detailBean);
                     XToastUtils.toast("评论成功");
 //                    Toast.makeText(LookThroughActivity.this,"评论成功",Toast.LENGTH_SHORT).show();
-
-                }else {
-                    XToastUtils.toast("评论内容不能为空");
-//                    Toast.makeText(LookThroughActivity.this,"评论内容不能为空",Toast.LENGTH_SHORT).show();
+//
                 }
             }
         });
@@ -348,7 +363,24 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             @Override
             public void onClick(View view) {
                 String replyContent = commentText.getText().toString().trim();
-                if(!TextUtils.isEmpty(replyContent)){
+                Matcher reply_matcher = Pattern.compile("\r\n|\r|\n").matcher(replyContent);
+                int reply_lines = 1;
+                while (reply_matcher.find())
+                {
+                    reply_lines ++;
+                }
+                if(TextUtils.isEmpty(replyContent)){
+                    XToastUtils.toast("评论内容不能为空");
+//                    Toast.makeText(LookThroughActivity.this,"回复内容不能为空",Toast.LENGTH_SHORT).show();
+
+                }
+                else if (reply_lines > 20){
+                    XToastUtils.toast("评论内容不能提行超过20次哦～");
+                }
+                else if (replyContent.length() > 817){
+                    XToastUtils.toast("评论内容太长啦～不能长于817个字符哟");
+                }
+                else {
                     dialog.dismiss();
                     try {
                         ExchangeInfosWithAli.AliReplyFloor_json(LookThroughActivity.threadid, replyContent , position);
@@ -357,9 +389,6 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                     }
                     XToastUtils.toast("回复成功");
 //                    Toast.makeText(LookThroughActivity.this,"回复成功",Toast.LENGTH_SHORT).show();
-                }else {
-                    XToastUtils.toast("回复内容不能为空");
-//                    Toast.makeText(LookThroughActivity.this,"回复内容不能为空",Toast.LENGTH_SHORT).show();
                 }
             }
         });
