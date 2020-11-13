@@ -239,7 +239,7 @@ public class ExchangeInfosWithAli {
                     thread.getString("Title"),
                     thread.getString("Summary"),
                     get_block_name(Integer.parseInt(thread.getString("Block"))),
-                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Like")),
                     Integer.parseInt(thread.getString("Dislike")),
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
@@ -265,7 +265,7 @@ public class ExchangeInfosWithAli {
                     thread.getString("Title"),
                     thread.getString("Summary"),
                     get_block_name(Integer.parseInt(thread.getString("Block"))),
-                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Like")),
                     Integer.parseInt(thread.getString("Dislike")),
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
@@ -291,7 +291,7 @@ public class ExchangeInfosWithAli {
                     thread.getString("Title"),
                     thread.getString("Summary"),
                     get_block_name(Integer.parseInt(thread.getString("Block"))),
-                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Like")),
                     Integer.parseInt(thread.getString("Dislike")),
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
@@ -317,7 +317,7 @@ public class ExchangeInfosWithAli {
                     thread.getString("Title"),
                     thread.getString("Summary"),
                     get_block_name(Integer.parseInt(thread.getString("Block"))),
-                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Like")),
                     Integer.parseInt(thread.getString("Dislike")),
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
@@ -343,7 +343,7 @@ public class ExchangeInfosWithAli {
                     thread.getString("Title"),
                     thread.getString("Summary"),
                     get_block_name(Integer.parseInt(thread.getString("Block"))),
-                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Like")),
                     Integer.parseInt(thread.getString("Dislike")),
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
@@ -389,7 +389,7 @@ public class ExchangeInfosWithAli {
                     thread.getString("Title"),
                     thread.getString("Summary"),
                     get_block_name(Integer.parseInt(thread.getString("Block"))),
-                    Integer.parseInt(thread.getString("Praise")),
+                    Integer.parseInt(thread.getString("Like")),
                     Integer.parseInt(thread.getString("Dislike")),
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
@@ -404,7 +404,7 @@ public class ExchangeInfosWithAli {
     private static List<FloorInfo> DecapsulateJsonToList_floor(JSONObject InputJson) throws JSONException {
         List<FloorInfo> list = new ArrayList<>();
         JSONArray floor_list= InputJson.getJSONArray("floor_list");
-        WhetherPraise = Integer.parseInt(InputJson.getString("WhetherPraise"));
+        WhetherPraise = Integer.parseInt(InputJson.getString("WhetherLike"));
         WhetherFavour = Integer.parseInt(InputJson.getString("WhetherFavour"));
         LastSeenFloorID = InputJson.getString("LastSeenFloorID");
         for (int i = 0; i < floor_list.length(); i++) {
@@ -415,8 +415,8 @@ public class ExchangeInfosWithAli {
                     floor.getString("Replytoname"),
                     floor.getString("Replytofloor"),
                     floor.getString("Context"),
-                    Integer.parseInt(floor.getString("Praise")),
-                    Integer.parseInt(floor.getString("WhetherPraise")),
+                    Integer.parseInt(floor.getString("Like")),
+                    Integer.parseInt(floor.getString("WhetherLike")),
                     floor.getString("RTime")));
         }
         return list;

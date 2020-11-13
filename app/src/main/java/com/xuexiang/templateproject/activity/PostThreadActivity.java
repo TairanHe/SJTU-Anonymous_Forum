@@ -29,12 +29,15 @@ import com.xuexiang.xui.widget.edittext.MultiLineEditText;
 
 import org.json.JSONException;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class PostThreadActivity extends AppCompatActivity{
 
     private CompoundButton RG;
     private RadioGroup RG1, RG2;
-    private ClearEditText clearEditText;
-    private MultiLineEditText multiLineEditText;
+//    private ClearEditText clearEditText, ;
+    private MultiLineEditText multiLineEditText, titlemultiLineEditText;
     private ButtonView buttonView;
     private RadioButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;
     private int sectionID = 1;
@@ -49,7 +52,8 @@ public class PostThreadActivity extends AppCompatActivity{
         RG1 = findViewById(R.id.radio_group1);
         RG2 = findViewById(R.id.radio_group2);
         buttonView = findViewById(R.id.button_submit);
-        clearEditText = findViewById(R.id.clearEditText);
+//        clearEditText = findViewById(R.id.clearEditText);
+        titlemultiLineEditText = findViewById(R.id.titlemultiLineEditText);
         multiLineEditText = findViewById(R.id.multiLineEditText);
         btn1 = findViewById(R.id.section1);btn2 = findViewById(R.id.section2);btn3 = findViewById(R.id.section3);btn4 = findViewById(R.id.section4);
         btn5 = findViewById(R.id.section5);btn6 = findViewById(R.id.section6);btn7 = findViewById(R.id.section7);btn8 = findViewById(R.id.section8);
@@ -126,11 +130,32 @@ public class PostThreadActivity extends AppCompatActivity{
             public void onClick(View view) {
                 switch (view.getId()){
                     case R.id.button_submit:
-                        String thread_Title = clearEditText.getText().toString();
+                        String thread_Title = titlemultiLineEditText.getContentText().toString();
                         String thread_Content = multiLineEditText.getContentText().toString();
+
+                        Matcher title_matcher = Pattern.compile("\r\n|\r|\n").matcher(thread_Title);
+                        int title_lines = 1;
+                        while (title_matcher.find())
+                        {
+                            title_lines ++;
+                        }
+
+                        Matcher content_matcher = Pattern.compile("\r\n|\r|\n").matcher(thread_Content);
+                        int content_lines = 1;
+                        while (content_matcher.find())
+                        {
+                            content_lines ++;
+                        }
+
                         if(thread_Title.isEmpty() || thread_Content.isEmpty()){
                             XToastUtils.toast("输入不能为空");
 //                            Toast.makeText(PostThreadActivity.this, "输入不能为空", Toast.LENGTH_LONG).show();
+                        }
+                        else if(title_lines > 1){
+                            XToastUtils.toast("标题不能提行哦～");
+                        }
+                        else if(content_lines > 20){
+                            XToastUtils.toast("帖子内容不能提行超过20次哦～");
                         }
                         else if (thread_Title.length() > 40){
                             XToastUtils.toast("标题长度不能长于40个字符哟");
