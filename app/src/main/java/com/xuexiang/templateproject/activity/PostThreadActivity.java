@@ -42,7 +42,6 @@ public class PostThreadActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("dyy:", "12345890");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_thread);
         Toolbar toolbar = findViewById(R.id.toolbar2);
@@ -133,10 +132,16 @@ public class PostThreadActivity extends AppCompatActivity{
                             XToastUtils.toast("输入不能为空");
 //                            Toast.makeText(PostThreadActivity.this, "输入不能为空", Toast.LENGTH_LONG).show();
                         }
+                        else if (thread_Title.length() > 40){
+                            XToastUtils.toast("标题长度不能长于40个字符哟");
+                        }
+                        else if (thread_Content.length() > 817){
+                            XToastUtils.toast("发帖内容太长啦～不能长于817个字符哟");
+                        }
                         else {
 //                            ExchangeInfosWithAli.SendMyThread(thread_Title, thread_Content, sectionID);
                             try {
-                                ExchangeInfosWithAli.SendMyThread_json(thread_Title, thread_Content, sectionID, "abc");
+                                ExchangeInfosWithAli.SendMyThread_json(thread_Title, thread_Content, sectionID, "abc", 0);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

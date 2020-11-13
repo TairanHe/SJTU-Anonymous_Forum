@@ -197,7 +197,9 @@
                 android:id="@+id/multiLineEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp" />
+                android:layout_marginTop="10dp"
+                app:mlet_maxCount = "817"/>
+
 
             <com.xuexiang.xui.widget.button.ButtonView
                 android:id="@+id/button_submit"
