@@ -130,7 +130,7 @@ public class FloorFragment extends BaseFragment{
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                XToastUtils.toast(LookThroughActivity.anonymousType);
+//                XToastUtils.toast(LookThroughActivity.anonymousType);
                 holder.text(R.id.tv_speaker, AnonymousName.getname("0", LookThroughActivity.anonymousType));
                 holder.image(R.id.iv_touxiang, R.drawable.xiaoren_0);
             }
