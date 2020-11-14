@@ -142,7 +142,7 @@ public class MyThreadsFragment extends BaseFragment {
                     holder.text(R.id.tv_praise, model.getPraise() == 0 ? "点赞" : String.valueOf(model.getPraise()));
                     holder.text(R.id.tv_comment, model.getComment() == 0 ? "评论" : String.valueOf(model.getComment()));
                     holder.text(R.id.tv_read, "阅读量 " + model.getRead());
-                    holder.text(R.id.tv_delete, "删除");
+//                    holder.text(R.id.tv_delete, "删除");
 //                    holder.image(R.id.iv_image, model.getImageUrl());
 
                     //holder.click(R.id.card_view, v -> Utils.goWeb(getContext(), model.getDetailUrl()));
@@ -159,17 +159,18 @@ public class MyThreadsFragment extends BaseFragment {
                             startActivity(intent);
                         }
                     });
-                    holder.click(R.id.mt_delete, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            LookThroughActivity.threadid = model.getThreadID();
-//                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
-//                            startActivity(intent);
-                            //XToastUtils.toast("点击删除！");
-                            Utils.showDeleteMyThreadDialog(getActivity(), null, MyThreadsFragment.this, LookThroughActivity.threadid);
+//                    holder.click(R.id.mt_delete, new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            LookThroughActivity.threadid = model.getThreadID();
+////                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
+////                            startActivity(intent);
+//                            //XToastUtils.toast("点击删除！");
+//                            Utils.showDeleteMyThreadDialog(getActivity(), null, MyThreadsFragment.this, LookThroughActivity.threadid);
+//
+//                        }
+//                    });
 
-                        }
-                    });
 
                 }
             }
