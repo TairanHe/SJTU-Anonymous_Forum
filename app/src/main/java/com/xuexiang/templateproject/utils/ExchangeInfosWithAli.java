@@ -450,10 +450,19 @@ public class ExchangeInfosWithAli {
             Log.d("Message:", message.toString());
             list.add(new MessageInfo(message.getString("ThreadID"),
                     message.getString("Title"),
-                    Integer.parseInt(message.getString("Type")),
-                    Integer.parseInt(message.getString("Judge")),
+                    message.getString("Summary"),
+                    get_block_name(Integer.parseInt(message.getString("Block"))),
+                    Integer.parseInt(message.getString("Like")),
+                    Integer.parseInt(message.getString("Dislike")),
+                    Integer.parseInt(message.getString("Comment")),
+                    Integer.parseInt(message.getString("Read")),
+                    Integer.parseInt(message.getString("WhetherLike")),
+                    message.getString("LastUpdateTime"),
                     message.getString("PostTime"),
-                    message.getString("Summary")));
+                    message.getString("AnonymousType"),
+                    Integer.parseInt(message.getString("RandomSeed")),
+                    Integer.parseInt(message.getString("Type")),
+                    Integer.parseInt(message.getString("Judge"))));
         }
         return list;
 //        ThreadID = threadid;
