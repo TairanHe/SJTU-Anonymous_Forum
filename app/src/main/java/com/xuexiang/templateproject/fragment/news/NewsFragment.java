@@ -186,6 +186,8 @@ public class NewsFragment extends BaseFragment {
                             LookThroughActivity.threadposttime = model.getPostTime();
                             LookThroughActivity.praisenum = model.getPraise();
                             LookThroughActivity.dislikenum = model.getDislike();
+                            LookThroughActivity.anonymousType = model.getAnonymousType();
+                            LookThroughActivity.randomSeed = model.getRandomSeed();
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
                             startActivity(intent);
                         }

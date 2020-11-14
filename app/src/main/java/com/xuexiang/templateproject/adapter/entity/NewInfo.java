@@ -108,26 +108,44 @@ public class NewInfo {
      */
     private int WhetherReadUpdate;
 
+    private String AnonymousType;
+
+    private int RandomSeed;
+
     public NewInfo() {
 
     }
 
+//    public NewInfo(String threadID, String title, String summary, String block, int praise, int dislike, int comment, int read,
+//                   int whetherlike, String lastupdatetime) {
+//        ThreadID = threadID;
+//        Title = title;
+//        Summary = summary;
+//        Block = block;
+//        Praise = praise;
+//        Dislike = dislike;
+//        Comment = comment;
+//        Read = read;
+//        WhetherLike = whetherlike;
+//        LastUpdateTime = lastupdatetime;
+//    }
+//
+//    public NewInfo(String threadID, String title, String summary, String block, int praise, int dislike, int comment, int read,
+//                   int whetherlike, String lastupdatetime, String postTime) {
+//        ThreadID = threadID;
+//        Title = title;
+//        Summary = summary;
+//        Block = block;
+//        Praise = praise;
+//        Dislike = dislike;
+//        Comment = comment;
+//        Read = read;
+//        WhetherLike = whetherlike;
+//        LastUpdateTime = lastupdatetime;
+//        PostTime = postTime;
+//    }
     public NewInfo(String threadID, String title, String summary, String block, int praise, int dislike, int comment, int read,
-                   int whetherlike, String lastupdatetime) {
-        ThreadID = threadID;
-        Title = title;
-        Summary = summary;
-        Block = block;
-        Praise = praise;
-        Dislike = dislike;
-        Comment = comment;
-        Read = read;
-        WhetherLike = whetherlike;
-        LastUpdateTime = lastupdatetime;
-    }
-
-    public NewInfo(String threadID, String title, String summary, String block, int praise, int dislike, int comment, int read,
-                   int whetherlike, String lastupdatetime, String postTime) {
+                   int whetherlike, String lastupdatetime, String postTime, String anonymousType, int randomSeed) {
         ThreadID = threadID;
         Title = title;
         Summary = summary;
@@ -139,7 +157,10 @@ public class NewInfo {
         WhetherLike = whetherlike;
         LastUpdateTime = lastupdatetime;
         PostTime = postTime;
+        AnonymousType = anonymousType;
+        RandomSeed = randomSeed;
     }
+
 
 
     public NewInfo(String tag, String title, String summary, String imageUrl, String detailUrl) {
@@ -304,6 +325,24 @@ public class NewInfo {
 
     public NewInfo setPostTime(String posttime){
         PostTime = posttime;
+        return this;
+    }
+
+    public String getAnonymousType(){
+        return AnonymousType;
+    }
+
+    public NewInfo setAnonymousType(String anonymousType){
+        AnonymousType = anonymousType;
+        return this;
+    }
+
+    public int getRandomSeed(){
+        return RandomSeed;
+    }
+
+    public NewInfo setRandomSeed(int randomSeed){
+        RandomSeed = randomSeed;
         return this;
     }
 

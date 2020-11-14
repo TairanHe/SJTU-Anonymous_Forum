@@ -35,12 +35,15 @@ import java.util.regex.Pattern;
 public class PostThreadActivity extends AppCompatActivity{
 
     private CompoundButton RG;
+    private int sectionID = 1;
     private RadioGroup RG1, RG2;
-//    private ClearEditText clearEditText, ;
     private MultiLineEditText multiLineEditText, titlemultiLineEditText;
     private ButtonView buttonView;
     private RadioButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;
-    private int sectionID = 1;
+
+    private RadioGroup RG_anonymous;
+    private RadioButton btn_abc, btn_us_president;
+    private String anonymous_type = "abc";
 
 
     @Override
@@ -51,12 +54,15 @@ public class PostThreadActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
         RG1 = findViewById(R.id.radio_group1);
         RG2 = findViewById(R.id.radio_group2);
+        RG_anonymous = findViewById(R.id.anonymous_group1);
+
         buttonView = findViewById(R.id.button_submit);
 //        clearEditText = findViewById(R.id.clearEditText);
         titlemultiLineEditText = findViewById(R.id.titlemultiLineEditText);
         multiLineEditText = findViewById(R.id.multiLineEditText);
         btn1 = findViewById(R.id.section1);btn2 = findViewById(R.id.section2);btn3 = findViewById(R.id.section3);btn4 = findViewById(R.id.section4);
         btn5 = findViewById(R.id.section5);btn6 = findViewById(R.id.section6);btn7 = findViewById(R.id.section7);btn8 = findViewById(R.id.section8);
+        btn_abc = findViewById(R.id.abc); btn_us_president = findViewById(R.id.us_president);
 
 
         RG1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -125,6 +131,24 @@ public class PostThreadActivity extends AppCompatActivity{
             }
         });
 
+        RG_anonymous.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.abc:
+                        if (btn_abc.isChecked()){
+                            anonymous_type = "abc";
+                        }
+                        break;
+                    case R.id.us_president:
+                        if (btn_us_president.isChecked()){
+                            anonymous_type = "us_president";
+                        }
+                }
+
+            }
+        });
+
         buttonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,7 +190,7 @@ public class PostThreadActivity extends AppCompatActivity{
                         else {
 //                            ExchangeInfosWithAli.SendMyThread(thread_Title, thread_Content, sectionID);
                             try {
-                                ExchangeInfosWithAli.SendMyThread_json(thread_Title, thread_Content, sectionID, "abc", 0);
+                                ExchangeInfosWithAli.SendMyThread_json(thread_Title, thread_Content, sectionID, anonymous_type, 0);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

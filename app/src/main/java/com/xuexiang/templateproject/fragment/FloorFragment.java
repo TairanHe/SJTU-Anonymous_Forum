@@ -126,10 +126,12 @@ public class FloorFragment extends BaseFragment{
 
                 try {
                     holder.text(R.id.tv_time, DateHelper.getPastTimebyString(LookThroughActivity.threadposttime));
+
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
-                holder.text(R.id.tv_speaker, AnonymousName.getname("0", "abc"));
+                XToastUtils.toast(LookThroughActivity.anonymousType);
+                holder.text(R.id.tv_speaker, AnonymousName.getname("0", LookThroughActivity.anonymousType));
                 holder.image(R.id.iv_touxiang, R.drawable.xiaoren_0);
             }
         };
@@ -147,11 +149,11 @@ public class FloorFragment extends BaseFragment{
                     }
                     if (model.getReplytoname().equals("NULL") || Integer.parseInt(model.getReplytofloor()) < 1)
                     {
-                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername(), "abc"));
+                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername(), LookThroughActivity.anonymousType));
                     }
                     else
                     {
-                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername(),"abc")+" 回复 " + AnonymousName.getname(model.getReplytoname(), "abc"));
+                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername(),LookThroughActivity.anonymousType)+" 回复 " + AnonymousName.getname(model.getReplytoname(), LookThroughActivity.anonymousType));
 
                     }
 

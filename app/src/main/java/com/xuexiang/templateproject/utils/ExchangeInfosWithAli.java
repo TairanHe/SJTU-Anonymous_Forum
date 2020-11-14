@@ -245,7 +245,9 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
                     thread.getString("LastUpdateTime"),
-                    thread.getString("PostTime")));
+                    thread.getString("PostTime"),
+                    thread.getString("AnonymousType"),
+                    Integer.parseInt(thread.getString("RandomSeed"))));
         }
         return list;
     }
@@ -271,7 +273,9 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
                     thread.getString("LastUpdateTime"),
-                    thread.getString("PostTime")));
+                    thread.getString("PostTime"),
+                    thread.getString("AnonymousType"),
+                    Integer.parseInt(thread.getString("RandomSeed"))));
         }
         return list;
     }
@@ -297,7 +301,9 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
                     thread.getString("LastUpdateTime"),
-                    thread.getString("PostTime")));
+                    thread.getString("PostTime"),
+                    thread.getString("AnonymousType"),
+                    Integer.parseInt(thread.getString("RandomSeed"))));
         }
         return list;
     }
@@ -323,7 +329,9 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
                     thread.getString("LastUpdateTime"),
-                    thread.getString("PostTime")));
+                    thread.getString("PostTime"),
+                    thread.getString("AnonymousType"),
+                    Integer.parseInt(thread.getString("RandomSeed"))));
         }
         return list;
     }
@@ -349,7 +357,9 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
                     thread.getString("LastUpdateTime"),
-                    thread.getString("PostTime")));
+                    thread.getString("PostTime"),
+                    thread.getString("AnonymousType"),
+                    Integer.parseInt(thread.getString("RandomSeed"))));
         }
         return list;
     }
@@ -395,7 +405,9 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Read")),
                     Integer.parseInt(thread.getString("WhetherLike")),
                     thread.getString("LastUpdateTime"),
-                    thread.getString("PostTime")).setWhetherReadUpdate(Integer.parseInt(thread.getString("WhetherReadUpdate"))));
+                    thread.getString("PostTime"),
+                    thread.getString("AnonymousType"),
+                    Integer.parseInt(thread.getString("RandomSeed"))).setWhetherReadUpdate(Integer.parseInt(thread.getString("WhetherReadUpdate"))));
         }
         return list;
     }

@@ -29,27 +29,7 @@
             android:orientation="vertical"
             android:padding="5dp">
 
-<!--            <RadioGroup-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content">-->
-<!--                <LinearLayout-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:orientation="horizontal">-->
-<!--                    <RadioButton-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:id="@+id/xxx1"-->
-<!--                        android:text="男"-->
-<!--                        />-->
-<!--                    <RadioButton-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:id="@+id/xxx2"-->
-<!--                        android:text="女"-->
-<!--                        android:checked="true"/>-->
-<!--               </LinearLayout>-->
-<!--                </RadioGroup>-->
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -172,6 +152,130 @@
                         android:layout_marginHorizontal="10dp"
                         android:background="@drawable/radio_button_solid"/>
                 </RadioGroup>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="匿名类型:"
+                android:layout_marginTop="5dp"/>
+
+            <LinearLayout
+                android:id="@+id/anonymous_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/anonymous_group1"
+                    >
+                    <RadioButton
+                        style="@style/RoundButton.Auto"
+                        android:id="@+id/abc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:button="@null"
+                        android:text="ABC"
+                        android:textColor="@color/xui_btn_blue_select_color"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/radio_button_solid"/>
+                    <RadioButton
+                        style="@style/RoundButton.Auto"
+                        android:id="@+id/us_president"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:text="US President"
+                        android:textColor="@color/xui_btn_blue_select_color"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/radio_button_solid"/>
+<!--                    <RadioButton-->
+<!--                        style="@style/RoundButton.Auto"-->
+<!--                        android:id="@+id/section3"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5sp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:button="@null"-->
+<!--                        android:text="科学"-->
+<!--                        android:textColor="@color/xui_btn_blue_select_color"-->
+<!--                        android:layout_marginHorizontal="10dp"-->
+<!--                        android:background="@drawable/radio_button_solid"/>-->
+<!--                    <RadioButton-->
+<!--                        style="@style/RoundButton.Auto"-->
+<!--                        android:id="@+id/section4"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5sp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:button="@null"-->
+<!--                        android:text="数码"-->
+<!--                        android:textColor="@color/xui_btn_blue_select_color"-->
+<!--                        android:layout_marginHorizontal="10dp"-->
+<!--                        android:background="@drawable/radio_button_solid"/>-->
+                </RadioGroup>
+<!--                <RadioGroup-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:id="@+id/radio_group2"-->
+<!--                    >-->
+<!--                    <RadioButton-->
+<!--                        style="@style/RoundButton.Auto"-->
+<!--                        android:id="@+id/section5"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5sp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:button="@null"-->
+<!--                        android:text="娱乐"-->
+<!--                        android:textColor="@color/xui_btn_blue_select_color"-->
+<!--                        android:layout_marginHorizontal="10dp"-->
+<!--                        android:background="@drawable/radio_button_solid"/>-->
+<!--                    <RadioButton-->
+<!--                        style="@style/RoundButton.Auto"-->
+<!--                        android:id="@+id/section6"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5sp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:button="@null"-->
+<!--                        android:text="情感"-->
+<!--                        android:textColor="@color/xui_btn_blue_select_color"-->
+<!--                        android:layout_marginHorizontal="10dp"-->
+<!--                        android:background="@drawable/radio_button_solid"/>-->
+<!--                    <RadioButton-->
+<!--                        style="@style/RoundButton.Auto"-->
+<!--                        android:id="@+id/section7"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5sp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:button="@null"-->
+<!--                        android:text="社会"-->
+<!--                        android:textColor="@color/xui_btn_blue_select_color"-->
+<!--                        android:layout_marginHorizontal="10dp"-->
+<!--                        android:background="@drawable/radio_button_solid"/>-->
+<!--                    <RadioButton-->
+<!--                        style="@style/RoundButton.Auto"-->
+<!--                        android:id="@+id/section8"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="5sp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:button="@null"-->
+<!--                        android:text="其他"-->
+<!--                        android:textColor="@color/xui_btn_blue_select_color"-->
+<!--                        android:layout_marginHorizontal="10dp"-->
+<!--                        android:background="@drawable/radio_button_solid"/>-->
+<!--                </RadioGroup>-->
             </LinearLayout>
 
             <TextView
