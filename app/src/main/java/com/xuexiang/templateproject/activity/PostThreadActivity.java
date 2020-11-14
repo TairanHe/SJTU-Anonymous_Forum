@@ -41,9 +41,11 @@ public class PostThreadActivity extends AppCompatActivity{
     private ButtonView buttonView;
     private RadioButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;
 
-    private RadioGroup RG_anonymous;
+    private RadioGroup RG_anonymous, RG_random;
     private RadioButton btn_abc, btn_us_president;
+    private RadioButton btn_random_no, btn_random_yes;
     private String anonymous_type = "abc";
+    private int random_seed = 0;
 
 
     @Override
@@ -55,6 +57,7 @@ public class PostThreadActivity extends AppCompatActivity{
         RG1 = findViewById(R.id.radio_group1);
         RG2 = findViewById(R.id.radio_group2);
         RG_anonymous = findViewById(R.id.anonymous_group1);
+        RG_random = findViewById(R.id.random_group1);
 
         buttonView = findViewById(R.id.button_submit);
 //        clearEditText = findViewById(R.id.clearEditText);
@@ -63,6 +66,7 @@ public class PostThreadActivity extends AppCompatActivity{
         btn1 = findViewById(R.id.section1);btn2 = findViewById(R.id.section2);btn3 = findViewById(R.id.section3);btn4 = findViewById(R.id.section4);
         btn5 = findViewById(R.id.section5);btn6 = findViewById(R.id.section6);btn7 = findViewById(R.id.section7);btn8 = findViewById(R.id.section8);
         btn_abc = findViewById(R.id.abc); btn_us_president = findViewById(R.id.us_president);
+        btn_random_no = findViewById(R.id.random_no); btn_random_yes = findViewById(R.id.random_yes);
 
 
         RG1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -149,6 +153,25 @@ public class PostThreadActivity extends AppCompatActivity{
             }
         });
 
+        RG_random.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                switch (i) {
+                    case R.id.random_no:
+                        if (btn_random_no.isChecked()){
+                            random_seed = 0;
+                        }
+                        break;
+                    case R.id.random_yes:
+                        if (btn_random_yes.isChecked()){
+                            // TODO: 11/14/20 right random seed generation here
+                            random_seed = 1;
+                        }
+                }
+
+            }
+        });
+
         buttonView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,7 +213,7 @@ public class PostThreadActivity extends AppCompatActivity{
                         else {
 //                            ExchangeInfosWithAli.SendMyThread(thread_Title, thread_Content, sectionID);
                             try {
-                                ExchangeInfosWithAli.SendMyThread_json(thread_Title, thread_Content, sectionID, anonymous_type, 0);
+                                ExchangeInfosWithAli.SendMyThread_json(thread_Title, thread_Content, sectionID, anonymous_type, random_seed);
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }

@@ -276,7 +276,56 @@
 <!--                        android:layout_marginHorizontal="10dp"-->
 <!--                        android:background="@drawable/radio_button_solid"/>-->
 <!--                </RadioGroup>-->
+
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="人名随机排序:"
+                android:layout_marginTop="5dp"/>
+
+            <LinearLayout
+                android:id="@+id/random_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:id="@+id/random_group1"
+                    >
+                    <RadioButton
+                        style="@style/RoundButton.Auto"
+                        android:id="@+id/random_no"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:layout_weight="1"
+                        android:checked="true"
+                        android:button="@null"
+                        android:text="否"
+                        android:textColor="@color/xui_btn_blue_select_color"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/radio_button_solid"/>
+                    <RadioButton
+                        style="@style/RoundButton.Auto"
+                        android:id="@+id/random_yes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:text="是"
+                        android:textColor="@color/xui_btn_blue_select_color"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/radio_button_solid"/>
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+
 
             <TextView
                 android:layout_width="match_parent"
