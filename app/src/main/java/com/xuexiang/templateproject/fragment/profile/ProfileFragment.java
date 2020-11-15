@@ -41,8 +41,8 @@ import butterknife.BindView;
  */
 @Page(anim = CoreAnim.none)
 public class ProfileFragment extends BaseFragment implements SuperTextView.OnSuperTextViewClickListener {
-    @BindView(R.id.riv_head_pic)
-    RadiusImageView rivHeadPic;
+//    @BindView(R.id.riv_head_pic)
+//    RadiusImageView rivHeadPic;
     @BindView(R.id.menu_settings)
     SuperTextView menuSettings;
     @BindView(R.id.menu_about)
@@ -53,8 +53,8 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
     SuperTextView menuFavor;
     @BindView(R.id.menu_my_threads)
     SuperTextView menuMyThreads;
-    @BindView(R.id.menu_search)
-    SuperTextView menuSearch;
+//    @BindView(R.id.menu_search)
+//    SuperTextView menuSearch;
 
     /**
      * @return 返回为 null意为不需要导航栏

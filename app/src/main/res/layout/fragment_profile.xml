@@ -30,26 +30,26 @@
                 android:orientation="vertical"
                 android:paddingTop="20dp">
 
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    style="@style/InfoItem.Account"
-                    android:layout_height="60dp"
-                    app:sLeftTextString="头像">
+<!--                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView-->
+<!--                    style="@style/InfoItem.Account"-->
+<!--                    android:layout_height="60dp"-->
+<!--                    app:sLeftTextString="头像">-->
 
-                    <com.xuexiang.xui.widget.imageview.RadiusImageView
-                        android:id="@+id/riv_head_pic"
-                        style="@style/RadiusImageView.Circle"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@id/sRightImgId"
-                        app:srcCompat="@drawable/ic_default_head" />
+<!--                    <com.xuexiang.xui.widget.imageview.RadiusImageView-->
+<!--                        android:id="@+id/riv_head_pic"-->
+<!--                        style="@style/RadiusImageView.Circle"-->
+<!--                        android:layout_width="38dp"-->
+<!--                        android:layout_height="38dp"-->
+<!--                        android:layout_centerVertical="true"-->
+<!--                        android:layout_toStartOf="@id/sRightImgId"-->
+<!--                        app:srcCompat="@drawable/ic_default_head" />-->
 
-                </com.xuexiang.xui.widget.textview.supertextview.SuperTextView>
+<!--                </com.xuexiang.xui.widget.textview.supertextview.SuperTextView>-->
 
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    android:id="@+id/menu_search"
-                    style="@style/InfoItem.Account"
-                    app:sLeftTextString="账号" />
+<!--                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView-->
+<!--                    android:id="@+id/menu_search"-->
+<!--                    style="@style/InfoItem.Account"-->
+<!--                    app:sLeftTextString="账号" />-->
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
                     android:id="@+id/menu_note"
@@ -66,7 +66,7 @@
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
                     android:id="@+id/menu_my_threads"
                     style="@style/InfoItem.Account"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="0dp"
                     app:sDividerLineType="none"
                     app:sLeftTextString="我的帖子" />
 
