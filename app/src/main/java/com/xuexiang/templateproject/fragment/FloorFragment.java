@@ -19,6 +19,7 @@ package com.xuexiang.templateproject.fragment;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -130,7 +131,7 @@ public class FloorFragment extends BaseFragment{
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
                 holder.text(R.id.tv_dyytitle, LookThroughActivity.threadtitle);
                 holder.text(R.id.tv_context, LookThroughActivity.threadsummary);
-
+                Log.d("Thread post time", LookThroughActivity.threadposttime);
                 try {
                     holder.text(R.id.tv_time, DateHelper.getPastTimebyString(LookThroughActivity.threadposttime));
 
