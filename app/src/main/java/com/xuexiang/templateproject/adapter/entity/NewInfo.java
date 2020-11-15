@@ -365,6 +365,7 @@ public class NewInfo {
         return WhetherReadUpdate;
     }
 
+
     @Override
     public String toString() {
         return "NewInfo{" +

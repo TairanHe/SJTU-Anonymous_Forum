@@ -41,7 +41,10 @@ import com.xuexiang.templateproject.utils.DateHelper;
 import java.text.ParseException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
@@ -78,6 +81,9 @@ public class FloorFragment extends BaseFragment{
     SmartRefreshLayout refreshLayout;
 
 
+    List<String> namelist;
+
+
     private SimpleDelegateAdapter<FloorInfo> mFloorsAdapter;
 
     /**
@@ -105,7 +111,8 @@ public class FloorFragment extends BaseFragment{
      */
     @Override
     protected void initViews() {
-
+        AnonymousName AN = new AnonymousName();
+        namelist = AN.getnamelist(LookThroughActivity.anonymousType, LookThroughActivity.randomSeed);
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(getContext());
         recyclerView.setLayoutManager(virtualLayoutManager);
@@ -131,7 +138,7 @@ public class FloorFragment extends BaseFragment{
                     e.printStackTrace();
                 }
 //                XToastUtils.toast(LookThroughActivity.anonymousType);
-                holder.text(R.id.tv_speaker, AnonymousName.getname("0", LookThroughActivity.anonymousType));
+                holder.text(R.id.tv_speaker, namelist.get(0));
                 holder.image(R.id.iv_touxiang, R.drawable.xiaoren_0);
             }
         };
@@ -149,11 +156,11 @@ public class FloorFragment extends BaseFragment{
                     }
                     if (model.getReplytoname().equals("NULL") || Integer.parseInt(model.getReplytofloor()) < 1)
                     {
-                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername(), LookThroughActivity.anonymousType));
+                        holder.text(R.id.tv_speaker, namelist.get(Integer.parseInt(model.getSpeakername())));
                     }
                     else
                     {
-                        holder.text(R.id.tv_speaker, AnonymousName.getname(model.getSpeakername(),LookThroughActivity.anonymousType)+" 回复 " + AnonymousName.getname(model.getReplytoname(), LookThroughActivity.anonymousType));
+                        holder.text(R.id.tv_speaker, namelist.get(Integer.parseInt(model.getSpeakername())) +" 回复 " + namelist.get(Integer.parseInt(model.getReplytoname())));
 
                     }
 
@@ -302,7 +309,7 @@ public class FloorFragment extends BaseFragment{
                 refreshLayout.finishRefresh();
                 LookThroughActivity htr = (LookThroughActivity) getActivity();
                 htr.checkthreebuttons();
-            }, 400);
+            }, 0);
         });
         //上拉加载
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
@@ -317,7 +324,7 @@ public class FloorFragment extends BaseFragment{
                 refreshLayout.finishLoadMore();
                 LookThroughActivity htr = (LookThroughActivity) getActivity();
                 htr.checkthreebuttons();
-            }, 400);
+            }, 0);
         });
 
         refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果

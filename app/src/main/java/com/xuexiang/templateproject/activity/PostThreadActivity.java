@@ -29,6 +29,7 @@ import com.xuexiang.xui.widget.edittext.MultiLineEditText;
 
 import org.json.JSONException;
 
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -164,8 +165,7 @@ public class PostThreadActivity extends AppCompatActivity{
                         break;
                     case R.id.random_yes:
                         if (btn_random_yes.isChecked()){
-                            // TODO: 11/14/20 right random seed generation here
-                            random_seed = 1;
+                            random_seed = new Random().nextInt(Integer.MAX_VALUE - 1) + 1;
                         }
                 }
 

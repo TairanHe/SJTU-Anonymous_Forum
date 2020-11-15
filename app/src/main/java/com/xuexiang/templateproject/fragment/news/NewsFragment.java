@@ -221,7 +221,7 @@ public class NewsFragment extends BaseFragment {
                     e.printStackTrace();
                 }
                 refreshLayout.finishRefresh();
-            }, 500);
+            }, 0);
         });
         //上拉加载
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
@@ -234,7 +234,7 @@ public class NewsFragment extends BaseFragment {
                     e.printStackTrace();
                 }
                 refreshLayout.finishLoadMore();
-            }, 500);
+            }, 0);
         });
         refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
 
