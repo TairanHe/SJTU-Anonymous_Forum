@@ -68,11 +68,27 @@
                     tools:text="#000001" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_tag"
-                style="@style/TextStyle.Explain"
-                android:layout_gravity="end|center_vertical"
-                tools:text="Java" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="right">
+
+                <TextView
+                    android:id="@+id/tv_tag"
+                    style="@style/TextStyle.Explain"
+                    android:layout_gravity="end|center_vertical"
+                    tools:text="Java" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_judge"
+                    android:layout_marginStart="4dp"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="end|center_vertical"
+                    android:src="@drawable/dian_gray" />
+            </LinearLayout>
+
 
         </FrameLayout>
 
