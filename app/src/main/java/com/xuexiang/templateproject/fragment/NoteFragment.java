@@ -119,8 +119,8 @@ public class NoteFragment extends BaseFragment {
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
                 holder.text(R.id.tv_title, "消息列表");
-                holder.text(R.id.tv_action, "更多");
-                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
+//                holder.text(R.id.tv_action, "更多");
+//                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
             }
         };
 
