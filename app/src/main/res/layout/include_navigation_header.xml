@@ -62,7 +62,8 @@
         android:gravity="start"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:singleLine="false" />
+        android:singleLine="false"
+        android:textSize="10sp"/>
 
     <Space
         android:layout_width="wrap_content"
