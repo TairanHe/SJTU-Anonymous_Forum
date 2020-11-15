@@ -139,6 +139,10 @@ public class NoteFragment extends BaseFragment {
                     holder.text(R.id.tv_thread_id, jingThreadID);
 //                    holder.text(R.id.tv_tag, model.getTag());
                     holder.text(R.id.tv_tag, model.getJudge() == 0 ? "未读" : "已读"); // 这里设置已读未读
+                    if(model.getJudge() == 0)
+                    {
+                        holder.image(R.id.iv_judge, R.drawable.dian_blue);
+                    }
                     holder.text(R.id.tv_title, model.getTitle());
                     int type = model.getType();
                     holder.text(R.id.tv_note, model.getType() == 0 ? "有人悄悄回复了你！" : "有" + type + "人悄悄点赞了你！");
