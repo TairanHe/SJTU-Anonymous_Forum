@@ -102,7 +102,7 @@ public final class Utils {
                     }
                 }).build();
 //        dialog.setContent(getPrivacyContent(context));
-        dialog.setContent("是否确认删除此收藏？\n一旦删除，不可恢复！\n");
+        dialog.setContent("是否确认删除此收藏？\n");
         //开始响应点击事件
         dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
         dialog.show();
