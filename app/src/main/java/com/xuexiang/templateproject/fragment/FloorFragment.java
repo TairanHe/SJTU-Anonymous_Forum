@@ -18,9 +18,14 @@
 package com.xuexiang.templateproject.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -45,6 +50,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xpage.annotation.Page;
@@ -141,7 +147,18 @@ public class FloorFragment extends BaseFragment{
 //                XToastUtils.toast(LookThroughActivity.anonymousType);
                 holder.text(R.id.tv_speaker, namelist.get(0));
 //                holder.image(R.id.iv_touxiang, R.drawable.xiaoren_0);
-                holder.text(R.id.tv_avater_title, ""+namelist.get(0).charAt(0));
+//                Drawable drawable = getResources().getDrawable(R.drawable.avatar_circle);
+//                drawable.mutate().setColorFilter(Color.argb(255, 255, 128, 103), PorterDuff.Mode.SRC_IN);
+//                R.id.tv_avatar_title.setBackground(drawable);
+//                holder.
+                TextView title_avatar = holder.findViewById(R.id.tv_avatar_title);
+                GradientDrawable background = (GradientDrawable) title_avatar.getBackground();
+                Random random = new Random();
+                int r = random.nextInt(255);
+                int g = random.nextInt(255);
+                int b = random.nextInt(255);
+                background.setColor(Color.argb(127, r, g, b));
+                holder.text(R.id.tv_avatar_title, ""+namelist.get(0).charAt(0));
             }
         };
 
@@ -169,7 +186,15 @@ public class FloorFragment extends BaseFragment{
                     int resID = getResources().getIdentifier("xiaoren_"+ model.getSpeakername(), "drawable", "com.xuexiang.templateproject");
                     Drawable touxiang = getResources().getDrawable(resID);
 //                    holder.image(R.id.iv_touxiang, touxiang);
-                    holder.text(R.id.tv_avater_floor,"" + namelist.get(Integer.parseInt(model.getSpeakername())).charAt(0));
+
+                    TextView floor_avatar = holder.findViewById(R.id.tv_avatar_floor);
+                    GradientDrawable background = (GradientDrawable) floor_avatar.getBackground();
+                    Random random = new Random();
+                    int r = random.nextInt(255);
+                    int g = random.nextInt(255);
+                    int b = random.nextInt(255);
+                    background.setColor(Color.argb(127, r, g, b));
+                    holder.text(R.id.tv_avatar_floor,"" + namelist.get(Integer.parseInt(model.getSpeakername())).charAt(0));
 
 
                     holder.text(R.id.tv_context, model.getContext());

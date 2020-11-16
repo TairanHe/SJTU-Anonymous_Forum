@@ -59,10 +59,10 @@
 <!--                    app:riv_is_circle="true" />-->
 
                 <TextView
-                    android:id="@+id/tv_avater_floor"
+                    android:id="@+id/tv_avatar_floor"
                     android:layout_width="26dp"
                     android:layout_height="26dp"
-                    android:background="@drawable/avater_circle"
+                    android:background="@drawable/avatar_circle"
                     android:gravity="center" />
 
                 <LinearLayout
