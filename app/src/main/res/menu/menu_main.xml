@@ -17,7 +17,26 @@
 
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<!--    <item-->
+<!--        android:id="@+id/detail_page_do_comment"-->
+<!--        android:layout_width="10dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:textColor="#B6B6B6"-->
+<!--        android:textSize="12sp"-->
+<!--        android:text="说点什么吧..."-->
+<!--        android:background="@drawable/comment_bt_selector"-->
+<!--        android:layout_marginLeft="12dp"-->
+<!--        android:layout_marginRight="15dp"-->
+<!--        android:layout_marginBottom="2dp"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:paddingLeft="18dp"/>-->
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/ic_menu_search_white"
+        android:title="Search"
+        android:orderInCategory="100"
+        app:showAsAction="always" />
     <item
         android:id="@+id/action_post"
         android:icon="@drawable/ic_menu_post"

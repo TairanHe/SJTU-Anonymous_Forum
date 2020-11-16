@@ -227,6 +227,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 Intent intent = new Intent(MainActivity.this, PostThreadActivity.class);
                 startActivity(intent);
                 break;
+            case R.id.action_search:
+                ExchangeInfosWithAli.LastSeenQueryThreadID = "NULL";
+                Utils.showSearchDialog(this, null);
+                break;
             default:
                 break;
         }
