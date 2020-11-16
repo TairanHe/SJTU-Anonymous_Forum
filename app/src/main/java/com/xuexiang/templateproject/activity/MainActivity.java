@@ -40,6 +40,7 @@ import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.fragment.FavorFragment;
+import com.xuexiang.templateproject.fragment.MyThreadsFragment;
 import com.xuexiang.templateproject.fragment.NoteFragment;
 import com.xuexiang.templateproject.fragment.SearchFragment;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
@@ -184,9 +185,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                     case R.id.nav_notifications:
                         openNewPage(NoteFragment.class);
                         break;
+                    case R.id.nav_mythread:
+                        ExchangeInfosWithAli.LastSeenMyThreadID = "NULL";
+                        openNewPage(MyThreadsFragment.class);
+                        break;
                     case R.id.nav_search:
                         ExchangeInfosWithAli.LastSeenQueryThreadID = "NULL";
                         Utils.showSearchDialog(this, null);
+                        break;
+                    case R.id.nav_post:
+                        Intent intent = new Intent(MainActivity.this, PostThreadActivity.class);
+                        startActivity(intent);
+                        break;
                     default:
                         XToastUtils.toast("点击了:" + menuItem.getTitle());
                         break;

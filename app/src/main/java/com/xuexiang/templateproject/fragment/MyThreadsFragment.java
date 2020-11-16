@@ -43,7 +43,7 @@ import butterknife.BindView;
  * @author xuexiang
  * @since 2019-10-30 00:15
  */
-@Page(anim = CoreAnim.none, name = "我的帖子")
+@Page(anim = CoreAnim.none, name = "我的发帖")
 public class MyThreadsFragment extends BaseFragment {
     //    @BindView(R.id.thread)
 //    SuperTextView thread;
@@ -117,7 +117,7 @@ public class MyThreadsFragment extends BaseFragment {
         SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.adapter_title_item) {
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-                holder.text(R.id.tv_title, "我的帖子");
+                holder.text(R.id.tv_title, "我的发帖");
 //                holder.text(R.id.tv_action, "更多");
 //                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
             }

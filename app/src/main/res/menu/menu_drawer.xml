@@ -18,49 +18,61 @@
 <!--侧边栏-->
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+<!--    <group-->
+<!--        android:id="@+id/main_tab"-->
+<!--        android:checkableBehavior="single">-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_news"-->
+<!--            android:icon="@drawable/ic_menu_news"-->
+<!--            android:title="@string/menu_news" />-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_trending"-->
+<!--            android:icon="@drawable/ic_menu_trending"-->
+<!--            android:title="@string/menu_trending" />-->
+
+<!--        <item-->
+<!--            android:id="@+id/nav_profile"-->
+<!--            android:icon="@drawable/ic_menu_person"-->
+<!--            android:title="@string/menu_profile" />-->
+<!--    </group>-->
+
+
     <group
-        android:id="@+id/main_tab"
+        android:id="@+id/action_tab"
         android:checkableBehavior="single">
-
         <item
-            android:id="@+id/nav_news"
-            android:icon="@drawable/ic_menu_news"
-            android:title="@string/menu_news" />
-
+            android:id="@+id/nav_search"
+            android:icon="@drawable/ic_menu_search"
+            android:checkable="false"
+            android:title="搜索" />
         <item
-            android:id="@+id/nav_trending"
-            android:icon="@drawable/ic_menu_trending"
-            android:title="@string/menu_trending" />
-
-        <item
-            android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_menu_person"
-            android:title="@string/menu_profile" />
-
+            android:id="@+id/nav_post"
+            android:icon="@drawable/ic_menu_post_blue"
+            android:checkable="false"
+            android:title="发帖" />
 
     </group>
 
     <group
         android:id="@+id/other"
         android:checkableBehavior="single">
-
-        <item
-            android:id="@+id/nav_search"
-            android:checkable="false"
-            android:icon="@drawable/ic_menu_search"
-            android:title="@string/menu_search" />
-
         <item
             android:id="@+id/nav_notifications"
             android:checkable="false"
             android:icon="@drawable/ic_menu_notifications"
             android:title="@string/menu_notifications" />
-
         <item
             android:id="@+id/nav_starred"
             android:checkable="false"
             android:icon="@drawable/ic_menu_star"
             android:title="@string/menu_starred" />
+        <item
+            android:id="@+id/nav_mythread"
+            android:checkable="false"
+            android:icon="@drawable/ic_menu_person"
+            android:title="@string/menu_mythread" />
     </group>
 
     <group

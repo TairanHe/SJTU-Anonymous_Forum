@@ -68,7 +68,7 @@
                     style="@style/InfoItem.Account"
                     android:layout_marginTop="0dp"
                     app:sDividerLineType="none"
-                    app:sLeftTextString="我的帖子" />
+                    app:sLeftTextString="我的发帖" />
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
                     android:id="@+id/menu_settings"
