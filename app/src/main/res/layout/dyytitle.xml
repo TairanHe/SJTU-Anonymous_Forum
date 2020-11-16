@@ -66,26 +66,31 @@
 <!--                                tools:text="Java" />-->
 
             </FrameLayout>
-            <LinearLayout
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
                     android:orientation="horizontal">
 
-                    <com.xuexiang.xui.widget.imageview.RadiusImageView
-                        android:id="@+id/iv_touxiang"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@mipmap/ic_launcher"
-                        app:riv_is_circle="true" />
+<!--                    <com.xuexiang.xui.widget.imageview.RadiusImageView-->
+<!--                        android:id="@+id/iv_touxiang"-->
+<!--                        android:layout_width="24dp"-->
+<!--                        android:layout_height="24dp"-->
+<!--                        android:src="@mipmap/ic_launcher"-->
+<!--                        app:riv_is_circle="true" />-->
+
+                    <TextView
+                        android:id="@+id/tv_avater_title"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:background="@drawable/avater_circle"
+                        android:gravity="center" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -121,7 +126,7 @@
                 <!--                app:riv_border_width="0dp"-->
                 <!--                app:riv_corner_radius="5dp" />-->
 
-            </LinearLayout>
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

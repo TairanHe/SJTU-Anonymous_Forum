@@ -51,12 +51,19 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <com.xuexiang.xui.widget.imageview.RadiusImageView
-                    android:id="@+id/iv_touxiang"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@mipmap/ic_launcher"
-                    app:riv_is_circle="true" />
+<!--                <com.xuexiang.xui.widget.imageview.RadiusImageView-->
+<!--                    android:id="@+id/iv_touxiang"-->
+<!--                    android:layout_width="24dp"-->
+<!--                    android:layout_height="24dp"-->
+<!--                    android:src="@mipmap/ic_launcher"-->
+<!--                    app:riv_is_circle="true" />-->
+
+                <TextView
+                    android:id="@+id/tv_avater_floor"
+                    android:layout_width="26dp"
+                    android:layout_height="26dp"
+                    android:background="@drawable/avater_circle"
+                    android:gravity="center" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
