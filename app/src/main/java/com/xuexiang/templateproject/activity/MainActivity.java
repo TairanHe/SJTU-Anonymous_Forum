@@ -52,7 +52,10 @@ import com.xuexiang.templateproject.fragment.trending.TrendingFragment;
 import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
+
 import com.xuexiang.xui.adapter.FragmentAdapter;
+import com.xuexiang.templateproject.utils.HtrFragmentAdapter;
+
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.utils.ThemeUtils;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
@@ -60,6 +63,9 @@ import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.common.ClickUtils;
 import com.xuexiang.xutil.common.CollectionUtils;
 import com.xuexiang.xutil.display.Colors;
+
+import java.util.Objects;
+
 import butterknife.BindView;
 
 /**
@@ -88,7 +94,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     DrawerLayout drawerLayout;
 
     private String[] mTitles;
-    int choice = 1;
+    public static int now_at_index = 0;
 
     @Override
     protected int getLayoutId() {
@@ -123,7 +129,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 new TrendingFragment(),
                 new ProfileFragment()
         };
-        FragmentAdapter<BaseFragment> adapter = new FragmentAdapter<>(getSupportFragmentManager(), fragments);
+        HtrFragmentAdapter<BaseFragment> adapter = new HtrFragmentAdapter<>(getSupportFragmentManager(), fragments);
         viewPager.setOffscreenPageLimit(mTitles.length - 1);
         viewPager.setAdapter(adapter);
     }
@@ -291,12 +297,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int index = CollectionUtils.arrayIndexOf(mTitles, menuItem.getTitle());
+
         Log.d("MainActivity", "index " + index);
-            if (index != -1) {
+        if (index == now_at_index){
+            Log.d("INDEX Same, refreshing",Integer.toString(index));
+            viewPager.getAdapter().notifyDataSetChanged();
+            return true;
+        }
+        if (index != -1 && index != now_at_index) {
             toolbar.setTitle(menuItem.getTitle());
             viewPager.setCurrentItem(index, false);
-
             updateSideNavStatus(menuItem);
+            now_at_index = index;
             return true;
         }
         return false;
