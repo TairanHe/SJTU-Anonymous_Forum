@@ -24,6 +24,8 @@
     android:background="@color/xui_config_color_white"
     android:orientation="vertical">
 
+<!--    <include layout="@layout/dyytitle" />-->
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
@@ -33,7 +35,8 @@
 
         <com.scwang.smartrefresh.header.MaterialHeader
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="250dp"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
