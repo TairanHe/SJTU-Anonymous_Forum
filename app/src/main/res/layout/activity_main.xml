@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2019 xuexiangjys(xuexiangjys@163.com)
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,21 +26,53 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
         android:layout_above="@+id/bottomNavView"
-        >
+        android:fitsSystemWindows="true">
 
 
-    <!--  主内容填充  -->
-    <include
-        layout="@layout/layout_main_content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
 
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:layout_scrollFlags="scroll|enterAlways"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    app:titleTextColor="@color/xui_config_color_white" />
+                <!--        <View-->
+                <!--            android:id="@+id/toolbar_shadow"-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="6dp"-->
+                <!--            android:background="@drawable/toolbar_dropshadow" />-->
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!--  ViewPager，页面填充页  -->
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        <!--  底部导航栏  -->
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_gravity="bottom"
+            android:background="@color/xui_config_color_white"
+            app:labelVisibilityMode="labeled"
+            app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+            app:menu="@menu/menu_navigation_bottom" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
 
 
     <!-- 侧边栏   -->

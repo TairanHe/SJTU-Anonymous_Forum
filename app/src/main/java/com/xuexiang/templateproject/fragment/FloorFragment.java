@@ -42,6 +42,7 @@ import com.xuexiang.templateproject.adapter.entity.FloorInfo;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.xuexiang.templateproject.utils.AnonymousName;
+import com.xuexiang.templateproject.utils.AnonymousColor;
 import com.xuexiang.templateproject.utils.DateHelper;
 
 import java.text.ParseException;
@@ -52,6 +53,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
+import com.xuexiang.templateproject.utils.HTR_RGBA;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
@@ -89,6 +91,9 @@ public class FloorFragment extends BaseFragment{
 
 
     List<String> namelist;
+    List<HTR_RGBA> colorlist;
+
+    public Random random = new Random();
 
 
     private SimpleDelegateAdapter<FloorInfo> mFloorsAdapter;
@@ -120,6 +125,8 @@ public class FloorFragment extends BaseFragment{
     protected void initViews() {
         AnonymousName AN = new AnonymousName();
         namelist = AN.getnamelist(LookThroughActivity.anonymousType, LookThroughActivity.randomSeed);
+        AnonymousColor AC = new AnonymousColor();
+        colorlist = AC.getcolorlist("dhc_v1", Integer.parseInt(LookThroughActivity.threadid));
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(getContext());
         recyclerView.setLayoutManager(virtualLayoutManager);
@@ -153,11 +160,9 @@ public class FloorFragment extends BaseFragment{
 //                holder.
                 TextView title_avatar = holder.findViewById(R.id.tv_avatar_title);
                 GradientDrawable background = (GradientDrawable) title_avatar.getBackground();
-                Random random = new Random();
-                int r = random.nextInt(255);
-                int g = random.nextInt(255);
-                int b = random.nextInt(255);
-                background.setColor(Color.argb(127, r, g, b));
+
+                HTR_RGBA avater_color = colorlist.get(0);
+                background.setColor(Color.argb(avater_color.A, avater_color.G, avater_color.G, avater_color.B));
                 holder.text(R.id.tv_avatar_title, ""+namelist.get(0).charAt(0));
             }
         };
@@ -189,11 +194,9 @@ public class FloorFragment extends BaseFragment{
 
                     TextView floor_avatar = holder.findViewById(R.id.tv_avatar_floor);
                     GradientDrawable background = (GradientDrawable) floor_avatar.getBackground();
-                    Random random = new Random();
-                    int r = random.nextInt(255);
-                    int g = random.nextInt(255);
-                    int b = random.nextInt(255);
-                    background.setColor(Color.argb(127, r, g, b));
+                    HTR_RGBA avater_color = colorlist.get((Integer.parseInt(model.getSpeakername()) % colorlist.size()));
+                    background.setColor(Color.argb(avater_color.A, avater_color.R, avater_color.G, avater_color.B));
+
                     holder.text(R.id.tv_avatar_floor,"" + namelist.get(Integer.parseInt(model.getSpeakername())).charAt(0));
 
 
