@@ -32,7 +32,8 @@
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
-            app:titleTextColor="@color/xui_config_color_white" />
+            app:titleTextColor="@color/xui_config_color_white"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -53,7 +54,11 @@
         android:layout_gravity="bottom"
         android:background="@color/xui_config_color_white"
         app:labelVisibilityMode="labeled"
-        app:menu="@menu/menu_navigation_bottom" />
+        app:menu="@menu/menu_navigation_bottom"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
+        />
+
+
 
 
 </FrameLayout>

@@ -24,11 +24,25 @@
     android:layout_height="match_parent"
     tools:openDrawer="start">
 
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:layout_above="@+id/bottomNavView"
+        >
+
+
     <!--  主内容填充  -->
     <include
         layout="@layout/layout_main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
 
     <!-- 侧边栏   -->
     <com.google.android.material.navigation.NavigationView
