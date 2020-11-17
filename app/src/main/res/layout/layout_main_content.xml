@@ -23,8 +23,7 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay"
-        app:elevation="0dp">
+        android:theme="@style/AppTheme.AppBarOverlay">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -34,8 +33,13 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/xui_config_color_white"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
+<!--        <View-->
+<!--            android:id="@+id/toolbar_shadow"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="6dp"-->
+<!--            android:background="@drawable/toolbar_dropshadow" />-->
     </com.google.android.material.appbar.AppBarLayout>
+
 
     <!--  ViewPager，页面填充页  -->
     <androidx.viewpager.widget.ViewPager
