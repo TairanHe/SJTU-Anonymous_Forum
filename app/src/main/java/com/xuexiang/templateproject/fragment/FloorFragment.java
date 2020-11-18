@@ -162,8 +162,8 @@ public class FloorFragment extends BaseFragment{
                 TextView title_avatar = holder.findViewById(R.id.tv_avatar_title);
                 GradientDrawable background = (GradientDrawable) title_avatar.getBackground();
 
-                HTR_RGBA avater_color = colorlist.get(0);
-                background.setColor(Color.argb(avater_color.A, avater_color.G, avater_color.G, avater_color.B));
+                HTR_RGBA avatar_color_title = colorlist.get(0 % colorlist.size());
+                background.setColor(Color.argb(avatar_color_title.A, avatar_color_title.R, avatar_color_title.G, avatar_color_title.B));
                 holder.text(R.id.tv_avatar_title, ""+name.charAt(0));
             }
         };
@@ -197,8 +197,9 @@ public class FloorFragment extends BaseFragment{
 
                     TextView floor_avatar = holder.findViewById(R.id.tv_avatar_floor);
                     GradientDrawable background = (GradientDrawable) floor_avatar.getBackground();
-                    HTR_RGBA avater_color = colorlist.get((Integer.parseInt(model.getSpeakername()) % colorlist.size()));
-                    background.setColor(Color.argb(avater_color.A, avater_color.R, avater_color.G, avater_color.B));
+                    HTR_RGBA avatar_color_floor;
+                    avatar_color_floor = colorlist.get((Integer.parseInt(model.getSpeakername()) % colorlist.size()));
+                    background.setColor(Color.argb(avatar_color_floor.A, avatar_color_floor.R, avatar_color_floor.G, avatar_color_floor.B));
 
                     holder.text(R.id.tv_avatar_floor,"" + name.charAt(0));
 
