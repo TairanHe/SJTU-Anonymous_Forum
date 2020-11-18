@@ -43,14 +43,14 @@
                     app:layout_scrollFlags="scroll|enterAlways"
                     app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     app:popupTheme="@style/AppTheme.PopupOverlay"
-                    app:titleTextColor="@color/xui_config_color_white" />
-                <!--        <View-->
-                <!--            android:id="@+id/toolbar_shadow"-->
-                <!--            android:layout_width="match_parent"-->
-                <!--            android:layout_height="6dp"-->
-                <!--            android:background="@drawable/toolbar_dropshadow" />-->
-
+                    app:titleTextColor="@color/xui_config_color_white"/>
         </com.google.android.material.appbar.AppBarLayout>
+<!--                <View-->
+<!--                    android:id="@+id/toolbar_shadow"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="6dp"-->
+<!--                    android:layout_marginTop="?attr/actionBarSize"-->
+<!--                    android:background="@drawable/toolbar_dropshadow" />-->
 
         <!--  ViewPager，页面填充页  -->
         <androidx.viewpager.widget.ViewPager
