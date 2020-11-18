@@ -15,6 +15,8 @@ public class AnonymousColor {
 
     public List<HTR_RGBA> DHC_v1_color_List;
     public List<HTR_RGBA> HTR_v1_color_List;
+    public List<HTR_RGBA> XUI_v1_light_color_List;
+    public List<HTR_RGBA> XUI_v1_dark_color_List;
     public Map<String, List<HTR_RGBA>> colorlist_dictionary;
     public AnonymousColor(){
         DHC_v1_color_List = new ArrayList<HTR_RGBA>(Arrays.asList(
@@ -37,10 +39,32 @@ public class AnonymousColor {
                 new HTR_RGBA(122, 117, 211, 126),
                 new HTR_RGBA(124, 103, 209, 126),
                 new HTR_RGBA(104, 80, 208, 126)));
+        XUI_v1_light_color_List = new ArrayList<HTR_RGBA>(Arrays.asList(
+                new HTR_RGBA(239, 83, 98, 126),
+                new HTR_RGBA(254, 109, 75, 126),
+                new HTR_RGBA(255, 207, 71, 126),
+                new HTR_RGBA(159, 214, 97, 126),
+                new HTR_RGBA(63, 208, 173, 126),
+                new HTR_RGBA(43, 189, 243, 126),
+                new HTR_RGBA(90, 154, 239, 126),
+                new HTR_RGBA(172, 143, 239, 126),
+                new HTR_RGBA(238, 133, 193, 126)));
+        XUI_v1_dark_color_List = new ArrayList<HTR_RGBA>(Arrays.asList(
+                new HTR_RGBA(239, 83, 98, 250),
+                new HTR_RGBA(254, 109, 75, 250),
+                new HTR_RGBA(255, 207, 71, 250),
+                new HTR_RGBA(159, 214, 97, 250),
+                new HTR_RGBA(63, 208, 173, 250),
+                new HTR_RGBA(43, 189, 243, 250),
+                new HTR_RGBA(90, 154, 239, 250),
+                new HTR_RGBA(172, 143, 239, 250),
+                new HTR_RGBA(238, 133, 193, 250)));
         colorlist_dictionary = new HashMap<String, List<HTR_RGBA>>(){
             {
                 put("dhc_v1", DHC_v1_color_List);
                 put("htr_v1", HTR_v1_color_List);
+                put("xui_v1_light", XUI_v1_light_color_List);
+                put("xui_v1_dark", XUI_v1_dark_color_List);
             }
 
         };

@@ -40,7 +40,7 @@ project.configurations.each { configuration ->
 
     if (configuration.name == "debugImplementation") {
         //内存泄漏监测leak
-        configuration.dependencies.add(getProject().dependencies.create('com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'))
+        configuration.dependencies.add(getProject().dependencies.create('com.squareup.leakcanary:leakcanary-android:1.6.3'))
     }
     if (configuration.name == "releaseImplementation") {
         //内存泄漏监测leak

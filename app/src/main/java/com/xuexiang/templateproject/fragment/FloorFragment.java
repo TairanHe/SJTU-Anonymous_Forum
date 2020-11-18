@@ -126,7 +126,7 @@ public class FloorFragment extends BaseFragment{
         AnonymousName AN = new AnonymousName();
         namelist = AN.getnamelist(LookThroughActivity.anonymousType, LookThroughActivity.randomSeed);
         AnonymousColor AC = new AnonymousColor();
-        colorlist = AC.getcolorlist("htr_v1", Integer.parseInt(LookThroughActivity.threadid));
+        colorlist = AC.getcolorlist("xui_v1_dark", Integer.parseInt(LookThroughActivity.threadid));
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(getContext());
         recyclerView.setLayoutManager(virtualLayoutManager);
