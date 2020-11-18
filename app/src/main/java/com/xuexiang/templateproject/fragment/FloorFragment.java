@@ -187,7 +187,7 @@ public class FloorFragment extends BaseFragment{
                     else
                     {
                         String replytoname = AnonymousName.getname(namelist,Integer.parseInt(model.getReplytoname()));
-                        holder.text(R.id.tv_speaker,  name + " 回复 " + replytoname );
+                        holder.text(R.id.tv_speaker,  name + " 回复 " + replytoname + " #" + model.getReplytofloor() + "楼" );
 
                     }
 
