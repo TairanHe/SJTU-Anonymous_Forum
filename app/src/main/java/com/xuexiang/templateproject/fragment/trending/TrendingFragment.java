@@ -18,8 +18,12 @@
 package com.xuexiang.templateproject.fragment.trending;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -151,7 +155,7 @@ public class TrendingFragment extends BaseFragment {
         };
 
         //资讯
-        mNewsAdapter = new SimpleDelegateAdapter<NewInfo>(R.layout.adapter_news_card_view_list_item, new LinearLayoutHelper()) {
+        mNewsAdapter = new SimpleDelegateAdapter<NewInfo>(R.layout.adapter_hotnews_card_view_list_item, new LinearLayoutHelper()) {
             @Override
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, NewInfo model) {
                 if (model != null) {
@@ -161,6 +165,29 @@ public class TrendingFragment extends BaseFragment {
                     for (int i = 0; i < zerolen; i++) {
                         jingThreadID = jingThreadID + "0";
                     }
+//                    Log.d("position", "" + position);
+                    TextView hot_number = holder.findViewById(R.id.tv_hot_number);
+                    GradientDrawable background = (GradientDrawable) hot_number.getBackground();
+                    if(position == 0){
+//                        red
+                        background.setColor(Color.argb(200, 240,70,10));
+                        hot_number.setTextColor(Color.argb(200,255,255,255));
+                    }
+                    else if(position == 1){
+//                        orange
+                        background.setColor(Color.argb(200, 255,153,0));
+                        hot_number.setTextColor(Color.argb(200,255,255,255));
+                    }
+                    else if(position == 2){
+//                        orange
+                        background.setColor(Color.argb(150, 204,122,0));
+                        hot_number.setTextColor(Color.argb(200,255,255,255));
+                    }
+                    else {
+                        background.setColor(Color.argb(0, 255,  255,255));
+                        hot_number.setTextColor(Color.argb(200,130 ,130,130));
+                    }
+                    hot_number.setText(String.valueOf(position+1));
                     jingThreadID = jingThreadID + model.getThreadID();
                     holder.text(R.id.tv_thread_id, jingThreadID);
                     holder.text(R.id.tv_tag, model.getTag());

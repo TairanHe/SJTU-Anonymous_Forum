@@ -232,6 +232,10 @@ public class ExchangeInfosWithAli {
         LastSeenThreadID = InputJson.getString("LastSeenThreadID");
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
+        if (thread_list.length() < 1) {
+            XToastUtils.toast("没有更多啦～");
+            return null;
+        }
         for (int i = 0; i < thread_list.length(); i++) {
             JSONObject thread = thread_list.getJSONObject(i);
             Log.d("Thread:", thread.toString());
@@ -257,7 +261,7 @@ public class ExchangeInfosWithAli {
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
-            XToastUtils.toast("空空如也");
+            XToastUtils.toast("没有更多啦～");
             return null;
         }
         for (int i = 0; i < thread_list.length(); i++) {
@@ -285,7 +289,7 @@ public class ExchangeInfosWithAli {
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
-            XToastUtils.toast("空空如也");
+            XToastUtils.toast("没有更多啦～");
             return null;
         }
         for (int i = 0; i < thread_list.length(); i++) {
@@ -313,7 +317,7 @@ public class ExchangeInfosWithAli {
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
-            XToastUtils.toast("空空如也");
+            XToastUtils.toast("没有更多啦～");
             return null;
         }
         for (int i = 0; i < thread_list.length(); i++) {
@@ -341,7 +345,7 @@ public class ExchangeInfosWithAli {
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
-            XToastUtils.toast("空空如也");
+            XToastUtils.toast("没有更多啦～");
             return null;
         }
         for (int i = 0; i < thread_list.length(); i++) {
@@ -419,6 +423,10 @@ public class ExchangeInfosWithAli {
         WhetherPraise = Integer.parseInt(InputJson.getString("WhetherLike"));
         WhetherFavour = Integer.parseInt(InputJson.getString("WhetherFavour"));
         LastSeenFloorID = InputJson.getString("LastSeenFloorID");
+        if (floor_list.length() < 1) {
+            XToastUtils.toast("没有更多啦～");
+            return null;
+        }
         for (int i = 0; i < floor_list.length(); i++) {
             JSONObject floor = floor_list.getJSONObject(i);
             Log.d("Floor:", floor.toString());

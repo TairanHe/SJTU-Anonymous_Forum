@@ -126,7 +126,7 @@ public class FloorFragment extends BaseFragment{
         AnonymousName AN = new AnonymousName();
         namelist = AN.getnamelist(LookThroughActivity.anonymousType, LookThroughActivity.randomSeed);
         AnonymousColor AC = new AnonymousColor();
-        colorlist = AC.getcolorlist("dhc_v1", Integer.parseInt(LookThroughActivity.threadid));
+        colorlist = AC.getcolorlist("htr_v1", Integer.parseInt(LookThroughActivity.threadid));
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(getContext());
         recyclerView.setLayoutManager(virtualLayoutManager);
@@ -152,7 +152,8 @@ public class FloorFragment extends BaseFragment{
                     e.printStackTrace();
                 }
 //                XToastUtils.toast(LookThroughActivity.anonymousType);
-                holder.text(R.id.tv_speaker, namelist.get(0));
+                String name = AnonymousName.getname(namelist,0);
+                holder.text(R.id.tv_speaker, name);
 //                holder.image(R.id.iv_touxiang, R.drawable.xiaoren_0);
 //                Drawable drawable = getResources().getDrawable(R.drawable.avatar_circle);
 //                drawable.mutate().setColorFilter(Color.argb(255, 255, 128, 103), PorterDuff.Mode.SRC_IN);
@@ -163,7 +164,7 @@ public class FloorFragment extends BaseFragment{
 
                 HTR_RGBA avater_color = colorlist.get(0);
                 background.setColor(Color.argb(avater_color.A, avater_color.G, avater_color.G, avater_color.B));
-                holder.text(R.id.tv_avatar_title, ""+namelist.get(0).charAt(0));
+                holder.text(R.id.tv_avatar_title, ""+name.charAt(0));
             }
         };
 
@@ -178,18 +179,20 @@ public class FloorFragment extends BaseFragment{
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
+                    String name = AnonymousName.getname(namelist,Integer.parseInt(model.getSpeakername()));
                     if (model.getReplytoname().equals("NULL") || Integer.parseInt(model.getReplytofloor()) < 1)
                     {
-                        holder.text(R.id.tv_speaker, namelist.get(Integer.parseInt(model.getSpeakername())));
+                        holder.text(R.id.tv_speaker, name);
                     }
                     else
                     {
-                        holder.text(R.id.tv_speaker, namelist.get(Integer.parseInt(model.getSpeakername())) +" 回复 " + namelist.get(Integer.parseInt(model.getReplytoname())));
+                        String replytoname = AnonymousName.getname(namelist,Integer.parseInt(model.getReplytoname()));
+                        holder.text(R.id.tv_speaker,  name + " 回复 " + replytoname );
 
                     }
 
-                    int resID = getResources().getIdentifier("xiaoren_"+ model.getSpeakername(), "drawable", "com.xuexiang.templateproject");
-                    Drawable touxiang = getResources().getDrawable(resID);
+//                    int resID = getResources().getIdentifier("xiaoren_"+ model.getSpeakername(), "drawable", "com.xuexiang.templateproject");
+//                    Drawable touxiang = getResources().getDrawable(resID);
 //                    holder.image(R.id.iv_touxiang, touxiang);
 
                     TextView floor_avatar = holder.findViewById(R.id.tv_avatar_floor);
@@ -197,7 +200,7 @@ public class FloorFragment extends BaseFragment{
                     HTR_RGBA avater_color = colorlist.get((Integer.parseInt(model.getSpeakername()) % colorlist.size()));
                     background.setColor(Color.argb(avater_color.A, avater_color.R, avater_color.G, avater_color.B));
 
-                    holder.text(R.id.tv_avatar_floor,"" + namelist.get(Integer.parseInt(model.getSpeakername())).charAt(0));
+                    holder.text(R.id.tv_avatar_floor,"" + name.charAt(0));
 
 
                     holder.text(R.id.tv_context, model.getContext());

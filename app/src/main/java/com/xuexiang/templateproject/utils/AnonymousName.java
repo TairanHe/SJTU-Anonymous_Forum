@@ -35,6 +35,18 @@ public class AnonymousName {
         }
         return namelist;
     }
+
+    public static String getname(List<String> namelist, int index){
+        int size = namelist.size();
+        if(index < size) {
+            return namelist.get(index);
+        }
+        else {
+            int suffix = index / size;
+            int new_index = index % size;
+            return namelist.get(new_index) + "." + suffix;
+        }
+    }
 //    public String getname(String sequence, String type){
 //        if (namelist_dictionary.containsKey(type)){
 //            List<String> namelist = namelist_dictionary.get(type);
