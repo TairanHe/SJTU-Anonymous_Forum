@@ -36,6 +36,7 @@ import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.templateproject.utils.DateHelper;
 import com.xuexiang.templateproject.utils.DemoDataProvider;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.xuexiang.templateproject.utils.Utils;
@@ -53,6 +54,7 @@ import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
 import org.json.JSONException;
 
+import java.text.ParseException;
 import java.util.List;
 
 import butterknife.BindView;
@@ -164,7 +166,12 @@ public class NewsFragment extends BaseFragment {
                     }
                     jingThreadID = jingThreadID + model.getThreadID();
                     holder.text(R.id.tv_thread_id, jingThreadID);
-                    holder.text(R.id.tv_tag, model.getTag());
+//                    holder.text(R.id.tv_tag, model.getTag());
+                    try {
+                        holder.text(R.id.tv_tag,  DateHelper.getPastTimebyString(model.getLastUpdateTime()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
                     holder.text(R.id.tv_title, model.getTitle());
                     holder.text(R.id.tv_summary, model.getSummary());
 //                    holder.text(R.id.tv_praise, model.getPraise() == 0 ? "点赞" : String.valueOf(model.getPraise()));
