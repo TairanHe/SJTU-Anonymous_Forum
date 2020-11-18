@@ -18,8 +18,12 @@
 package com.xuexiang.templateproject.fragment.news;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,9 +40,11 @@ import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.templateproject.utils.AnonymousColor;
 import com.xuexiang.templateproject.utils.DateHelper;
 import com.xuexiang.templateproject.utils.DemoDataProvider;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
+import com.xuexiang.templateproject.utils.HTR_RGBA;
 import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
@@ -78,6 +84,8 @@ public class NewsFragment extends BaseFragment {
 
     private int block = 0;
 
+    List<HTR_RGBA> colorlist;
+
     /**
      * @return 返回为 null意为不需要导航栏
      */
@@ -106,6 +114,9 @@ public class NewsFragment extends BaseFragment {
         RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
         recyclerView.setRecycledViewPool(viewPool);
         viewPool.setMaxRecycledViews(0, 10);
+
+        AnonymousColor AC = new AnonymousColor();
+        colorlist = AC.getcolorlist("xui_v1_light", 0);
 
 //        //轮播条
 //        SingleDelegateAdapter bannerAdapter = new SingleDelegateAdapter(R.layout.include_head_view_banner) {
@@ -181,6 +192,14 @@ public class NewsFragment extends BaseFragment {
                     holder.text(R.id.tv_read, "阅读量 " + model.getRead());
 //                    holder.image(R.id.iv_image, model.getImageUrl());
 
+                    ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
+                    GradientDrawable background = (GradientDrawable) hat_view.getBackground();
+
+                    HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
+                    background.setColor(Color.argb(avatar_color_title.A, avatar_color_title.R, avatar_color_title.G, avatar_color_title.B));
+
+
+//                    hat_view.setBackgroundColor(Color.argb(200,50,30,200));
                     //holder.click(R.id.card_view, v -> Utils.goWeb(getContext(), model.getDetailUrl()));
 
                     holder.click(R.id.card_view, new View.OnClickListener() {
