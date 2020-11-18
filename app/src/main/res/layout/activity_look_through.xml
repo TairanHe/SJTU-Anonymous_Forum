@@ -21,7 +21,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LookThroughActivity">
+    tools:context=".activity.LookThroughActivity"
+    android:fitsSystemWindows="true">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -41,7 +42,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 
 
@@ -49,6 +52,109 @@
 
     <include layout="@layout/content_look_through" />
 
+
+
+    <LinearLayout
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:id="@+id/reply_bar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/corners_bg"
+        android:orientation="horizontal"
+        android:gravity="bottom"
+        android:layout_gravity="bottom">
+        <TextView
+            android:id="@+id/detail_page_do_comment"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:textColor="#B6B6B6"
+            android:textSize="12sp"
+            android:text="说点什么吧..."
+            android:background="@drawable/comment_bt_selector"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginBottom="2dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="18dp"/>
+
+        <LinearLayout
+            android:id="@+id/ll_favor_thread"
+            android:layout_width="25dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="15dp">
+            <ImageView
+                android:gravity="center_vertical"
+                android:id="@+id/iv_favor_thread"
+                android:layout_width="25dp"
+                android:layout_height="20dp"
+                android:layout_marginBottom="9dp"
+                android:src="@drawable/icon_collect_3" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_favor_thread"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="-25dp"
+                android:text="32"
+                android:textColor="#9A9A9A"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_praise_thread"
+            android:layout_width="25dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="15dp">
+            <ImageView
+                android:gravity="center_vertical"
+                android:id="@+id/iv_praise_thread"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="-3dp"
+                android:src="@drawable/ic_praise_black"
+                android:layout_marginLeft="0dp" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_praise_thread"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:textColor="#9A9A9A"
+                android:textSize="10sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="-25dp"
+                android:text="66"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tread_thread"
+            android:layout_width="25dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="15dp">
+            <ImageView
+                android:gravity="center_vertical"
+                android:id="@+id/iv_tread_thread"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="-1dp"
+                android:src="@drawable/ic_tread_black"
+                android:layout_marginLeft="0dp" />
+            <TextView
+                android:gravity="center"
+                android:id="@+id/tv_tread_thread"
+                android:layout_width="25dp"
+                android:layout_height="wrap_content"
+                android:textColor="#9A9A9A"
+                android:textSize="10sp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="-25dp"
+                android:text="66"/>
+        </LinearLayout>
+    </LinearLayout>
 <!--    <com.google.android.material.floatingactionbutton.FloatingActionButton-->
 <!--        android:id="@+id/fab"-->
 <!--        android:layout_width="wrap_content"-->
