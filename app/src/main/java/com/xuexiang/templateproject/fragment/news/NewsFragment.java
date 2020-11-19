@@ -62,6 +62,7 @@ import org.json.JSONException;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Random;
 
 import butterknife.BindView;
 
@@ -115,7 +116,9 @@ public class NewsFragment extends BaseFragment {
         recyclerView.setRecycledViewPool(viewPool);
         viewPool.setMaxRecycledViews(0, 10);
         AnonymousColor AC = new AnonymousColor();
-        colorlist = AC.getcolorlist("xui_v1_lightlight", 0);
+        Random random = new Random();
+        colorlist = AC.getcolorlist("xui_v1_dark", random.nextInt(10000));
+
 
 //        //轮播条
 //        SingleDelegateAdapter bannerAdapter = new SingleDelegateAdapter(R.layout.include_head_view_banner) {
