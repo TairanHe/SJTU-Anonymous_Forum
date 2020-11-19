@@ -114,7 +114,6 @@ public class NewsFragment extends BaseFragment {
         RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
         recyclerView.setRecycledViewPool(viewPool);
         viewPool.setMaxRecycledViews(0, 10);
-
         AnonymousColor AC = new AnonymousColor();
         colorlist = AC.getcolorlist("xui_v1_lightlight", 0);
 

@@ -345,6 +345,7 @@ public class FloorFragment extends BaseFragment{
                 refreshLayout.finishRefresh();
                 LookThroughActivity htr = (LookThroughActivity) getActivity();
                 htr.checkthreebuttons();
+
             }, 0);
         });
         //上拉加载

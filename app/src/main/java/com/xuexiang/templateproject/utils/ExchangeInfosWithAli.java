@@ -50,6 +50,8 @@ public class ExchangeInfosWithAli {
     public static String LastSeenHotThreadID = "NULL";
     public static int WhetherFavour = 0;
     public static int WhetherPraise = 0;
+    public static int Num_Praise = 0;
+    public static int Num_Dislike = 0;
     public static String UserName = "无可奉告";
 
     public static int Request_verifycode(String emailaddress) throws JSONException {
@@ -420,8 +422,14 @@ public class ExchangeInfosWithAli {
     private static List<FloorInfo> DecapsulateJsonToList_floor(JSONObject InputJson) throws JSONException {
         List<FloorInfo> list = new ArrayList<>();
         JSONArray floor_list= InputJson.getJSONArray("floor_list");
-        WhetherPraise = Integer.parseInt(InputJson.getString("WhetherLike"));
-        WhetherFavour = Integer.parseInt(InputJson.getString("WhetherFavour"));
+//        WhetherPraise = Integer.parseInt(InputJson.getString("WhetherLike"));
+
+
+        JSONObject this_thread = InputJson.getJSONObject("this_thread");
+        WhetherFavour = Integer.parseInt(this_thread.getString("WhetherFavour"));
+        WhetherPraise = Integer.parseInt(this_thread.getString("WhetherLike"));
+        Num_Praise = Integer.parseInt(this_thread.getString("Like"));
+        Num_Dislike = Integer.parseInt(this_thread.getString("Dislike"));
         LastSeenFloorID = InputJson.getString("LastSeenFloorID");
         if (floor_list.length() < 1) {
             XToastUtils.toast("没有更多啦～");

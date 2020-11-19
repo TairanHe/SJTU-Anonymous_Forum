@@ -120,8 +120,8 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         praise_num = (TextView) findViewById(R.id.tv_praise_thread);
         tread_num = (TextView) findViewById(R.id.tv_tread_thread);
         favor_num.setText("");
-        praise_num.setText(praisenum + "");
-        tread_num.setText(dislikenum + "");
+        praise_num.setText("");
+        tread_num.setText("");
 //        if (ExchangeInfosWithAli.WhetherFavour == 1)
 //        {
 //            XToastUtils.toast("此贴已收藏！");
@@ -168,6 +168,8 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         }else{
             bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_black));
         }
+        praise_num.setText("" + ExchangeInfosWithAli.Num_Praise);
+        tread_num.setText("" + ExchangeInfosWithAli.Num_Dislike);
     }
 
     @Override
