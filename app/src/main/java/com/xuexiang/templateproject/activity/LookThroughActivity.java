@@ -76,6 +76,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
     private TextView praise_num;
     private TextView tread_num;
     private TextView favor_num;
+    private TextView mTitle;
     private BottomSheetDialog dialog;
 
     @Override
@@ -122,6 +123,10 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         favor_num.setText("");
         praise_num.setText("");
         tread_num.setText("");
+
+
+        mTitle = (TextView) findViewById(R.id.toolbar_title);
+        mTitle.setText(threadtitle);
 //        if (ExchangeInfosWithAli.WhetherFavour == 1)
 //        {
 //            XToastUtils.toast("此贴已收藏！");

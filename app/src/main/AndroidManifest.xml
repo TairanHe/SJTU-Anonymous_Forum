@@ -24,7 +24,7 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".activity.LookThroughActivity"
-            android:label="看帖"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".activity.LoginActivity"
