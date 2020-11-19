@@ -67,7 +67,7 @@
                         android:id="@+id/iv_hat"
                         android:layout_height="20dp"
                         android:layout_width="20dp"
-                        android:src="@drawable/magic_hat"
+                        android:src="@drawable/magic_hat_gray"
                         android:layout_centerInParent="true"
                         android:layout_centerVertical="true"   />
                 </RelativeLayout>

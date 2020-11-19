@@ -116,7 +116,7 @@ public class NewsFragment extends BaseFragment {
         viewPool.setMaxRecycledViews(0, 10);
 
         AnonymousColor AC = new AnonymousColor();
-        colorlist = AC.getcolorlist("xui_v1_light", 0);
+        colorlist = AC.getcolorlist("xui_v1_lightlight", 0);
 
 //        //轮播条
 //        SingleDelegateAdapter bannerAdapter = new SingleDelegateAdapter(R.layout.include_head_view_banner) {
