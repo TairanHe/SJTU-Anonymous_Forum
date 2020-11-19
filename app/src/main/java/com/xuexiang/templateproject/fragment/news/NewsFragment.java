@@ -196,7 +196,6 @@ public class NewsFragment extends BaseFragment {
 
                     ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
                     GradientDrawable background = (GradientDrawable) hat_view.getBackground();
-
                     HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
                     background.setColor(Color.argb(avatar_color_title.A, avatar_color_title.R, avatar_color_title.G, avatar_color_title.B));
 

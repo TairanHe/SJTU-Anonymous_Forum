@@ -1,7 +1,10 @@
 package com.xuexiang.templateproject.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,9 +21,11 @@ import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.templateproject.utils.AnonymousColor;
 import com.xuexiang.templateproject.utils.DateHelper;
 import com.xuexiang.templateproject.utils.DemoDataProvider;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
+import com.xuexiang.templateproject.utils.HTR_RGBA;
 import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
@@ -37,6 +42,7 @@ import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 import org.json.JSONException;
 
 import java.text.ParseException;
+import java.util.List;
 
 import butterknife.BindView;
 
@@ -56,6 +62,7 @@ public class MyThreadsFragment extends BaseFragment {
     SmartRefreshLayout refreshLayout;
 
     private SimpleDelegateAdapter<NewInfo> mNewsAdapter;
+    List<HTR_RGBA> colorlist;
 
     /**
      * @return 返回为 null意为不需要导航栏
@@ -85,6 +92,9 @@ public class MyThreadsFragment extends BaseFragment {
         RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
         recyclerView.setRecycledViewPool(viewPool);
         viewPool.setMaxRecycledViews(0, 10);
+
+        AnonymousColor AC = new AnonymousColor();
+        colorlist = AC.getcolorlist("xui_v1_dark", 0);
 
 //        //轮播条
 //        SingleDelegateAdapter bannerAdapter = new SingleDelegateAdapter(R.layout.include_head_view_banner) {
@@ -150,6 +160,12 @@ public class MyThreadsFragment extends BaseFragment {
                     holder.text(R.id.tv_praise, model.getPraise() == 0 ? "0" : String.valueOf(model.getPraise()));
                     holder.text(R.id.tv_comment, model.getComment() == 0 ? "0" : String.valueOf(model.getComment()));
                     holder.text(R.id.tv_read, "阅读量 " + model.getRead());
+
+                    ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
+                    GradientDrawable background_avatar = (GradientDrawable) hat_view.getBackground();
+                    HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
+                    background_avatar.setColor(Color.argb(avatar_color_title.A, avatar_color_title.R, avatar_color_title.G, avatar_color_title.B));
+
 //                    holder.text(R.id.tv_delete, "删除");
 //                    holder.image(R.id.iv_image, model.getImageUrl());
 
