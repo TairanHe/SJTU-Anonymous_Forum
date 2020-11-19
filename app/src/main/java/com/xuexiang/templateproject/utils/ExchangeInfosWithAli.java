@@ -201,9 +201,9 @@ public class ExchangeInfosWithAli {
             XToastUtils.toast("网络连接不稳定,无法安全登录");
             return -1;
         }
-        if (login_flag.equals("0")) {
-            UserName = Username;
-        }
+//        if (login_flag.equals("0")) {
+//            UserName = Username;
+//        }
         return Integer.parseInt(login_flag);
     }
 
