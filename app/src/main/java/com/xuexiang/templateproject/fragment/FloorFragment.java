@@ -364,7 +364,7 @@ public class FloorFragment extends BaseFragment{
             }, 0);
         });
 
-        refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
+        refreshLayout.autoRefresh(0,1, 0,false);//第一次进入触发自动刷新，演示效果
 
         //thread.setOnSuperTextViewClickListener(this);
     }
