@@ -216,7 +216,7 @@ public class SearchFragment extends BaseFragment {
                 refreshLayout.finishLoadMore();
             }, 1000);
         });
-        refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
+        refreshLayout.autoRefresh(0, 0, 0,false);//第一次进入触发自动刷新，演示效果
 
         //thread.setOnSuperTextViewClickListener(this);
     }

@@ -150,7 +150,7 @@ public class NewsFragment extends BaseFragment {
                         block = ExchangeInfosWithAli.get_block_id(item.getTitle().toString());
 //                        Log.d("dyy", block+"");
                         XToastUtils.toast("切换到板块：" + item.getTitle());
-                        refreshLayout.autoRefresh();
+                        refreshLayout.autoRefresh(0, 0, 0,false);
                     });
                 }
             }
@@ -263,7 +263,7 @@ public class NewsFragment extends BaseFragment {
                 refreshLayout.finishLoadMore();
             }, 0);
         });
-        refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
+        refreshLayout.autoRefresh(0, 0, 0,false);//第一次进入触发自动刷新，演示效果
 
         //thread.setOnSuperTextViewClickListener(this);
     }
