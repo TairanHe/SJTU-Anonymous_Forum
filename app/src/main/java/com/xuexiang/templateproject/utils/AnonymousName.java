@@ -9,19 +9,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Collection;
+
+import com.alibaba.fastjson.serializer.ListSerializer;
 import com.xuexiang.templateproject.utils.RandomGenerator;
 public class AnonymousName {
 
     public List<String> ABC_English_Name_List;
     public List<String> US_President_English_Name_List;
+    public List<String> Tarot_English_Name_List;
     public Map<String, List<String>> namelist_dictionary;
+
     public AnonymousName(){
         ABC_English_Name_List = new ArrayList<String>(Arrays.asList("Alice", "Bob", "Carol", "Dave", "Eve", "Forest", "George", "Harry", "Issac", "Justin", "Kevin", "Laura", "Mallory", "Neal", "Oscar", "Pat", "Quentin", "Rose", "Steve", "Trent", "Utopia", "Victor", "Walter", "Xavier", "Young", "Zoe"));
         US_President_English_Name_List = new ArrayList<String>(Arrays.asList("Washington", "J.Adams", "Jefferson", "Madison", "Monroe", "J.Q.Adams", "Jackson", "Buren", "W.H.Harrison", "J.Tyler", "Polk", "Z.Tylor", "Fillmore", "Pierce", "Buchanan", "Lincoln", "A.Johnson", "Grant", "Hayes", "Garfield", "Arthur", "Cleveland", "B.Harrison", "McKinley", "T.T.Roosevelt","Taft", "Wilson", "Harding", "Coolidge", "Hoover", "F.D.Roosevelt", "Truman", "Eisenhower", "Kennedy", "L.B.Johnson", "Nixon", "Ford", "Carter", "Reagan", "G.H.W.Bush", "Clinton","G.W.Bush", "Obama", "Trump"));
+        Tarot_English_Name_List = new ArrayList<String>(Arrays.asList("The Fool", "The Magician", "The High Priestess", "The Empress", "The Emperor", "The Hierophant", "The Lovers", "The Chariot", "Justice", "The Hermit", "Wheel of Fortune", "Strength", "The Hanged Man", "Death", "Temperance", "The Devil", "The Tower", "The Star", "The Moon", "The Sun", "Judgement", "The World"));
         namelist_dictionary = new HashMap<String, List<String>>(){
             {
                 put("abc", ABC_English_Name_List);
                 put("us_president", US_President_English_Name_List);
+                put("tarot", Tarot_English_Name_List);
             }
 
         };

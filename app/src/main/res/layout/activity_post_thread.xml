@@ -196,6 +196,18 @@
                         android:textColor="@color/xui_btn_blue_select_color"
                         android:layout_marginHorizontal="10dp"
                         android:background="@drawable/radio_button_solid"/>
+                    <RadioButton
+                        style="@style/RoundButton.Auto"
+                        android:id="@+id/tarot"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5sp"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:text="Tarot"
+                        android:textColor="@color/xui_btn_blue_select_color"
+                        android:layout_marginHorizontal="10dp"
+                        android:background="@drawable/radio_button_solid"/>
 <!--                    <RadioButton-->
 <!--                        style="@style/RoundButton.Auto"-->
 <!--                        android:id="@+id/section3"-->

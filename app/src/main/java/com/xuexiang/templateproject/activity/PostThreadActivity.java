@@ -43,7 +43,7 @@ public class PostThreadActivity extends AppCompatActivity{
     private RadioButton btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8;
 
     private RadioGroup RG_anonymous, RG_random;
-    private RadioButton btn_abc, btn_us_president;
+    private RadioButton btn_abc, btn_us_president, btn_tarot;
     private RadioButton btn_random_no, btn_random_yes;
     private String anonymous_type = "abc";
     private int random_seed = 0;
@@ -66,7 +66,7 @@ public class PostThreadActivity extends AppCompatActivity{
         multiLineEditText = findViewById(R.id.multiLineEditText);
         btn1 = findViewById(R.id.section1);btn2 = findViewById(R.id.section2);btn3 = findViewById(R.id.section3);btn4 = findViewById(R.id.section4);
         btn5 = findViewById(R.id.section5);btn6 = findViewById(R.id.section6);btn7 = findViewById(R.id.section7);btn8 = findViewById(R.id.section8);
-        btn_abc = findViewById(R.id.abc); btn_us_president = findViewById(R.id.us_president);
+        btn_abc = findViewById(R.id.abc); btn_us_president = findViewById(R.id.us_president); btn_tarot = findViewById(R.id.tarot);
         btn_random_no = findViewById(R.id.random_no); btn_random_yes = findViewById(R.id.random_yes);
 
 
@@ -143,11 +143,18 @@ public class PostThreadActivity extends AppCompatActivity{
                     case R.id.abc:
                         if (btn_abc.isChecked()){
                             anonymous_type = "abc";
+                            break;
                         }
                         break;
                     case R.id.us_president:
                         if (btn_us_president.isChecked()){
                             anonymous_type = "us_president";
+                            break;
+                        }
+                    case R.id.tarot:
+                        if (btn_tarot.isChecked()){
+                            anonymous_type = "tarot";
+                            break;
                         }
                 }
 
