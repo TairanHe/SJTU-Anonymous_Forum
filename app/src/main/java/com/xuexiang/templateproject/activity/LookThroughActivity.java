@@ -22,33 +22,24 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.umeng.commonsdk.debug.E;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.view.View;
-import android.widget.LinearLayout;
-
 import com.xuexiang.templateproject.R;
+import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 
 import org.json.JSONException;
@@ -56,7 +47,7 @@ import org.json.JSONException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class LookThroughActivity extends AppCompatActivity implements View.OnClickListener{
+public class LookThroughActivity extends AppCompatActivity implements View.OnClickListener,Toolbar.OnMenuItemClickListener {
     public static String threadid;
     public static String threadtitle;
     public static String threadsummary;
@@ -79,18 +70,16 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
     private TextView mTitle;
     private BottomSheetDialog dialog;
 
+    private Toolbar toolbar;
+//    @BindView(R.id.toolbar)
+//    Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 //        进入新帖子，重设LastSeenFloorID
         ExchangeInfosWithAli.LastSeenFloorID = "NULL";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_look_through);
-
-
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
 
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +94,10 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
     }
 
     private void initView() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar.inflateMenu(R.menu.menu_look_through);
+        toolbar.setOnMenuItemClickListener(this);
+
         bt_comment = (TextView) findViewById(R.id.detail_page_do_comment);
         bt_comment.setOnClickListener(this);
 
@@ -176,7 +169,23 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         praise_num.setText("" + ExchangeInfosWithAli.Num_Praise);
         tread_num.setText("" + ExchangeInfosWithAli.Num_Dislike);
     }
-
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        Log.d("dyy:", String.valueOf(item.getItemId()));
+        //Log.d("dyy:", String.valueOf(R.id.action_privacy));
+        switch (item.getItemId()) {
+            case R.id.action_report:
+                XToastUtils.toast("举报");
+                Utils.showreportDialog(this, null, threadid);
+                //Utils.showPrivacyDialog(this, null);
+//                Intent intent = new Intent(MainActivity.this, PostThreadActivity.class);
+//                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.detail_page_do_comment){

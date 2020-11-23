@@ -109,6 +109,32 @@ public final class Utils {
         return dialog;
     }
 
+    public static Dialog showreportDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, String thread_id) {
+        MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
+                .positiveText("不举报").onPositive((dialog1, which) -> {
+                    if (submitListener != null) {
+                        submitListener.onClick(dialog1, which);
+                    } else {
+                        dialog1.dismiss();
+                    }
+                })
+                .negativeText("举报").onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        // 这里是举报的函数接口
+                        XToastUtils.toast("举报成功");
+                        Log.d("LookThroughActivity.U", thread_id);
+                        dialog.dismiss();
+                    }
+                }).build();
+//        dialog.setContent(getPrivacyContent(context));
+        dialog.setContent("是否确认举报该帖？\n");
+        //开始响应点击事件
+        dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
+        dialog.show();
+        return dialog;
+    }
+
 
     public static Dialog showDeleteMyThreadDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, BaseFragment baseFragment, String thread_id) {
         MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
