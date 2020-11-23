@@ -207,9 +207,16 @@ public class FloorFragment extends BaseFragment{
                     holder.text(R.id.tv_context, model.getContext());
                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
                     holder.text(R.id.tv_reply,  "评论");
+                    Log.d("Floor", "floorid" + model.getFloorID());
+                    Log.d("Floor", "whetherpraise" + model.getWhetherPraise());
                     if(model.getWhetherPraise() == 1)
                     {
                         holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
+                    }
+//                    为了修复+8楼的莫名其妙的bug
+                    if(model.getWhetherPraise() == 0)
+                    {
+                        holder.image(R.id.iv_praise, R.drawable.ic_praise);
                     }
 
 //                    holder.text(R.id.tv_read, "阅读量 " + model.getRead());
