@@ -112,6 +112,8 @@ public class NewInfo {
 
     private int RandomSeed;
 
+    private int WhetherTop;
+
     public NewInfo() {
 
     }
@@ -159,6 +161,24 @@ public class NewInfo {
         PostTime = postTime;
         AnonymousType = anonymousType;
         RandomSeed = randomSeed;
+    }
+
+    public NewInfo(String threadID, String title, String summary, String block, int praise, int dislike, int comment, int read,
+                   int whetherlike, String lastupdatetime, String postTime, String anonymousType, int randomSeed, int whetherTop) {
+        ThreadID = threadID;
+        Title = title;
+        Summary = summary;
+        Block = block;
+        Praise = praise;
+        Dislike = dislike;
+        Comment = comment;
+        Read = read;
+        WhetherLike = whetherlike;
+        LastUpdateTime = lastupdatetime;
+        PostTime = postTime;
+        AnonymousType = anonymousType;
+        RandomSeed = randomSeed;
+        WhetherTop = whetherTop;
     }
 
 
@@ -364,6 +384,17 @@ public class NewInfo {
     public int getWhetherReadUpdate(){
         return WhetherReadUpdate;
     }
+
+    public NewInfo setWhetherTop(int whetherTop){
+        WhetherTop = whetherTop;
+        return this;
+    }
+
+    public int getWhetherTop(){
+        return WhetherTop;
+    }
+
+
 
 
     @Override

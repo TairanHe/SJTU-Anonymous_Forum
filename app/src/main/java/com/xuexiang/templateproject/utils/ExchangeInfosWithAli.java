@@ -260,7 +260,8 @@ public class ExchangeInfosWithAli {
                     thread.getString("LastUpdateTime"),
                     thread.getString("PostTime"),
                     thread.getString("AnonymousType"),
-                    Integer.parseInt(thread.getString("RandomSeed"))));
+                    Integer.parseInt(thread.getString("RandomSeed")),
+                    Integer.parseInt(thread.getString("WhetherTop"))));
         }
         return list;
     }

@@ -19,8 +19,10 @@ package com.xuexiang.templateproject.utils.sdkinit;
 
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.xuexiang.templateproject.MyApp;
+import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.templateproject.utils.update.CustomUpdateDownloader;
 import com.xuexiang.templateproject.utils.update.CustomUpdateFailureListener;
 import com.xuexiang.templateproject.utils.update.XHttpUpdateHttpServiceImpl;
@@ -61,7 +63,10 @@ public final class XUpdateInit {
                 .setIUpdateDownLoader(new CustomUpdateDownloader())
                 //这个必须初始化
                 .init(application);
+        Log.d("wkfg_versionCode", "" + UpdateUtils.getVersionCode(application));
+        Log.d("wkfg_appKey", application.getPackageName());
     }
+
 
     /**
      * 进行版本更新检查
