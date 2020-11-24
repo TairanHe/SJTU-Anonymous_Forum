@@ -52,6 +52,7 @@ public class ExchangeInfosWithAli {
     public static int WhetherPraise = 0;
     public static int Num_Praise = 0;
     public static int Num_Dislike = 0;
+    public static int WhetherReport = 0;
     public static String UserName = "无可奉告";
 
     public static int Request_verifycode(String emailaddress) throws JSONException {
@@ -110,6 +111,12 @@ public class ExchangeInfosWithAli {
 
     public static List<NewInfo> GetFavourThread_json() throws JSONException {
         JSONObject QueryJson = EncapsulateString_json("6", LastSeenFavorThreadID, "0", "0", "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        return DecapsulateJsonToList_Favour(receive_message);
+    }
+
+    public static List<NewInfo> ReportThread_json(String ThreadID) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("e", ThreadID, "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsonToList_Favour(receive_message);
     }
@@ -430,6 +437,7 @@ public class ExchangeInfosWithAli {
         WhetherPraise = Integer.parseInt(this_thread.getString("WhetherLike"));
         Num_Praise = Integer.parseInt(this_thread.getString("Like"));
         Num_Dislike = Integer.parseInt(this_thread.getString("Dislike"));
+        WhetherReport = Integer.parseInt(this_thread.getString("WhetherReport"));
         LastSeenFloorID = InputJson.getString("LastSeenFloorID");
         if (floor_list.length() < 1) {
             XToastUtils.toast("没有更多啦～");

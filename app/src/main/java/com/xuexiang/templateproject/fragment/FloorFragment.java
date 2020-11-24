@@ -168,6 +168,16 @@ public class FloorFragment extends BaseFragment{
             }
         };
 
+        //资讯的标题
+        SingleDelegateAdapter orderAdapter = new SingleDelegateAdapter(R.layout.adapter_title_item) {
+            @Override
+            public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
+//                holder.text(R.id.tv_title, "帖子广场");
+                holder.text(R.id.tv_action, "最早回复");
+//                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
+            }
+        };
+
         //帖子的楼层
         mFloorsAdapter = new SimpleDelegateAdapter<FloorInfo>(R.layout.adapter_thread_floor_view_list_item, new LinearLayoutHelper()) {
             @Override
@@ -329,6 +339,7 @@ public class FloorFragment extends BaseFragment{
         //delegateAdapter.addAdapter(bannerAdapter);
 //        delegateAdapter.addAdapter(commonAdapter);
         delegateAdapter.addAdapter(titleAdapter);
+        delegateAdapter.addAdapter(orderAdapter);
         delegateAdapter.addAdapter(mFloorsAdapter);
 
         recyclerView.setAdapter(delegateAdapter);

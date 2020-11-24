@@ -55,6 +55,8 @@ import com.xuexiang.xutil.XUtil;
 
 import org.json.JSONException;
 
+import me.jessyan.autosize.external.ExternalAdaptInfo;
+
 import static com.xuexiang.templateproject.core.webview.AgentWebFragment.KEY_URL;
 import static com.xuexiang.templateproject.utils.ExchangeInfosWithAli.CancelFavourThread_json;
 import static com.xuexiang.xutil.app.ActivityUtils.startActivity;
@@ -122,9 +124,23 @@ public final class Utils {
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         // 这里是举报的函数接口
-                        XToastUtils.toast("举报成功");
-                        Log.d("LookThroughActivity.U", thread_id);
-                        dialog.dismiss();
+                        if (ExchangeInfosWithAli.WhetherReport == 0){
+                            try {
+                                ExchangeInfosWithAli.ReportThread_json(thread_id);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            XToastUtils.toast("举报成功");
+                            Log.d("LookThroughActivity.U", thread_id);
+                            ExchangeInfosWithAli.WhetherReport = 1;
+                            dialog.dismiss();
+                        }
+                        else {
+                            XToastUtils.toast("请勿重复举报");
+                            Log.d("LookThroughActivity.U", thread_id);
+                            dialog.dismiss();
+                        }
+
                     }
                 }).build();
 //        dialog.setContent(getPrivacyContent(context));
