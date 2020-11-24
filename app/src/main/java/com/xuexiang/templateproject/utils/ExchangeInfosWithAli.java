@@ -67,8 +67,8 @@ public class ExchangeInfosWithAli {
         return DecapsulateJsonToList_Recommmand(receive_message);
     }
 
-    public static List<FloorInfo> GetAliFloor_json(String ThreadID) throws JSONException {
-        JSONObject QueryJson = EncapsulateString_json("2", ThreadID, LastSeenFloorID, "0", "0", "0");
+    public static List<FloorInfo> GetAliFloor_json(String ThreadID, String order) throws JSONException {
+        JSONObject QueryJson = EncapsulateString_json("2", ThreadID, LastSeenFloorID, order, "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         WhetherFavour = 0;
         WhetherPraise = 0;

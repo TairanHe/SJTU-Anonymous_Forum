@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (C) 2020 xuexiangjys(xuexiangjys@163.com)
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~       http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<!--    <item-->
+<!--        android:id="@+id/detail_page_do_comment"-->
+<!--        android:layout_width="10dp"-->
+<!--        android:layout_height="30dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:textColor="#B6B6B6"-->
+<!--        android:textSize="12sp"-->
+<!--        android:text="说点什么吧..."-->
+<!--        android:background="@drawable/comment_bt_selector"-->
+<!--        android:layout_marginLeft="12dp"-->
+<!--        android:layout_marginRight="15dp"-->
+<!--        android:layout_marginBottom="2dp"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:paddingLeft="18dp"/>-->
+    <item
+        android:id="@+id/action_early"
+        android:title="最早回复"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_late"
+        android:orderInCategory="100"
+        android:title="最晚回复"
+        app:showAsAction="never" />
+
+</menu>

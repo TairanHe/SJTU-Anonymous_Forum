@@ -144,7 +144,7 @@ public final class Utils {
                     }
                 }).build();
 //        dialog.setContent(getPrivacyContent(context));
-        dialog.setContent("是否确认举报该帖？\n");
+        dialog.setContent("是否确认举报该帖？\n请慎重举报\n我们一起努力建设良好的社区环境");
         //开始响应点击事件
         dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
         dialog.show();

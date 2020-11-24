@@ -24,10 +24,13 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
@@ -54,6 +57,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.xuexiang.templateproject.utils.HTR_RGBA;
+import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
@@ -62,6 +66,7 @@ import com.xuexiang.xui.widget.actionbar.TitleBar;
 
 //import android.support.design.widget.BottomSheetDialog;
 import org.json.JSONException;
+import org.w3c.dom.Text;
 
 import butterknife.BindView;
 
@@ -92,6 +97,9 @@ public class FloorFragment extends BaseFragment{
 
     List<String> namelist;
     List<HTR_RGBA> colorlist;
+
+    TextView order;
+    String now_order = "0";
 
     public Random random = new Random();
 
@@ -138,6 +146,7 @@ public class FloorFragment extends BaseFragment{
 
 
 
+
         //帖子的标题
         SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.dyytitle) {
             @Override
@@ -168,15 +177,28 @@ public class FloorFragment extends BaseFragment{
             }
         };
 
-        //资讯的标题
-        SingleDelegateAdapter orderAdapter = new SingleDelegateAdapter(R.layout.adapter_title_item) {
+
+
+        //楼层的顺序
+        SingleDelegateAdapter orderAdapter = new SingleDelegateAdapter(R.layout.adapter_floor_order_item) {
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
 //                holder.text(R.id.tv_title, "帖子广场");
-                holder.text(R.id.tv_action, "最早回复");
-//                holder.click(R.id.tv_action, v -> XToastUtils.toast("更多"));
+
+                order = (TextView) holder.findViewById(R.id.tv_action);
+                Random r = new Random();
+                if (now_order == "0"){
+                    order.setText("最早回复");
+                }
+                else{
+                    order.setText("最晚回复");
+                }
+
+//                R.id.tv_action.setOnMenuItemClickListener(this);
+                holder.click(R.id.tv_action, v -> showPopup(v));
             }
         };
+
 
         //帖子的楼层
         mFloorsAdapter = new SimpleDelegateAdapter<FloorInfo>(R.layout.adapter_thread_floor_view_list_item, new LinearLayoutHelper()) {
@@ -346,6 +368,49 @@ public class FloorFragment extends BaseFragment{
 
     }
 
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu((LookThroughActivity) getActivity(), v);
+        MenuInflater inflater = popup.getMenuInflater();
+        inflater.inflate(R.menu.menu_order, popup.getMenu());
+        popup.setOnMenuItemClickListener(this::onMenuItemClick);
+        popup.show();
+    }
+
+
+    public boolean onMenuItemClick(MenuItem item) {
+        Log.d("dyy:", String.valueOf(item.getItemId()));
+        //Log.d("dyy:", String.valueOf(R.id.action_privacy));
+        switch (item.getItemId()) {
+            case R.id.action_early:
+                order.setText("最早回复");
+//                XToastUtils.toast("最早回复");
+                try {
+                    ExchangeInfosWithAli.LastSeenFloorID = "NULL";
+                    now_order = "0";
+                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                refreshLayout.finishRefresh();
+                break;
+            case R.id.action_late:
+                order.setText("最晚回复");
+//                XToastUtils.toast("最晚回复");
+                try {
+                    ExchangeInfosWithAli.LastSeenFloorID = "NULL";
+                    now_order = "1";
+                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                refreshLayout.finishRefresh();
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
+
     @Override
     protected void initListeners() {
 
@@ -356,7 +421,7 @@ public class FloorFragment extends BaseFragment{
 //                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
                 try {
                     ExchangeInfosWithAli.LastSeenFloorID = "NULL";
-                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid));
+                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -372,7 +437,7 @@ public class FloorFragment extends BaseFragment{
             refreshLayout.getLayout().postDelayed(() -> {
 //                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
                 try {
-                    mFloorsAdapter.loadMore(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid));
+                    mFloorsAdapter.loadMore(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
