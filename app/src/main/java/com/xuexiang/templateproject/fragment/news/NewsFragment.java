@@ -204,20 +204,25 @@ public class NewsFragment extends BaseFragment {
                         ImageView top = (ImageView) holder.findViewById(R.id.iv_top);
                         top.setImageDrawable(official);
                         top.setAlpha((float) 1);
-                        ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
-                        GradientDrawable background = (GradientDrawable) hat_view.getBackground();
-                        HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
-                        background.setColor(Color.argb(250,41, 158, 227));
+//                        ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
+//                        GradientDrawable background = (GradientDrawable) hat_view.getBackground();
+//                        HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
+//                        background.setColor(Color.argb(250,41, 158, 227));
                     }
                     else{
                         Log.d("flag",  "Enter 00 0 0 0 0 0 00 ");
                         ImageView top = (ImageView) holder.findViewById(R.id.iv_top);
                         top.setAlpha((float) 0);
-                        ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
-                        GradientDrawable background = (GradientDrawable) hat_view.getBackground();
-                        HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
-                        background.setColor(Color.argb(avatar_color_title.A, avatar_color_title.R, avatar_color_title.G, avatar_color_title.B));
+//                        ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
+//                        GradientDrawable background = (GradientDrawable) hat_view.getBackground();
+//                        HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
+//                        background.setColor(Color.argb(avatar_color_title.A, avatar_color_title.R, avatar_color_title.G, avatar_color_title.B));
+
                     }
+                    ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
+                    GradientDrawable background = (GradientDrawable) hat_view.getBackground();
+                    HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
+                    background.setColor(Color.argb(avatar_color_title.A, avatar_color_title.R, avatar_color_title.G, avatar_color_title.B));
 
 
 
