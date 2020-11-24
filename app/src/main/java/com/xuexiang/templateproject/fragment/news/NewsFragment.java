@@ -195,16 +195,24 @@ public class NewsFragment extends BaseFragment {
                     holder.text(R.id.tv_read, "阅读量 " + model.getRead());
 //                    holder.image(R.id.iv_image, model.getImageUrl());
 
+                    Log.d("whethertop", "" + model.getWhetherTop());
                     if (model.getWhetherTop() == 1){
+                        Log.d("flag",  "Enter 1 1 1 11111111");
                         int resID = getResources().getIdentifier("official_blue", "drawable", "com.xuexiang.templateproject");
                         Drawable official = getResources().getDrawable(resID);
-                        holder.image(R.id.iv_top, official);
+//                        holder.image(R.id.iv_top, official);
+                        ImageView top = (ImageView) holder.findViewById(R.id.iv_top);
+                        top.setImageDrawable(official);
+                        top.setAlpha((float) 1);
                         ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
                         GradientDrawable background = (GradientDrawable) hat_view.getBackground();
                         HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
                         background.setColor(Color.argb(250,41, 158, 227));
                     }
                     else{
+                        Log.d("flag",  "Enter 00 0 0 0 0 0 00 ");
+                        ImageView top = (ImageView) holder.findViewById(R.id.iv_top);
+                        top.setAlpha((float) 0);
                         ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
                         GradientDrawable background = (GradientDrawable) hat_view.getBackground();
                         HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
