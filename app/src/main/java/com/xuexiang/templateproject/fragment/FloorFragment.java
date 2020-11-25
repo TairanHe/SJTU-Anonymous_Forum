@@ -173,7 +173,10 @@ public class FloorFragment extends BaseFragment{
 
                 HTR_RGBA avatar_color_title = colorlist.get(0 % colorlist.size());
                 background.setColor(Color.argb(avatar_color_title.A, avatar_color_title.R, avatar_color_title.G, avatar_color_title.B));
-                holder.text(R.id.tv_avatar_title, ""+name.charAt(0));
+
+                String [] spString = name.split("\\s+");
+                holder.text(R.id.tv_avatar_title,"" + spString[spString.length-1].charAt(0));
+//                holder.text(R.id.tv_avatar_title, ""+name.charAt(0));
             }
         };
 
@@ -233,7 +236,9 @@ public class FloorFragment extends BaseFragment{
                     avatar_color_floor = colorlist.get((Integer.parseInt(model.getSpeakername()) % colorlist.size()));
                     background.setColor(Color.argb(avatar_color_floor.A, avatar_color_floor.R, avatar_color_floor.G, avatar_color_floor.B));
 
-                    holder.text(R.id.tv_avatar_floor,"" + name.charAt(0));
+
+                    String [] spString = name.split("\\s+");
+                    holder.text(R.id.tv_avatar_floor,"" + spString[spString.length-1].charAt(0));
 
 
                     holder.text(R.id.tv_context, model.getContext());
