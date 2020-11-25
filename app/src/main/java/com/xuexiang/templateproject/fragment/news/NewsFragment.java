@@ -21,6 +21,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -33,9 +35,12 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.google.android.material.snackbar.Snackbar;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.LookThroughActivity;
+import com.xuexiang.templateproject.activity.MainActivity;
 import com.xuexiang.templateproject.activity.SplashActivity;
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
@@ -48,6 +53,7 @@ import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.xuexiang.templateproject.utils.HTR_RGBA;
 import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
+import com.xuexiang.templateproject.utils.MyHandler;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
@@ -61,6 +67,7 @@ import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
 import org.json.JSONException;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Random;
@@ -260,6 +267,9 @@ public class NewsFragment extends BaseFragment {
 
     }
 
+
+
+
     @Override
     protected void initListeners() {
 
@@ -267,14 +277,26 @@ public class NewsFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                ExchangeInfosWithAli.LastSeenThreadID = "NULL";
+
 //                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(block));
-                try {
-                    mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos_json(block));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                refreshLayout.finishRefresh();
+                ExchangeInfosWithAli.LastSeenThreadID = "NULL";
+                Handler handler = new MyHandler.ThreadRefreshHandler(mNewsAdapter, refreshLayout);
+                new Thread() {
+                    @Override
+                    public void run() {
+                        Message msg = new Message();
+                        try {
+                            msg.arg1 = 0;
+                            msg.obj  = ExchangeInfosWithAli.GetAliRecommandedNewsInfos_json(block);
+                            if (msg.obj == null){
+                                msg.arg1 = -1;
+                            }
+                        } catch (JSONException | IOException e) {
+                            msg.arg1 = 1;
+                        }
+                        handler.sendMessage(msg);
+                    }
+                }.start();
             }, 0);
         });
         //上拉加载
@@ -282,14 +304,48 @@ public class NewsFragment extends BaseFragment {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
 //                mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(block));
-                try {
-                    mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos_json(block));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                refreshLayout.finishLoadMore();
+//                try {
+//                    mNewsAdapter.loadMore(ExchangeInfosWithAli.GetAliRecommandedNewsInfos_json(block));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+                Handler handler = new MyHandler.ThreadLoadMoreHandler(mNewsAdapter, refreshLayout);
+                new Thread() {
+                    @Override
+                    public void run() {
+                        Message msg = new Message();
+                        try {
+                            msg.arg1 = 0;
+                            msg.obj  = ExchangeInfosWithAli.GetAliRecommandedNewsInfos_json(block);
+                            if (msg.obj == null){
+                                msg.arg1 = -1;
+                            }
+                        } catch (JSONException | IOException e) {
+                            msg.arg1 = 1;
+                        }
+                        handler.sendMessage(msg);
+                    }
+                }.start();
             }, 0);
         });
+
+
+//        Handler handler = new MyHandler.AutoRefreshHandler(refreshLayout);
+//        new Thread() {
+//            @Override
+//            public void run() {
+//                Message msg = new Message();
+//                try {
+//                    msg.arg1 = 0;
+//                    msg.obj  = ExchangeInfosWithAli.GetAliRecommandedNewsInfos_json(block);
+//                } catch (JSONException | IOException e) {
+//                    msg.arg1 = 1;
+//                }
+//                handler.sendMessage(msg);
+//            }
+//        }.start();
+
+
         refreshLayout.autoRefresh(0, 0, 0,false);//第一次进入触发自动刷新，演示效果
 
         //thread.setOnSuperTextViewClickListener(this);

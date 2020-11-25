@@ -23,6 +23,8 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -48,6 +50,7 @@ import com.xuexiang.templateproject.utils.AnonymousName;
 import com.xuexiang.templateproject.utils.AnonymousColor;
 import com.xuexiang.templateproject.utils.DateHelper;
 
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -57,6 +60,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.xuexiang.templateproject.utils.HTR_RGBA;
+import com.xuexiang.templateproject.utils.MyHandler;
 import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xpage.annotation.Page;
@@ -299,12 +303,14 @@ public class FloorFragment extends BaseFragment{
                                 model.setWhetherPraise(1);
                                 try {
                                     ExchangeInfosWithAli.PraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
-                                } catch (JSONException e) {
+                                    holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
+                                    model.setPraise(model.getPraise()+1);
+                                    holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+                                } catch (JSONException | IOException e) {
+                                    XToastUtils.toast("请检查网络后重试");
                                     e.printStackTrace();
                                 }
-                                holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
-                                model.setPraise(model.getPraise()+1);
-                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+
                             }
                             else if (model.getWhetherPraise() == 1)
                             {
@@ -313,12 +319,14 @@ public class FloorFragment extends BaseFragment{
                                 model.setWhetherPraise(0);
                                 try {
                                     ExchangeInfosWithAli.CancelPraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
-                                } catch (JSONException e) {
+                                    holder.image(R.id.iv_praise, R.drawable.ic_praise);
+                                    model.setPraise(model.getPraise()-1);
+                                    holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+                                } catch (JSONException | IOException e) {
+                                    XToastUtils.toast("请检查网络后重试");
                                     e.printStackTrace();
                                 }
-                                holder.image(R.id.iv_praise, R.drawable.ic_praise);
-                                model.setPraise(model.getPraise()-1);
-                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+
                             }
                         }
                     });
@@ -335,12 +343,14 @@ public class FloorFragment extends BaseFragment{
                                 model.setWhetherPraise(1);
                                 try {
                                     ExchangeInfosWithAli.PraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
-                                } catch (JSONException e) {
+                                    holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
+                                    model.setPraise(model.getPraise()+1);
+                                    holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+                                } catch (JSONException | IOException e) {
+                                    XToastUtils.toast("请检查网络后重试");
                                     e.printStackTrace();
                                 }
-                                holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
-                                model.setPraise(model.getPraise()+1);
-                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+
                             }
                             else if (model.getWhetherPraise() == 1)
                             {
@@ -349,12 +359,14 @@ public class FloorFragment extends BaseFragment{
                                 model.setWhetherPraise(0);
                                 try {
                                     ExchangeInfosWithAli.CancelPraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
-                                } catch (JSONException e) {
+                                    holder.image(R.id.iv_praise, R.drawable.ic_praise);
+                                    model.setPraise(model.getPraise()-1);
+                                    holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+                                } catch (JSONException | IOException e) {
+                                    XToastUtils.toast("请检查网络后重试");
                                     e.printStackTrace();
                                 }
-                                holder.image(R.id.iv_praise, R.drawable.ic_praise);
-                                model.setPraise(model.getPraise()-1);
-                                holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+
                             }
                         }
                     });
@@ -393,7 +405,8 @@ public class FloorFragment extends BaseFragment{
                     ExchangeInfosWithAli.LastSeenFloorID = "NULL";
                     now_order = "0";
                     mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
-                } catch (JSONException e) {
+                } catch (JSONException | IOException e) {
+                    XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }
                 refreshLayout.finishRefresh();
@@ -405,7 +418,8 @@ public class FloorFragment extends BaseFragment{
                     ExchangeInfosWithAli.LastSeenFloorID = "NULL";
                     now_order = "1";
                     mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
-                } catch (JSONException e) {
+                } catch (JSONException | IOException e) {
+                    XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }
                 refreshLayout.finishRefresh();
@@ -424,13 +438,31 @@ public class FloorFragment extends BaseFragment{
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
 //                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
-                try {
-                    ExchangeInfosWithAli.LastSeenFloorID = "NULL";
-                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                refreshLayout.finishRefresh();
+//                try {
+//                    ExchangeInfosWithAli.LastSeenFloorID = "NULL";
+//                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
+//                } catch (JSONException | IOException e) {
+//                    e.printStackTrace();
+//                }
+                ExchangeInfosWithAli.LastSeenFloorID = "NULL";
+                Handler handler = new MyHandler.FloorRefreshHandler(mFloorsAdapter, refreshLayout);
+                new Thread() {
+                    @Override
+                    public void run() {
+                        Message msg = new Message();
+                        try {
+                            msg.arg1 = 0;
+                            msg.obj  = ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order);
+                            if (msg.obj == null){
+                                msg.arg1 = -1;
+                            }
+                        } catch (JSONException | IOException e) {
+                            msg.arg1 = 1;
+                        }
+                        handler.sendMessage(msg);
+                    }
+                }.start();
+
                 LookThroughActivity htr = (LookThroughActivity) getActivity();
                 htr.checkthreebuttons();
 
@@ -441,12 +473,30 @@ public class FloorFragment extends BaseFragment{
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
 //                mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliThread(LookThroughActivity.threadid));
-                try {
-                    mFloorsAdapter.loadMore(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                refreshLayout.finishLoadMore();
+//                try {
+//                    mFloorsAdapter.loadMore(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
+//                } catch (JSONException | IOException e) {
+//                    e.printStackTrace();
+//                }
+
+                Handler handler = new MyHandler.FloorLoadMoreHandler(mFloorsAdapter, refreshLayout);
+                new Thread() {
+                    @Override
+                    public void run() {
+                        Message msg = new Message();
+                        try {
+                            msg.arg1 = 0;
+                            msg.obj  = ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order);
+                            if (msg.obj == null){
+                                msg.arg1 = -1;
+                            }
+                        } catch (JSONException | IOException e) {
+                            msg.arg1 = 1;
+                        }
+                        handler.sendMessage(msg);
+                    }
+                }.start();
+//                refreshLayout.finishLoadMore();
                 LookThroughActivity htr = (LookThroughActivity) getActivity();
                 htr.checkthreebuttons();
             }, 0);

@@ -33,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.*;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -55,46 +56,50 @@ public class ExchangeInfosWithAli {
     public static int WhetherReport = 0;
     public static String UserName = "无可奉告";
 
-    public static int Request_verifycode(String emailaddress) throws JSONException {
+    public static int Request_verifycode(String emailaddress) throws JSONException ,IOException{
         JSONObject QueryJson = EncapsulateString_json("0", emailaddress,  "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return receive_message.getInt("VarifiedEmailAddress");
     }
 
-    public static List<NewInfo> GetAliRecommandedNewsInfos_json(int block) throws JSONException {
+    public static List<NewInfo> GetAliRecommandedNewsInfos_json(int block) throws JSONException ,IOException{
         JSONObject QueryJson = EncapsulateString_json("1", LastSeenThreadID + "", block + "", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsonToList_Recommmand(receive_message);
     }
 
-    public static List<FloorInfo> GetAliFloor_json(String ThreadID, String order) throws JSONException {
+    public static List<FloorInfo> GetAliFloor_json(String ThreadID, String order) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("2", ThreadID, LastSeenFloorID, order, "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
+//        if (receive_message == null){
+//            XToastUtils.toast("网络异常");
+//            return null;
+//        }
         WhetherFavour = 0;
         WhetherPraise = 0;
         return DecapsulateJsonToList_floor(receive_message);
     }
 
-    public static void SendMyThread_json(String title, String content, int block, String anonymous_type, int random_seed) throws JSONException {
+    public static void SendMyThread_json(String title, String content, int block, String anonymous_type, int random_seed) throws JSONException,IOException {
         JSONObject QueryJson = EncapsulateString_json("3", title, block + "", content, anonymous_type, random_seed+"");
         RunTCP_json(QueryJson);
     }
 
-    public static void AlicommentThread_json(String threadID, String content) throws JSONException {
+    public static void AlicommentThread_json(String threadID, String content) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("4", threadID, "0", content, "0", "0");
         RunTCP_json(QueryJson);
     }
 
 
 
-    public static void AliReplyFloor_json( String threadID, String content, int ReplytoFloorID) throws JSONException {
+    public static void AliReplyFloor_json( String threadID, String content, int ReplytoFloorID) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("4_2", threadID, "0", content, ReplytoFloorID + "", "0");
         RunTCP_json(QueryJson);
     }
 
 
 
-    public static void FavourThread_json(String ThreadID) throws JSONException {
+    public static void FavourThread_json(String ThreadID) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("5", ThreadID, "0", "1", "0", "0");
         RunTCP_json(QueryJson);
     }
@@ -102,102 +107,101 @@ public class ExchangeInfosWithAli {
 
 
 
-    public static void CancelFavourThread_json(String ThreadID) throws JSONException {
+    public static void CancelFavourThread_json(String ThreadID) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("5_2", ThreadID, "0","2", "0", "0");
         RunTCP_json(QueryJson);
     }
 
 
 
-    public static List<NewInfo> GetFavourThread_json() throws JSONException {
+    public static List<NewInfo> GetFavourThread_json() throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("6", LastSeenFavorThreadID, "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsonToList_Favour(receive_message);
     }
 
-    public static List<NewInfo> ReportThread_json(String ThreadID) throws JSONException {
+    public static void ReportThread_json(String ThreadID) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("e", ThreadID, "0", "0", "0", "0");
-        JSONObject receive_message = RunTCP_json(QueryJson);
-        return DecapsulateJsonToList_Favour(receive_message);
+        RunTCP_json(QueryJson);
     }
 
 
 
 
-    public static List<NewInfo> GetMyThread_json() throws JSONException {
+    public static List<NewInfo> GetMyThread_json() throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("7", LastSeenMyThreadID, "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsonToList_My(receive_message);
     }
 
 
-    public static void PraiseFloor_json(String ThreadID, int floor) throws JSONException {
+    public static void PraiseFloor_json(String ThreadID, int floor) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("8", ThreadID, "0", "0", floor + "", "0");
         RunTCP_json(QueryJson);
     }
 
 
 
-    public static void CancelPraiseFloor_json(String ThreadID, int floor) throws JSONException {
+    public static void CancelPraiseFloor_json(String ThreadID, int floor) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("8_2", ThreadID, "0", "0", floor + "", "0");
         RunTCP_json(QueryJson);
     }
 
 
-    public static void PraiseThread_json(String ThreadID) throws JSONException {
+    public static void PraiseThread_json(String ThreadID) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("8_3", ThreadID, "0", "0", "0", "0");
         RunTCP_json(QueryJson);
     }
 
 
-    public static void CancelPraiseThread_json(String ThreadID) throws JSONException {
+    public static void CancelPraiseThread_json(String ThreadID) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("8_4", ThreadID, "0", "0", "0", "0");
         RunTCP_json(QueryJson);
     }
 
 
-    public static void DislikeThread_json(String ThreadID) throws JSONException {
+    public static void DislikeThread_json(String ThreadID) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("9", ThreadID, "0", "0", "0", "0");
         RunTCP_json(QueryJson);
     }
 
 
 
-    public static void CancelDislikeThread_json(String ThreadID) throws JSONException {
+    public static void CancelDislikeThread_json(String ThreadID) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("9_2", ThreadID, "0", "2", "1", "0");
         RunTCP_json(QueryJson);
     }
 
 
 
-    public static List<MessageInfo> GetMessageList_json() throws JSONException {
+    public static List<MessageInfo> GetMessageList_json() throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("a", LastSeenMessageThreadID, "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsontoList_Message(receive_message);
     }
 
 
-    public static List<NewInfo> Query_json(String queryString) throws JSONException {
+    public static List<NewInfo> Query_json(String queryString) throws JSONException ,IOException {
         JSONObject QueryJson= EncapsulateString_json("b", queryString, LastSeenQueryThreadID, "2", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsonToList_Query(receive_message);
     }
 
 
-    public static void DeleteThread_json(String ThreadID) throws JSONException {
+    public static void DeleteThread_json(String ThreadID) throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("c", ThreadID, "0", "0", "0", "0");
         RunTCP_json(QueryJson);
     }
 
 
-    public static List<NewInfo> HottestThread_json() throws JSONException {
+    public static List<NewInfo> HottestThread_json() throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("d", LastSeenHotThreadID, "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsonToList_Hot(receive_message);
     }
 
 
-    public static int Login_json(String Username, String Userpw) throws JSONException, InterruptedException {
+    public static int Login_json(String Username, String Userpw) throws JSONException ,IOException {
         String deviceID = UUID.randomUUID().toString();
         JSONObject QueryJson = EncapsulateString_json("f", Username, Userpw, deviceID, "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
@@ -216,11 +220,16 @@ public class ExchangeInfosWithAli {
         return Integer.parseInt(login_flag);
     }
 
-    public static int VerifyToken_json() throws JSONException, InterruptedException {
+    public static int VerifyToken_json() throws JSONException ,IOException {
         JSONObject QueryJson = EncapsulateString_json("-1", "0", "0", "0", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
+//        if (receive_message == null){
+//            XToastUtils.toast("网络链接失败");
+//            return 100;
+//        }
         String login_flag = receive_message.getString("login_flag");
         return Integer.parseInt(login_flag);
+
     }
 
 
@@ -238,11 +247,12 @@ public class ExchangeInfosWithAli {
 
 
     private static List<NewInfo> DecapsulateJsonToList_Recommmand(JSONObject InputJson) throws JSONException {
+
         LastSeenThreadID = InputJson.getString("LastSeenThreadID");
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
-            XToastUtils.toast("没有更多啦～");
+//            XToastUtils.toast("没有更多啦～");
             return null;
         }
         for (int i = 0; i < thread_list.length(); i++) {
@@ -271,7 +281,7 @@ public class ExchangeInfosWithAli {
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
-            XToastUtils.toast("没有更多啦～");
+//            XToastUtils.toast("没有更多啦～");
             return null;
         }
         for (int i = 0; i < thread_list.length(); i++) {
@@ -298,10 +308,12 @@ public class ExchangeInfosWithAli {
         LastSeenHotThreadID = InputJson.getString("LastSeenHotThreadID");
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
+        Log.d("hot thread list length", "" + thread_list.length());
         if (thread_list.length() < 1) {
-            XToastUtils.toast("没有更多啦～");
+//            XToastUtils.toast("没有更多啦～");
             return null;
         }
+
         for (int i = 0; i < thread_list.length(); i++) {
             JSONObject thread = thread_list.getJSONObject(i);
             Log.d("Thread:", thread.toString());
@@ -327,14 +339,15 @@ public class ExchangeInfosWithAli {
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
-            if (LastSeenMyThreadID.equals("NULL")){
-                XToastUtils.toast("您好像还没有发布过帖子~");
-                return null;
-            }
-            else{
-                XToastUtils.toast("没有更多啦～");
-                return null;
-            }
+//            if (LastSeenMyThreadID.equals("NULL")){
+//                XToastUtils.toast("您好像还没有发布过帖子~");
+//                return null;
+//            }
+//            else{
+//                XToastUtils.toast("没有更多啦～");
+//                return null;
+//            }
+            return null;
 
         }
         for (int i = 0; i < thread_list.length(); i++) {
@@ -362,7 +375,7 @@ public class ExchangeInfosWithAli {
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
-            XToastUtils.toast("没有更多啦～");
+//            XToastUtils.toast("没有更多啦～");
             return null;
         }
         for (int i = 0; i < thread_list.length(); i++) {
@@ -410,14 +423,15 @@ public class ExchangeInfosWithAli {
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
-            if (LastSeenFavorThreadID.equals("NULL")){
-                XToastUtils.toast("您好像还没有收藏过帖子~");
-                return null;
-            }
-            else{
-                XToastUtils.toast("没有更多啦～");
-                return null;
-            }
+//            if (LastSeenFavorThreadID.equals("NULL")){
+//                XToastUtils.toast("您好像还没有收藏过帖子~");
+//                return null;
+//            }
+//            else{
+//                XToastUtils.toast("没有更多啦～");
+//                return null;
+//            }
+            return null;
         }
         for (int i = 0; i < thread_list.length(); i++) {
             JSONObject thread = thread_list.getJSONObject(i);
@@ -454,7 +468,7 @@ public class ExchangeInfosWithAli {
         WhetherReport = Integer.parseInt(this_thread.getString("WhetherReport"));
         LastSeenFloorID = InputJson.getString("LastSeenFloorID");
         if (floor_list.length() < 1) {
-            XToastUtils.toast("没有更多啦～");
+//            XToastUtils.toast("没有更多啦～");
             return null;
         }
         for (int i = 0; i < floor_list.length(); i++) {
@@ -480,13 +494,14 @@ public class ExchangeInfosWithAli {
         Log.d("Message:", InputJson.toString());
         JSONArray message_list= InputJson.getJSONArray("message_list");
         if (message_list.length() < 1 ) {
-            if (LastSeenMessageThreadID.equals("NULL")){
-                XToastUtils.toast("好像您还没有收到信息");
-                return null;
-            }
-            else{
-                XToastUtils.toast("没有更多啦～");
-            }
+//            if (LastSeenMessageThreadID.equals("NULL")){
+//                XToastUtils.toast("好像您还没有收到信息");
+//                return null;
+//            }
+//            else{
+//                XToastUtils.toast("没有更多啦～");
+//            }
+            return null;
         }
 
         for (int i = 0; i < message_list.length(); i++) {
@@ -518,17 +533,19 @@ public class ExchangeInfosWithAli {
     }
 
 
-    private static JSONObject RunTCP_json(JSONObject QueryJson) {
+    private static JSONObject RunTCP_json(JSONObject QueryJson) throws JSONException, IOException {
         tcp_thread_runnable_json tcp_one = new tcp_thread_runnable_json();
         tcp_one.set_text(QueryJson);
         tcp_one.set_addr("172.81.215.104", 8080);
         Thread tcp_thread = new Thread(tcp_one);
         tcp_thread.start();
         try {
-            tcp_thread.join();  //阻塞主进程,确保网络请求完成了再进行下一步
+            tcp_thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        if (tcp_one.je != null) throw tcp_one.je;
+        if (tcp_one.ie != null) throw tcp_one.ie;
         return tcp_one.get_receive_text();
     }
 

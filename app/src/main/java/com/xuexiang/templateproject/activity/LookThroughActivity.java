@@ -44,6 +44,7 @@ import com.xuexiang.templateproject.utils.XToastUtils;
 
 import org.json.JSONException;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -196,25 +197,30 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             if (ExchangeInfosWithAli.WhetherFavour == 0)
             {
                 XToastUtils.toast("点击收藏！");
-                bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
                 try {
                     ExchangeInfosWithAli.FavourThread_json(LookThroughActivity.threadid);
-                } catch (JSONException e) {
+                    bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
+                    ExchangeInfosWithAli.WhetherFavour = 1;
+                } catch (JSONException | IOException e) {
+                    XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }
-                ExchangeInfosWithAli.WhetherFavour = 1;
+
             }
             else
             {
 
                 XToastUtils.toast("取消收藏！");
-                bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.icon_collect_3));
+
                 try {
                     ExchangeInfosWithAli.CancelFavourThread_json(LookThroughActivity.threadid);
-                } catch (JSONException e) {
+                    bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.icon_collect_3));
+                    ExchangeInfosWithAli.WhetherFavour = 0;
+                } catch (JSONException | IOException e) {
+                    XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }
-                ExchangeInfosWithAli.WhetherFavour = 0;
+
             }
 
         }
@@ -223,26 +229,31 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             if (ExchangeInfosWithAli.WhetherPraise == 0)
             {
                 XToastUtils.toast("点赞帖子！");
-                bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_already));
-                ExchangeInfosWithAli.WhetherPraise = 1;
+
                 try {
                     ExchangeInfosWithAli.PraiseThread_json(LookThroughActivity.threadid);
-                } catch (JSONException e) {
+                    bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_already));
+                    ExchangeInfosWithAli.WhetherPraise = 1;
+                    praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())+1));
+                } catch (JSONException | IOException e) {
+                    XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }
-                praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())+1));
+
             }
             else if (ExchangeInfosWithAli.WhetherPraise == 1)
             {
                 XToastUtils.toast("取消点赞帖子！");
-                bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_black));
-                ExchangeInfosWithAli.WhetherPraise = 0;
                 try {
                     ExchangeInfosWithAli.CancelPraiseThread_json(LookThroughActivity.threadid);
-                } catch (JSONException e) {
+                    bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_black));
+                    ExchangeInfosWithAli.WhetherPraise = 0;
+                    praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())-1));
+                } catch (JSONException | IOException e) {
+                    XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }
-                praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())-1));
+
             }
             else if (ExchangeInfosWithAli.WhetherPraise == -1)
             {
@@ -253,26 +264,32 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             if (ExchangeInfosWithAli.WhetherPraise == 0)
             {
                 XToastUtils.toast("点踩帖子！");
-                bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_already));
-                ExchangeInfosWithAli.WhetherPraise = -1;
+
                 try {
                     ExchangeInfosWithAli.DislikeThread_json(LookThroughActivity.threadid);
-                } catch (JSONException e) {
+                    bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_already));
+                    ExchangeInfosWithAli.WhetherPraise = -1;
+                    tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())+1));
+                } catch (JSONException | IOException e) {
+                    XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }
-                tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())+1));
+
             }
             else if (ExchangeInfosWithAli.WhetherPraise == -1)
             {
                 XToastUtils.toast("取消点踩帖子！");
-                bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_black));
-                ExchangeInfosWithAli.WhetherPraise = 0;
+
                 try {
                     ExchangeInfosWithAli.CancelDislikeThread_json(LookThroughActivity.threadid);
-                } catch (JSONException e) {
+                    bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_black));
+                    ExchangeInfosWithAli.WhetherPraise = 0;
+                    tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())-1));
+                } catch (JSONException | IOException e) {
+                    XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }
-                tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())-1));
+
             }
             else if (ExchangeInfosWithAli.WhetherPraise == 1)
             {
@@ -327,15 +344,18 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 }
                 else {
                     //commentOnWork(commentContent);
-                    dialog.dismiss();
+
                     try {
                         ExchangeInfosWithAli.AlicommentThread_json(LookThroughActivity.threadid, commentContent);
-                    } catch (JSONException e) {
+                        XToastUtils.toast("评论成功");
+                        dialog.dismiss();
+                    } catch (JSONException | IOException e) {
+                        XToastUtils.toast("请检查网络后重试");
                         e.printStackTrace();
                     }
 //                    CommentDetailBean detailBean = new CommentDetailBean("小明", commentContent,"刚刚");
 //                    adapter.addTheCommentData(detailBean);
-                    XToastUtils.toast("评论成功");
+
 //                    Toast.makeText(LookThroughActivity.this,"评论成功",Toast.LENGTH_SHORT).show();
 //
                 }
@@ -399,13 +419,16 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                     XToastUtils.toast("评论内容太长啦～不能长于817个字符哟");
                 }
                 else {
-                    dialog.dismiss();
+
                     try {
                         ExchangeInfosWithAli.AliReplyFloor_json(LookThroughActivity.threadid, replyContent , position);
-                    } catch (JSONException e) {
+                        XToastUtils.toast("回复成功");
+                        dialog.dismiss();
+                    } catch (JSONException | IOException e) {
                         e.printStackTrace();
+                        XToastUtils.toast("请检查网络后重试");
                     }
-                    XToastUtils.toast("回复成功");
+
 //                    Toast.makeText(LookThroughActivity.this,"回复成功",Toast.LENGTH_SHORT).show();
                 }
             }

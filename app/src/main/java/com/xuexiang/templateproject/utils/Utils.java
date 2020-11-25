@@ -24,6 +24,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -38,9 +40,13 @@ import android.widget.Toolbar;
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
+import com.google.android.material.snackbar.Snackbar;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.PostThreadActivity;
 import com.xuexiang.templateproject.activity.SearchActivity;
+import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
+import com.xuexiang.templateproject.adapter.entity.NewInfo;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.core.webview.AgentWebActivity;
 import com.xuexiang.templateproject.fragment.FavorFragment;
@@ -54,6 +60,9 @@ import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xutil.XUtil;
 
 import org.json.JSONException;
+
+import java.io.IOException;
+import java.util.List;
 
 import me.jessyan.autosize.external.ExternalAdaptInfo;
 
@@ -93,7 +102,8 @@ public final class Utils {
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         try {
                             CancelFavourThread_json(thread_id);
-                        } catch (JSONException e) {
+                        } catch (JSONException | IOException e) {
+                            XToastUtils.toast("请检查网络后重试");
                             e.printStackTrace();
                         }
                         Log.d("LookThroughActivity.U", thread_id);
@@ -127,12 +137,13 @@ public final class Utils {
                         if (ExchangeInfosWithAli.WhetherReport == 0){
                             try {
                                 ExchangeInfosWithAli.ReportThread_json(thread_id);
-                            } catch (JSONException e) {
+                                XToastUtils.toast("举报成功");
+                                Log.d("LookThroughActivity.U", thread_id);
+                                ExchangeInfosWithAli.WhetherReport = 1;
+                            } catch (JSONException | IOException e) {
+                                XToastUtils.toast("请检查网络后重试");
                                 e.printStackTrace();
                             }
-                            XToastUtils.toast("举报成功");
-                            Log.d("LookThroughActivity.U", thread_id);
-                            ExchangeInfosWithAli.WhetherReport = 1;
                             dialog.dismiss();
                         }
                         else {
@@ -166,7 +177,8 @@ public final class Utils {
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
                         try {
                             ExchangeInfosWithAli.DeleteThread_json(thread_id);
-                        } catch (JSONException e) {
+                        } catch (JSONException | IOException e) {
+                            XToastUtils.toast("请检查网络后重试");
                             e.printStackTrace();
                         }
                         dialog.dismiss();
@@ -341,5 +353,7 @@ public final class Utils {
             XUI.initTheme(activity);
         }
     }
+
+
 
 }

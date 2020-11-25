@@ -29,6 +29,7 @@ import com.xuexiang.xui.widget.edittext.MultiLineEditText;
 
 import org.json.JSONException;
 
+import java.io.IOException;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -221,12 +222,14 @@ public class PostThreadActivity extends AppCompatActivity{
 //                            ExchangeInfosWithAli.SendMyThread(thread_Title, thread_Content, sectionID);
                             try {
                                 ExchangeInfosWithAli.SendMyThread_json(thread_Title, thread_Content, sectionID, anonymous_type, random_seed);
-                            } catch (JSONException e) {
+                                finish();
+                            } catch (JSONException | IOException e) {
+                                XToastUtils.toast("请检查网络后重试");
                                 e.printStackTrace();
                             }
                             //                            后端函数 这里thread_Title是帖子标题，thread_Content是帖子内容，在最外面int型的sectionID是帖子所属的板块，只有这三个参数传递给后端
 //                                    另外，帖子标题和帖子内容不能为空的逻辑已经判断过了，不必再判断。
-                            finish();
+
                         }
                         break;
                     default:

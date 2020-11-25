@@ -46,6 +46,8 @@ import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 
 import org.json.JSONException;
 
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -118,7 +120,8 @@ public class LoginFragment extends BaseFragment {
                         XToastUtils.toast("请输入交大邮箱哟～");
                     }
 
-                } catch (JSONException e) {
+                } catch (JSONException | IOException e) {
+                    XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }
                 break;
@@ -159,7 +162,8 @@ public class LoginFragment extends BaseFragment {
                 int result = 0;
                 try {
                     result = ExchangeInfosWithAli.Login_json(user_name,verifyCode);
-                } catch (JSONException | InterruptedException e) {
+                } catch (JSONException | IOException e) {
+                    XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }
                 switch (result){

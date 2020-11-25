@@ -51,8 +51,13 @@ public class tcp_thread_runnable_json implements Runnable {
         return receive_text;
     }
 
+    JSONException je;
+    IOException ie;
+
     @Override
-    public void run() {
+    public void run(){
+        je = null;
+        ie = null;
         try {
 //            int len = -1;
 //            byte[] buf = new byte[20480];
@@ -67,13 +72,20 @@ public class tcp_thread_runnable_json implements Runnable {
             BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             strInputstream = br.readLine();
             socket.close();
+//            try {
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
             try {
                 receive_text  = new JSONObject(strInputstream);
-            }catch (JSONException err){
+            } catch (JSONException err){
+                je = err;
                 Log.d("Error", err.toString());
             }
-        }catch (IOException e){
-            e.printStackTrace();;
+        }catch (IOException err){
+            ie = err;
+            Log.d("Error", err.toString());
         }
     }
 }

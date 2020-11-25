@@ -20,6 +20,8 @@ package com.xuexiang.templateproject.fragment.trending;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
@@ -45,6 +47,7 @@ import com.xuexiang.templateproject.utils.AnonymousColor;
 import com.xuexiang.templateproject.utils.DemoDataProvider;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.xuexiang.templateproject.utils.HTR_RGBA;
+import com.xuexiang.templateproject.utils.MyHandler;
 import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
@@ -60,6 +63,7 @@ import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
 import org.json.JSONException;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
@@ -252,27 +256,63 @@ public class TrendingFragment extends BaseFragment {
         refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                try {
-                    ExchangeInfosWithAli.LastSeenHotThreadID = "NULL";
-                    mNewsAdapter.refresh(ExchangeInfosWithAli.HottestThread_json());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                refreshLayout.finishRefresh();
-            }, 500);
+//                try {
+//                    ExchangeInfosWithAli.LastSeenHotThreadID = "NULL";
+//                    mNewsAdapter.refresh(ExchangeInfosWithAli.HottestThread_json());
+//                } catch (JSONException | IOException e) {
+//                    e.printStackTrace();
+//                }
+//                refreshLayout.finishRefresh();
+                ExchangeInfosWithAli.LastSeenHotThreadID = "NULL";
+                Handler handler = new MyHandler.ThreadRefreshHandler(mNewsAdapter, refreshLayout);
+                new Thread() {
+                    @Override
+                    public void run() {
+                        Message msg = new Message();
+                        try {
+                            msg.arg1 = 0;
+                            msg.obj  =ExchangeInfosWithAli.HottestThread_json();
+                            if (msg.obj == null){
+                                msg.arg1 = -1;
+                            }
+                        } catch (JSONException | IOException e) {
+                            msg.arg1 = 1;
+                        }
+                        handler.sendMessage(msg);
+                    }
+                }.start();
+            }, 0);
         });
         //上拉加载
         refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
-                try {
-                    mNewsAdapter.loadMore(ExchangeInfosWithAli.HottestThread_json());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                refreshLayout.finishLoadMore();
-            }, 500);
+//                try {
+//                    mNewsAdapter.loadMore(ExchangeInfosWithAli.HottestThread_json());
+//                } catch (JSONException | IOException e) {
+//                    e.printStackTrace();
+//                }
+//                refreshLayout.finishLoadMore();
+                Handler handler = new MyHandler.ThreadLoadMoreHandler(mNewsAdapter, refreshLayout);
+                new Thread() {
+                    @Override
+                    public void run() {
+                        Message msg = new Message();
+                        try {
+                            msg.arg1 = 0;
+                            msg.obj  = ExchangeInfosWithAli.HottestThread_json();
+                            if (msg.obj == null){
+                                msg.arg1 = -1;
+                            }
+                        } catch (JSONException | IOException e) {
+                            msg.arg1 = 1;
+                        }
+                        handler.sendMessage(msg);
+                    }
+                }.start();
+            }, 0);
         });
+
         refreshLayout.autoRefresh(0, 0, 0,false);//第一次进入触发自动刷新，演示效果
 
         //thread.setOnSuperTextViewClickListener(this);

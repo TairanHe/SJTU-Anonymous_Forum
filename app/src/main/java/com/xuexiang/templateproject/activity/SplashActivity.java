@@ -32,6 +32,8 @@ import com.xuexiang.templateproject.utils.TokenUtils;
 
 import org.json.JSONException;
 
+import java.io.IOException;
+
 import me.jessyan.autosize.internal.CancelAdapt;
 
 /**
@@ -91,7 +93,9 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
                     finish();
                 }
 
-            } catch (JSONException | InterruptedException e) {
+            } catch (JSONException | IOException e) {
+                XToastUtils.toast("无法连接到网络，请检查网络后重试");
+                finish();
                 e.printStackTrace();
             }
         } else {
