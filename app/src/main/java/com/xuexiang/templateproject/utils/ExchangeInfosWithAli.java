@@ -327,8 +327,15 @@ public class ExchangeInfosWithAli {
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
-            XToastUtils.toast("没有更多啦～");
-            return null;
+            if (LastSeenMyThreadID.equals("NULL")){
+                XToastUtils.toast("您好像还没有发布过帖子~");
+                return null;
+            }
+            else{
+                XToastUtils.toast("没有更多啦～");
+                return null;
+            }
+
         }
         for (int i = 0; i < thread_list.length(); i++) {
             JSONObject thread = thread_list.getJSONObject(i);
@@ -403,8 +410,14 @@ public class ExchangeInfosWithAli {
         List<NewInfo> list = new ArrayList<>();
         JSONArray thread_list= InputJson.getJSONArray("thread_list");
         if (thread_list.length() < 1) {
-            XToastUtils.toast("您好像还没有收藏过帖子~");
-            return null;
+            if (LastSeenFavorThreadID.equals("NULL")){
+                XToastUtils.toast("您好像还没有收藏过帖子~");
+                return null;
+            }
+            else{
+                XToastUtils.toast("没有更多啦～");
+                return null;
+            }
         }
         for (int i = 0; i < thread_list.length(); i++) {
             JSONObject thread = thread_list.getJSONObject(i);
@@ -466,10 +479,16 @@ public class ExchangeInfosWithAli {
         List<MessageInfo> list = new ArrayList<>();
         Log.d("Message:", InputJson.toString());
         JSONArray message_list= InputJson.getJSONArray("message_list");
-        if (message_list.length() < 1) {
-            XToastUtils.toast("好像您还没有收到信息");
-            return null;
+        if (message_list.length() < 1 ) {
+            if (LastSeenMessageThreadID.equals("NULL")){
+                XToastUtils.toast("好像您还没有收到信息");
+                return null;
+            }
+            else{
+                XToastUtils.toast("没有更多啦～");
+            }
         }
+
         for (int i = 0; i < message_list.length(); i++) {
             JSONObject message = message_list.getJSONObject(i);
             Log.d("Message:", message.toString());

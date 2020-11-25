@@ -220,11 +220,11 @@ public class NoteFragment extends BaseFragment {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 try {
-                    mNewsAdapter.refresh(ExchangeInfosWithAli.GetMessageList_json());
+                    mNewsAdapter.loadMore(ExchangeInfosWithAli.GetMessageList_json());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                refreshLayout.finishRefresh();
+                refreshLayout.finishLoadMore();
             }, 500);
         });
         refreshLayout.autoRefresh(0, 0, 0,false);//第一次进入触发自动刷新，演示效果

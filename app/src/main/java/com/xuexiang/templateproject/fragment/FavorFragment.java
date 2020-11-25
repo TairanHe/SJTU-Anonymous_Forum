@@ -232,7 +232,7 @@ public class FavorFragment extends BaseFragment {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 try {
-                    mNewsAdapter.refresh(ExchangeInfosWithAli.GetFavourThread_json());
+                    mNewsAdapter.loadMore(ExchangeInfosWithAli.GetFavourThread_json());
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
