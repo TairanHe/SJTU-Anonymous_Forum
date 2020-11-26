@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.xuexiang.templateproject"
-        minSdkVersion 17
+        minSdkVersion 21
         targetSdkVersion build_versions.target_sdk
         versionCode 1
         versionName "1.0"

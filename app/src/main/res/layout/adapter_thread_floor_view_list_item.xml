@@ -72,14 +72,30 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/tv_speaker"
-                        style="@style/TextStyle.Explain"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="left|top"
-                        android:layout_marginStart="4dp"
-                        android:textColor="@color/xui_config_color_light_blue_gray"
-                        tools:text="#何泰然" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_speaker"
+                            style="@style/TextStyle.Explain"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:layout_marginStart="4dp"
+                            android:textColor="@color/xui_config_color_light_blue_gray"
+                            tools:text="#何泰然" />
+
+                        <TextView
+                            android:id="@+id/tv_replytospeaker"
+                            style="@style/TextStyle.Explain"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="left|top"
+                            android:layout_marginStart="2dp"
+                            android:textColor="@color/xui_config_color_light_blue_gray"
+                            tools:text="" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:id="@+id/tv_time"

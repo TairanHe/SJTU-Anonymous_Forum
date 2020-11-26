@@ -204,7 +204,7 @@ public class NewsFragment extends BaseFragment {
 
                     Log.d("whethertop", "" + model.getWhetherTop());
                     if (model.getWhetherTop() == 1){
-                        Log.d("flag",  "Enter 1 1 1 11111111");
+//                        Log.d("flag",  "Enter 1 1 1 11111111");
                         int resID = getResources().getIdentifier("official_blue", "drawable", "com.xuexiang.templateproject");
                         Drawable official = getResources().getDrawable(resID);
 //                        holder.image(R.id.iv_top, official);
@@ -217,7 +217,7 @@ public class NewsFragment extends BaseFragment {
 //                        background.setColor(Color.argb(250,41, 158, 227));
                     }
                     else{
-                        Log.d("flag",  "Enter 00 0 0 0 0 0 00 ");
+//                        Log.d("flag",  "Enter 00 0 0 0 0 0 00 ");
                         ImageView top = (ImageView) holder.findViewById(R.id.iv_top);
                         top.setAlpha((float) 0);
 //                        ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
@@ -240,7 +240,7 @@ public class NewsFragment extends BaseFragment {
                     holder.click(R.id.card_view, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            XToastUtils.toast("点击帖子！");
+//                            XToastUtils.toast("点击帖子！");
                             LookThroughActivity.threadid = model.getThreadID();
                             LookThroughActivity.threadtitle = model.getTitle();
                             LookThroughActivity.threadsummary = model.getSummary();

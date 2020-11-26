@@ -25,6 +25,7 @@ import android.view.View;
 
 import com.xuexiang.templateproject.activity.LoginActivity;
 //import com.xuexiang.templateproject.activity.RegisterActivity;
+import com.xuexiang.templateproject.utils.CountDownTimerUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
@@ -40,6 +41,7 @@ import com.xuexiang.templateproject.utils.PrivacyUtils;
 import com.xuexiang.templateproject.utils.SettingSPUtils;
 import com.xuexiang.templateproject.utils.TokenUtils;
 import com.xuexiang.templateproject.utils.XToastUtils;
+import com.xuexiang.xui.widget.textview.supertextview.SuperButton;
 import com.xuexiang.xutil.app.ActivityUtils;
 import com.xuexiang.templateproject.utils.RandomUtils;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
@@ -118,6 +120,11 @@ public class LoginFragment extends BaseFragment {
                     int VarifiedEmailAddress = ExchangeInfosWithAli.Request_verifycode(etPhoneNumber.getEditValue());
                     if (VarifiedEmailAddress == 0){
                         XToastUtils.toast("请输入交大邮箱哟～");
+                    }
+                    else {
+                        SuperButton sb = findViewById(R.id.btn_register);
+                        CountDownTimerUtils mCountDownTimerUtils = new CountDownTimerUtils(sb, 60000, 1000); //倒计时1分钟
+                        mCountDownTimerUtils.start();
                     }
 
                 } catch (JSONException | IOException e) {

@@ -82,6 +82,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_look_through);
 
+
+
+
 //        FloatingActionButton fab = findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -312,7 +315,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
      * func:弹出评论框
      */
     public void showCommentDialog(){
-        dialog = new BottomSheetDialog(this);
+        dialog = new BottomSheetDialog(this, R.style.DialogStyle);
         View commentView = LayoutInflater.from(this).inflate(R.layout.comment_dialog_layout,null);
         final EditText commentText = (EditText) commentView.findViewById(R.id.dialog_comment_et);
         final Button bt_comment = (Button) commentView.findViewById(R.id.dialog_comment_bt);
@@ -394,7 +397,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
      * func:弹出回复框
      */
      public void showReplyDialog(final int position){
-        dialog = new BottomSheetDialog(this);
+        dialog = new BottomSheetDialog(this, R.style.DialogStyle);
         View commentView = LayoutInflater.from(this).inflate(R.layout.comment_dialog_layout,null);
 
         final EditText commentText = (EditText) commentView.findViewById(R.id.dialog_comment_et);

@@ -211,6 +211,10 @@ public class FloorFragment extends BaseFragment{
             @Override
             protected void bindData(@NonNull RecyclerViewHolder holder, int position, FloorInfo model) {
                 if (model != null) {
+                    int replytofloorid = Integer.parseInt(model.getReplytofloor());
+                    Log.d("position", ""+position);
+                    Log.d("floor", model.getFloorID() );
+                    Log.d("reply", "" + replytofloorid);
                     holder.text(R.id.tv_floor_id, "#" + model.getFloorID() + "楼");
                     try {
                         holder.text(R.id.tv_time,  DateHelper.getPastTimebyString(model.getRTime()));
@@ -218,16 +222,33 @@ public class FloorFragment extends BaseFragment{
                         e.printStackTrace();
                     }
                     String name = AnonymousName.getname(namelist,Integer.parseInt(model.getSpeakername()));
-                    if (model.getReplytoname().equals("NULL") || Integer.parseInt(model.getReplytofloor()) < 1)
+                    if (model.getReplytoname().equals("NULL") || replytofloorid < 1)
                     {
                         holder.text(R.id.tv_speaker, name);
+                        holder.text(R.id.tv_replytospeaker, "");
                     }
                     else
                     {
                         String replytoname = AnonymousName.getname(namelist,Integer.parseInt(model.getReplytoname()));
-                        holder.text(R.id.tv_speaker,  name + " 回复 " + replytoname + " #" + model.getReplytofloor() + "楼" );
+                        holder.text(R.id.tv_speaker,  name + " 回复" );
+                        holder.text(R.id.tv_replytospeaker, "#" + replytofloorid + "楼 " +  replytoname);
 
                     }
+                    holder.click(R.id.tv_replytospeaker, new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+//                            XToastUtils.toast("跳转");
+                            int scrollto_position;
+                            if (replytofloorid != 1){
+                                scrollto_position = replytofloorid+1;
+                            }
+                            else {
+                                scrollto_position = replytofloorid;
+                            }
+//                            Log.d("toposition", "" + scrollto_position);
+                            recyclerView.smoothScrollToPosition(scrollto_position);
+                        }
+                    });
 
 //                    int resID = getResources().getIdentifier("xiaoren_"+ model.getSpeakername(), "drawable", "com.xuexiang.templateproject");
 //                    Drawable touxiang = getResources().getDrawable(resID);
@@ -246,9 +267,10 @@ public class FloorFragment extends BaseFragment{
 
                     holder.text(R.id.tv_context, model.getContext());
                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+
                     holder.text(R.id.tv_reply,  "评论");
-                    Log.d("Floor", "floorid" + model.getFloorID());
-                    Log.d("Floor", "whetherpraise" + model.getWhetherPraise());
+//                    Log.d("Floor", "floorid" + model.getFloorID());
+//                    Log.d("Floor", "whetherpraise" + model.getWhetherPraise());
                     if(model.getWhetherPraise() == 1)
                     {
                         holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
@@ -263,6 +285,8 @@ public class FloorFragment extends BaseFragment{
 //                    holder.image(R.id.iv_image, model.getImageUrl());
 
                     //holder.click(R.id.card_view, v -> Utils.goWeb(getContext(), model.getDetailUrl()));
+
+
                     holder.click(R.id.tv_reply, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
