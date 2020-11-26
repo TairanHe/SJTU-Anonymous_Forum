@@ -178,6 +178,7 @@ public final class Utils {
                         // 这里是更新的函数接口
                         Uri uri = Uri.parse(update_url);
                         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
 
 
