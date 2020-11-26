@@ -463,6 +463,8 @@ public class ExchangeInfosWithAli {
         JSONObject this_thread = InputJson.getJSONObject("this_thread");
         WhetherFavour = Integer.parseInt(this_thread.getString("WhetherFavour"));
         WhetherPraise = Integer.parseInt(this_thread.getString("WhetherLike"));
+        Log.d("Num_Praise", "DecapsulateJsonToList_floor: " + Integer.parseInt(this_thread.getString("Like")));
+        Log.d("Num_Dislike", "DecapsulateJsonToList_floor: " + Integer.parseInt(this_thread.getString("Dislike")));
         Num_Praise = Integer.parseInt(this_thread.getString("Like"));
         Num_Dislike = Integer.parseInt(this_thread.getString("Dislike"));
         WhetherReport = Integer.parseInt(this_thread.getString("WhetherReport"));

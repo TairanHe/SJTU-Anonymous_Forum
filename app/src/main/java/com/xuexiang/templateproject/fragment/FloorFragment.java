@@ -445,7 +445,8 @@ public class FloorFragment extends BaseFragment{
 //                    e.printStackTrace();
 //                }
                 ExchangeInfosWithAli.LastSeenFloorID = "NULL";
-                Handler handler = new MyHandler.FloorRefreshHandler(mFloorsAdapter, refreshLayout);
+                LookThroughActivity htr = (LookThroughActivity) getActivity();
+                Handler handler = new MyHandler.FloorRefreshHandler(mFloorsAdapter, refreshLayout, htr);
                 new Thread() {
                     @Override
                     public void run() {
@@ -463,8 +464,8 @@ public class FloorFragment extends BaseFragment{
                     }
                 }.start();
 
-                LookThroughActivity htr = (LookThroughActivity) getActivity();
-                htr.checkthreebuttons();
+
+
 
             }, 0);
         });
@@ -478,8 +479,8 @@ public class FloorFragment extends BaseFragment{
 //                } catch (JSONException | IOException e) {
 //                    e.printStackTrace();
 //                }
-
-                Handler handler = new MyHandler.FloorLoadMoreHandler(mFloorsAdapter, refreshLayout);
+                LookThroughActivity htr = (LookThroughActivity) getActivity();
+                Handler handler = new MyHandler.FloorLoadMoreHandler(mFloorsAdapter, refreshLayout, htr);
                 new Thread() {
                     @Override
                     public void run() {
@@ -497,8 +498,7 @@ public class FloorFragment extends BaseFragment{
                     }
                 }.start();
 //                refreshLayout.finishLoadMore();
-                LookThroughActivity htr = (LookThroughActivity) getActivity();
-                htr.checkthreebuttons();
+
             }, 0);
         });
 

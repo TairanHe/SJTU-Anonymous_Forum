@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.xuexiang.templateproject.activity.LookThroughActivity;
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.entity.FloorInfo;
 import com.xuexiang.templateproject.adapter.entity.MessageInfo;
@@ -109,6 +110,7 @@ public abstract class MyHandler {
             if(msg.arg1 == 0){
                 adapter.loadMore((List<MessageInfo>) msg.obj);
                 layout.finishLoadMore();
+
             }
             else if (msg.arg1 == -1){
                 XToastUtils.toast("没有更多啦");
@@ -125,16 +127,19 @@ public abstract class MyHandler {
     public static class FloorRefreshHandler extends Handler {
         SimpleDelegateAdapter<FloorInfo> adapter;
         RefreshLayout layout;
+        LookThroughActivity lookThroughActivity;
 
-        public FloorRefreshHandler(SimpleDelegateAdapter<FloorInfo> adapter, RefreshLayout layout) {
+        public FloorRefreshHandler(SimpleDelegateAdapter<FloorInfo> adapter, RefreshLayout layout, LookThroughActivity lookThroughActivity) {
             this.adapter = adapter;
             this.layout = layout;
+            this.lookThroughActivity = lookThroughActivity;
         }
         @Override
         public void handleMessage(Message msg) {
             if(msg.arg1 == 0){
                 adapter.refresh(((List<FloorInfo>) msg.obj));
                 layout.finishRefresh();
+                lookThroughActivity.checkthreebuttons();
             }
             else if (msg.arg1 == -1){
                 XToastUtils.toast("没有更多啦");
@@ -151,16 +156,19 @@ public abstract class MyHandler {
     public static class FloorLoadMoreHandler extends Handler {
         SimpleDelegateAdapter<FloorInfo> adapter;
         RefreshLayout layout;
+        LookThroughActivity lookThroughActivity;
 
-        public FloorLoadMoreHandler(SimpleDelegateAdapter<FloorInfo> adapter, RefreshLayout layout) {
+        public FloorLoadMoreHandler(SimpleDelegateAdapter<FloorInfo> adapter, RefreshLayout layout, LookThroughActivity lookThroughActivity) {
             this.adapter = adapter;
             this.layout = layout;
+            this.lookThroughActivity = lookThroughActivity;
         }
         @Override
         public void handleMessage(Message msg) {
             if(msg.arg1 == 0){
                 adapter.loadMore((List<FloorInfo>) msg.obj);
                 layout.finishLoadMore();
+                lookThroughActivity.checkthreebuttons();
             }
             else if (msg.arg1 == -1){
                 XToastUtils.toast("没有更多啦");
