@@ -125,6 +125,12 @@ public class ExchangeInfosWithAli {
         RunTCP_json(QueryJson);
     }
 
+    public static JSONObject CheckVersion_json(String version) throws JSONException ,IOException {
+        JSONObject QueryJson = EncapsulateString_json("g", "android", version, "0", "0", "0");
+        JSONObject receive_message = RunTCP_json(QueryJson);
+        return receive_message;
+    }
+
 
 
 

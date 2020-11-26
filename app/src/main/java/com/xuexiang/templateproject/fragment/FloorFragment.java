@@ -160,7 +160,6 @@ public class FloorFragment extends BaseFragment{
                 Log.d("Thread post time", LookThroughActivity.threadposttime);
                 try {
                     holder.text(R.id.tv_time, DateHelper.getPastTimebyString(LookThroughActivity.threadposttime));
-
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }

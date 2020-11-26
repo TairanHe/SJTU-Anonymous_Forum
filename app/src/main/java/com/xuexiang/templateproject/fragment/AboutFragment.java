@@ -22,10 +22,17 @@ import android.widget.TextView;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.core.webview.AgentWebActivity;
+import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
+import com.xuexiang.templateproject.utils.Utils;
+import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xui.widget.grouplist.XUIGroupListView;
 import com.xuexiang.xutil.app.AppUtils;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
@@ -53,17 +60,41 @@ public class AboutFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
-        mVersionTextView.setText(String.format("版本号：%s", AppUtils.getAppVersionName()));
+        mVersionTextView.setText(String.format("版本号：%s", getString(R.string.app_version)));
 
         XUIGroupListView.newSection(getContext())
                 .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_homepage)), v -> AgentWebActivity.goWeb(getContext(), getString(R.string.url_project_github)))
                 .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_author_github)), v -> AgentWebActivity.goWeb(getContext(), getString(R.string.url_author_github)))
                 .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_donation_link)), v -> AgentWebActivity.goWeb(getContext(), getString(R.string.url_donation_link)))
-                .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_add_qq_group)), v -> AgentWebActivity.goWeb(getContext(), getString(R.string.url_add_qq_group)))
+                .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_add_qq_group)), v -> CheckUpdate())
                 .addTo(mAboutGroupListView);
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy", Locale.CHINA);
         String currentYear = dateFormat.format(new Date());
         mCopyrightTextView.setText(String.format(getResources().getString(R.string.about_copyright), currentYear));
     }
+
+    public void CheckUpdate(){
+        JSONObject version = null;
+        try {
+            version = ExchangeInfosWithAli.CheckVersion_json(getString(R.string.app_version));
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            if (version.getString("NeedUpdate").equals("1")){
+                Utils.showUpdateDialog(getActivity(), null,version.getString("UpdateUrl"));
+            }
+            else
+            {
+                XToastUtils.toast("您的当前版本已是最新版");
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

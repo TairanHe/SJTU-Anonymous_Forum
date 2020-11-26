@@ -22,17 +22,17 @@
     android:orientation="vertical">
 
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center_horizontal"
-        app:srcCompat="@mipmap/about_logo_glasses" />
+<!--    <androidx.appcompat.widget.AppCompatImageView-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="120dp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        app:srcCompat="@drawable/icon_wkfg" />-->
 
 
     <TextView
         style="@style/TextStyle.Title"
         android:layout_width="match_parent"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="100dp"
         android:text="登 录"
         android:textSize="30sp" />
 

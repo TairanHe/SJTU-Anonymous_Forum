@@ -181,7 +181,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         switch (item.getItemId()) {
             case R.id.action_report:
                 XToastUtils.toast("举报");
-                Utils.showreportDialog(this, null, threadid);
+                Utils.showReportDialog(this, null, threadid);
                 //Utils.showPrivacyDialog(this, null);
 //                Intent intent = new Intent(MainActivity.this, PostThreadActivity.class);
 //                startActivity(intent);

@@ -24,6 +24,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Message;
 import android.text.SpannableString;
@@ -90,7 +91,7 @@ public final class Utils {
      */
     public static Dialog showDeleteFavorDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, BaseFragment baseFragment, String thread_id) {
         MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
-                .positiveText("不删除").onPositive((dialog1, which) -> {
+                .positiveText("不更新").onPositive((dialog1, which) -> {
                     if (submitListener != null) {
                         submitListener.onClick(dialog1, which);
                     } else {
@@ -121,7 +122,7 @@ public final class Utils {
         return dialog;
     }
 
-    public static Dialog showreportDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, String thread_id) {
+    public static Dialog showReportDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, String thread_id) {
         MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
                 .positiveText("不举报").onPositive((dialog1, which) -> {
                     if (submitListener != null) {
@@ -156,6 +157,35 @@ public final class Utils {
                 }).build();
 //        dialog.setContent(getPrivacyContent(context));
         dialog.setContent("是否确认举报该帖？\n请慎重举报\n我们一起努力建设良好的社区环境");
+        //开始响应点击事件
+        dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
+        dialog.show();
+        return dialog;
+    }
+
+    public static Dialog showUpdateDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, String update_url) {
+        MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
+//                .positiveText("不更新").onPositive((dialog1, which) -> {
+//                    if (submitListener != null) {
+//                        submitListener.onClick(dialog1, which);
+//                    } else {
+//                        dialog1.dismiss();
+//                    }
+//                })
+                .negativeText("更新").onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        // 这里是更新的函数接口
+                        Uri uri = Uri.parse(update_url);
+                        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                        startActivity(intent);
+
+
+
+                    }
+                }).build();
+//        dialog.setContent(getPrivacyContent(context));
+        dialog.setContent("麻烦请更新至最新版APP～\n否则无法正常使用～");
         //开始响应点击事件
         dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
         dialog.show();

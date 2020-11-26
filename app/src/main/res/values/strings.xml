@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">无可奉告</string>
+    <string name="app_version">1.0.4</string>
+
     <string name="app_browser_name">通用浏览器</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>

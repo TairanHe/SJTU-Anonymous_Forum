@@ -31,6 +31,7 @@ import com.xuexiang.xutil.app.ActivityUtils;
 import com.xuexiang.templateproject.utils.TokenUtils;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -80,17 +81,24 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
         boolean isAgree = MMKVUtils.getBoolean("key_agree_privacy", false);
         if (isAgree) {
             try {
-                if (ExchangeInfosWithAli.VerifyToken_json() == 1){
-                    ActivityUtils.startActivity(MainActivity.class);
-                    finish();
-                } else if (ExchangeInfosWithAli.VerifyToken_json() == 0){
-                    ActivityUtils.startActivity(LoginActivity.class);
-                    finish();
+                JSONObject version = ExchangeInfosWithAli.CheckVersion_json(getString(R.string.app_version));
+                if (version.getString("NeedUpdate").equals("1")){
+                    Utils.showUpdateDialog(this, null, version.getString("UpdateUrl"));
+
                 }
                 else {
-                    XToastUtils.toast("您的账号已被封禁");
+                    if (ExchangeInfosWithAli.VerifyToken_json() == 1){
+                        ActivityUtils.startActivity(MainActivity.class);
+                        finish();
+                    } else if (ExchangeInfosWithAli.VerifyToken_json() == 0){
+                        ActivityUtils.startActivity(LoginActivity.class);
+                        finish();
+                    }
+                    else {
+                        XToastUtils.toast("您的账号已被封禁");
 //                    android.os.Process.killProcess(android.os.Process.myPid());
-                    finish();
+                        finish();
+                    }
                 }
 
             } catch (JSONException | IOException e) {
