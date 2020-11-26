@@ -162,7 +162,7 @@ public class NewInfo {
     }
 
     public NewInfo(String threadID, String title, String summary, String block, int praise, int dislike, int comment, int read,
-                   int whetherlike, String lastupdatetime, String postTime, String anonymousType, int randomSeed, int whetherTop) {
+                   String lastupdatetime, String postTime, String anonymousType, int randomSeed, int whetherTop) {
         ThreadID = threadID;
         Title = title;
         Summary = summary;
@@ -171,7 +171,7 @@ public class NewInfo {
         Dislike = dislike;
         Comment = comment;
         Read = read;
-        WhetherLike = whetherlike;
+//        WhetherLike = whetherlike;
         LastUpdateTime = lastupdatetime;
         PostTime = postTime;
         AnonymousType = anonymousType;

@@ -266,7 +266,7 @@ public class ExchangeInfosWithAli {
                     Integer.parseInt(thread.getString("Dislike")),
                     Integer.parseInt(thread.getString("Comment")),
                     Integer.parseInt(thread.getString("Read")),
-                    Integer.parseInt(thread.getString("WhetherLike")),
+//                    Integer.parseInt(thread.getString("WhetherLike")),
                     thread.getString("LastUpdateTime"),
                     thread.getString("PostTime"),
                     thread.getString("AnonymousType"),
