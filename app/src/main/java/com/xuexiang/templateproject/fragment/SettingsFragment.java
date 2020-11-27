@@ -23,11 +23,13 @@ import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.LoginActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.utils.MMKVUtils;
+import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 import com.xuexiang.xutil.XUtil;
+import com.xuexiang.xutil.app.ActivityUtils;
 
 import butterknife.BindView;
 
@@ -71,8 +73,14 @@ public class SettingsFragment extends BaseFragment implements SuperTextView.OnSu
     public void onClick(SuperTextView superTextView) {
         switch(superTextView.getId()) {
             case R.id.menu_common:
+                 break;
             case R.id.menu_privacy:
+                Utils.showOnlyPrivacyDialog(getContext(), (dialog, which) -> {
+                    dialog.dismiss();
+                });
+                break;
             case R.id.menu_push:
+                break;
             case R.id.menu_helper:
                 XToastUtils.toast(superTextView.getLeftString());
                 break;
@@ -80,6 +88,7 @@ public class SettingsFragment extends BaseFragment implements SuperTextView.OnSu
                 Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
                 getActivity().finish();
+                break;
             case R.id.menu_logout:
                 XToastUtils.toast(superTextView.getCenterString());
                 MMKVUtils.put("Token", "NULL");

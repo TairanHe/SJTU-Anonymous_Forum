@@ -272,7 +272,7 @@ public final class Utils {
      */
     public static Dialog showPrivacyDialog(Context context, MaterialDialog.SingleButtonCallback submitListener) {
         final EditText et = new EditText(context);
-        MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
+        MaterialDialog dialog = new MaterialDialog.Builder(context).title("隐私条款").autoDismiss(false).cancelable(false)
                 .positiveText(R.string.lab_agree).onPositive((dialog1, which) -> {
                     if (submitListener != null) {
                         submitListener.onClick(dialog1, which);
@@ -317,20 +317,61 @@ public final class Utils {
         dialog.show();
         return dialog;
     }
-
+    public static Dialog showOnlyPrivacyDialog(Context context, MaterialDialog.SingleButtonCallback submitListener) {
+        final EditText et = new EditText(context);
+        MaterialDialog dialog = new MaterialDialog.Builder(context).title("隐私条款").autoDismiss(false).cancelable(false)
+                .positiveText("返回").onPositive((dialog1, which) -> {
+                    if (submitListener != null) {
+                        submitListener.onClick(dialog1, which);
+                    } else {
+                        dialog1.dismiss();
+                    }
+                }).build();
+        dialog.setContent(getPrivacyContent(context));
+        //开始响应点击事件
+        dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
+        dialog.show();
+        return dialog;
+    }
     /**
      * @return 隐私政策说明
      */
     private static SpannableStringBuilder getPrivacyContent(Context context) {
         SpannableStringBuilder stringBuilder = new SpannableStringBuilder()
-                .append("    欢迎来到").append(ResUtils.getString(R.string.app_name)).append("!\n")
-                .append("    我可以回答一句无可奉告，但是你们又不高兴，我怎么办？\n")
-                .append("    为了更好地保护你的权益，同时遵守相关监管的要求，我们会用西方那套理论");
-        stringBuilder/*.append(getPrivacyLink(context, PRIVACY_URL))*/
-                .append("向你说明我们会如何收集、存储、保护、使用及对外提供你的信息，并说明你享有的权利。\n")
-                .append("    你问我支持不支持、我当然是支持的")
-                /*.append(getPrivacyLink(context, PRIVACY_URL))*/
-                .append("");
+                .append("欢迎您来到无可奉告。\n" +
+                        "\n" +
+                        "请您仔细阅读以下条款，如果您对本协议的任何条款表示异议，您可以选择不进入无可奉告。当您注册成功，无论是进入无可奉告，还是在无可奉告上发布任何内容（即「内容」），均意味着您（即「用户」）完全接受本协议项下的全部条款。\n" +
+                        "\n" +
+                        "1. 您可以使用上海交通大学邮箱登录无可奉告，并将其作为您的用户账号，用户应当对以其用户帐号进行的所有活动和事件负法律责任。\n" +
+                        "\n" +
+                        "2. 用户须对在无可奉告的注册信息的真实性、合法性、有效性承担全部责任，用户不得冒充他人；不得利用他人的名义发布任何信息；不得恶意使用注册帐号导致其他用户误认；否则无可奉告有权立即停止提供服务，收回其帐号并由用户独自承担由此而产生的一切法律责任。\n" +
+                        "\n" +
+                        "3. 用户直接或通过各类方式间接使用无可奉告服务和数据的行为，都将被视作已无条件接受本协议全部内容；若用户对本协议的任何条款存在异议，请停止使用无可奉告所提供的全部服务。\n" +
+                        "\n" +
+                        "4. 用户承诺不得以任何方式利用无可奉告直接或间接从事违反中国法律的行为，无可奉告有权对违反上述承诺的内容予以删除。\n" +
+                        "\n" +
+                        "5. 用户不得利用无可奉告服务制作、上载、复制、发布、传播或者转载如下内容：\n" +
+                        "\n" +
+                        "反对宪法所确定的基本原则的；\n" +
+                        "危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；\n" +
+                        "损害国家荣誉和利益的；\n" +
+                        "煽动民族仇恨、民族歧视，破坏民族团结的；\n" +
+                        "侮辱、滥用英烈形象，否定英烈事迹，美化粉饰侵略战争行为的；\n" +
+                        "破坏国家宗教政策，宣扬邪教和封建迷信的；\n" +
+                        "散布谣言，扰乱社会秩序，破坏社会稳定的；\n" +
+                        "散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；\n" +
+                        "侮辱或者诽谤他人，侵害他人合法权益的；\n" +
+                        "含有法律、行政法规禁止的其他内容的信息。\n" +
+                        "\n" +
+                        "6. 无可奉告有权对用户使用无可奉告的情况进行审查和监督，如用户在使用无可奉告时违反任何上述规定，无可奉告或其授权的人有权要求用户改正或直接采取一切必要的措施（包括但不限于更改或删除用户张贴的内容、暂停或终止用户使用无可奉告的权利）以减轻用户不当行为造成的影响。");
+//                .append("    欢迎来到").append(ResUtils.getString(R.string.app_name)).append("!\n")
+//                .append("    我可以回答一句无可奉告，但是你们又不高兴，我怎么办？\n")
+//                .append("    为了更好地保护你的权益，同时遵守相关监管的要求，我们会用西方那套理论");
+//        stringBuilder/*.append(getPrivacyLink(context, PRIVACY_URL))*/
+//                .append("向你说明我们会如何收集、存储、保护、使用及对外提供你的信息，并说明你享有的权利。\n")
+//                .append("    你问我支持不支持、我当然是支持的")
+//                /*.append(getPrivacyLink(context, PRIVACY_URL))*/
+//                .append("");
         return stringBuilder;
     }
 
