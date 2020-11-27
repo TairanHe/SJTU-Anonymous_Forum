@@ -544,7 +544,7 @@ public class ExchangeInfosWithAli {
     private static JSONObject RunTCP_json(JSONObject QueryJson) throws JSONException, IOException {
         tcp_thread_runnable_json tcp_one = new tcp_thread_runnable_json();
         tcp_one.set_text(QueryJson);
-        tcp_one.set_addr("172.81.215.104", 8080);
+        tcp_one.set_addr("182.254.145.254", 8080);
         Thread tcp_thread = new Thread(tcp_one);
         tcp_thread.start();
         try {
