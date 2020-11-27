@@ -174,6 +174,8 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
         Log.d("Num_Praise", "checkthreebuttons: " + ExchangeInfosWithAli.Num_Praise);
         Log.d("Num_Dislike", "checkthreebuttons: " + ExchangeInfosWithAli.Num_Dislike);
+
+
         praise_num.setText("" + ExchangeInfosWithAli.Num_Praise);
         tread_num.setText("" + ExchangeInfosWithAli.Num_Dislike);
     }

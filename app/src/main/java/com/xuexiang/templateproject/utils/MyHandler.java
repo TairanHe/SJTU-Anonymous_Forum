@@ -144,6 +144,7 @@ public abstract class MyHandler {
             else if (msg.arg1 == -1){
                 XToastUtils.toast("没有更多啦");
                 layout.finishRefresh();
+                lookThroughActivity.checkthreebuttons();
             }
             else {
 //                XToastUtils.toast("请检查网络后重试");
@@ -173,6 +174,7 @@ public abstract class MyHandler {
             else if (msg.arg1 == -1){
                 XToastUtils.toast("没有更多啦");
                 layout.finishLoadMore();
+                lookThroughActivity.checkthreebuttons();
             }
             else
             {
