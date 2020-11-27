@@ -159,6 +159,9 @@ public class NoteFragment extends BaseFragment {
                     {
                         holder.image(R.id.iv_judge, R.drawable.dian_blue);
                     }
+                    else {
+                        holder.image(R.id.iv_judge, R.drawable.dian_gray);
+                    }
                     holder.text(R.id.tv_title, model.getTitle());
                     int type = model.getType();
                     holder.text(R.id.tv_note, model.getType() == 0 ? "有人悄悄回复了你！" : "有" + type + "人悄悄点赞了你！");
