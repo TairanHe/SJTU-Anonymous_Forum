@@ -40,18 +40,20 @@ import butterknife.BindView;
 @Page(name = "设置")
 public class SettingsFragment extends BaseFragment implements SuperTextView.OnSuperTextViewClickListener {
 
-    @BindView(R.id.menu_common)
-    SuperTextView menuCommon;
+//    @BindView(R.id.menu_common)
+//    SuperTextView menuCommon;
     @BindView(R.id.menu_privacy)
     SuperTextView menuPrivacy;
-    @BindView(R.id.menu_push)
-    SuperTextView menuPush;
+//    @BindView(R.id.menu_push)
+//    SuperTextView menuPush;
     @BindView(R.id.menu_helper)
     SuperTextView menuHelper;
     @BindView(R.id.menu_change_account)
     SuperTextView menuChangeAccount;
     @BindView(R.id.menu_logout)
     SuperTextView menuLogout;
+    @BindView(R.id.menu_about)
+    SuperTextView menuAbout;
 
     @Override
     protected int getLayoutId() {
@@ -60,29 +62,35 @@ public class SettingsFragment extends BaseFragment implements SuperTextView.OnSu
 
     @Override
     protected void initViews() {
-        menuCommon.setOnSuperTextViewClickListener(this);
+//        menuCommon.setOnSuperTextViewClickListener(this);
         menuPrivacy.setOnSuperTextViewClickListener(this);
-        menuPush.setOnSuperTextViewClickListener(this);
+//        menuPush.setOnSuperTextViewClickListener(this);
         menuHelper.setOnSuperTextViewClickListener(this);
         menuChangeAccount.setOnSuperTextViewClickListener(this);
         menuLogout.setOnSuperTextViewClickListener(this);
+        menuAbout.setOnSuperTextViewClickListener(this);
     }
 
     @SingleClick
     @Override
     public void onClick(SuperTextView superTextView) {
         switch(superTextView.getId()) {
-            case R.id.menu_common:
-                 break;
+//            case R.id.menu_common:
+//                 break;
             case R.id.menu_privacy:
                 Utils.showOnlyPrivacyDialog(getContext(), (dialog, which) -> {
                     dialog.dismiss();
                 });
                 break;
-            case R.id.menu_push:
-                break;
+//            case R.id.menu_push:
+//                break;
             case R.id.menu_helper:
-                XToastUtils.toast(superTextView.getLeftString());
+                Utils.showHelperDialog(getContext(), (dialog, which) -> {
+                    dialog.dismiss();
+                });
+                break;
+            case R.id.menu_about:
+                openNewPage(AboutFragment.class);
                 break;
             case R.id.menu_change_account:
                 Intent intent = new Intent(getActivity(), LoginActivity.class);

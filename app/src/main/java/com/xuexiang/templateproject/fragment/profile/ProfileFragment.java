@@ -45,8 +45,8 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
 //    RadiusImageView rivHeadPic;
     @BindView(R.id.menu_settings)
     SuperTextView menuSettings;
-    @BindView(R.id.menu_about)
-    SuperTextView menuAbout;
+//    @BindView(R.id.menu_about)
+//    SuperTextView menuAbout;
     @BindView(R.id.menu_note)
     SuperTextView menuNote;
     @BindView(R.id.menu_favorite)
@@ -87,7 +87,7 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
         menuNote.setOnSuperTextViewClickListener(this);
         menuFavor.setOnSuperTextViewClickListener(this);
         menuSettings.setOnSuperTextViewClickListener(this);
-        menuAbout.setOnSuperTextViewClickListener(this);
+//        menuAbout.setOnSuperTextViewClickListener(this);
         menuMyThreads.setOnSuperTextViewClickListener(this);
     }
 
@@ -105,9 +105,6 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
                 break;
             case R.id.menu_settings:
                 openNewPage(SettingsFragment.class);
-                break;
-            case R.id.menu_about:
-                openNewPage(AboutFragment.class);
                 break;
             case R.id.menu_my_threads:
                 ExchangeInfosWithAli.LastSeenMyThreadID = "NULL";

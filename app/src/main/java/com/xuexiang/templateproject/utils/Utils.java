@@ -333,6 +333,38 @@ public final class Utils {
         dialog.show();
         return dialog;
     }
+    public static Dialog showHelperDialog(Context context, MaterialDialog.SingleButtonCallback submitListener) {
+        final EditText et = new EditText(context);
+        MaterialDialog dialog = new MaterialDialog.Builder(context).title("联系我们").autoDismiss(false).cancelable(false)
+                .positiveText("返回").onPositive((dialog1, which) -> {
+                    if (submitListener != null) {
+                        submitListener.onClick(dialog1, which);
+                    } else {
+                        dialog1.dismiss();
+                    }
+                }).build();
+        dialog.setContent(getHelperContent(context));
+        //开始响应点击事件
+        dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
+        dialog.show();
+        return dialog;
+    }
+    public static Dialog showZenDialog(Context context, MaterialDialog.SingleButtonCallback submitListener) {
+        final EditText et = new EditText(context);
+        MaterialDialog dialog = new MaterialDialog.Builder(context).title("The Zen of Wukefenggao,\nby Tairan He").autoDismiss(false).cancelable(false)
+                .positiveText("返回").onPositive((dialog1, which) -> {
+                    if (submitListener != null) {
+                        submitListener.onClick(dialog1, which);
+                    } else {
+                        dialog1.dismiss();
+                    }
+                }).build();
+        dialog.setContent(getZenContent(context));
+        //开始响应点击事件
+        dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
+        dialog.show();
+        return dialog;
+    }
     /**
      * @return 隐私政策说明
      */
@@ -372,6 +404,51 @@ public final class Utils {
 //                .append("    你问我支持不支持、我当然是支持的")
 //                /*.append(getPrivacyLink(context, PRIVACY_URL))*/
 //                .append("");
+        return stringBuilder;
+    }
+    /**
+     * @return 反馈说明
+     */
+    private static SpannableStringBuilder getHelperContent(Context context) {
+        SpannableStringBuilder stringBuilder = new SpannableStringBuilder()
+                .append("联系无可奉告：\n" +
+                        "\n" +
+                        "请发邮件至 「 sjtuwkfg@163.com 」\n" +
+                        "\n\n" +
+                        "或关注微信公众号：\n" +
+                        "\n" +
+                        "「 SJTU无可奉告 」\n" +
+                        "\n" +
+                        "并留言\n"+
+                        "\n"+
+                        "感谢每一位SJTUer的反馈与支持～");
+        return stringBuilder;
+    }
+
+    /**
+     * @return 禅说明
+     */
+    private static SpannableStringBuilder getZenContent(Context context) {
+        SpannableStringBuilder stringBuilder = new SpannableStringBuilder()
+                .append("Love is better than hate.\n" +
+                                "Real is better than fake.\n" +
+                                "Beautiful is better than ugly.\n" +
+                                "Friendly is better than aggressive.\n" +
+                                "Sound is better than reticence.  \n" +
+                                "Equality is better than disparity. \n" +
+                                "Unease is better than comfort.\n" +
+                                "Pursue is better than abide. \n" +
+                                "Respect is better than understand. \n" +
+                                "Understand is better than ignorance. \n" +
+                                "Ignorance is better than prejudice. \n" +
+                                "Every voice counts. \n" +
+                                "Special cases aren't special enough to break the rules.\n" +
+                                "Injustices should never pass silently.\n" +
+                                "Unless, no unless."
+//                        "If the implementation is hard to explain, it's a bad idea.\n" +
+//                        "If the implementation is easy to explain, it may be a good idea.\n" +
+//                        "Namespaces are one honking great idea -- let's do more of those!"
+                );
         return stringBuilder;
     }
 
