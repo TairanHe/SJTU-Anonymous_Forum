@@ -93,7 +93,7 @@ public class NewsFragment extends BaseFragment {
 
     private int block = 0;
 
-    List<HTR_RGBA> colorlist;
+
 
     /**
      * @return 返回为 null意为不需要导航栏
@@ -123,9 +123,9 @@ public class NewsFragment extends BaseFragment {
         RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
         recyclerView.setRecycledViewPool(viewPool);
         viewPool.setMaxRecycledViews(0, 10);
-        AnonymousColor AC = new AnonymousColor();
-        Random random = new Random();
-        colorlist = AC.getcolorlist("xui_v1_dark", random.nextInt(10000));
+
+
+
 
 
 //        //轮播条
@@ -228,7 +228,9 @@ public class NewsFragment extends BaseFragment {
                     }
                     ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
                     GradientDrawable background = (GradientDrawable) hat_view.getBackground();
-                    HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
+                    AnonymousColor AC = new AnonymousColor();
+                    List<HTR_RGBA> colorlist = AC.getcolorlist("xui_v1_dark", Integer.parseInt(model.getThreadID()));
+                    HTR_RGBA avatar_color_title = colorlist.get(0 % colorlist.size()); //和楼主一致
                     background.setColor(Color.argb(avatar_color_title.A, avatar_color_title.R, avatar_color_title.G, avatar_color_title.B));
 
 
