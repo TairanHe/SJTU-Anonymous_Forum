@@ -66,7 +66,7 @@ public class FavorFragment extends BaseFragment {
 
     private SimpleDelegateAdapter<NewInfo> mNewsAdapter;
 
-    List<HTR_RGBA> colorlist;
+
 
     /**
      * @return 返回为 null意为不需要导航栏
@@ -97,8 +97,7 @@ public class FavorFragment extends BaseFragment {
         recyclerView.setRecycledViewPool(viewPool);
         viewPool.setMaxRecycledViews(0, 10);
 
-        AnonymousColor AC = new AnonymousColor();
-        colorlist = AC.getcolorlist("xui_v1_dark", 0);
+
 //        //轮播条
 //        SingleDelegateAdapter bannerAdapter = new SingleDelegateAdapter(R.layout.include_head_view_banner) {
 //            @Override
@@ -164,7 +163,9 @@ public class FavorFragment extends BaseFragment {
 
                     ImageView hat_view = holder.findViewById(R.id.iv_hat_back);
                     GradientDrawable background_avatar = (GradientDrawable) hat_view.getBackground();
-                    HTR_RGBA avatar_color_title = colorlist.get(position % colorlist.size());
+                    AnonymousColor AC = new AnonymousColor();
+                    List<HTR_RGBA> colorlist = AC.getcolorlist("xui_v1_dark", Integer.parseInt(model.getThreadID()));
+                    HTR_RGBA avatar_color_title = colorlist.get(0 % colorlist.size()); //和楼主一致
                     background_avatar.setColor(Color.argb(avatar_color_title.A, avatar_color_title.R, avatar_color_title.G, avatar_color_title.B));
 
                     //holder.text(R.id.tv_comment, model.getComment() == 0 ? "评论" : String.valueOf(model.getComment()));
