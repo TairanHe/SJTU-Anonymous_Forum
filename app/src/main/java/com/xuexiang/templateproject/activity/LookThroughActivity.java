@@ -334,13 +334,13 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         final EditText commentText = (EditText) commentView.findViewById(R.id.dialog_comment_et);
         final Button bt_comment = (Button) commentView.findViewById(R.id.dialog_comment_bt);
         dialog.setContentView(commentView);
-        /**
-         * 解决bsd显示不全的情况
-         */
-        View parent = (View) commentView.getParent();
-        BottomSheetBehavior behavior = BottomSheetBehavior.from(parent);
-        commentView.measure(0,0);
-        behavior.setPeekHeight(commentView.getMeasuredHeight());
+//        /**
+//         * 解决bsd显示不全的情况
+//         */
+//        View parent = (View) commentView.getParent();
+//        BottomSheetBehavior behavior = BottomSheetBehavior.from(parent);
+//        commentView.measure(0,0);
+//        behavior.setPeekHeight(commentView.getMeasuredHeight());
 
         bt_comment.setOnClickListener(new View.OnClickListener() {
 
@@ -413,7 +413,6 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
      public void showReplyDialog(final int position){
         dialog = new BottomSheetDialog(this, R.style.DialogStyle);
         View commentView = LayoutInflater.from(this).inflate(R.layout.comment_dialog_layout,null);
-
         final EditText commentText = (EditText) commentView.findViewById(R.id.dialog_comment_et);
         final Button bt_comment = (Button) commentView.findViewById(R.id.dialog_comment_bt);
         commentText.setHint("回复 " + position + " 的评论:");
