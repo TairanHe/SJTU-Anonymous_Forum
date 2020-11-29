@@ -11,6 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.text.Layout;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -56,6 +57,10 @@ public class PostThreadActivity extends AppCompatActivity{
         setContentView(R.layout.activity_post_thread);
         Toolbar toolbar = findViewById(R.id.toolbar2);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
         RG1 = findViewById(R.id.radio_group1);
         RG2 = findViewById(R.id.radio_group2);
         RG_anonymous = findViewById(R.id.anonymous_group1);
@@ -240,7 +245,13 @@ public class PostThreadActivity extends AppCompatActivity{
 
     }
 
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 //    @Override
 //    public void onClick(View view) {

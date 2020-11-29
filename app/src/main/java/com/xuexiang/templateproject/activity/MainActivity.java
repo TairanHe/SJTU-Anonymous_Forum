@@ -18,9 +18,12 @@
 package com.xuexiang.templateproject.activity;
 
 
+import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -58,6 +61,8 @@ import com.xuexiang.templateproject.utils.HtrFragmentAdapter;
 
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.utils.ThemeUtils;
+import com.xuexiang.xui.widget.dialog.materialdialog.DialogAction;
+import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.common.ClickUtils;
@@ -67,6 +72,8 @@ import com.xuexiang.xutil.display.Colors;
 import java.util.Objects;
 
 import butterknife.BindView;
+
+import static com.xuexiang.xutil.app.ActivityUtils.startActivity;
 
 /**
  * 程序主页面,只是一个简单的Tab例子
@@ -197,7 +204,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                         break;
                     case R.id.nav_search:
                         ExchangeInfosWithAli.LastSeenQueryThreadID = "NULL";
-                        Utils.showSearchDialog(this, null);
+                        showSearchDialog(this, null);
                         break;
                     case R.id.nav_post:
                         Intent intent = new Intent(MainActivity.this, PostThreadActivity.class);
@@ -216,6 +223,39 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         bottomNavigation.setOnNavigationItemSelectedListener(this);
     }
 
+    public Dialog showSearchDialog(Context context, MaterialDialog.SingleButtonCallback submitListener) {
+        MaterialDialog dialog = new MaterialDialog.Builder(context).title("搜索内容")
+                .input("请输入关键词", "", new MaterialDialog.InputCallback() {
+                    @Override
+                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
+
+                    }
+                }).autoDismiss(false).cancelable(false)
+                .positiveText("搜索").onPositive((dialog1, which) -> {
+                    if (submitListener != null) {
+                        submitListener.onClick(dialog1, which);
+                    } else {
+                        String search_context = dialog1.getInputEditText().getText().toString();
+                        ExchangeInfosWithAli.query_string = search_context;
+                        dialog1.dismiss();
+                        openNewPage(SearchFragment.class);
+//                        Intent intent = new Intent(context, SearchActivity.class);
+//                        intent.putExtra("query_string", search_context);
+//                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
+//                        startActivity(intent);
+                    }
+                })
+                .negativeText("取消").onNegative(new MaterialDialog.SingleButtonCallback() {
+                    @Override
+                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                        dialog.dismiss();
+                    }
+                }).build();
+        //开始响应点击事件
+        dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
+        dialog.show();
+        return dialog;
+    }
     /**
      * 处理侧边栏点击事件
      *
@@ -245,7 +285,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 break;
             case R.id.action_search:
                 ExchangeInfosWithAli.LastSeenQueryThreadID = "NULL";
-                Utils.showSearchDialog(this, null);
+                showSearchDialog(this, null);
                 break;
             default:
                 break;

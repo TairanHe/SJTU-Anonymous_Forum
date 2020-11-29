@@ -226,37 +226,7 @@ public final class Utils {
         return dialog;
     }
 
-    public static Dialog showSearchDialog(Context context, MaterialDialog.SingleButtonCallback submitListener) {
-        MaterialDialog dialog = new MaterialDialog.Builder(context).title("搜索内容")
-                .input("请输入关键词", "", new MaterialDialog.InputCallback() {
-                    @Override
-                    public void onInput(@NonNull MaterialDialog dialog, CharSequence input) {
 
-                    }
-                }).autoDismiss(false).cancelable(false)
-                .positiveText("搜索").onPositive((dialog1, which) -> {
-                    if (submitListener != null) {
-                        submitListener.onClick(dialog1, which);
-                    } else {
-                        String search_context = dialog1.getInputEditText().getText().toString();
-                        dialog1.dismiss();
-                        Intent intent = new Intent(context, SearchActivity.class);
-                        intent.putExtra("query_string", search_context);
-                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK );
-                        startActivity(intent);
-                    }
-                })
-                .negativeText("取消").onNegative(new MaterialDialog.SingleButtonCallback() {
-                    @Override
-                    public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                        dialog.dismiss();
-                    }
-                }).build();
-        //开始响应点击事件
-        dialog.getContentView().setMovementMethod(LinkMovementMethod.getInstance());
-        dialog.show();
-        return dialog;
-    }
 
     /**
      * 这里填写你的应用隐私政策网页地址

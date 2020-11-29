@@ -54,6 +54,7 @@ public class ExchangeInfosWithAli {
     public static int Num_Praise = 0;
     public static int Num_Dislike = 0;
     public static int WhetherReport = 0;
+    public static String query_string = "NULL";
     public static String UserName = "无可奉告";
 
     public static int Request_verifycode(String emailaddress) throws JSONException ,IOException{
@@ -187,8 +188,8 @@ public class ExchangeInfosWithAli {
     }
 
 
-    public static List<NewInfo> Query_json(String queryString) throws JSONException ,IOException {
-        JSONObject QueryJson= EncapsulateString_json("b", queryString, LastSeenQueryThreadID, "2", "0", "0");
+    public static List<NewInfo> Query_json() throws JSONException ,IOException {
+        JSONObject QueryJson= EncapsulateString_json("b", query_string, LastSeenQueryThreadID, "2", "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
         return DecapsulateJsonToList_Query(receive_message);
     }

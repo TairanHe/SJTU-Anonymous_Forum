@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
@@ -68,6 +69,7 @@ public class MyThreadsFragment extends BaseFragment {
     private SimpleDelegateAdapter<NewInfo> mNewsAdapter;
 
 
+
     /**
      * @return 返回为 null意为不需要导航栏
      */
@@ -96,6 +98,11 @@ public class MyThreadsFragment extends BaseFragment {
         RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
         recyclerView.setRecycledViewPool(viewPool);
         viewPool.setMaxRecycledViews(0, 10);
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        getContext().setSupportActionBar(toolbar);
+//        ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
 

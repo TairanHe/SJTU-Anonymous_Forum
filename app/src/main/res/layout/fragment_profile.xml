@@ -20,6 +20,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout style="@style/PullDownStyle">
 
         <androidx.core.widget.NestedScrollView style="@style/ScrollViewStyle">

@@ -8,6 +8,8 @@
     android:background="@color/xui_config_color_white"
     android:orientation="vertical">
 
+
+
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
         android:id="@+id/refreshLayout"
         android:layout_width="match_parent"

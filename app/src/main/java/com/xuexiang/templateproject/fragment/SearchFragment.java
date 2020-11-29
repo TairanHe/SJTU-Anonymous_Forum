@@ -214,7 +214,7 @@ public class SearchFragment extends BaseFragment {
                         Message msg = new Message();
                         try {
                             msg.arg1 = 0;
-                            msg.obj  =ExchangeInfosWithAli.Query_json(SearchActivity.queryString);
+                            msg.obj  =ExchangeInfosWithAli.Query_json();
                             if (msg.obj == null){
                                 msg.arg1 = -1;
                             }
@@ -244,7 +244,7 @@ public class SearchFragment extends BaseFragment {
                         Message msg = new Message();
                         try {
                             msg.arg1 = 0;
-                            msg.obj  = ExchangeInfosWithAli.Query_json(SearchActivity.queryString);
+                            msg.obj  = ExchangeInfosWithAli.Query_json();
                             if (msg.obj == null){
                                 msg.arg1 = -1;
                             }

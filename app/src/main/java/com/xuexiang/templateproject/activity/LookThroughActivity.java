@@ -101,6 +101,11 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.inflateMenu(R.menu.menu_look_through);
         toolbar.setOnMenuItemClickListener(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        this.getSupportActionBar().setDisplayShowTitleEnabled(false);
+
 
         bt_comment = (TextView) findViewById(R.id.detail_page_do_comment);
         bt_comment.setOnClickListener(this);
@@ -178,6 +183,13 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
         praise_num.setText("" + ExchangeInfosWithAli.Num_Praise);
         tread_num.setText("" + ExchangeInfosWithAli.Num_Dislike);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
     @Override
     public boolean onMenuItemClick(MenuItem item) {
