@@ -31,6 +31,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -217,28 +218,31 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         if(view.getId() == R.id.iv_favor_thread) {
             if (ExchangeInfosWithAli.WhetherFavour == 0)
             {
-                XToastUtils.toast("点击收藏！");
                 try {
                     ExchangeInfosWithAli.FavourThread_json(LookThroughActivity.threadid);
                     bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
                     ExchangeInfosWithAli.WhetherFavour = 1;
+//                    Snackbar snackbar = Snackbar.make(view,"收藏成功",Snackbar.LENGTH_SHORT);
+//                    snackbar.show();
+                    Utils.showFloorSnackBar("收藏成功", this);
                 } catch (JSONException | IOException e) {
-                    XToastUtils.toast("请检查网络后重试");
+                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                     e.printStackTrace();
                 }
 
             }
             else
             {
-
-                XToastUtils.toast("取消收藏！");
-
                 try {
                     ExchangeInfosWithAli.CancelFavourThread_json(LookThroughActivity.threadid);
                     bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.icon_collect_3));
                     ExchangeInfosWithAli.WhetherFavour = 0;
+                    Snackbar snackbar = Snackbar.make(view,"取消收藏成功",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                 } catch (JSONException | IOException e) {
-                    XToastUtils.toast("请检查网络后重试");
+                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                     e.printStackTrace();
                 }
 
@@ -249,72 +253,86 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         if(view.getId() == R.id.iv_praise_thread) {
             if (ExchangeInfosWithAli.WhetherPraise == 0)
             {
-                XToastUtils.toast("点赞帖子！");
+
 
                 try {
                     ExchangeInfosWithAli.PraiseThread_json(LookThroughActivity.threadid);
                     bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_already));
                     ExchangeInfosWithAli.WhetherPraise = 1;
                     praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())+1));
+                    Snackbar snackbar = Snackbar.make(view,"点赞成功",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                 } catch (JSONException | IOException e) {
-                    XToastUtils.toast("请检查网络后重试");
+                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                     e.printStackTrace();
                 }
 
             }
             else if (ExchangeInfosWithAli.WhetherPraise == 1)
             {
-                XToastUtils.toast("取消点赞帖子！");
+
                 try {
                     ExchangeInfosWithAli.CancelPraiseThread_json(LookThroughActivity.threadid);
                     bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_black));
                     ExchangeInfosWithAli.WhetherPraise = 0;
                     praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())-1));
+                    Snackbar snackbar = Snackbar.make(view,"取消点赞成功",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                 } catch (JSONException | IOException e) {
-                    XToastUtils.toast("请检查网络后重试");
+                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                     e.printStackTrace();
                 }
 
             }
             else if (ExchangeInfosWithAli.WhetherPraise == -1)
             {
-                XToastUtils.toast("不能同时点赞点踩哦！");
+                Snackbar snackbar = Snackbar.make(view,"不能同时点赞点踩哦",Snackbar.LENGTH_SHORT);
+                snackbar.show();
             }
         }
         if(view.getId() == R.id.iv_tread_thread) {
             if (ExchangeInfosWithAli.WhetherPraise == 0)
             {
-                XToastUtils.toast("点踩帖子！");
+
 
                 try {
                     ExchangeInfosWithAli.DislikeThread_json(LookThroughActivity.threadid);
                     bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_already));
                     ExchangeInfosWithAli.WhetherPraise = -1;
                     tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())+1));
+                    Snackbar snackbar = Snackbar.make(view,"点踩成功",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                 } catch (JSONException | IOException e) {
-                    XToastUtils.toast("请检查网络后重试");
+                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                     e.printStackTrace();
                 }
 
             }
             else if (ExchangeInfosWithAli.WhetherPraise == -1)
             {
-                XToastUtils.toast("取消点踩帖子！");
+
 
                 try {
                     ExchangeInfosWithAli.CancelDislikeThread_json(LookThroughActivity.threadid);
                     bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_black));
                     ExchangeInfosWithAli.WhetherPraise = 0;
                     tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())-1));
+                    Snackbar snackbar = Snackbar.make(view,"取消点踩成功",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                 } catch (JSONException | IOException e) {
-                    XToastUtils.toast("请检查网络后重试");
+                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                    snackbar.show();
                     e.printStackTrace();
                 }
 
             }
             else if (ExchangeInfosWithAli.WhetherPraise == 1)
             {
-                XToastUtils.toast("不能同时点赞点踩哦！");
+                Snackbar snackbar = Snackbar.make(view,"不能同时点赞点踩哦",Snackbar.LENGTH_SHORT);
+                snackbar.show();
             }
         }
 
@@ -355,12 +373,15 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 }
                 if(TextUtils.isEmpty(commentContent)){
                     XToastUtils.toast("评论内容不能为空");
-                    Toast.makeText(LookThroughActivity.this,"评论内容不能为空",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LookThroughActivity.this,"评论内容不能为空",Toast.LENGTH_SHORT).show();
+//                    Utils.showSnackBar("评论内容不能为空", LookThroughActivity.this);
                 }
                 else if (comment_lines > 20){
                     XToastUtils.toast("评论内容不能提行超过20次哦～");
+//                    Utils.showSnackBar("评论内容不能提行超过20次哦～", LookThroughActivity.this);
                 }
                 else if (commentContent.length() > 817){
+//                    Utils.showSnackBar("评论内容太长啦～不能长于817个字符哟", LookThroughActivity.this);
                     XToastUtils.toast("评论内容太长啦～不能长于817个字符哟");
                 }
                 else {
@@ -368,10 +389,12 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
                     try {
                         ExchangeInfosWithAli.AlicommentThread_json(LookThroughActivity.threadid, commentContent);
-                        XToastUtils.toast("评论成功");
+                        Utils.showSnackBar("评论成功", LookThroughActivity.this);
                         dialog.dismiss();
                     } catch (JSONException | IOException e) {
-                        XToastUtils.toast("请检查网络后重试");
+                        Utils.showSnackBar("请检查网络后重试", LookThroughActivity.this);
+//                        Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+//                        snackbar.show();
                         e.printStackTrace();
                     }
 //                    CommentDetailBean detailBean = new CommentDetailBean("小明", commentContent,"刚刚");
@@ -415,7 +438,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         View commentView = LayoutInflater.from(this).inflate(R.layout.comment_dialog_layout,null);
         final EditText commentText = (EditText) commentView.findViewById(R.id.dialog_comment_et);
         final Button bt_comment = (Button) commentView.findViewById(R.id.dialog_comment_bt);
-        commentText.setHint("回复 " + position + " 的评论:");
+        commentText.setHint("回复 #" + position + "楼 的评论:");
         dialog.setContentView(commentView);
         bt_comment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -429,24 +452,27 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 }
                 if(TextUtils.isEmpty(replyContent)){
                     XToastUtils.toast("评论内容不能为空");
+//                    Utils.showSnackBar("评论内容不能为空", LookThroughActivity.this);
 //                    Toast.makeText(LookThroughActivity.this,"回复内容不能为空",Toast.LENGTH_SHORT).show();
 
                 }
                 else if (reply_lines > 20){
                     XToastUtils.toast("评论内容不能提行超过20次哦～");
+//                    Utils.showSnackBar("评论内容不能提行超过20次哦～", LookThroughActivity.this);
                 }
                 else if (replyContent.length() > 817){
                     XToastUtils.toast("评论内容太长啦～不能长于817个字符哟");
+//                    Utils.showSnackBar("评论内容太长啦～不能长于817个字符哟", LookThroughActivity.this);
                 }
                 else {
 
                     try {
                         ExchangeInfosWithAli.AliReplyFloor_json(LookThroughActivity.threadid, replyContent , position);
-                        XToastUtils.toast("回复成功");
+                        Utils.showSnackBar("评论成功", LookThroughActivity.this);
                         dialog.dismiss();
                     } catch (JSONException | IOException e) {
                         e.printStackTrace();
-                        XToastUtils.toast("请检查网络后重试");
+                        Utils.showSnackBar("请检查网络后重试", LookThroughActivity.this);
                     }
 
 //                    Toast.makeText(LookThroughActivity.this,"回复成功",Toast.LENGTH_SHORT).show();

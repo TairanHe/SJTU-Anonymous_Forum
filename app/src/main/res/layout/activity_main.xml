@@ -24,6 +24,7 @@
     tools:openDrawer="start">
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/bottomNavView"
@@ -53,6 +54,8 @@
 <!--                    android:background="@drawable/toolbar_dropshadow" />-->
 
         <!--  ViewPager，页面填充页  -->
+
+        <!--  底部导航栏  -->
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
@@ -60,7 +63,6 @@
             android:overScrollMode="never"
             app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-        <!--  底部导航栏  -->
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation"
             android:layout_width="match_parent"

@@ -1,5 +1,6 @@
 package com.xuexiang.templateproject.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -18,6 +19,7 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.LookThroughActivity;
+import com.xuexiang.templateproject.activity.MainActivity;
 import com.xuexiang.templateproject.activity.SplashActivity;
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
@@ -221,7 +223,8 @@ public class NoteFragment extends BaseFragment {
 //                }
 //                refreshLayout.finishRefresh();
                 ExchangeInfosWithAli.LastSeenMessageThreadID = "NULL";
-                Handler handler = new MyHandler.MessageRefreshHandler(mNewsAdapter, refreshLayout);
+                Activity htr = getActivity();
+                Handler handler = new MyHandler.MessageRefreshHandler(mNewsAdapter, refreshLayout, htr);
                 new Thread() {
                     @Override
                     public void run() {
@@ -250,7 +253,8 @@ public class NoteFragment extends BaseFragment {
 //                    e.printStackTrace();
 //                }
 //                refreshLayout.finishLoadMore();
-                Handler handler = new MyHandler.MessageLoadMoreHandler(mNewsAdapter, refreshLayout);
+                Activity htr = getActivity();
+                Handler handler = new MyHandler.MessageLoadMoreHandler(mNewsAdapter, refreshLayout, htr);
                 new Thread() {
                     @Override
                     public void run() {

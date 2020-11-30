@@ -33,6 +33,7 @@ import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -40,10 +41,13 @@ import android.widget.Toolbar;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.snackbar.Snackbar;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.xuexiang.templateproject.R;
+import com.xuexiang.templateproject.activity.LookThroughActivity;
 import com.xuexiang.templateproject.activity.PostThreadActivity;
 import com.xuexiang.templateproject.activity.SearchActivity;
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
@@ -91,7 +95,7 @@ public final class Utils {
      */
     public static Dialog showDeleteFavorDialog(Context context, MaterialDialog.SingleButtonCallback submitListener, BaseFragment baseFragment, String thread_id) {
         MaterialDialog dialog = new MaterialDialog.Builder(context).title(R.string.title_reminder).autoDismiss(false).cancelable(false)
-                .positiveText("不更新").onPositive((dialog1, which) -> {
+                .positiveText("不删除").onPositive((dialog1, which) -> {
                     if (submitListener != null) {
                         submitListener.onClick(dialog1, which);
                     } else {
@@ -104,6 +108,8 @@ public final class Utils {
                         try {
                             CancelFavourThread_json(thread_id);
                         } catch (JSONException | IOException e) {
+//                            Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+//                            snackbar.show();
                             XToastUtils.toast("请检查网络后重试");
                             e.printStackTrace();
                         }
@@ -142,6 +148,8 @@ public final class Utils {
                                 Log.d("LookThroughActivity.U", thread_id);
                                 ExchangeInfosWithAli.WhetherReport = 1;
                             } catch (JSONException | IOException e) {
+//                                Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+//                                snackbar.show();
                                 XToastUtils.toast("请检查网络后重试");
                                 e.printStackTrace();
                             }
@@ -209,6 +217,8 @@ public final class Utils {
                         try {
                             ExchangeInfosWithAli.DeleteThread_json(thread_id);
                         } catch (JSONException | IOException e) {
+//                            Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+//                            snackbar.show();
                             XToastUtils.toast("请检查网络后重试");
                             e.printStackTrace();
                         }
@@ -472,6 +482,47 @@ public final class Utils {
             XUI.initTheme(activity);
         }
     }
+    public static void showSnackBar(String message, Activity activity) {
+        Snackbar.make(
+                activity.findViewById(android.R.id.content),
+                message, Snackbar.LENGTH_SHORT
+        ).show();
+
+
+    }
+
+//    public static void showMainSnackBar(String message, Activity activity) {
+//        Snackbar.make(
+//                activity.findViewById(android.R.id.content),
+//                message, Snackbar.LENGTH_SHORT
+//        ).setAnchorView(activity.findViewById(R.id.bottom_navigation)).show();
+//    }
+
+    public static void showCoorSnackBar(String message, Activity activity) {
+        Snackbar snack = Snackbar.make(activity.findViewById(R.id.coordinatorLayout),
+                message, Snackbar.LENGTH_SHORT);
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)
+                snack.getView().getLayoutParams();
+        params.setAnchorId(R.id.bottom_navigation); //id of the bottom navigation view
+        params.gravity = Gravity.TOP;
+        params.anchorGravity = Gravity.TOP;
+        snack.getView().setLayoutParams(params);
+        snack.show();
+    }
+
+    public static void showFloorSnackBar(String message, Activity activity) {
+        Snackbar snack = Snackbar.make(activity.findViewById(R.id.coordinatorLayout),
+                message, Snackbar.LENGTH_SHORT);
+        CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)
+                snack.getView().getLayoutParams();
+        params.setAnchorId(R.id.reply_bar); //id of the bottom navigation view
+        params.gravity = Gravity.BOTTOM;
+        params.anchorGravity = Gravity.TOP;
+        snack.getView().setLayoutParams(params);
+        snack.show();
+    }
+
+
 
 
 

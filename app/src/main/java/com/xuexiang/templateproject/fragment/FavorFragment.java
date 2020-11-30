@@ -1,5 +1,6 @@
 package com.xuexiang.templateproject.fragment;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
@@ -19,6 +20,7 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.LookThroughActivity;
+import com.xuexiang.templateproject.activity.MainActivity;
 import com.xuexiang.templateproject.activity.SplashActivity;
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
@@ -196,7 +198,7 @@ public class FavorFragment extends BaseFragment {
                             Log.d("LookThroughActivity.收藏", LookThroughActivity.threadid);
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
-                            XToastUtils.toast("点击删除！");
+//                            XToastUtils.toast("点击删除！");
 
                             Utils.showDeleteFavorDialog(getActivity(), null, FavorFragment.this, LookThroughActivity.threadid);
                             refreshLayout.autoRefresh(0, 0, 0,false);
@@ -231,7 +233,8 @@ public class FavorFragment extends BaseFragment {
 //                }
 //                refreshLayout.finishRefresh();
                 ExchangeInfosWithAli.LastSeenFavorThreadID = "NULL";
-                Handler handler = new MyHandler.ThreadRefreshHandler(mNewsAdapter, refreshLayout);
+                Activity htr = getActivity();
+                Handler handler = new MyHandler.ThreadNoMainRefreshHandler(mNewsAdapter, refreshLayout, htr);
                 new Thread() {
                     @Override
                     public void run() {
@@ -260,7 +263,8 @@ public class FavorFragment extends BaseFragment {
 //                    e.printStackTrace();
 //                }
 //                refreshLayout.finishLoadMore();
-                Handler handler = new MyHandler.ThreadLoadMoreHandler(mNewsAdapter, refreshLayout);
+                Activity htr = getActivity();
+                Handler handler = new MyHandler.ThreadNoMainLoadMoreHandler(mNewsAdapter, refreshLayout, htr);
                 new Thread() {
                     @Override
                     public void run() {

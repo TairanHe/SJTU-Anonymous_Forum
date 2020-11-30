@@ -91,7 +91,8 @@ public class AboutFragment extends BaseFragment {
             }
             else
             {
-                XToastUtils.toast("您的当前版本已是最新版");
+                Utils.showSnackBar("您的当前版本已是最新版", getActivity());
+//                XToastUtils.toast("您的当前版本已是最新版");
             }
         } catch (JSONException e) {
             e.printStackTrace();

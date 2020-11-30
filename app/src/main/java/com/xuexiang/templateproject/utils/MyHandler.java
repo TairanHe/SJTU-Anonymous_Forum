@@ -1,5 +1,6 @@
 package com.xuexiang.templateproject.utils;
 
+import android.app.Activity;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.view.View;
 import com.google.android.material.snackbar.Snackbar;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.xuexiang.templateproject.activity.LookThroughActivity;
+import com.xuexiang.templateproject.activity.MainActivity;
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.entity.FloorInfo;
 import com.xuexiang.templateproject.adapter.entity.MessageInfo;
@@ -20,10 +22,12 @@ public abstract class MyHandler {
     public static class ThreadRefreshHandler extends Handler {
         SimpleDelegateAdapter<NewInfo> adapter;
         RefreshLayout layout;
+        MainActivity mainActivity;
 
-        public ThreadRefreshHandler(SimpleDelegateAdapter<NewInfo> adapter, RefreshLayout layout) {
+        public ThreadRefreshHandler(SimpleDelegateAdapter<NewInfo> adapter, RefreshLayout layout, MainActivity mainActivity) {
             this.adapter = adapter;
             this.layout = layout;
+            this.mainActivity = mainActivity;
         }
         @Override
         public void handleMessage(Message msg) {
@@ -32,11 +36,11 @@ public abstract class MyHandler {
                 layout.finishRefresh();
             }
             else if (msg.arg1 == -1){
-                XToastUtils.toast("没有更多啦");
+                Utils.showCoorSnackBar("没有更多啦", mainActivity);
                 layout.finishRefresh();
             }
             else {
-                XToastUtils.toast("请检查网络后重试");
+                Utils.showCoorSnackBar("请检查网络后重试", mainActivity);
                 layout.finishRefresh();
             }
 
@@ -47,10 +51,12 @@ public abstract class MyHandler {
     public static class ThreadLoadMoreHandler extends Handler {
         SimpleDelegateAdapter<NewInfo> adapter;
         RefreshLayout layout;
+        MainActivity mainActivity;
 
-        public ThreadLoadMoreHandler(SimpleDelegateAdapter<NewInfo> adapter, RefreshLayout layout) {
+        public ThreadLoadMoreHandler(SimpleDelegateAdapter<NewInfo> adapter, RefreshLayout layout, MainActivity mainActivity) {
             this.adapter = adapter;
             this.layout = layout;
+            this.mainActivity = mainActivity;
         }
         @Override
         public void handleMessage(Message msg) {
@@ -59,11 +65,68 @@ public abstract class MyHandler {
                 layout.finishLoadMore();
             }
             else if (msg.arg1 == -1){
-                XToastUtils.toast("没有更多啦");
+                Utils.showCoorSnackBar("没有更多啦", mainActivity);
                 layout.finishLoadMore();
             }
             else {
-                XToastUtils.toast("请检查网络后重试");
+                Utils.showCoorSnackBar("请检查网络后重试", mainActivity);
+                layout.finishLoadMore();
+            }
+
+        }
+    }
+
+    public static class ThreadNoMainRefreshHandler extends Handler {
+        SimpleDelegateAdapter<NewInfo> adapter;
+        RefreshLayout layout;
+        Activity activity;
+
+        public ThreadNoMainRefreshHandler(SimpleDelegateAdapter<NewInfo> adapter, RefreshLayout layout, Activity activity) {
+            this.adapter = adapter;
+            this.layout = layout;
+            this.activity = activity;
+        }
+        @Override
+        public void handleMessage(Message msg) {
+            if(msg.arg1 == 0){
+                adapter.refresh(((List<NewInfo>) msg.obj));
+                layout.finishRefresh();
+            }
+            else if (msg.arg1 == -1){
+                Utils.showSnackBar("没有更多啦", activity);
+                layout.finishRefresh();
+            }
+            else {
+                Utils.showSnackBar("请检查网络后重试", activity);
+                layout.finishRefresh();
+            }
+
+        }
+    }
+
+
+    public static class ThreadNoMainLoadMoreHandler extends Handler {
+        SimpleDelegateAdapter<NewInfo> adapter;
+        RefreshLayout layout;
+        Activity activity;
+
+        public ThreadNoMainLoadMoreHandler(SimpleDelegateAdapter<NewInfo> adapter, RefreshLayout layout, Activity activity) {
+            this.adapter = adapter;
+            this.layout = layout;
+            this.activity = activity;
+        }
+        @Override
+        public void handleMessage(Message msg) {
+            if(msg.arg1 == 0){
+                adapter.loadMore((List<NewInfo>) msg.obj);
+                layout.finishLoadMore();
+            }
+            else if (msg.arg1 == -1){
+                Utils.showSnackBar("没有更多啦", activity);
+                layout.finishLoadMore();
+            }
+            else {
+                Utils.showSnackBar("请检查网络后重试", activity);
                 layout.finishLoadMore();
             }
 
@@ -73,10 +136,12 @@ public abstract class MyHandler {
     public static class MessageRefreshHandler extends Handler {
         SimpleDelegateAdapter<MessageInfo> adapter;
         RefreshLayout layout;
+        Activity activity;
 
-        public MessageRefreshHandler(SimpleDelegateAdapter<MessageInfo> adapter, RefreshLayout layout) {
+        public MessageRefreshHandler(SimpleDelegateAdapter<MessageInfo> adapter, RefreshLayout layout, Activity activity) {
             this.adapter = adapter;
             this.layout = layout;
+            this.activity = activity;
         }
         @Override
         public void handleMessage(Message msg) {
@@ -85,11 +150,11 @@ public abstract class MyHandler {
                 layout.finishRefresh();
             }
             else if (msg.arg1 == -1){
-                XToastUtils.toast("没有更多啦");
+                Utils.showSnackBar("没有更多啦", activity);
                 layout.finishRefresh();
             }
             else {
-                XToastUtils.toast("请检查网络后重试");
+                Utils.showSnackBar("请检查网络后重试", activity);
                 layout.finishRefresh();
             }
 
@@ -100,10 +165,12 @@ public abstract class MyHandler {
     public static class MessageLoadMoreHandler extends Handler {
         SimpleDelegateAdapter<MessageInfo> adapter;
         RefreshLayout layout;
+        Activity activity;
 
-        public MessageLoadMoreHandler(SimpleDelegateAdapter<MessageInfo> adapter, RefreshLayout layout) {
+        public MessageLoadMoreHandler(SimpleDelegateAdapter<MessageInfo> adapter, RefreshLayout layout, Activity activity) {
             this.adapter = adapter;
             this.layout = layout;
+            this.activity = activity;
         }
         @Override
         public void handleMessage(Message msg) {
@@ -113,11 +180,11 @@ public abstract class MyHandler {
 
             }
             else if (msg.arg1 == -1){
-                XToastUtils.toast("没有更多啦");
+                Utils.showSnackBar("没有更多啦", activity);
                 layout.finishLoadMore();
             }
             else {
-                XToastUtils.toast("请检查网络后重试");
+                Utils.showSnackBar("请检查网络后重试", activity);
                 layout.finishLoadMore();
             }
 
@@ -142,12 +209,12 @@ public abstract class MyHandler {
                 lookThroughActivity.checkthreebuttons();
             }
             else if (msg.arg1 == -1){
-                XToastUtils.toast("没有更多啦");
+                Utils.showFloorSnackBar("没有更多啦", lookThroughActivity);
                 layout.finishRefresh();
                 lookThroughActivity.checkthreebuttons();
             }
             else {
-//                XToastUtils.toast("请检查网络后重试");
+                Utils.showFloorSnackBar("请检查网络后重试", lookThroughActivity);
                 layout.finishRefresh();
             }
 
@@ -172,13 +239,13 @@ public abstract class MyHandler {
                 lookThroughActivity.checkthreebuttons();
             }
             else if (msg.arg1 == -1){
-                XToastUtils.toast("没有更多啦");
+                Utils.showFloorSnackBar("没有更多啦", lookThroughActivity);
                 layout.finishLoadMore();
                 lookThroughActivity.checkthreebuttons();
             }
             else
             {
-                XToastUtils.toast("请检查网络后重试");
+                Utils.showFloorSnackBar("请检查网络后重试", lookThroughActivity);
                 layout.finishLoadMore();
             }
 
@@ -199,7 +266,8 @@ public abstract class MyHandler {
 //                layout.autoRefresh(0, 0, 0,false);
 //            }
 //            else {
-//                XToastUtils.toast("请检查网络后重试");
+//                Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+//                    snackbar.show()
 //            }
 //
 //        }

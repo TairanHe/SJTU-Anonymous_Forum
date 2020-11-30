@@ -38,6 +38,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
+import com.google.android.material.snackbar.Snackbar;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.LookThroughActivity;
@@ -292,7 +293,7 @@ public class FloorFragment extends BaseFragment{
                         public void onClick(View view) {
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
-                            XToastUtils.toast("回复楼层！");
+//                            XToastUtils.toast("回复楼层！");
                             FloorFragment.floorid = model.getFloorID();
 //                            LookThroughActivity.threadtilte = model.getTitle();
 //                            getContext().showReplyDialog(3);
@@ -305,7 +306,7 @@ public class FloorFragment extends BaseFragment{
                         public void onClick(View view) {
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
-                            XToastUtils.toast("回复楼层！");
+//                            XToastUtils.toast("回复楼层！");
                             FloorFragment.floorid = model.getFloorID();
 //                            LookThroughActivity.threadtilte = model.getTitle();
 //                            getContext().showReplyDialog(3);
@@ -321,32 +322,38 @@ public class FloorFragment extends BaseFragment{
 
                             if (model.getWhetherPraise() == 0)
                             {
-                                XToastUtils.toast("点赞楼层！");
-                                FloorFragment.floorid = model.getFloorID();
-                                model.setWhetherPraise(1);
                                 try {
+
+                                    FloorFragment.floorid = model.getFloorID();
+                                    model.setWhetherPraise(1);
                                     ExchangeInfosWithAli.PraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
                                     model.setPraise(model.getPraise()+1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+                                    Snackbar snackbar = Snackbar.make(view,"点赞楼层",Snackbar.LENGTH_SHORT);
+                                    snackbar.show();
                                 } catch (JSONException | IOException e) {
-                                    XToastUtils.toast("请检查网络后重试");
+                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                                    snackbar.show();
                                     e.printStackTrace();
                                 }
 
                             }
                             else if (model.getWhetherPraise() == 1)
                             {
-                                XToastUtils.toast("取消点赞楼层！");
-                                FloorFragment.floorid = model.getFloorID();
-                                model.setWhetherPraise(0);
+
                                 try {
+                                    FloorFragment.floorid = model.getFloorID();
+                                    model.setWhetherPraise(0);
                                     ExchangeInfosWithAli.CancelPraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise);
                                     model.setPraise(model.getPraise()-1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+                                    Snackbar snackbar = Snackbar.make(view,"取消点赞楼层",Snackbar.LENGTH_SHORT);
+                                    snackbar.show();
                                 } catch (JSONException | IOException e) {
-                                    XToastUtils.toast("请检查网络后重试");
+                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                                    snackbar.show();
                                     e.printStackTrace();
                                 }
 
@@ -361,32 +368,40 @@ public class FloorFragment extends BaseFragment{
 
                             if (model.getWhetherPraise() == 0)
                             {
-                                XToastUtils.toast("点赞楼层！");
-                                FloorFragment.floorid = model.getFloorID();
-                                model.setWhetherPraise(1);
+
+
                                 try {
+                                    FloorFragment.floorid = model.getFloorID();
+                                    model.setWhetherPraise(1);
                                     ExchangeInfosWithAli.PraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
                                     model.setPraise(model.getPraise()+1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+                                    Snackbar snackbar = Snackbar.make(view,"点赞楼层",Snackbar.LENGTH_SHORT);
+                                    snackbar.show();
                                 } catch (JSONException | IOException e) {
-                                    XToastUtils.toast("请检查网络后重试");
+                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                                    snackbar.show();
                                     e.printStackTrace();
                                 }
 
                             }
                             else if (model.getWhetherPraise() == 1)
                             {
-                                XToastUtils.toast("取消点赞楼层！");
-                                FloorFragment.floorid = model.getFloorID();
-                                model.setWhetherPraise(0);
+
+
                                 try {
+                                    FloorFragment.floorid = model.getFloorID();
+                                    model.setWhetherPraise(0);
                                     ExchangeInfosWithAli.CancelPraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise);
                                     model.setPraise(model.getPraise()-1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
+                                    Snackbar snackbar = Snackbar.make(view,"取消点赞楼层",Snackbar.LENGTH_SHORT);
+                                    snackbar.show();
                                 } catch (JSONException | IOException e) {
-                                    XToastUtils.toast("请检查网络后重试");
+                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                                    snackbar.show();
                                     e.printStackTrace();
                                 }
 
@@ -422,27 +437,37 @@ public class FloorFragment extends BaseFragment{
         //Log.d("dyy:", String.valueOf(R.id.action_privacy));
         switch (item.getItemId()) {
             case R.id.action_early:
-                order.setText("最早回复");
+
 //                XToastUtils.toast("最早回复");
                 try {
+                    order.setText("最早回复");
                     ExchangeInfosWithAli.LastSeenFloorID = "NULL";
                     now_order = "0";
                     mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
+                    Utils.showSnackBar("最早回复", getActivity());
                 } catch (JSONException | IOException e) {
-                    XToastUtils.toast("请检查网络后重试");
+//                Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+//                snackbar.show();layout.finishLoadMore();
+                    Utils.showSnackBar("请检查网络后重试", getActivity());
+//                    XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }
                 refreshLayout.finishRefresh();
                 break;
             case R.id.action_late:
-                order.setText("最晚回复");
+
 //                XToastUtils.toast("最晚回复");
                 try {
+                    order.setText("最晚回复");
                     ExchangeInfosWithAli.LastSeenFloorID = "NULL";
                     now_order = "1";
                     mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
+                    Utils.showSnackBar("最晚回复", getActivity());
                 } catch (JSONException | IOException e) {
-                    XToastUtils.toast("请检查网络后重试");
+//                Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+//                snackbar.show();layout.finishLoadMore();
+//                    XToastUtils.toast("请检查网络后重试");
+                    Utils.showSnackBar("请检查网络后重试", getActivity());
                     e.printStackTrace();
                 }
                 refreshLayout.finishRefresh();

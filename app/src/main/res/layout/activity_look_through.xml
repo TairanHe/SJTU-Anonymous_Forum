@@ -19,6 +19,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.LookThroughActivity"
@@ -87,6 +88,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
+        android:paddingTop="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -96,7 +98,6 @@
         android:layout_alignParentBottom="true"
         android:background="@drawable/corners_bg"
         android:orientation="horizontal"
-        android:gravity="bottom"
         android:layout_gravity="bottom">
         <TextView
             android:id="@+id/detail_page_do_comment"

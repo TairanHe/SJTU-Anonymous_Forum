@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.utils.ExchangeInfosWithAli;
+import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xui.widget.button.ButtonView;
 import com.xuexiang.xui.widget.edittext.ClearEditText;
@@ -227,9 +228,14 @@ public class PostThreadActivity extends AppCompatActivity{
 //                            ExchangeInfosWithAli.SendMyThread(thread_Title, thread_Content, sectionID);
                             try {
                                 ExchangeInfosWithAli.SendMyThread_json(thread_Title, thread_Content, sectionID, anonymous_type, random_seed);
+                                XToastUtils.toast("发帖成功");
+//                                Snackbar snackbar = Snackbar.make(view,"发帖成功",Snackbar.LENGTH_SHORT);
+//                                snackbar.show();
                                 finish();
+
                             } catch (JSONException | IOException e) {
-                                XToastUtils.toast("请检查网络后重试");
+                                Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                                snackbar.show();
                                 e.printStackTrace();
                             }
                             //                            后端函数 这里thread_Title是帖子标题，thread_Content是帖子内容，在最外面int型的sectionID是帖子所属的板块，只有这三个参数传递给后端

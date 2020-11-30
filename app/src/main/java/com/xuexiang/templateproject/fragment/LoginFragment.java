@@ -23,6 +23,7 @@ import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.xuexiang.templateproject.activity.LoginActivity;
 //import com.xuexiang.templateproject.activity.RegisterActivity;
 import com.xuexiang.templateproject.utils.CountDownTimerUtils;
@@ -128,8 +129,8 @@ public class LoginFragment extends BaseFragment {
                     }
 
                 } catch (JSONException | IOException e) {
-                    XToastUtils.toast("请检查网络后重试");
-                    e.printStackTrace();
+                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                    snackbar.show();e.printStackTrace();
                 }
                 break;
 //            case R.id.tv_other_login:
@@ -170,6 +171,8 @@ public class LoginFragment extends BaseFragment {
                 try {
                     result = ExchangeInfosWithAli.Login_json(user_name,verifyCode);
                 } catch (JSONException | IOException e) {
+//                Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+//                snackbar.show();layout.finishLoadMore();
                     XToastUtils.toast("请检查网络后重试");
                     e.printStackTrace();
                 }

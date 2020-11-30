@@ -38,6 +38,7 @@ import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.LookThroughActivity;
+import com.xuexiang.templateproject.activity.MainActivity;
 import com.xuexiang.templateproject.activity.SplashActivity;
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
@@ -264,7 +265,8 @@ public class TrendingFragment extends BaseFragment {
 //                }
 //                refreshLayout.finishRefresh();
                 ExchangeInfosWithAli.LastSeenHotThreadID = "NULL";
-                Handler handler = new MyHandler.ThreadRefreshHandler(mNewsAdapter, refreshLayout);
+                MainActivity htr = (MainActivity) getActivity();
+                Handler handler = new MyHandler.ThreadRefreshHandler(mNewsAdapter, refreshLayout, htr);
                 new Thread() {
                     @Override
                     public void run() {
@@ -293,7 +295,8 @@ public class TrendingFragment extends BaseFragment {
 //                    e.printStackTrace();
 //                }
 //                refreshLayout.finishLoadMore();
-                Handler handler = new MyHandler.ThreadLoadMoreHandler(mNewsAdapter, refreshLayout);
+                MainActivity htr = (MainActivity) getActivity();
+                Handler handler = new MyHandler.ThreadLoadMoreHandler(mNewsAdapter, refreshLayout, htr);
                 new Thread() {
                     @Override
                     public void run() {

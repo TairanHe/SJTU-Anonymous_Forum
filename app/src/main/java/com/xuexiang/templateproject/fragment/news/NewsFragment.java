@@ -24,11 +24,13 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
@@ -157,7 +159,13 @@ public class NewsFragment extends BaseFragment {
                         ExchangeInfosWithAli.LastSeenThreadID = "NULL";
                         block = ExchangeInfosWithAli.get_block_id(item.getTitle().toString());
 //                        Log.d("dyy", block+"");
-                        XToastUtils.toast("切换到板块：" + item.getTitle());
+//                        XToastUtils.toast("切换到板块hhh：" + item.getTitle());
+//                        Snackbar snackbar = Snackbar.make(getWindow().getDecorView().getRootView(),"切换到板块：" + item.getTitle(),Snackbar.LENGTH_SHORT);
+////                        snackbar.show();
+
+
+                        Utils.showCoorSnackBar("切换到板块：" + item.getTitle(), getActivity());
+
                         refreshLayout.autoRefresh(0, 0, 0,false);
                     });
                 }
@@ -282,7 +290,8 @@ public class NewsFragment extends BaseFragment {
 
 //                mNewsAdapter.refresh(ExchangeInfosWithAli.GetAliRecommandedNewsInfos(block));
                 ExchangeInfosWithAli.LastSeenThreadID = "NULL";
-                Handler handler = new MyHandler.ThreadRefreshHandler(mNewsAdapter, refreshLayout);
+                MainActivity htr = (MainActivity) getActivity();
+                Handler handler = new MyHandler.ThreadRefreshHandler(mNewsAdapter, refreshLayout, htr);
                 new Thread() {
                     @Override
                     public void run() {
@@ -311,7 +320,8 @@ public class NewsFragment extends BaseFragment {
 //                } catch (JSONException e) {
 //                    e.printStackTrace();
 //                }
-                Handler handler = new MyHandler.ThreadLoadMoreHandler(mNewsAdapter, refreshLayout);
+                MainActivity htr = (MainActivity) getActivity();
+                Handler handler = new MyHandler.ThreadLoadMoreHandler(mNewsAdapter, refreshLayout, htr);
                 new Thread() {
                     @Override
                     public void run() {
