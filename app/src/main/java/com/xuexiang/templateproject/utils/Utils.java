@@ -486,7 +486,7 @@ public final class Utils {
         Snackbar.make(
                 activity.findViewById(android.R.id.content),
                 message, Snackbar.LENGTH_SHORT
-        ).show();
+        ).setDuration(300).show();
 
 
     }
@@ -500,7 +500,7 @@ public final class Utils {
 
     public static void showCoorSnackBar(String message, Activity activity) {
         Snackbar snack = Snackbar.make(activity.findViewById(R.id.coordinatorLayout),
-                message, Snackbar.LENGTH_SHORT);
+                message, Snackbar.LENGTH_SHORT).setDuration(500);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)
                 snack.getView().getLayoutParams();
         params.setAnchorId(R.id.bottom_navigation); //id of the bottom navigation view
@@ -512,7 +512,7 @@ public final class Utils {
 
     public static void showFloorSnackBar(String message, Activity activity) {
         Snackbar snack = Snackbar.make(activity.findViewById(R.id.coordinatorLayout),
-                message, Snackbar.LENGTH_SHORT);
+                message, Snackbar.LENGTH_SHORT).setDuration(300);
         CoordinatorLayout.LayoutParams params = (CoordinatorLayout.LayoutParams)
                 snack.getView().getLayoutParams();
         params.setAnchorId(R.id.reply_bar); //id of the bottom navigation view

@@ -247,7 +247,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                     ExchangeInfosWithAli.FavourThread_json(threadid);
                     bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
                     ExchangeInfosWithAli.WhetherFavour = 1;
-//                    Snackbar snackbar = Snackbar.make(view,"收藏成功",Snackbar.LENGTH_SHORT);
+//                    Snackbar snackbar = Snackbar.make(view,"Exception功",Snackbar.LENGTH_SHORT);
 //                    snackbar.show();
                     Utils.showFloorSnackBar("收藏成功", this);
                 } catch (JSONException | IOException e) {
@@ -263,8 +263,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                     ExchangeInfosWithAli.CancelFavourThread_json(threadid);
                     bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.icon_collect_3));
                     ExchangeInfosWithAli.WhetherFavour = 0;
-                    Snackbar snackbar = Snackbar.make(view,"取消收藏成功",Snackbar.LENGTH_SHORT);
-                    snackbar.show();
+                    Utils.showFloorSnackBar("取消收藏成功", this);
                 } catch (JSONException | IOException e) {
                     Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
                     snackbar.show();
@@ -285,8 +284,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                     bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_already));
                     ExchangeInfosWithAli.WhetherPraise = 1;
                     praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())+1));
-                    Snackbar snackbar = Snackbar.make(view,"点赞成功",Snackbar.LENGTH_SHORT);
-                    snackbar.show();
+                    Utils.showFloorSnackBar("点赞成功", this);
+//                    Snackbar snackbar = Snackbar.make(view,"点赞成功",Snackbar.LENGTH_SHORT);
+//                    snackbar.show();
                 } catch (JSONException | IOException e) {
                     Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
                     snackbar.show();
@@ -302,8 +302,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                     bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_black));
                     ExchangeInfosWithAli.WhetherPraise = 0;
                     praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())-1));
-                    Snackbar snackbar = Snackbar.make(view,"取消点赞成功",Snackbar.LENGTH_SHORT);
-                    snackbar.show();
+                    Utils.showFloorSnackBar("取消点赞成功", this);
+//                    Snackbar snackbar = Snackbar.make(view,"取消点赞成功",Snackbar.LENGTH_SHORT);
+//                    snackbar.show();
                 } catch (JSONException | IOException e) {
                     Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
                     snackbar.show();
@@ -313,8 +314,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             }
             else if (ExchangeInfosWithAli.WhetherPraise == -1)
             {
-                Snackbar snackbar = Snackbar.make(view,"不能同时点赞点踩哦",Snackbar.LENGTH_SHORT);
-                snackbar.show();
+                Utils.showFloorSnackBar("不能同时点赞点踩哦", this);
+//                Snackbar snackbar = Snackbar.make(view,"不能同时点赞点踩哦",Snackbar.LENGTH_SHORT);
+//                snackbar.show();
             }
         }
         if(view.getId() == R.id.iv_tread_thread) {
@@ -327,8 +329,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                     bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_already));
                     ExchangeInfosWithAli.WhetherPraise = -1;
                     tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())+1));
-                    Snackbar snackbar = Snackbar.make(view,"点踩成功",Snackbar.LENGTH_SHORT);
-                    snackbar.show();
+                    Utils.showFloorSnackBar("点踩成功", this);
+//                    Snackbar snackbar = Snackbar.make(view,"点踩成功",Snackbar.LENGTH_SHORT);
+//                    snackbar.show();
                 } catch (JSONException | IOException e) {
                     Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
                     snackbar.show();
@@ -345,8 +348,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                     bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_black));
                     ExchangeInfosWithAli.WhetherPraise = 0;
                     tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())-1));
-                    Snackbar snackbar = Snackbar.make(view,"取消点踩成功",Snackbar.LENGTH_SHORT);
-                    snackbar.show();
+                    Utils.showFloorSnackBar("取消点踩成功", this);
+//                    Snackbar snackbar = Snackbar.make(view,"取消点踩成功",Snackbar.LENGTH_SHORT);
+//                    snackbar.show();
                 } catch (JSONException | IOException e) {
                     Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
                     snackbar.show();
@@ -356,8 +360,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             }
             else if (ExchangeInfosWithAli.WhetherPraise == 1)
             {
-                Snackbar snackbar = Snackbar.make(view,"不能同时点赞点踩哦",Snackbar.LENGTH_SHORT);
-                snackbar.show();
+                Utils.showFloorSnackBar("不能同时点赞点踩哦", this);
+//                Snackbar snackbar = Snackbar.make(view,"不能同时点赞点踩哦",Snackbar.LENGTH_SHORT);
+//                snackbar.show();
             }
         }
 

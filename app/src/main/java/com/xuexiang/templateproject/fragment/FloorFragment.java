@@ -345,10 +345,10 @@ public class FloorFragment extends BaseFragment{
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
                                     model.setPraise(model.getPraise()+1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
-                                    Snackbar snackbar = Snackbar.make(view,"点赞楼层",Snackbar.LENGTH_SHORT);
+                                    Snackbar snackbar = Snackbar.make(view,"点赞楼层",Snackbar.LENGTH_SHORT).setDuration(300);
                                     snackbar.show();
                                 } catch (JSONException | IOException e) {
-                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT).setDuration(300);
                                     snackbar.show();
                                     e.printStackTrace();
                                 }
@@ -364,10 +364,10 @@ public class FloorFragment extends BaseFragment{
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise);
                                     model.setPraise(model.getPraise()-1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
-                                    Snackbar snackbar = Snackbar.make(view,"取消点赞楼层",Snackbar.LENGTH_SHORT);
+                                    Snackbar snackbar = Snackbar.make(view,"取消点赞楼层",Snackbar.LENGTH_SHORT).setDuration(300);
                                     snackbar.show();
                                 } catch (JSONException | IOException e) {
-                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT).setDuration(300);
                                     snackbar.show();
                                     e.printStackTrace();
                                 }
@@ -392,10 +392,10 @@ public class FloorFragment extends BaseFragment{
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
                                     model.setPraise(model.getPraise()+1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
-                                    Snackbar snackbar = Snackbar.make(view,"点赞楼层",Snackbar.LENGTH_SHORT);
+                                    Snackbar snackbar = Snackbar.make(view,"点赞楼层",Snackbar.LENGTH_SHORT).setDuration(300);
                                     snackbar.show();
                                 } catch (JSONException | IOException e) {
-                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT).setDuration(300);
                                     snackbar.show();
                                     e.printStackTrace();
                                 }
@@ -412,10 +412,10 @@ public class FloorFragment extends BaseFragment{
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise);
                                     model.setPraise(model.getPraise()-1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
-                                    Snackbar snackbar = Snackbar.make(view,"取消点赞楼层",Snackbar.LENGTH_SHORT);
+                                    Snackbar snackbar = Snackbar.make(view,"取消点赞楼层",Snackbar.LENGTH_SHORT).setDuration(300);
                                     snackbar.show();
                                 } catch (JSONException | IOException e) {
-                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
+                                    Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT).setDuration(300);
                                     snackbar.show();
                                     e.printStackTrace();
                                 }
