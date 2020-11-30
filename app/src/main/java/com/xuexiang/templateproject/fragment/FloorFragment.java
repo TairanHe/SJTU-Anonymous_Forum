@@ -159,7 +159,12 @@ public class FloorFragment extends BaseFragment{
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
                 holder.text(R.id.tv_dyytitle, ((LookThroughActivity) getActivity()).threadtitle);
-                holder.text(R.id.tv_context, ((LookThroughActivity) getActivity()).threadsummary);
+//                holder.text(R.id.tv_context, ((LookThroughActivity) getActivity()).threadsummary);
+                TextView tv_context = holder.findViewById(R.id.tv_context);
+                tv_context.setText(((LookThroughActivity) getActivity()).threadsummary);
+                Linkify.addLinks(tv_context, Linkify.ALL);
+                Pattern p = Pattern.compile("wkfg://[0-9]+");
+                Linkify.addLinks(tv_context, p, "wkfg");
                 Log.d("Thread post time", ((LookThroughActivity) getActivity()).threadposttime);
                 try {
                     holder.text(R.id.tv_time, DateHelper.getPastTimebyString(((LookThroughActivity) getActivity()).threadposttime));
