@@ -271,6 +271,7 @@ public class FloorFragment extends BaseFragment{
 //                    holder.text(R.id.tv_context, model.getContext());
                     TextView tv_context = holder.findViewById(R.id.tv_context);
                     tv_context.setText(model.getContext());
+                    Linkify.addLinks(tv_context, Linkify.ALL);
                     Pattern p = Pattern.compile("wkfg://[0-9]+");
                     Linkify.addLinks(tv_context, p, "wkfg");
 
