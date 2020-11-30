@@ -251,15 +251,17 @@ public class NewsFragment extends BaseFragment {
                         @Override
                         public void onClick(View view) {
 //                            XToastUtils.toast("点击帖子！");
-                            LookThroughActivity.threadid = model.getThreadID();
-                            LookThroughActivity.threadtitle = model.getTitle();
-                            LookThroughActivity.threadsummary = model.getSummary();
-                            LookThroughActivity.threadposttime = model.getPostTime();
-                            LookThroughActivity.praisenum = model.getPraise();
-                            LookThroughActivity.dislikenum = model.getDislike();
-                            LookThroughActivity.anonymousType = model.getAnonymousType();
-                            LookThroughActivity.randomSeed = model.getRandomSeed();
+//                            LookThroughActivity.threadid = model.getThreadID();
+//                            LookThroughActivity.threadtitle = model.getTitle();
+//                            LookThroughActivity.threadsummary = model.getSummary();
+//                            LookThroughActivity.threadposttime = model.getPostTime();
+////                            LookThroughActivity.praisenum = model.getPraise();
+////                            LookThroughActivity.dislikenum = model.getDislike();
+//                            LookThroughActivity.anonymousType = model.getAnonymousType();
+//                            LookThroughActivity.randomSeed = model.getRandomSeed();
+
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
+                            intent.putExtra("ThreadID", model.getThreadID());
                             startActivity(intent);
                         }
                     });

@@ -178,29 +178,21 @@ public class FavorFragment extends BaseFragment {
                     holder.click(R.id.card_view, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            LookThroughActivity.threadid = model.getThreadID();
-                            LookThroughActivity.threadtitle = model.getTitle();
-                            LookThroughActivity.threadsummary = model.getSummary();
-                            LookThroughActivity.threadposttime = model.getPostTime();
-                            LookThroughActivity.praisenum = model.getPraise();
-                            LookThroughActivity.dislikenum = model.getDislike();
-                            LookThroughActivity.anonymousType = model.getAnonymousType();
-                            LookThroughActivity.randomSeed = model.getRandomSeed();
-                            Log.d("LookThroughActivity.帖子", LookThroughActivity.threadid);
                             Intent intent = new Intent(getActivity(), LookThroughActivity.class);
+                            intent.putExtra("ThreadID", model.getThreadID());
                             startActivity(intent);
                         }
                     });
                     holder.click(R.id.ll_delete, new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            LookThroughActivity.threadid = model.getThreadID();
-                            Log.d("LookThroughActivity.收藏", LookThroughActivity.threadid);
+
+                            Log.d("LookThroughActivity.收藏", model.getThreadID());
 //                            Intent intent = new Intent(getActivity(), LookThroughActivity.class);
 //                            startActivity(intent);
 //                            XToastUtils.toast("点击删除！");
 
-                            Utils.showDeleteFavorDialog(getActivity(), null, FavorFragment.this, LookThroughActivity.threadid);
+                            Utils.showDeleteFavorDialog(getActivity(), null, FavorFragment.this, model.getThreadID());
                             refreshLayout.autoRefresh(0, 0, 0,false);
                         }
                     });

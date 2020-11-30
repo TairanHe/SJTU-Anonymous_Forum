@@ -25,6 +25,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Handler;
 import android.os.Message;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -59,6 +60,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
+import java.util.regex.Pattern;
 
 import com.xuexiang.templateproject.utils.HTR_RGBA;
 import com.xuexiang.templateproject.utils.MyHandler;
@@ -137,9 +139,9 @@ public class FloorFragment extends BaseFragment{
     @Override
     protected void initViews() {
         AnonymousName AN = new AnonymousName();
-        namelist = AN.getnamelist(LookThroughActivity.anonymousType, LookThroughActivity.randomSeed);
+        namelist = AN.getnamelist(((LookThroughActivity) getActivity()).anonymousType, ((LookThroughActivity) getActivity()).randomSeed);
         AnonymousColor AC = new AnonymousColor();
-        colorlist = AC.getcolorlist("xui_v1_dark", Integer.parseInt(LookThroughActivity.threadid));
+        colorlist = AC.getcolorlist("xui_v1_dark", Integer.parseInt(((LookThroughActivity) getActivity()).threadid));
 
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(getContext());
         recyclerView.setLayoutManager(virtualLayoutManager);
@@ -156,11 +158,11 @@ public class FloorFragment extends BaseFragment{
         SingleDelegateAdapter titleAdapter = new SingleDelegateAdapter(R.layout.dyytitle) {
             @Override
             public void onBindViewHolder(@NonNull RecyclerViewHolder holder, int position) {
-                holder.text(R.id.tv_dyytitle, LookThroughActivity.threadtitle);
-                holder.text(R.id.tv_context, LookThroughActivity.threadsummary);
-                Log.d("Thread post time", LookThroughActivity.threadposttime);
+                holder.text(R.id.tv_dyytitle, ((LookThroughActivity) getActivity()).threadtitle);
+                holder.text(R.id.tv_context, ((LookThroughActivity) getActivity()).threadsummary);
+                Log.d("Thread post time", ((LookThroughActivity) getActivity()).threadposttime);
                 try {
-                    holder.text(R.id.tv_time, DateHelper.getPastTimebyString(LookThroughActivity.threadposttime));
+                    holder.text(R.id.tv_time, DateHelper.getPastTimebyString(((LookThroughActivity) getActivity()).threadposttime));
                 } catch (ParseException e) {
                     e.printStackTrace();
                 }
@@ -266,7 +268,12 @@ public class FloorFragment extends BaseFragment{
                     holder.text(R.id.tv_avatar_floor,"" + spString[spString.length-1].charAt(0));
 
 
-                    holder.text(R.id.tv_context, model.getContext());
+//                    holder.text(R.id.tv_context, model.getContext());
+                    TextView tv_context = holder.findViewById(R.id.tv_context);
+                    tv_context.setText(model.getContext());
+                    Pattern p = Pattern.compile("wkfg://[0-9]+");
+                    Linkify.addLinks(tv_context, p, "wkfg");
+
                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
 
                     holder.text(R.id.tv_reply,  "评论");
@@ -326,7 +333,7 @@ public class FloorFragment extends BaseFragment{
 
                                     FloorFragment.floorid = model.getFloorID();
                                     model.setWhetherPraise(1);
-                                    ExchangeInfosWithAli.PraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                    ExchangeInfosWithAli.PraiseFloor_json(((LookThroughActivity) getActivity()).threadid, Integer.parseInt(FloorFragment.floorid));
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
                                     model.setPraise(model.getPraise()+1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
@@ -345,7 +352,7 @@ public class FloorFragment extends BaseFragment{
                                 try {
                                     FloorFragment.floorid = model.getFloorID();
                                     model.setWhetherPraise(0);
-                                    ExchangeInfosWithAli.CancelPraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                    ExchangeInfosWithAli.CancelPraiseFloor_json(((LookThroughActivity) getActivity()).threadid, Integer.parseInt(FloorFragment.floorid));
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise);
                                     model.setPraise(model.getPraise()-1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
@@ -373,7 +380,7 @@ public class FloorFragment extends BaseFragment{
                                 try {
                                     FloorFragment.floorid = model.getFloorID();
                                     model.setWhetherPraise(1);
-                                    ExchangeInfosWithAli.PraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                    ExchangeInfosWithAli.PraiseFloor_json(((LookThroughActivity) getActivity()).threadid, Integer.parseInt(FloorFragment.floorid));
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise_already_blue);
                                     model.setPraise(model.getPraise()+1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
@@ -393,7 +400,7 @@ public class FloorFragment extends BaseFragment{
                                 try {
                                     FloorFragment.floorid = model.getFloorID();
                                     model.setWhetherPraise(0);
-                                    ExchangeInfosWithAli.CancelPraiseFloor_json(LookThroughActivity.threadid, Integer.parseInt(FloorFragment.floorid));
+                                    ExchangeInfosWithAli.CancelPraiseFloor_json(((LookThroughActivity) getActivity()).threadid, Integer.parseInt(FloorFragment.floorid));
                                     holder.image(R.id.iv_praise, R.drawable.ic_praise);
                                     model.setPraise(model.getPraise()-1);
                                     holder.text(R.id.tv_praise,  "点赞（" + String.valueOf(model.getPraise()) + "）");
@@ -441,9 +448,9 @@ public class FloorFragment extends BaseFragment{
 //                XToastUtils.toast("最早回复");
                 try {
                     order.setText("最早回复");
-                    ExchangeInfosWithAli.LastSeenFloorID = "NULL";
+                    ((LookThroughActivity) getActivity()).lastseenfloorid = "NULL";
                     now_order = "0";
-                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
+                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(((LookThroughActivity) getActivity()).threadid, ((LookThroughActivity) getActivity()).lastseenfloorid,now_order));
                     Utils.showSnackBar("最早回复", getActivity());
                 } catch (JSONException | IOException e) {
 //                Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
@@ -459,9 +466,9 @@ public class FloorFragment extends BaseFragment{
 //                XToastUtils.toast("最晚回复");
                 try {
                     order.setText("最晚回复");
-                    ExchangeInfosWithAli.LastSeenFloorID = "NULL";
+                    ((LookThroughActivity) getActivity()).lastseenfloorid = "NULL";
                     now_order = "1";
-                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order));
+                    mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(((LookThroughActivity) getActivity()).threadid, ((LookThroughActivity) getActivity()).lastseenfloorid,now_order));
                     Utils.showSnackBar("最晚回复", getActivity());
                 } catch (JSONException | IOException e) {
 //                Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
@@ -492,7 +499,7 @@ public class FloorFragment extends BaseFragment{
 //                } catch (JSONException | IOException e) {
 //                    e.printStackTrace();
 //                }
-                ExchangeInfosWithAli.LastSeenFloorID = "NULL";
+                ((LookThroughActivity) getActivity()).lastseenfloorid = "NULL";
                 LookThroughActivity htr = (LookThroughActivity) getActivity();
                 Handler handler = new MyHandler.FloorRefreshHandler(mFloorsAdapter, refreshLayout, htr);
                 new Thread() {
@@ -501,7 +508,8 @@ public class FloorFragment extends BaseFragment{
                         Message msg = new Message();
                         try {
                             msg.arg1 = 0;
-                            msg.obj  = ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order);
+                            msg.obj  = ExchangeInfosWithAli.GetAliFloor_json(((LookThroughActivity) getActivity()).threadid, ((LookThroughActivity) getActivity()).lastseenfloorid,now_order);
+                            ((LookThroughActivity) getActivity()).lastseenfloorid = ExchangeInfosWithAli.LastSeenFloorID;
                             if (msg.obj == null){
                                 msg.arg1 = -1;
                             }
@@ -535,7 +543,8 @@ public class FloorFragment extends BaseFragment{
                         Message msg = new Message();
                         try {
                             msg.arg1 = 0;
-                            msg.obj  = ExchangeInfosWithAli.GetAliFloor_json(LookThroughActivity.threadid, now_order);
+                            msg.obj  = ExchangeInfosWithAli.GetAliFloor_json(((LookThroughActivity) getActivity()).threadid, ((LookThroughActivity) getActivity()).lastseenfloorid, now_order);
+                            ((LookThroughActivity) getActivity()).lastseenfloorid = ExchangeInfosWithAli.LastSeenFloorID;
                             if (msg.obj == null){
                                 msg.arg1 = -1;
                             }

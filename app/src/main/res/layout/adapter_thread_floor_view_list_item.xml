@@ -139,7 +139,6 @@
                     android:maxLines="100"
                     android:singleLine="false"
                     android:textColor="@color/xui_config_color_pure_black"
-                    android:autoLink="email|web"
                     tools:text="深度解析RocketMQ消息发送的高可用设计" />
 
 

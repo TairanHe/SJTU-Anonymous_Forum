@@ -26,7 +26,16 @@
             android:name=".activity.LookThroughActivity"
             android:label=""
             android:windowSoftInputMode="adjustResize"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <!--隐式调用时，必须声明类别-->
+                <category android:name="android.intent.category.DEFAULT"/>
+                <!--必须和代码中设置scheme一样-->
+                <data android:scheme="wkfg"/>
+            </intent-filter>
+
+        </activity>
         <activity
             android:name=".activity.LoginActivity"
             android:label="登录"

@@ -50,16 +50,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LookThroughActivity extends AppCompatActivity implements View.OnClickListener,Toolbar.OnMenuItemClickListener {
-    public static String threadid;
-    public static String threadtitle;
-    public static String threadsummary;
-    public static String threadposttime;
-    public static int favournum;
-    public static int praisenum;
-    public static int dislikenum;
-    public static String lastupdatetime;
-    public static String anonymousType;
-    public static int randomSeed;
+    public String threadid;
+    public String threadtitle;
+    public String threadsummary;
+    public String threadposttime;
+    public int favournum;
+    public int praisenum;
+    public int dislikenum;
+    public String lastupdatetime;
+    public String anonymousType;
+    public int randomSeed;
+    public String lastseenfloorid;
+
+
 
     private TextView bt_comment;
     private ImageView bt_favor;
@@ -82,8 +85,28 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         ExchangeInfosWithAli.LastSeenFloorID = "NULL";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_look_through);
-
-
+        if (getIntent().getData() !=  null){
+            Log.d("scheme", getIntent().getData().getHost());
+            threadid = getIntent().getData().getHost();
+            lastseenfloorid = "NULL";
+        }
+        else {
+            threadid = getIntent().getStringExtra("ThreadID");
+            lastseenfloorid = "NULL";
+        }
+        try {
+            ExchangeInfosWithAli.GetAliFloor_json(threadid, lastseenfloorid, "0");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        threadtitle = ExchangeInfosWithAli.threadtitle;
+        threadsummary = ExchangeInfosWithAli.threadsummary;
+        threadposttime = ExchangeInfosWithAli.threadposttime;
+        anonymousType = ExchangeInfosWithAli.anonymousType;
+        randomSeed  = ExchangeInfosWithAli.randomSeed;
+        lastseenfloorid = ExchangeInfosWithAli.LastSeenFloorID;
 
 
 //        FloatingActionButton fab = findViewById(R.id.fab);
@@ -129,7 +152,8 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
 
         mTitle = (TextView) findViewById(R.id.toolbar_title);
-        mTitle.setText(threadtitle);
+        mTitle.setText("");
+
 //        if (ExchangeInfosWithAli.WhetherFavour == 1)
 //        {
 //            XToastUtils.toast("此贴已收藏！");
@@ -184,6 +208,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
         praise_num.setText("" + ExchangeInfosWithAli.Num_Praise);
         tread_num.setText("" + ExchangeInfosWithAli.Num_Dislike);
+        mTitle.setText(threadtitle);
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -219,7 +244,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             if (ExchangeInfosWithAli.WhetherFavour == 0)
             {
                 try {
-                    ExchangeInfosWithAli.FavourThread_json(LookThroughActivity.threadid);
+                    ExchangeInfosWithAli.FavourThread_json(threadid);
                     bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.ic_favor_already));
                     ExchangeInfosWithAli.WhetherFavour = 1;
 //                    Snackbar snackbar = Snackbar.make(view,"收藏成功",Snackbar.LENGTH_SHORT);
@@ -235,7 +260,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             else
             {
                 try {
-                    ExchangeInfosWithAli.CancelFavourThread_json(LookThroughActivity.threadid);
+                    ExchangeInfosWithAli.CancelFavourThread_json(threadid);
                     bt_favor.setImageDrawable(getResources().getDrawable(R.drawable.icon_collect_3));
                     ExchangeInfosWithAli.WhetherFavour = 0;
                     Snackbar snackbar = Snackbar.make(view,"取消收藏成功",Snackbar.LENGTH_SHORT);
@@ -256,7 +281,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
 
                 try {
-                    ExchangeInfosWithAli.PraiseThread_json(LookThroughActivity.threadid);
+                    ExchangeInfosWithAli.PraiseThread_json(threadid);
                     bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_already));
                     ExchangeInfosWithAli.WhetherPraise = 1;
                     praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())+1));
@@ -273,7 +298,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
             {
 
                 try {
-                    ExchangeInfosWithAli.CancelPraiseThread_json(LookThroughActivity.threadid);
+                    ExchangeInfosWithAli.CancelPraiseThread_json(threadid);
                     bt_praise.setImageDrawable(getResources().getDrawable(R.drawable.ic_praise_black));
                     ExchangeInfosWithAli.WhetherPraise = 0;
                     praise_num.setText(String.valueOf(Integer.parseInt(praise_num.getText().toString())-1));
@@ -298,7 +323,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
 
                 try {
-                    ExchangeInfosWithAli.DislikeThread_json(LookThroughActivity.threadid);
+                    ExchangeInfosWithAli.DislikeThread_json(threadid);
                     bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_already));
                     ExchangeInfosWithAli.WhetherPraise = -1;
                     tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())+1));
@@ -316,7 +341,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
 
                 try {
-                    ExchangeInfosWithAli.CancelDislikeThread_json(LookThroughActivity.threadid);
+                    ExchangeInfosWithAli.CancelDislikeThread_json(threadid);
                     bt_tread.setImageDrawable(getResources().getDrawable(R.drawable.ic_tread_black));
                     ExchangeInfosWithAli.WhetherPraise = 0;
                     tread_num.setText(String.valueOf(Integer.parseInt(tread_num.getText().toString())-1));
@@ -388,7 +413,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                     //commentOnWork(commentContent);
 
                     try {
-                        ExchangeInfosWithAli.AlicommentThread_json(LookThroughActivity.threadid, commentContent);
+                        ExchangeInfosWithAli.AlicommentThread_json(threadid, commentContent);
                         Utils.showSnackBar("评论成功", LookThroughActivity.this);
                         dialog.dismiss();
                     } catch (JSONException | IOException e) {
@@ -467,7 +492,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
                 else {
 
                     try {
-                        ExchangeInfosWithAli.AliReplyFloor_json(LookThroughActivity.threadid, replyContent , position);
+                        ExchangeInfosWithAli.AliReplyFloor_json(threadid, replyContent , position);
                         Utils.showSnackBar("评论成功", LookThroughActivity.this);
                         dialog.dismiss();
                     } catch (JSONException | IOException e) {

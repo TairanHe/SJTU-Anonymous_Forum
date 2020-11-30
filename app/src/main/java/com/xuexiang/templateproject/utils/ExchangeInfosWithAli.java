@@ -24,7 +24,9 @@ import android.util.Log;
 
 import com.bumptech.glide.load.model.stream.QMediaStoreUriLoader;
 import com.google.gson.JsonParser;
+import com.umeng.commonsdk.debug.I;
 import com.xuexiang.templateproject.R;
+import com.xuexiang.templateproject.activity.LookThroughActivity;
 import com.xuexiang.templateproject.adapter.entity.FloorInfo;
 import com.xuexiang.templateproject.adapter.entity.MessageInfo;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
@@ -49,11 +51,25 @@ public class ExchangeInfosWithAli {
     public static String LastSeenMyThreadID = "NULL";
     public static String LastSeenQueryThreadID = "NULL";
     public static String LastSeenHotThreadID = "NULL";
+
+
+
     public static int WhetherFavour = 0;
     public static int WhetherPraise = 0;
     public static int Num_Praise = 0;
     public static int Num_Dislike = 0;
     public static int WhetherReport = 0;
+
+    public static String threadid;
+    public static String threadtitle;
+    public static String threadsummary;
+    public static String threadposttime;
+    public static String lastupdatetime;
+    public static String anonymousType;
+    public static int randomSeed;
+
+
+
     public static String query_string = "NULL";
     public static String UserName = "无可奉告";
 
@@ -69,8 +85,8 @@ public class ExchangeInfosWithAli {
         return DecapsulateJsonToList_Recommmand(receive_message);
     }
 
-    public static List<FloorInfo> GetAliFloor_json(String ThreadID, String order) throws JSONException ,IOException {
-        JSONObject QueryJson = EncapsulateString_json("2", ThreadID, LastSeenFloorID, order, "0", "0");
+    public static List<FloorInfo> GetAliFloor_json(String ThreadID, String lastSeenFloorID,String order) throws JSONException ,IOException {
+        JSONObject QueryJson = EncapsulateString_json("2", ThreadID, lastSeenFloorID, order, "0", "0");
         JSONObject receive_message = RunTCP_json(QueryJson);
 //        if (receive_message == null){
 //            XToastUtils.toast("网络异常");
@@ -475,7 +491,19 @@ public class ExchangeInfosWithAli {
         Num_Praise = Integer.parseInt(this_thread.getString("Like"));
         Num_Dislike = Integer.parseInt(this_thread.getString("Dislike"));
         WhetherReport = Integer.parseInt(this_thread.getString("WhetherReport"));
+
+
         LastSeenFloorID = InputJson.getString("LastSeenFloorID");
+
+        threadid = this_thread.getString("ThreadID");
+        threadtitle = this_thread.getString("Title");
+        threadsummary = this_thread.getString("Summary");
+        threadposttime = this_thread.getString("PostTime");
+//        LookThroughActivity.praisenum = Integer.parseInt(this_thread.getString("Like"));
+//        LookThroughActivity.dislikenum= Integer.parseInt(this_thread.getString("DisLike"));
+        anonymousType = this_thread.getString("AnonymousType");
+        randomSeed = Integer.parseInt(this_thread.getString("RandomSeed"));
+
         if (floor_list.length() < 1) {
 //            XToastUtils.toast("没有更多啦～");
             return null;
