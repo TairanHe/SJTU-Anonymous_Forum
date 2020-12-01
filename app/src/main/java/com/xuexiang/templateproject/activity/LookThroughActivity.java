@@ -96,9 +96,9 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         }
         try {
             ExchangeInfosWithAli.GetAliFloor_json(threadid, lastseenfloorid, "0");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (JSONException | IOException e) {
+            XToastUtils.toast("该帖不存在");
+            finish();
             e.printStackTrace();
         }
         threadtitle = ExchangeInfosWithAli.threadtitle;

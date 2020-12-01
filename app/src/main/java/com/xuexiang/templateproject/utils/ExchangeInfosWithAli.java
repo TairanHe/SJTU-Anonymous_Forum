@@ -478,6 +478,9 @@ public class ExchangeInfosWithAli {
 
 
     private static List<FloorInfo> DecapsulateJsonToList_floor(JSONObject InputJson) throws JSONException {
+//        if (InputJson.getString("ExistFlag").equals("0")){
+//            return "";
+//        }
         List<FloorInfo> list = new ArrayList<>();
         JSONArray floor_list= InputJson.getJSONArray("floor_list");
 //        WhetherPraise = Integer.parseInt(InputJson.getString("WhetherLike"));
