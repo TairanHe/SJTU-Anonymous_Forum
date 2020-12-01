@@ -162,8 +162,7 @@ public class FloorFragment extends BaseFragment{
 //                holder.text(R.id.tv_context, ((LookThroughActivity) getActivity()).threadsummary);
                 TextView tv_context = holder.findViewById(R.id.tv_context);
                 tv_context.setText(((LookThroughActivity) getActivity()).threadsummary);
-                Linkify.addLinks(tv_context, Linkify.WEB_URLS);
-                Linkify.addLinks(tv_context, Linkify.EMAIL_ADDRESSES);
+                Linkify.addLinks(tv_context, Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES);
                 Pattern p = Pattern.compile("wkfg://[0-9]+");
                 Linkify.addLinks(tv_context, p, "wkfg");
                 Log.d("Thread post time", ((LookThroughActivity) getActivity()).threadposttime);
@@ -277,8 +276,7 @@ public class FloorFragment extends BaseFragment{
 //                    holder.text(R.id.tv_context, model.getContext());
                     TextView tv_context = holder.findViewById(R.id.tv_context);
                     tv_context.setText(model.getContext());
-                    Linkify.addLinks(tv_context, Linkify.WEB_URLS);
-                    Linkify.addLinks(tv_context, Linkify.EMAIL_ADDRESSES);
+                    Linkify.addLinks(tv_context, Linkify.WEB_URLS | Linkify.EMAIL_ADDRESSES);
                     Pattern p = Pattern.compile("wkfg://[0-9]+");
                     Linkify.addLinks(tv_context, p, "wkfg");
 
@@ -459,6 +457,7 @@ public class FloorFragment extends BaseFragment{
                     ((LookThroughActivity) getActivity()).lastseenfloorid = "NULL";
                     now_order = "0";
                     mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(((LookThroughActivity) getActivity()).threadid, ((LookThroughActivity) getActivity()).lastseenfloorid,now_order));
+                    ((LookThroughActivity) getActivity()).lastseenfloorid = ExchangeInfosWithAli.LastSeenFloorID;
                     Utils.showSnackBar("最早回复", getActivity());
                 } catch (JSONException | IOException e) {
 //                Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
@@ -477,6 +476,7 @@ public class FloorFragment extends BaseFragment{
                     ((LookThroughActivity) getActivity()).lastseenfloorid = "NULL";
                     now_order = "1";
                     mFloorsAdapter.refresh(ExchangeInfosWithAli.GetAliFloor_json(((LookThroughActivity) getActivity()).threadid, ((LookThroughActivity) getActivity()).lastseenfloorid,now_order));
+                    ((LookThroughActivity) getActivity()).lastseenfloorid = ExchangeInfosWithAli.LastSeenFloorID;
                     Utils.showSnackBar("最晚回复", getActivity());
                 } catch (JSONException | IOException e) {
 //                Snackbar snackbar = Snackbar.make(view,"请检查网络后重试",Snackbar.LENGTH_SHORT);
