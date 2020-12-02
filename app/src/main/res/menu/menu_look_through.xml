@@ -36,5 +36,5 @@
         android:icon="@drawable/ic_report"
         android:title="举报"
         android:orderInCategory="100"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="always" />
 </menu>

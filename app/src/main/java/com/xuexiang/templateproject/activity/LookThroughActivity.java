@@ -23,6 +23,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -121,13 +122,16 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
 
     }
 
+
     private void initView() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.inflateMenu(R.menu.menu_look_through);
-        toolbar.setOnMenuItemClickListener(this);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar.inflateMenu(R.menu.menu_look_through);
+        toolbar.setOnMenuItemClickListener(this);
+
+
 //        this.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
 
@@ -223,7 +227,7 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         //Log.d("dyy:", String.valueOf(R.id.action_privacy));
         switch (item.getItemId()) {
             case R.id.action_report:
-                XToastUtils.toast("举报");
+//                XToastUtils.toast("举报");
                 Utils.showReportDialog(this, null, threadid);
                 //Utils.showPrivacyDialog(this, null);
 //                Intent intent = new Intent(MainActivity.this, PostThreadActivity.class);
@@ -234,6 +238,14 @@ public class LookThroughActivity extends AppCompatActivity implements View.OnCli
         }
         return false;
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_look_through, menu);
+        return true;
+    }
+
     @Override
     public void onClick(View view) {
         if(view.getId() == R.id.detail_page_do_comment){
