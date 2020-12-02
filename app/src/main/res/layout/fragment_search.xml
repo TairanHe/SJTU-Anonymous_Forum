@@ -26,7 +26,7 @@
             tools:listitem="@layout/adapter_news_card_view_list_item" />
 
         <!--    注意修改包名时，这里也需要修改    -->
-        <com.xuexiang.templateproject.widget.MaterialFooter
+        <com.xuexiang.wukefenggao.widget.MaterialFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
