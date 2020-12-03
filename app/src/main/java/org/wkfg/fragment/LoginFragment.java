@@ -108,7 +108,7 @@ public class LoginFragment extends BaseFragment {
                     Log.d("LoginFragment.java", etPhoneNumber.getEditValue() + "   " + etVerifyCode.getEditValue());
                 break;
             case R.id.btn_register:
-                XToastUtils.info("验证码需要约30秒送至您的邮箱\n请耐心等待～勿重复发送验证码");
+                XToastUtils.info("验证码已送至您的邮箱\n请注意查收～勿重复发送验证码");
                 try {
                     int VarifiedEmailAddress = ExchangeInfosWithAli.Request_verifycode(etPhoneNumber.getEditValue());
                     if (VarifiedEmailAddress == 0){
