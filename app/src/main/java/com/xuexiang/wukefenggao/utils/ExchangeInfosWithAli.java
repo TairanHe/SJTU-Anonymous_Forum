@@ -582,7 +582,7 @@ public class ExchangeInfosWithAli {
         switch (name) {
             case "主干道":
                 return 0;
-            case "体育":
+            case "校园":
                 return 1;
             case "音乐":
                 return 2;
@@ -608,7 +608,7 @@ public class ExchangeInfosWithAli {
             case 0:
                 return "主干道";
             case 1:
-                return "体育";
+                return "校园";
             case 2:
                 return "音乐";
             case 3:

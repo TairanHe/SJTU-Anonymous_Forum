@@ -56,7 +56,7 @@
                         android:layout_weight="1"
                         android:checked="true"
                         android:button="@null"
-                        android:text="体育"
+                        android:text="校园"
                         android:textColor="@color/xui_btn_blue_select_color"
                         android:layout_marginHorizontal="10dp"
                         android:background="@drawable/radio_button_solid"/>

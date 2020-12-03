@@ -19,11 +19,11 @@
     <string name="menu_about">关于</string>
 
     <string name="about_copyright">© %1$s Wukefenggao All rights reserved.</string>
-    <string name="about_item_homepage">访问GitHub</string>
-    <string name="about_item_author_github">访问无可奉告官网</string>
+    <string name="about_item_homepage">官网</string>
+    <string name="about_item_code">社区规范</string>
     <string name="about_item_donation_link">无可奉告之禅</string>
     <string name="about_item_add_qq_group">检查更新</string>
-    <string name="url_project_github">https://github.com/TairanHe/SJTU-Anonymous_Forum</string>
+    <string name="url_code">http://www.wukefenggao.cn/code</string>
     <string name="url_wkfg">http://www.wukefenggao.cn</string>
     <string name="url_donation_link">https://github.com/TairanHe/SJTU-Anonymous_Forum/blob/master/README.md</string>
     <string name="url_add_qq_group">https://github.com/TairanHe/SJTU-Anonymous_Forum/blob/master/README.md</string>

@@ -61,8 +61,8 @@ public class AboutFragment extends BaseFragment {
         mVersionTextView.setText(String.format("版本号：%s", getString(R.string.app_version)));
 
         XUIGroupListView.newSection(getContext())
-                .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_author_github)), v -> AgentWebActivity.goWeb(getContext(), getString(R.string.url_wkfg)))
-                .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_homepage)), v -> AgentWebActivity.goWeb(getContext(), getString(R.string.url_project_github)))
+                .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_homepage)), v -> AgentWebActivity.goWeb(getContext(), getString(R.string.url_wkfg)))
+                .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_code)), v -> AgentWebActivity.goWeb(getContext(), getString(R.string.url_code)))
                 .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_donation_link)), v -> Utils.showZenDialog(getContext(), (dialog, which) -> {
                     dialog.dismiss();
                 }))
