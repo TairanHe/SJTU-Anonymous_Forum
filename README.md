@@ -5,7 +5,7 @@
 
 This is the __Android frontend__ of 「无可奉告」 SJTU Anonymous Forum. <br> You may check iOS version at [iOS无可奉告](https://github.com/oscardhc/Forum).
 
-「无可奉告」SJTU Anonymous Forum aims to provide SJTUers with a carefree forum platfrom. <br> Check our official website at [无可奉告官网](wukefenggao.cn).
+「无可奉告」SJTU Anonymous Forum aims to provide SJTUers with a carefree forum platfrom. <br> Check our official website at [无可奉告官网](http://wukefenggao.cn).
 
 ### Acknowledgement
 「无可奉告」is inseparable from the contribution of every member. 
@@ -20,7 +20,7 @@ Also, thank you to all those who participated in the internal testing process, y
 
 
 ### Release
-**Recommended**: The official website [无可奉告官网](wukefenggao.cn).<br> Or you may refer to th Github [release](https://github.com/TairanHe/SJTU-Anonymous_Forum/releases) page.
+**Recommended**: The official website [无可奉告官网](http://wukefenggao.cn).<br> Or you may refer to th Github [release](https://github.com/TairanHe/SJTU-Anonymous_Forum/releases) page.
 
 
 
