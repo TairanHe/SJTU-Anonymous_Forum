@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.xuexiang.wukefenggao.fragment.FloorFragment"
+        android:name="org.wkfg.fragment.FloorFragment"
         android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_floor">
 
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
-        android:name="com.xuexiang.wukefenggao.fragment.SecondFragment"
+        android:name="org.wkfg.fragment.SecondFragment"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragment_second">
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.LookThroughActivity">
+    tools:context="org.wkfg.activity.LookThroughActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
 
         <fragment
             android:id="@+id/search_fragment"
-            android:name="com.xuexiang.wukefenggao.fragment.SearchFragment"
+            android:name="org.wkfg.fragment.SearchFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>

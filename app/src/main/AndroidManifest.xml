@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.xuexiang.wukefenggao">
+    package="org.wkfg">
     <!-- 进程杀死 -->
     <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
 
     <application
-        android:name="com.xuexiang.wukefenggao.MyApp"
+        android:name=".MyApp"
         android:allowBackup="false"
         android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
         android:icon="@mipmap/ic_launcher"
@@ -19,11 +19,11 @@
         tools:ignore="LockedOrientationActivity"
         tools:targetApi="n">
         <activity
-            android:name="com.xuexiang.wukefenggao.activity.SearchActivity"
+            android:name=".activity.SearchActivity"
             android:label="搜索"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
-            android:name="com.xuexiang.wukefenggao.activity.LookThroughActivity"
+            android:name="org.wkfg.activity.LookThroughActivity"
             android:label=""
             android:windowSoftInputMode="adjustResize"
             android:theme="@style/AppTheme.NoActionBar">
@@ -37,7 +37,7 @@
 
         </activity>
         <activity
-            android:name="com.xuexiang.wukefenggao.activity.LoginActivity"
+            android:name="org.wkfg.activity.LoginActivity"
             android:label="登录"
             android:theme="@style/AppTheme.NoActionBar" />
 <!--        <activity-->
@@ -45,11 +45,11 @@
 <!--            android:label="注册"-->
 <!--            android:theme="@style/AppTheme.NoActionBar" />-->
         <activity
-            android:name="com.xuexiang.wukefenggao.activity.PostThreadActivity"
+            android:name="org.wkfg.activity.PostThreadActivity"
             android:label="我要发帖"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.xuexiang.wukefenggao.activity.SplashActivity"
+            android:name="org.wkfg.activity.SplashActivity"
             android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Launch.App"
@@ -61,12 +61,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.xuexiang.wukefenggao.activity.MainActivity"
+            android:name="org.wkfg.activity.MainActivity"
             android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" /> <!-- 通用浏览器 -->
         <activity
-            android:name="com.xuexiang.wukefenggao.core.webview.AgentWebActivity"
+            android:name="com.xuexiang.templateproject.core.webview.AgentWebActivity"
             android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
             android:hardwareAccelerated="true"
             android:label="@string/app_browser_name"
@@ -115,20 +115,20 @@
             </intent-filter>
         </activity> <!-- fragment的页面容器 -->
         <activity
-            android:name="com.xuexiang.wukefenggao.core.BaseActivity"
+            android:name="com.xuexiang.templateproject.core.BaseActivity"
             android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" /> <!-- 版本更新提示 -->
         <activity
-            android:name="com.xuexiang.wukefenggao.utils.update.UpdateTipDialog"
+            android:name="org.wkfg.utils.update.UpdateTipDialog"
             android:screenOrientation="portrait"
             android:theme="@style/DialogTheme" /> <!-- Webview拦截提示弹窗 -->
         <activity
-            android:name="com.xuexiang.wukefenggao.core.webview.WebViewInterceptDialog"
+            android:name="com.xuexiang.templateproject.core.webview.WebViewInterceptDialog"
             android:screenOrientation="portrait"
             android:theme="@style/DialogTheme" /> <!-- applink的中转页面 -->
         <activity
-            android:name="com.xuexiang.wukefenggao.core.XPageTransferActivity"
+            android:name="com.xuexiang.templateproject.core.XPageTransferActivity"
             android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" /> <!-- 屏幕自适应设计图 -->
