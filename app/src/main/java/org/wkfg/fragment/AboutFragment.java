@@ -17,6 +17,8 @@
 
 package org.wkfg.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.widget.TextView;
 
 import org.wkfg.R;
@@ -61,8 +63,16 @@ public class AboutFragment extends BaseFragment {
         mVersionTextView.setText(String.format("版本号：%s", getString(R.string.app_version)));
 
         XUIGroupListView.newSection(getContext())
-                .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_homepage)), v -> AgentWebActivity.goWeb(getContext(), getString(R.string.url_wkfg)))
-                .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_code)), v -> AgentWebActivity.goWeb(getContext(), getString(R.string.url_code)))
+                .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_homepage)), v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_wkfg)));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                })
+                .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_code)), v -> {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.url_code)));
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                })
                 .addItemView(mAboutGroupListView.createItemView(getResources().getString(R.string.about_item_donation_link)), v -> Utils.showZenDialog(getContext(), (dialog, which) -> {
                     dialog.dismiss();
                 }))

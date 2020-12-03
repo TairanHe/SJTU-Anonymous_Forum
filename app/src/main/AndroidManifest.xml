@@ -31,6 +31,7 @@
                 <action android:name="android.intent.action.VIEW"/>
                 <!--隐式调用时，必须声明类别-->
                 <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
                 <!--必须和代码中设置scheme一样-->
                 <data android:scheme="wkfg"/>
             </intent-filter>
@@ -65,46 +66,47 @@
             android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateHidden" /> <!-- 通用浏览器 -->
-        <activity
-            android:name="com.xuexiang.templateproject.core.webview.AgentWebActivity"
-            android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
-            android:hardwareAccelerated="true"
-            android:label="@string/app_browser_name"
-            android:theme="@style/AppTheme">
+<!--        <activity-->
+<!--            android:name="com.xuexiang.templateproject.core.webview.AgentWebActivity"-->
+<!--            android:configChanges="screenSize|keyboardHidden|orientation|keyboard"-->
+<!--            android:hardwareAccelerated="true"-->
+<!--            android:label="@string/app_browser_name"-->
+<!--            android:theme="@style/AppTheme">-->
 
             <!-- Scheme -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <action android:name="com.xuexiang.xui.applink" />
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
+<!--                <action android:name="com.xuexiang.xui.applink" />-->
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
 
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:scheme="about" />
-                <data android:scheme="javascript" />
+<!--                <data android:scheme="wkfg" />-->
+<!--                <data android:scheme="https" />-->
+<!--                <data android:scheme="about" />-->
+<!--                <data android:scheme="javascript" -->
+<!--                    />-->
                 <!-- 设置自己的deeplink -->
                 <!-- <data -->
                 <!-- android:host="xxx.com" -->
                 <!-- android:scheme="xui"/> -->
-            </intent-filter>
+<!--            </intent-filter>-->
             <!-- AppLink -->
-            <intent-filter
-                android:autoVerify="true"
-                tools:targetApi="m">
-                <action android:name="android.intent.action.VIEW" />
+<!--            <intent-filter-->
+<!--                android:autoVerify="true"-->
+<!--                tools:targetApi="m">-->
+<!--                <action android:name="android.intent.action.VIEW" />-->
 
-                <category android:name="android.intent.category.BROWSABLE" />
-                <category android:name="android.intent.category.DEFAULT" />
+<!--                <category android:name="android.intent.category.BROWSABLE" />-->
+<!--                <category android:name="android.intent.category.DEFAULT" />-->
 
-                <data android:scheme="http" />
-                <data android:scheme="https" />
-                <data android:scheme="inline" />
-                <data android:mimeType="text/html" />
-                <data android:mimeType="text/plain" />
-                <data android:mimeType="application/xhtml+xml" />
-                <data android:mimeType="application/vnd.wap.xhtml+xml" />
+<!--                <data android:scheme="http" />-->
+<!--                <data android:scheme="https" />-->
+<!--                <data android:scheme="inline" />-->
+<!--                <data android:mimeType="text/html" />-->
+<!--                <data android:mimeType="text/plain" />-->
+<!--                <data android:mimeType="application/xhtml+xml" />-->
+<!--                <data android:mimeType="application/vnd.wap.xhtml+xml" />-->
                 <!-- 设置自己的applink -->
                 <!-- <data -->
                 <!-- android:host="xxx.com" -->
@@ -112,8 +114,8 @@
                 <!-- <data -->
                 <!-- android:host="xxx.com" -->
                 <!-- android:scheme="https"/> -->
-            </intent-filter>
-        </activity> <!-- fragment的页面容器 -->
+<!--            </intent-filter>-->
+<!--        </activity> &lt;!&ndash; fragment的页面容器 &ndash;&gt;-->
         <activity
             android:name="com.xuexiang.templateproject.core.BaseActivity"
             android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
