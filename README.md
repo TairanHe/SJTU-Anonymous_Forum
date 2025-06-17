@@ -5,7 +5,7 @@
 
 This is the __Android frontend__ of 「无可奉告」 SJTU Anonymous Forum. <br> You may check iOS version at [iOS无可奉告](https://github.com/oscardhc/Forum). <br> Update: This android frontend version is temporarily out of maintenance. The released android frontend has been set to the [Kotlin reimplementation](https://github.com/wu-qing-157/Anonymous) by [Yi Gu](https://github.com/wu-qing-157).
 
-「无可奉告」SJTU Anonymous Forum aims to provide SJTUers with a carefree forum platfrom. <br> Check our official website at [无可奉告官网](http://wukefenggao.cn).
+「无可奉告」SJTU Anonymous Forum aims to provide SJTUers with a carefree forum platfrom. 
 
 ### Acknowledgement
 「无可奉告」is inseparable from the contribution of every member. 
