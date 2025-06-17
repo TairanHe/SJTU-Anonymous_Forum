@@ -19,11 +19,6 @@ The most sincere gratitude to [Haichen Dong](https://github.com/oscardhc) who im
 Also, thank you to all those who participated in the internal testing process, your helpful suggestions make the project better.
 
 
-### Release
-**Recommended**: The official website [无可奉告官网](http://wukefenggao.cn).<br> Or you may refer to th Github [release](https://github.com/TairanHe/SJTU-Anonymous_Forum/releases) page.
-
-
-
 
 
  
